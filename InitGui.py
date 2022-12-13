@@ -128,9 +128,9 @@ static char * Movie_xpm[] = {
     def Activated(self):
         """This function is executed whenever the workbench is activated"""
         from PySide.QtCore import QT_TRANSLATE_NOOP
-        if 'Clapperboard' in FreeCAD.ActiveDocument.Content:
-            import RecordPlayVideo as rpv          
-            rpv.stopRecordCamera()
+        #if 'Clapperboard' in FreeCAD.ActiveDocument.Content:
+            #import RecordPlayVideo as rpv          
+            #rpv.stopRecordCamera()
         FreeCAD.Console.PrintMessage(QT_TRANSLATE_NOOP("Movie","Movie workbench loaded") + "\n")
         return
 
