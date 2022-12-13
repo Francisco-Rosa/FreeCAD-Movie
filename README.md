@@ -39,7 +39,7 @@ For more information, see the Tutorial.txt file inside the Movie folder installe
 Wiki documentation will be available as soon as possible.
   
 ### Feedback 
-For discussion, please use the Movie Workbench thread (https://forum.freecadweb.org/viewtopic.php) in the FreeCAD forum.
+For discussion, please use the Movie Workbench thread (https://forum.freecadweb.org/viewtopic.php?f=8&t=74432) in the FreeCAD forum.
 
 #### License 
 LGPL-2.1
