@@ -139,7 +139,7 @@ def ActivatedClapperboard():
 
 class CreateClapperboard:
 	
-    def QT_TRANSLATE_NOOP(Render, text):
+    def QT_TRANSLATE_NOOP(Movie, text):
         return text
 	
     def GetResources(self):
@@ -231,7 +231,7 @@ class StopRecordCamera:
 
 class CreateVideo:
 	
-    def QT_TRANSLATE_NOOP(Render, text):
+    def QT_TRANSLATE_NOOP(Movie, text):
         return text
 	
     def GetResources(self):
@@ -299,7 +299,7 @@ def runRecordCamera():
         
         FreeCADGui.activeDocument().activeView().saveImage(pathAndName,CL.R1_3FrameWidth,CL.R1_4FrameHeight,'Current')
 
-        FreeCAD.Console.PrintMessage(translate('Render', 'Frame 3DView # ' + frameNum +' has been completed') + '\n')
+        FreeCAD.Console.PrintMessage(translate('Movie', 'Frame 3DView # ' + frameNum +' has been completed') + '\n')
         
 
     if CL.R2_5OnRec == True :
@@ -315,7 +315,7 @@ def runRecordCamera():
         # Close render window
         FreeCADGui.runCommand('Std_CloseActiveWindow',0)
 
-        FreeCAD.Console.PrintMessage(translate('Render','Frame Render # ' + frameNum +' has been completed') + '\n')
+        FreeCAD.Console.PrintMessage(translate('Movie','Frame Render # ' + frameNum +' has been completed') + '\n')
           
 
 def startRecord3DView():
@@ -369,24 +369,40 @@ def createVideo():
     for i in range(len(frames)):
         video.write(cv2.imread(frames[i]))
         message = str('frame ' + str(i+1) + ' of ' + str(len(frames)))
-        FreeCAD.Console.PrintMessage(translate('Render', message) + '\n')
+        FreeCAD.Console.PrintMessage(translate('Movie', message) + '\n')
 
     video.release()
-    FreeCAD.Console.PrintMessage(translate('Render','outputed video to '+ outVideoPath))
+    FreeCAD.Console.PrintMessage(translate('Movie','outputed video to '+ outVideoPath))
 
 
 def playVideo():
-    import cv2	
+    import cv2
+    import time
+    	
     CL = FreeCAD.ActiveDocument.Clapperboard
 
     cap = cv2.VideoCapture(CL.Video_5OpenFile)
-		
-    while True:
+    
+    fps2 = int(cap.get(cv2.CAP_PROP_FPS))
+    
+    if cap.isOpened() == False:
+        FreeCAD.Console.PrintMessage(translate('Movie','Error: video file not found!'))
+        
+    else:
+        message2 = 'Movie at '+ str(fps2) + ' fps'
+        FreeCAD.Console.PrintMessage(translate('Movie', message2) + '\n')    	
+    
+    while cap.isOpened():
         sucess, frame = cap.read()
-        cv2.imshow("Video", frame)
-        if cv2.waitKey(1) & 0xFF ==ord('q'):
+        if sucess == True:
+            time.sleep(1/fps2)
+            cv2.imshow('Video', frame)
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
+    	        
+        else:
             break
-
+    	     
     cap.release()
     #cv2.destroyAllWindows()
 
