@@ -36,7 +36,7 @@ Introduction
 
      1.4.3. Create the video in FC. After finishing all desired animation recording steps, click on 'Create Video' (or Menu - Movie - Create Video). After finishing the recording the 'Create Video' button will be active again and a message in the report window will confirm the location where the file was saved. The video will be created with the frames from the folder indicated in Video 'InputFrames', it will be named and saved in the folder indicated in Video OutputPath of the Clapperboard properties window.
 
-     1.4.4. Play the video in FC or with an external program. After the recording is finished, indicate the video file in Video 'Open File' in the Clapperboard properties window. Click on 'Play Video' (or Menu - Movie - Play Video or workbench pop menu) to preview the created video. This feature is still not fully satisfactory, the animation will appear sped up, ignoring the configured fps. Directly click on the created video file to open it with your system's video playback program for confirmation of the result. If you prefer, you can directly use the frames created in an external video editing program that you are used to, or assemble the final video with the various partial footage from the cameras used and include the sound.
+     1.4.4. Play the video in FC or with an external program. After the recording is finished, indicate the video file in Video 'Open File' in the Clapperboard properties window. Click on 'Play Video' (or Menu - Movie - Play Video or workbench pop menu) to preview the created video. Directly click on the created video file to open it with your system's video playback program for confirmation of the result. If you prefer, you can directly use the frames created in an external video editing program that you are used to, or assemble the final video with the various partial footage from the cameras used and include the sound.
 
      1.4.5. Repeat the previous items using the render frames - R2. Once satisfied with the result of the animation of the 3D views of the FC, you can start recording the rendered frames, according to the Render project(s) chosen and already properly configured (s). Repeat the four previous steps, but now adjusting the properties corresponding to the Render in the Clapperboard properties window (mainly Render 'FrameOutputPath'), use the cameras configured for the render and activate 'R1' (Record Render Frames).
 
@@ -60,9 +60,7 @@ Introduction
 
      If you have mastery over the functioning of the different python files of worthe benches contained in the Mod folder of FC, you can only replace the modified file ('ExplodedAssembly.py'), first of all, save the original file or rename it, adding a _orig, for example.
 
-     3.3. Test file. A file (that uses the ExplodedAssembly Workbench animation) is prepared to test the Movie workbench, just download it and configure the clapperboard for your machine:
-    
-     Example.StdFC.
+     3.3. Test file. A file (that uses the ExplodedAssembly Workbench animation) is prepared to test the Movie workbench, just download it (from https://forum.freecadweb.org/viewtopic.php?f=8&t=74432) and configure the clapperboard for your machine.
 
 4. Cases of use of the Workbench:
 
