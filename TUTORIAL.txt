@@ -52,7 +52,7 @@ Introduction
 
      2.3. Using other renderers. The other renderers need adjustments for animation, mainly the inclusion of work halt instructions (sample numbers, time or noise level - denoising) and automatic closing of the program window. If anyone knows how and wants to contribute, please post the instructions here.
 
-3. Installation of the Movie Worbench and download the test file
+3. Installation of the Movie Workbench and download the test file
     
      3.1. The Movie Workbench is available at: https://github.com/Francisco-Rosa/FreeCAD-Movie
 
@@ -64,7 +64,7 @@ Introduction
     
      Example.StdFC.
 
-4. Cases of use of the Worbench:
+4. Cases of use of the Workbench:
 
      4.1. Usage. The idea is that the workbench record an image of each step of the created animation (frame). For this happens, it is necessary to insert the following lines in the code of the workbench, script or macro animation used:
 
