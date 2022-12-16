@@ -1,7 +1,7 @@
 # FreeCAD Movie Workbench
 FreeCAD workbench to create and play videos of animations
 
-<img src=./icons//ClapperboardIcon.svg height=30>
+<img src=./icons//CreateVideoIcon.svg height=30>
 The Movie workbench icon 
 
 
