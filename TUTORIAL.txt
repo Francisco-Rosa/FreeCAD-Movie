@@ -20,7 +20,7 @@ Steps for using the Movie workbench:
         https://wiki.freecadweb.org/Manual:Creating_renderings
         https://github.com/FreeCAD/FreeCAD-render/blob/master/docs/EngineInstall.md
 
-        Second, prepare the Render project(s) as per the instructions on the mentioned websites.
+        Second, prepare the Render project(s) as per the instructions on the mentioned websites. Click on the render button to generate an image and verify that everything is installed and configured correctly.
     
         Third, set up some cameras. It is preferable to adopt at least one camera from the Render Workbench so that the recording position (the point of observation) is not lost afterwards. Position and configure each of the camera(s) that you want to use in recording the animation.
 
