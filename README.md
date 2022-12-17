@@ -27,7 +27,7 @@ The Movie workbench icon
 Before using the workbench, some preparations are necessary:
 
 1. Create an animation with a workbench, script or macro of FreeCAD that are prepared for using this workbench (ex. ExplodedAssembly: https://github.com/Francisco-Rosa/ExplodedAssembly).
-2. If you want to integrated your animation workbench, script or macro to Movie Workbench, see how to in the Tutorial.txt file.
+2. If you want to integrated your animation workbench, script or macro to Movie Workbench, see how to in the TUTORIAL.txt file.
 3. For using render frames, you must install the Render Workbench and prepare rendering projects (see information in https://github.com/FreeCAD/FreeCAD-render).
 4. Open the Render Workbench and position cameras that better show the animation (recommended).
 
@@ -45,7 +45,7 @@ After preparation done, go to Movie Workbench and:
 
  
 ### Documentation
-For more information, see the Tutorial.txt file inside the Movie folder installed.
+For more information, see the TUTORIAL.txt file inside the Movie folder installed.
 Wiki documentation will be available as soon as possible.
   
 ### Feedback 
