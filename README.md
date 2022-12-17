@@ -19,7 +19,6 @@ The Movie workbench icon
 - Download the ZIP file (click 'Clone or Download' button above) 
 - For Ubuntu and similar OS's, extract it inside */home/username/.local/share/FreeCAD/Mod*   
 - For Windows, extract it inside *C: \Users\your_user_name\AppData\Roaming\FreeCAD\Mod* 
-- Rename the folder to Movie  
 - Launch FreeCAD
 
 ### Preparation
