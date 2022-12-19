@@ -12,6 +12,12 @@ The Movie workbench icon
 * Check the result playing the videos you have created  
 
 ### Installation
+
+##### Via Addon Manager (Recommended)
+
+- Menu Tools > Addon Manager
+- Locating Movie Worbench and installing it
+- Restart FreeCAD.
    
 
 ##### Manually install using github
