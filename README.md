@@ -35,11 +35,11 @@ After preparation done, go to Movie Workbench and:
 
 1. Click on <img src=./icons//CreateClapperboardIcon.svg height=20>  to **create the Clapperboard** and <img src=./icons//ClapperboardIcon.svg height=20> to **configure it** (see the tips showed for each item in the property window).
 2. Choose the camera and set GUI to it (recommended) or use a FreeCAD 3D View. Position your animation at the desired step.
-3. Click on <img src=./icons//StartRecord3DViewIcon.svg height=20> for **record 3D view frames** or <img src=./icons//StartRecordRenderIcon.svg height=20> for **record render ones**.
+3. Click on <img src=./icons//StartRecord3DViewIcon.svg height=20> for **record 3D view frames** or <img src=./icons//StartRecordRenderIcon.svg height=20> for **record render ones**, choose or confirm the folder to salve the frames.
 4. Start the animation with the correspondent commands of the workbench, script or macro used.
 5. If you need to stop recording, click on <img src=./icons//StopRecordCameraIcon.svg height=20>  **stop recording**.
 6. If you need to stop the animation, use the correspondent commands of the workbench, script or macro used.
-7. After the animation finished, choose the folder to salve your video and click on <img src=./icons//CreateVideoIcon.svg height=20>  **create video**.
+7. After the animation finished, choose the folder to salve your video and click on <img src=./icons//CreateVideoIcon.svg height=20>  **create video**, choose or confirm the input frames.
 8. For playing video, choose the file and click on <img src=./icons//PlayVideoIcon.svg height=20> **play video**.
 
  
