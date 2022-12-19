@@ -39,7 +39,7 @@ After preparation done, go to Movie Workbench and:
 4. Start the animation with the correspondent commands of the workbench, script or macro used.
 5. If you need to stop recording, click on <img src=./icons//StopRecordCameraIcon.svg height=20>  **stop recording**.
 6. If you need to stop the animation, use the correspondent commands of the workbench, script or macro used.
-7. After the animation finished, choose the folder to salve your video and click on <img src=./icons//CreateVideoIcon.svg height=20>  **create video**, choose or confirm the input frames.
+7. After the animation finished, choose the folder to salve your video and click on <img src=./icons//CreateVideoIcon.svg height=20>  **create video**, choose or confirm the input frames folder.
 8. For playing video, choose the file and click on <img src=./icons//PlayVideoIcon.svg height=20> **play video**.
 
  
