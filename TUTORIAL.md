@@ -11,18 +11,18 @@ Steps for using the Movie workbench:
 
 1. Preparations
 
-    1.1. Create an animation with a workbench, script or macro of FreeCAD that are prepared for using this workbench (ex. ExplodedAssembly: https://github.com/Francisco-Rosa/ExplodedAssembly). If you want to integrated one of those to Movie Workbench, see how to trigger the recording from the created animation in item 5 (below).
+    1.1. Create an animation with a workbench, script or macro of FreeCAD that are prepared for using this workbench (ex. ExplodedAssembly: https://github.com/Francisco-Rosa/ExplodedAssembly). If you want to integrated one of those to Movie Workbench, see how to trigger the recording from the animation code in item 5 (below).
 
-    1.2. Configure the Render projects and cameras
+    1.2. Configure the Render projects and cameras if you want to use them
 
-        Fist, install the Render workbench and install the external rendering programs, indicating them in the FC preferences, and carry out all the necessary preparations. See instructions on the Render Workbench at:
+        Install the Render workbench and install the external rendering programs, indicating them in the FC preferences, and carry out all the necessary preparations. See instructions on the Render Workbench at:
         https://github.com/FreeCAD/FreeCAD-render
         https://wiki.freecadweb.org/Manual:Creating_renderings
         https://github.com/FreeCAD/FreeCAD-render/blob/master/docs/EngineInstall.md
 
-        Second, prepare the Render project(s) as per the instructions on the mentioned websites. Click on the render button to generate an image and verify that everything is installed and configured correctly.
+        Prepare the Render project(s) as per the instructions on the mentioned websites. Click on the render button to generate an image and verify that everything is installed and configured correctly.
     
-        Third, set up some cameras. It is preferable to adopt at least one camera from the Render Workbench so that the recording position (the point of observation) is not lost afterwards. Position and configure each of the camera(s) that you want to use in recording the animation.
+        Set up some cameras. It is preferable to adopt at least one camera from the Render Workbench so that the recording position (the point of observation) is not lost afterwards. Position and configure each of the camera(s) that you want to use in recording the animation.
 
         Adjust the 'Aspec Ratio' of each one of them according to the proportion that you will use between the widths and heights in pixels of the future frames (for example 1.33 for 800x600). If you want to have a more accurate idea of the final result, adjust the 'Viewport Mapping' of the camera to 'CROP_VIEW_FILL_FRAME' or 'CROP_VIEWPORT_LINE_FRAME' and update the view by clicking on 'set GUI to this camera' (pop menu opened with the right mouse button on the camera icon).
 
@@ -40,11 +40,11 @@ Steps for using the Movie workbench:
 
         Choose camera or 3D view and position your animation at the desired step.
 
-        Create the 3D view frames - R1. For a preview of the animation with frames of the 3D view, click on 'R1' (or menu Movie - Record 3DView Frames) and later trigger the start of your animation (from a workbench, script or macro). The animation frames will be named and saved in the folder as configured in 'R1_5FrameOutpuPath' of the Clapperboard properties window. Messages on the bottom bar of the FC will show the recording progress, to better follow the process, open the report window.
+        Create the 3D view frames - R1. For a preview of the animation with frames of the 3D view, click on 'R1' (or menu Movie - Record 3DView Frames), choose or confirm the folder (that you've configured above) to salve the frames and start the animation (from a workbench, script or macro). The animation frames will be named and saved in the folder as configured in 'R1_5FrameOutpuPath' of the Clapperboard properties window. Messages on the bottom bar of the FC will show the recording progress, to better follow the process, open the report window.
 
-        Create the video in FC. After finishing all desired animation recording steps, click on 'Create Video' (or Menu - Movie - Create Video). After finishing the recording the 'Create Video' button will be active again and a message in the report window will confirm the location where the file was saved. The video will be created with the frames from the folder indicated in Video 'InputFrames', it will be named and saved in the folder as set up in Video OutputPath of the Clapperboard properties window.
+        Create the video in FC. After finishing all desired animation recording steps, click on 'Create Video' (or Menu - Movie - Create Video), choose or confirm the input frames folder (indicated in Video 'InputFrames' of the Clapperboard). After finishing the recording, a message in the report window will confirm the location where the file was saved. Important: it will be named and saved in the folder you configured before, respectively in Video Name and Video OutputPath of Clapperboard properties window.
 
-        Play the video in the FC or with an external program. After the recording is finished, indicate the video file in Video 'Open File' in the Clapperboard properties window. Click on 'Play Video' (or Menu - Movie - Play Video or workbench pop menu) to preview the created video. Directly click on the created video file to open it with your system's video playback program for confirmation of the result. If you prefer, you can directly use the frames created in an external video editing program that you are used to, or assemble the final video with the various partial footage from the cameras used and include the sound.
+        Play the video in the FC or an external program. Click on 'Play Video' (or Menu - Movie - Play Video or workbench pop menu) and choose the file you want to play, or directly click on the created video file to open it with your system's video playback program for confirmation of the result.If you prefer, you can also import the frames created into an external video editing program that you already know, or assemble the final video with the various partial footage from the cameras used and include the sound.
 
         Repeat the previous items using the render frames - R2. Once satisfied with the result of the animation of the 3D views of the FC, you can start recording the rendered frames, according to the Render project(s) chosen and already properly configured (s). Repeat the four previous steps, but now confirming the properties corresponding to the Render in the Clapperboard properties window (mainly Render 'FrameOutputPath'), use the cameras configured for the render and activate 'R2' (Record Render Frames).
 
@@ -62,7 +62,7 @@ Steps for using the Movie workbench:
 
 4. Installation of the Movie Workbench and download the test file
     
-     4.1. The Movie Workbench is available at: https://github.com/Francisco-Rosa/FreeCAD-Movie
+     4.1. The Movie Workbench is available at https://github.com/Francisco-Rosa/FreeCAD-Movie, but you can install it through the addon manager within the FC: Menu Tools - Addon Manager.
 
      4.2. The ExplodedAssembly workbench modified and prepared for recording is available at: https://github.com/Francisco-Rosa/ExplodedAssembly
 
