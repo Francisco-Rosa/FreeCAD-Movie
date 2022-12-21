@@ -70,7 +70,7 @@ If you have mastery over the functioning of the different python files of worthe
 
 #### 5. How to integrate your animation with Movie Workbench
 
-5.1. The idea is that the workbench record an image of each step of the created animation (frame). For this happens, it is necessary to insert the following lines in the code of the animation workbench, script or macro used (calling the module Movie only if it already exists a Clapperboard):
+5.1. The idea is that the workbench record an image of each step of the created animation (frame). For this happens, it is necessary to insert the following lines in the code of the animation workbench, script or macro used (calling the Movie module only if it already exists a Clapperboard):
 
       #At the beginning of the animation commad:
 
