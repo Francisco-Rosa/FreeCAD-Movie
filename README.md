@@ -13,7 +13,7 @@ The Movie toolbar
 
 ### Features
 * Create frames from the FreeCAD 3D views (**R1**) or the rendered ones (**R2**).   
-* Create videos from them inside FreeCAD or export them to your preferred external program.   
+* Create videos from them.  
 * Check the results playing the videos you have created.
 
 ### Installation
