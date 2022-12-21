@@ -12,9 +12,9 @@ The Movie toolbar
 
 
 ### Features
-* Create frames from the FreeCAD 3D views or the rendered ones   
-* Create videos from them inside FreeCAD or export them to your preferred external program   
-* Check the result playing the videos you have created  
+* Create frames from the FreeCAD 3D views (**R1**) or the rendered ones (**R2**).   
+* Create videos from them inside FreeCAD or export them to your preferred external program.   
+* Check the result playing the videos you have created.
 
 ### Installation
 
@@ -35,12 +35,10 @@ The Movie toolbar
 
 ### Preparation
 
-Before using the workbench, some preparations are necessary:
+For full using the workbench, two basic preparations are necessary:
 
-1. Create an animation with a workbench, script or macro of FreeCAD that are prepared for using this workbench (ex. [Modified ExplodedAssembly](https://github.com/Francisco-Rosa/ExplodedAssembly)).
-2. If you want to integrated your animation workbench, script or macro to Movie Workbench, see how to in the TUTORIAL.txt file.
-3. For using render frames, you must install the Render Workbench, prepare rendering projects and test them to make sure everything is working correctly. (see information in [FreeCAD-Render](https://github.com/FreeCAD/FreeCAD-render)).
-4. Open the Render Workbench and position cameras that better show the animation (recommended).
+1. Create an animation with a workbench, script or macro of FreeCAD that are prepared for using this workbench (ex. [Modified ExplodedAssembly](https://github.com/Francisco-Rosa/ExplodedAssembly)). If you want to integrated your animation workbench, script or macro to Movie Workbench, see how in the [TUTORIAL.md](https://github.com/Francisco-Rosa/FreeCAD-Movie/blob/master/TUTORIAL.md).
+2. If yoy want use the rendered frames (**R2**), you must install the Render Workbench, prepare rendering projects and test them preventively to make sure everything is working correctly (see information in [FreeCAD-Render](https://github.com/FreeCAD/FreeCAD-render)). It is also recommended to take advantage and position some cameras from this workbench that better show the animation.
 
 ### Usage
 After preparation done, go to Movie Workbench and:
