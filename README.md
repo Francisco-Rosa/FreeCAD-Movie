@@ -1,9 +1,14 @@
 # FreeCAD Movie Workbench
 FreeCAD workbench to create and play videos of animations
 
-<img src=./icons//CreateVideoIcon.svg height=30>
-The Movie workbench icon 
 
+The Movie Workbench icon
+
+<img src=./icons//CreateVideoIcon.svg height=50>
+ 
+The Movie toolbar
+
+<img src=./Docs/Image_MW_toolbar_2.jpg height=60>
 
 
 ### Features
@@ -24,16 +29,17 @@ The Movie workbench icon
   
 - Download the ZIP file (click 'Clone or Download' button above) 
 - For Ubuntu and similar OS's, extract it inside */home/username/.local/share/FreeCAD/Mod*   
-- For Windows, extract it inside *C: \Users\your_user_name\AppData\Roaming\FreeCAD\Mod* 
+- For Windows, extract it inside *C: \Users\your_user_name\AppData\Roaming\FreeCAD\Mod*
+- On macOS it is usually */Users/username/Library/Preferences/FreeCAD/Mod*
 - Launch FreeCAD
 
 ### Preparation
 
 Before using the workbench, some preparations are necessary:
 
-1. Create an animation with a workbench, script or macro of FreeCAD that are prepared for using this workbench (ex. ExplodedAssembly: https://github.com/Francisco-Rosa/ExplodedAssembly).
+1. Create an animation with a workbench, script or macro of FreeCAD that are prepared for using this workbench (ex. [F_Rosa/ExplodedAssembly](https://github.com/Francisco-Rosa/ExplodedAssembly).
 2. If you want to integrated your animation workbench, script or macro to Movie Workbench, see how to in the TUTORIAL.txt file.
-3. For using render frames, you must install the Render Workbench, prepare rendering projects and test them to make sure everything is working correctly. (see information in https://github.com/FreeCAD/FreeCAD-render).
+3. For using render frames, you must install the Render Workbench, prepare rendering projects and test them to make sure everything is working correctly. (see information in [FreeCAD-Render](https://github.com/FreeCAD/FreeCAD-render)).
 4. Open the Render Workbench and position cameras that better show the animation (recommended).
 
 ### Usage
@@ -48,13 +54,24 @@ After preparation done, go to Movie Workbench and:
 7. After the animation finished, choose the folder to salve your video and click on <img src=./icons//CreateVideoIcon.svg height=20>  **create video**, choose or confirm the input frames folder.
 8. For playing video, choose the file and click on <img src=./icons//PlayVideoIcon.svg height=20> **play video**.
 
+The Clapperboard properties
+
+<img src=./Docs/Image_MW_toolbar_propr.jpg height=600>
+
+The Movie menu
+
+<img src=./Docs/Image_MW_menu.jpg height=600>
+
+The Movie popup menu
+
+<img src=./Docs/Image_MW_pop_menu.jpg height=600>
  
 ### Documentation
-For more information, see the TUTORIAL.txt file inside the Movie folder installed.
+For more information, see the [TUTORIAL.md](https://github.com/Francisco-Rosa/FreeCAD-Movie/blob/master/TUTORIAL.md) file inside the Movie folder installed.
 Wiki documentation will be available as soon as possible.
   
 ### Feedback 
-For discussion, please use the Movie Workbench thread (https://forum.freecadweb.org/viewtopic.php?f=8&t=74432) in the FreeCAD forum.
+For discussion, please use the [Movie Workbench thread](https://forum.freecadweb.org/viewtopic.php?f=8&t=74432) in the FreeCAD forum.
 
 #### License 
 LGPL-2.1
