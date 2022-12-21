@@ -11,7 +11,7 @@ The activation of the animation remains in the corresponding workbench (start, p
 
 #### 1. Preparations
 
-1.1. Create an animation with a workbench, script or macro of FreeCAD that are prepared for using this workbench (ex. [F_Rosa/ExplodedAssembly](https://github.com/Francisco-Rosa/ExplodedAssembly). If you want to integrated one of those to Movie Workbench, see how to trigger the recording from the animation code in item 5 (below).
+1.1. Create an animation with a workbench, script or macro of FreeCAD that are prepared for using this workbench (ex. [Modified ExplodedAssembly](https://github.com/Francisco-Rosa/ExplodedAssembly)). If you want to integrated one of those to Movie Workbench, see how to trigger the recording from the animation code in item 5 (below).
 
 1.2. Configure the Render projects and cameras if you want to use them
 
@@ -62,7 +62,7 @@ For the Windows version, it will also be necessary to configure the POV-Ray Gui 
     
 4.1. The Movie Workbench is available at [FreeCAD-Movie](https://github.com/Francisco-Rosa/FreeCAD-Movie), but you can install it through the addon manager within the FC: Menu Tools - Addon Manager.
 
-4.2. The ExplodedAssembly workbench modified and prepared for recording is available at: [F_Rosa/ExplodedAssembly](https://github.com/Francisco-Rosa/ExplodedAssembly)
+4.2. The ExplodedAssembly workbench modified and prepared for recording is available at: [Modified ExplodedAssembly](https://github.com/Francisco-Rosa/ExplodedAssembly)
 
 If you have mastery over the functioning of the different python files of worthe benches contained in the Mod folder of FC, you can only replace the modified file ('ExplodedAssembly.py'), first of all, save the original file or rename it, adding a _orig, for example.
 
