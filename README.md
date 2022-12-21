@@ -14,7 +14,7 @@ The Movie toolbar
 ### Features
 * Create frames from the FreeCAD 3D views (**R1**) or the rendered ones (**R2**).   
 * Create videos from them inside FreeCAD or export them to your preferred external program.   
-* Check the result playing the videos you have created.
+* Check the results playing the videos you have created.
 
 ### Installation
 
@@ -22,10 +22,10 @@ The Movie toolbar
 
 - Menu Tools > Addon Manager
 - Locating Movie Worbench and installing it
-- Restart FreeCAD.
+- Restart FreeCAD
    
 
-##### Manually install using github
+##### Manually install using GitHub
   
 - Download the ZIP file (click 'Clone or Download' button above) 
 - For Ubuntu and similar OS's, extract it inside */home/username/.local/share/FreeCAD/Mod*   
@@ -45,7 +45,7 @@ After preparation done, go to Movie Workbench and:
 
 1. Click on <img src=./icons//CreateClapperboardIcon.svg height=20>  to **create the Clapperboard** and <img src=./icons//ClapperboardIcon.svg height=20> to **configure it** (see the tips showed for each item in the property window).
 2. Choose the camera and set GUI to it (recommended) or use a FreeCAD 3D View. Position your animation at the desired step.
-3. Click on <img src=./icons//StartRecord3DViewIcon.svg height=20> for **record 3D view frames** or <img src=./icons//StartRecordRenderIcon.svg height=20> for **record render ones**, choose or confirm the folder to salve the frames.
+3. Click on <img src=./icons//StartRecord3DViewIcon.svg height=20> for **record 3D view frames** or <img src=./icons//StartRecordRenderIcon.svg height=20> for **record rendered** ones, choose or confirm the folder to salve the frames.
 4. Start the animation with the correspondent commands of the workbench, script or macro used.
 5. If you need to stop recording, click on <img src=./icons//StopRecordCameraIcon.svg height=20>  **stop recording**.
 6. If you need to stop the animation, use the correspondent commands of the workbench, script or macro used.
@@ -65,7 +65,7 @@ The Movie popup menu
 <img src=./Docs/Image_MW_pop_menu.jpg height=600>
  
 ### Documentation
-For more information, see the [TUTORIAL.md](https://github.com/Francisco-Rosa/FreeCAD-Movie/blob/master/TUTORIAL.md) file inside the Movie folder installed.
+For more information, see the [TUTORIAL.md](https://github.com/Francisco-Rosa/FreeCAD-Movie/blob/master/TUTORIAL.md) (also inside the Movie folder, after the installation).
 Wiki documentation will be available as soon as possible.
   
 ### Feedback 
