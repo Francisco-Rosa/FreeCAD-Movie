@@ -70,11 +70,12 @@ If you have mastery over the functioning of the different python files of worthe
 
 #### 5. How to integrate your animation with Movie Workbench
 
-5.1. The idea is that the workbench record an image of each step of the created animation (frame). For this happens, it is necessary to insert the following lines in the code of the animation workbench, script or macro used:
+5.1. The idea is that the workbench record an image of each step of the created animation (frame). For this happens, it is necessary to insert the following lines in the code of the animation workbench, script or macro used (calling the module Movie only if it already exists a Clapperboard):
 
-      #At the beginning:
+      #At the beginning of the animation commad:
 
-      import RecordPlayVideo as rpv
+      if 'Clapperboard' in FreeCAD.ActiveDocument.Content:
+          import RecordPlayVideo as rpv
 
       #Inside the command to start the animation, two more insertions, one before the loop (to generate frame 1) and another at the end of each step (other frames):
 
@@ -85,6 +86,7 @@ If you have mastery over the functioning of the different python files of worthe
   
       #After the animation loop and inside the instruction for halting the animation (pause and/or stop), include:
   
-          rpv.stopRecordCamera()
+          if 'Clapperboard' in FreeCAD.ActiveDocument.Content:
+              rpv.stopRecordCamera()
 
 5.2. You also can see the example applied to the ExplodedAssembly Workbench in the link mentioned.
