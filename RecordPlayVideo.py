@@ -26,7 +26,6 @@
 import os
 import FreeCAD
 import FreeCADGui
-import Render
 import shutil
 from PySide.QtGui import QFileDialog
 from PySide.QtCore import QT_TRANSLATE_NOOP
@@ -297,6 +296,7 @@ def startRecord3DView():
     CL.R1_5FrameOutputPath = QFileDialog.getExistingDirectory(FreeCADGui.getMainWindow(), WindowTitle, OpenDir)
     
 def startRecordRender():
+    import Render
     CL = FreeCAD.ActiveDocument.Clapperboard
     CL.Cam_3OnRec = True
     CL.R2_5OnRec = True
