@@ -41,6 +41,8 @@ For full using the workbench, two basic preparations are necessary:
 2. If yoy want use the rendered frames (**R2**), you must install the Render Workbench, prepare rendering projects and test them preventively to make sure everything is working correctly (see information in [FreeCAD-Render](https://github.com/FreeCAD/FreeCAD-render)). It is also recommended to take advantage and position some cameras from this workbench that better show the animation.
 
 ### Usage
+(Watch the [tutorial video](https://www.youtube.com/watch?v=_IiIWtO76Tg))
+
 After preparation done, go to Movie Workbench and:
 
 1. Click on <img src=./icons//CreateClapperboardIcon.svg height=20>  to **create the Clapperboard** and <img src=./icons//ClapperboardIcon.svg height=20> to **configure it** (see the tips showed for each item in the property window).
