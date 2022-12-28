@@ -337,7 +337,8 @@ def runRecordCamera():
         shutil.move(output_file, f"" + CL.R2_3FrameOutputPath +'/' + frameFinalName)
         
         # Close render window
-        FreeCADGui.runCommand('Std_CloseActiveWindow',0)
+        if project.OpenAfterRender:
+            FreeCADGui.runCommand('Std_CloseActiveWindow',0)
 
         FreeCAD.Console.PrintMessage(translate('Movie','Frame Render # ' + frameNum +' has been completed') + '\n')
 
