@@ -29,11 +29,9 @@ import FreeCAD
 import FreeCADGui as Gui
 import RecordPlayVideo as rpv
 
-
 translate = FreeCAD.Qt.translate
 
 FreeCADGui.addLanguagePath(rpv.LanguagePath)
-
 
 class Movie (Workbench):
     """The Movie Workbench."""
@@ -108,29 +106,39 @@ static char * Movie_xpm[] = {
 "+&49&*s;&3u%%a;"
 };
 """
-    
-            
+                
     def Initialize(self):
         """This function is executed when the workbench is first activated.
         It is executed once in a FreeCAD session followed by the Activated function.
         """
         import RecordPlayVideo # import here all the needed files that create your FreeCAD commands
-          
-        self.list = ['CreateClapperboard',
-                              'StartRecord3DView', 
-                              'StartRecordRender',
-                              'StopRecordCamera',
-                              'CreateVideo',
-                              'PlayVideo'] # a list of command names created in the line above
-        self.appendToolbar("Movietools", self.list) # creates a new toolbar with your commands
-        self.appendMenu("Movie", self.list) # creates a new menu
+        import MovieCamera
+ 
+        self.list1 = ['CreateClapperboard',
+                      'StartRecord3DView', 
+                      'StartRecordRender',
+                      'StopRecordCamera',
+                      'CreateVideo',
+                      'PlayVideo'] # a list of command names created in the line above
+        self.appendToolbar("Movietools", self.list1) # creates a new toolbar with your commands
+        self.appendMenu("Movie", self.list1) # creates a new menu
+        self.list2 = ['MovieCamera',
+                      'CreateMovieCamera',
+                      'EnableMovieCamera',
+                      'SetMovieCameraPosA',
+                      'SetMovieCameraPosB',
+                      'IniMovieAnimation', 
+                      'PrevMovieAnimation',
+                      'PauseMovieAnimation',
+                      'PlayMovieAnimation',
+                      'PostMovieAnimation',
+                      'EndMovieAnimation'] # a list of command names created in the line above
+        self.appendToolbar("MovieCameratools", self.list2) # creates a new toolbar with your commands        
+        self.appendMenu("Movie", self.list2) # creates a new menu
 
     def Activated(self):
         """This function is executed whenever the workbench is activated"""
         from PySide.QtCore import QT_TRANSLATE_NOOP
-        #if 'Clapperboard' in FreeCAD.ActiveDocument.Content:
-            #import RecordPlayVideo as rpv          
-            #rpv.stopRecordCamera()
         FreeCAD.Console.PrintMessage(QT_TRANSLATE_NOOP("Movie","Movie workbench loaded") + "\n")
         return
 
@@ -148,7 +156,6 @@ static char * Movie_xpm[] = {
         # This is not a template, the returned string should be exactly "Gui::PythonWorkbench"
         return "Gui::PythonWorkbench"
             
-
 Gui.addWorkbench(Movie())
 
 #https://wiki.freecadweb.org/Workbench_creation
