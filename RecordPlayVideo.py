@@ -411,14 +411,13 @@ def playVideo():
         FreeCAD.Console.PrintMessage(translate('Movie','Error: video file not found!'))
         
     else:
-        message2 = 'Movie at '+ str(fps2) + ' fps,' + ' press q to stop the video'
-        FreeCAD.Console.PrintMessage(translate('Movie', message2) + '\n')    	
+        message2 = 'Movie at '+ str(fps2) + ' fps,' + ' press q to stop the video'   	
     
     while cap.isOpened():
         sucess, frame = cap.read()
         if sucess == True:
             time.sleep(1/fps2)
-            cv2.imshow('Video', frame)
+            cv2.imshow(message2, frame)
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
     	        
