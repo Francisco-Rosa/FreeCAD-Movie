@@ -6,23 +6,18 @@ The Movie Workbench icon
 
 <img src=./icons//CreateVideoIcon.svg height=50>
 
-The Movie toolbar - to create and animate cameras
-
-<img src=./Docs/Image_MW_toolbar_2.jpg height=60>
-
-The Clapperboard toolbar - to record and play videos
-
-<img src=./Docs/Image_MW_toolbar_2.jpg height=60>
-
 
 ### Features
-- With the Movie Camera toolbar:
+##### With the Movie Camera toolbar (to create and animate cameras):
+
 * Create animations of one or more cameras, showing the details of your project.
 * With the connection module, it is possible to create animations of cameras and objects simultaneously.
 * It is possible to create camera animations between two chosen points, making it follow a path or keeping it on a fixed base.
 * The camera targets can be free, fixed or mobile with the option to make them follow the path together with the camera.
 * Once the camera animations are established, it is possible to make further adjustments to the positions, rotations and zooms of the cameras until reaching the final desired settings.
-- With the Clapperboard toolbar:
+
+##### With the Clapperboard toolbar (to record and play videos):
+
 * Create frames from the FreeCAD 3D views (**R1**) or the rendered ones (**R2**).   
 * Create videos from them.  
 * Check the results playing the videos you have created.
@@ -53,7 +48,7 @@ The Clapperboard toolbar - to record and play videos
 ### Usage
 (Watch the [tutorial video](https://www.youtube.com/watch?v=_IiIWtO76Tg))
 
-To create camera animation go to Movie Camera toolbar and:
+##### To create camera animation go to Movie Camera toolbar and:
 
 1. Click on the Create a Movie Camera button to create one and to configure it (see the tips showed for each item in the property window).
 2. To configure the movie camera to animations between two positions, first, select and activate the Movie Camera you want to configure with the Enable Movie Camera icon. Position the 3D view with the desired framing to be the start of the animation (Pos A), click on Save the position A button. Position the 3D view with the desired framing to be the end of the animation (Pos B), then click on Save the position B button. Click on go to beginning and to the end of the animation buttons to confirm the configurations. Make the adjustments you want in the position, rotation and zoom of the Movie Camera.
@@ -64,7 +59,8 @@ To create camera animation go to Movie Camera toolbar and:
 7. To perform an animation, first select the Movie Cameras you want to animate, the sequence of selection will be the one adopted for the animation. Run a round trip in the animation with the go buttons to the end and to the beginning of the animation to reset all the steps of the animation in their initial positions. Then click on play animation button. If there is a connection activated, the animation of objects will work too.
 8. Use the go to beginning, one step back, pause, one step forward and go to end buttons as needed. They will also work with the workbench animations connected, if so.
 
-After the animations are done, go to Clapperboard toolbar and:
+##### After the animations are done, go to Clapperboard toolbar and:
+<img src=./Docs/Image_MW_toolbar_2.jpg height=60> The Clapperboard toolbar - to record and play videos
 
 1. Click on <img src=./icons//CreateClapperboardIcon.svg height=20>  to **create the Clapperboard** and <img src=./icons//ClapperboardIcon.svg height=20> to **configure it** (see the tips showed for each item in the property window).
 2. Activate one or more movie cameras. Run a round trip, mentioned before.
