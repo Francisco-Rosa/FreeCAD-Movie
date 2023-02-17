@@ -49,7 +49,7 @@ The Movie Workbench icon
 (Watch the [tutorial video](https://www.youtube.com/watch?v=_IiIWtO76Tg))
 
 ##### To create camera animation go to Movie Camera toolbar and:
-<img src=./Docs/Movie_Camera_toolbar.jpg height=50>
+<img src=./Docs/Image_MC_toolbar.jpg height=50>
 
 1. Click on the Create a Movie Camera button <img src=./icons//CreateMovieCameraIcon.svg height=20> to create one and to configure it (see the tips showed for each item in the property window).
 2. To configure the movie camera to animations between two positions, first, select and activate the Movie Camera you want to configure with the Enable Movie Camera icon <img src=./icons//EnableMovieCameraIcon.svg height=20>. Position the 3D view with the desired framing to be the start of the animation (Pos A), click on Set the position A button <img src=./icons//SetMovieCameraPosAIcon.svg height=20>. Position the 3D view with the desired framing to be the end of the animation (Pos B), then click on Set the position B button <img src=./icons//SetMovieCameraPosBIcon.svg height=20>. Click on go to beginning and to the end of the animation buttons to confirm the configurations. Make the adjustments you want in the position, rotation and zoom of the Movie Camera.
@@ -76,7 +76,7 @@ The Movie Workbench icon
 
 The Movie Camera properties
 
-<img src=./Docs/Properties_Movie_Camera.jpg height=600>
+<img src=./Docs/Image_MC_properties.jpg height=600>
 
 The Clapperboard properties
 
