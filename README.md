@@ -1,17 +1,28 @@
 # FreeCAD Movie Workbench
-FreeCAD workbench to create and play videos of animations
+FreeCAD Workbench to create and animate camera, record and play videos of animations
 
 
 The Movie Workbench icon
 
 <img src=./icons//CreateVideoIcon.svg height=50>
- 
-The Movie toolbar
+
+The Movie toolbar - to create and animate cameras
+
+<img src=./Docs/Image_MW_toolbar_2.jpg height=60>
+
+The Clapperboard toolbar - to record and play videos
 
 <img src=./Docs/Image_MW_toolbar_2.jpg height=60>
 
 
 ### Features
+- With the Movie Camera toolbar:
+* Create animations of one or more cameras, showing the details of your project.
+* With the connection module, it is possible to create animations of cameras and objects simultaneously.
+* It is possible to create camera animations between two chosen points, making it follow a path or keeping it on a fixed base.
+* The camera targets can be free, fixed or mobile with the option to make them follow the path together with the camera.
+* Once the camera animations are established, it is possible to make further adjustments to the positions, rotations and zooms of the cameras until reaching the final desired settings.
+- With the Clapperboard toolbar:
 * Create frames from the FreeCAD 3D views (**R1**) or the rendered ones (**R2**).   
 * Create videos from them.  
 * Check the results playing the videos you have created.
@@ -35,24 +46,36 @@ The Movie toolbar
 
 ### Preparation
 
-For full using the workbench, two basic preparations are necessary:
+* If yoy want use the rendered frames (**R2**), you must install the Render Workbench, prepare rendering projects and test them preventively to make sure everything is working correctly (see information in [FreeCAD-Render](https://github.com/FreeCAD/FreeCAD-render)). It is also recommended to take advantage and use some cameras from this workbench that better show the animation.
+* If you want to use an animation from another workbench, script or macro of FreeCAD, it is necessary to prepare them for using this workbench (ex. [Modified ExplodedAssembly](https://github.com/Francisco-Rosa/ExplodedAssembly)). If you want to integrated your animation workbench, script or macro to Movie Workbench, see how in the [TUTORIAL.md](https://github.com/Francisco-Rosa/FreeCAD-Movie/blob/master/TUTORIAL.md).
 
-1. Create an animation with a workbench, script or macro of FreeCAD that are prepared for using this workbench (ex. [Modified ExplodedAssembly](https://github.com/Francisco-Rosa/ExplodedAssembly)). If you want to integrated your animation workbench, script or macro to Movie Workbench, see how in the [TUTORIAL.md](https://github.com/Francisco-Rosa/FreeCAD-Movie/blob/master/TUTORIAL.md).
-2. If yoy want use the rendered frames (**R2**), you must install the Render Workbench, prepare rendering projects and test them preventively to make sure everything is working correctly (see information in [FreeCAD-Render](https://github.com/FreeCAD/FreeCAD-render)). It is also recommended to take advantage and position some cameras from this workbench that better show the animation.
 
 ### Usage
 (Watch the [tutorial video](https://www.youtube.com/watch?v=_IiIWtO76Tg))
 
-After preparation done, go to Movie Workbench and:
+To create camera animation go to Movie Camera toolbar and:
+
+1. Click on the Create a Movie Camera button to create one and to configure it (see the tips showed for each item in the property window).
+2. To configure the movie camera to animations between two positions, first, select and activate the Movie Camera you want to configure with the Enable Movie Camera icon. Position the 3D view with the desired framing to be the start of the animation (Pos A), click on Save the position A button. Position the 3D view with the desired framing to be the end of the animation (Pos B), then click on Save the position B button. Click on go to beginning and to the end of the animation buttons to confirm the configurations. Make the adjustments you want in the position, rotation and zoom of the Movie Camera.
+3. To make that the Movie Camera follows a route, you must create a segment first to do so. It can be a line, arc, circle, ellipse, B-spline or Bézier curve, from Sketcher or Draft Workbenches. Select the segment created in Cam_Route_Selection property. Configure the remaining camera properties.
+4. To keep the movie Camera on a fixed base, you can use the Pos A and B buttons method explained, for example. Use the same position for then, adjusting the remaining settings as desired (rotation, zoom, steps, target, etc.).
+5. The targets of the Movie Cameras can be adjusted to follow paths, fixed or mobile points or objects or living free to permit use of rotations angles, for example.
+6. To create animations of cameras and objects simultaneously, you have to use another workbench together that is already prepared to connect to the Movie Workbench (like ExplodedAssembly). Select the workbench you want to work together in Cam_3Connection property.
+7. To perform an animation, first select the Movie Cameras you want to animate, the sequence of selection will be the one adopted for the animation. Run a round trip in the animation with the go buttons to the end and to the beginning of the animation to reset all the steps of the animation in their initial positions. Then click on play animation button. If there is a connection activated, the animation of objects will work too.
+8. Use the go to beginning, one step back, pause, one step forward and go to end buttons as needed. They will also work with the workbench animations connected, if so.
+
+After the animations are done, go to Clapperboard toolbar and:
 
 1. Click on <img src=./icons//CreateClapperboardIcon.svg height=20>  to **create the Clapperboard** and <img src=./icons//ClapperboardIcon.svg height=20> to **configure it** (see the tips showed for each item in the property window).
-2. Choose the camera and set GUI to it (recommended) or use a FreeCAD 3D View. Position your animation at the desired step.
-3. Click on <img src=./icons//StartRecord3DViewIcon.svg height=20> for **record 3D view frames** or <img src=./icons//StartRecordRenderIcon.svg height=20> for **record rendered** ones, choose or confirm the folder to salve the frames.
-4. Start the animation with the correspondent commands of the workbench, script or macro used.
-5. If you need to stop recording, click on <img src=./icons//StopRecordCameraIcon.svg height=20>  **stop recording**.
-6. If you need to stop the animation, use the correspondent commands of the workbench, script or macro used.
-7. After the animation finished, choose the folder to salve your video and click on <img src=./icons//CreateVideoIcon.svg height=20>  **create video**, choose or confirm the input frames folder.
-8. For playing video, choose the file and click on <img src=./icons//PlayVideoIcon.svg height=20> **play video**.
+2. Activate one or more movie cameras. Run a round trip, mentioned before.
+3. Position your animation at the desired step.
+4. Click on <img src=./icons//StartRecord3DViewIcon.svg height=20> for **record 3D view frames** or <img src=./icons//StartRecordRenderIcon.svg height=20> for **record rendered** ones, choose or confirm the folder to salve the frames.
+5. Start the animation with the play animation button.
+6. If You want only to stop recording, click on <img src=./icons//StopRecordCameraIcon.svg height=20>  **stop recording**.
+7. If you need to stop the animation, click on pause button, it will also stop recording.
+8. If you need to stop the animation, use the correspondent commands of the workbench, script or macro used.
+9. After the animation finished, choose the folder to salve your video and click on <img src=./icons//CreateVideoIcon.svg height=20>  **create video**, choose or confirm the input frames folder.
+10. For playing video, choose the file and click on <img src=./icons//PlayVideoIcon.svg height=20> **play video**.
 
 The Clapperboard properties
 
