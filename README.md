@@ -69,10 +69,9 @@ The Movie Workbench icon
 4. Click on <img src=./icons//StartRecord3DViewIcon.svg height=20> for **record 3D view frames** or <img src=./icons//StartRecordRenderIcon.svg height=20> for **record rendered** ones, choose or confirm the folder to salve the frames.
 5. Start the animation with the play animation button.
 6. If You want only to stop recording, click on <img src=./icons//StopRecordCameraIcon.svg height=20>  **stop recording**.
-7. If you need to stop the animation, click on pause button, it will also stop recording.
-8. If you need to stop the animation, use the correspondent commands of the workbench, script or macro used.
-9. After the animation finished, choose the folder to salve your video and click on <img src=./icons//CreateVideoIcon.svg height=20>  **create video**, choose or confirm the input frames folder.
-10. For playing video, choose the file and click on <img src=./icons//PlayVideoIcon.svg height=20> **play video**.
+7. If you need to stop the animation, click on **pause button** <img src=./icons//PauseMovieAnimationIcon.svg height=20>, it will also stop recording.
+8. After the animation finished, choose the folder to salve your video and click on <img src=./icons//CreateVideoIcon.svg height=20>  **create video**, choose or confirm the input frames folder.
+9. For playing video, choose the file and click on <img src=./icons//PlayVideoIcon.svg height=20> **play video**.
 
 The Movie Camera properties
 
