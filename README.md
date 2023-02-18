@@ -6,9 +6,9 @@ The Movie Workbench icon
 
 <img src=./icons//CreateVideoIcon.svg height=50>
 
-
+(Watch the [sample video](https://www.youtube.com/watch?v=NXHm2nitWug))
 ### Features
-##### With the Movie Camera toolbar (to create and animate cameras):
+##### The Movie Camera toolbar (create and animate cameras):
 
 * Create animations of one or more cameras, showing the details of your project.
 * With the connection module, it is possible to create animations of cameras and objects simultaneously.
@@ -16,7 +16,7 @@ The Movie Workbench icon
 * The camera targets can be free, fixed or mobile with the option to make them follow the path together with the camera.
 * Once the camera animations are established, it is possible to make further adjustments to the positions, rotations and zooms of the cameras until reaching the final desired settings.
 
-##### With the Clapperboard toolbar (to record and play videos):
+##### The Clapperboard toolbar (record and play videos):
 
 * Create frames from the FreeCAD 3D views (**R1**) or the rendered ones (**R2**).   
 * Create videos from them.  
@@ -42,7 +42,7 @@ The Movie Workbench icon
 ### Preparation
 
 * If yoy want use the rendered frames (**R2**), you must install the Render Workbench, prepare rendering projects and test them preventively to make sure everything is working correctly (see information in [FreeCAD-Render](https://github.com/FreeCAD/FreeCAD-render)). It is also recommended to take advantage and use some cameras from this workbench that better show the animation.
-* If you want to use an animation from another workbench, script or macro of FreeCAD, it is necessary to prepare them for using this workbench (ex. [Modified ExplodedAssembly](https://github.com/Francisco-Rosa/ExplodedAssembly)). If you want to integrated your animation workbench, script or macro to Movie Workbench, see how in the [TUTORIAL.md](https://github.com/Francisco-Rosa/FreeCAD-Movie/blob/master/TUTORIAL.md).
+* If you want to use an animation from another workbench, script or macro of FreeCAD, it is necessary to prepare them for using this workbench (ex. [Modified ExplodedAssembly](https://github.com/Francisco-Rosa/ExplodedAssembly)). If you want to integrated your animation workbench, script or macro to Movie Workbench, see how in the [Connection.py](https://github.com/Francisco-Rosa/FreeCAD-Movie/blob/master/Connection.py).
 
 
 ### Usage
