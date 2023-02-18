@@ -4,31 +4,30 @@
 
 The Movie workbench consists of two main parts. The first, Movie Camera, is in charge of producing camera animation in isolation or together with object animations using tools from other workbenches, through the connection module that enables integration between the workbenches. The second, Clapperboard, is in charge of producing the sequences of frames that will later compose the final videos of the animations.
 
-The Clapperboard has tools for creating and recording and play videos of animations within FreeCAD itself. It is directly aimed at recording animations produced in FC, whether using its animation workbenches, scripts or macros. As a "bonus" it also allows the production and playback of videos from external files.
-    
-The activation of the animation remains in the Movie Camera tools bar (start, pause, rewind, etc.). Hence, the concept of using a "Clapperboard" on the Movie Workbench, as the "action" will be on account of the animation one.
+The Clapperboard has tools for creating and recording and play videos of animations within FreeCAD itself.  As a “bonus” it also allows the production and playback of videos from external files.
 
+The concept of using a “Clapperboard” comes from the idea that the “action” is due to the animation (Movie Camera).
 
 #### Steps for using the Movie workbench:
 
-#### 1. Preparations
+#### 1. Preparation
 
-1.1. Create an animation with the Movie Camera tools bar or with a workbench, script or macro of FreeCAD that are prepared for using this workbench (ex. [Modified ExplodedAssembly](https://github.com/Francisco-Rosa/ExplodedAssembly)). If you want to integrated one of those to Movie Workbench, Use the Connections.py module, it contains guidelines on how to establish the connection between them.
+1.1. Create an animation with the Movie Camera tools bar or with a workbench, script, or macro of FreeCAD that are prepared for using the Movie Workbench (ex. [Modified ExplodedAssembly](https://github.com/Francisco-Rosa/ExplodedAssembly)). If you want to integrated one of those to Movie Workbench, Use the Connections.py module, it contains guidelines on how to establish the connection between them.
 
 1.2. The instructions on how to create animations with the Movie Workbench are in README.md.
 
 1.3. Configure the Render projects and cameras if you want to use them.
 
-Install the Render workbench and install the external rendering programs, indicating them in the FC preferences, and carry out all the necessary preparations. See instructions on the Render Workbench at:
+Install the Render Workbench and the external rendering programs, indicating them in the FC preferences, and carry out all the necessary preparations. See instructions on the Render Workbench at:
 ![FreeCAD-Render](ttps://github.com/FreeCAD/FreeCAD-render); [Creating renderings](https://wiki.freecadweb.org/Manual:Creating_renderings); [Engine Install](https://github.com/FreeCAD/FreeCAD-render/blob/master/docs/EngineInstall.md).
 
-Prepare the Render project(s) as per the instructions on the mentioned websites. Configure, in the properties window, that Open After Render be False and the Render Height and Width of the final render images. For other renderers aside POV-Ray, it is necessary to set up the Samples Per Pixel and recomended the use the Denoiser.
+Prepare o(s) projeto(s) de render conforme as instruções nos sites mencionados. Configure, na janela de propriedades, que Open After Render seja False e os valores de Render Height e Width para as imagens finais de renderização. Para outros renderizadores além do POV-Ray, é necessário configurar o valor do Samples Per Pixel e recomendado ativar o Denoiser.
 
-Click on the render button to generate an image and verify that everything is installed and configured correctly.
+Important: click on the render button to generate an image and verify that everything is installed and configured correctly.
     
-It is possible to use only the "camera" of the 3D view, but the purpose of the render camera is to store the settings that will be transferred to the render project (see information on the Render Workbench). But it's good to remember that the render camera will be moved and changed by one or more Movie Cameras. So if you are using other render cameras for isolated perspectives, don't use them in Movie Cameras, create an exclusive one for this function.
+It is possible to use only the “camera” of the 3D view, but the purpose of the render one is to transfer the visual configurations to the render project (see information on the Render Workbench). It's good to remember that the render camera will be moved and changed by one or more Movie Cameras. So if you are using other render cameras for isolated perspectives, don't use them in Movie Cameras, create an exclusive one for this function.
 
-The Movie Camera will adjust the 'Aspec Ratio' of the selected render camera to 1.77 (1920x1080, for exemple). But you can adjust it according to the proportion that you will use in the output images from the render projects.
+The Movie Camera will adjust the 'Aspec Ratio' of the selected render camera to 1.77 (proportion of the resolution of 1920×1080, for example). But you can adjust it according to the proportion that you will use in the output images from the render projects.
      
 #### 2. Usage
 
