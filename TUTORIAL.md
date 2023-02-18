@@ -41,15 +41,15 @@ Configure the **Clapperboard properties window** according to the guidelines ('t
 
 Select one or more Movie Camera in sequence and position your animation at the desired step (see more information in README.md).
 
-Create the 3D view frames - **R1**. For a preview of the animation with frames of the 3D view, click on **R1** (or menu Movie > Record 3DView Frames), choose or confirm the folder (that you've configured above) to salve the frames and start the animation (from a workbench, script or macro). The animation frames will be named and saved in the folder as configured in 'R1_5FrameOutpuPath' of the Clapperboard properties window. Messages on the bottom bar of the FC will show the recording progress, to better follow the process, open the report window.
+Create the 3D view frames - **R1**. For a preview of the animation with frames of the 3D view, click on **R1** (or menu Movie > Record 3DView Frames). Choose or confirm the folder to salve the frames (that you've configured above)  and start the animation (from a workbench, script or macro). The animation frames will be named and saved in the folder as configured in 'R1_5FrameOutpuPath' of the Clapperboard properties window. Messages on the bottom bar of the FC will show the recording progress, to better follow the process, open the report window.
 
 Create the video in FC. After finishing all desired animation recording steps, click on **Create Video** (or Menu > Movie > Create Video), choose or confirm the input frames folder (indicated in Video 'InputFrames' of the Clapperboard). After finishing the recording, a message in the report window will confirm the location where the file was saved. Important: it will be named and saved in the folder you configured before, respectively in Video Name and Video OutputPath of Clapperboard properties window.
 
-Play the video in the FC or an external program. Click on **Play Video** (or Menu > Movie > Play Video or workbench pop menu) and choose the file you want to play, or directly click on the created video file to open it with your system's video playback program for confirmation of the result.If you prefer, you can also import the frames created into an external video editing program that you already know, or assemble the final video with the various partial footage from the cameras used and include the sound.
+Play the video in the FC or an external program. Click on **Play Video** (or Menu > Movie > Play Video or workbench pop menu) and choose the file you want to play, or directly click on the created video file to open it with your system's video playback program for confirmation of the result. If you prefer, you can also import the frames created into an external video editing program that you already know, or assemble the final video with the various partial footage from the cameras used and include the sound.
 
 Repeat the previous items using the render frames - **R2**. Once satisfied with the result of the animation of the 3D views of the FC, you can start recording the rendered frames, according to the Render project(s) chosen and already properly configured (s). Repeat the four previous steps, but now confirming the properties corresponding to the Render in the Clapperboard properties window (mainly Render 'FrameOutputPath'), use the cameras configured for the render and activate **R2** (Record Render Frames).
 
-Stop recording. If you need or want to interrupt the recording process, click on **Stop Recording** or type **Crtl k**. This command only interrupts the recording, for the animation use the pause animation button of the workbench, it will stop the recording process.
+Stop recording. If you need or want to interrupt the recording process, click on **Stop Recording** or type **Crtl k**. This command only interrupts the recording, for the animation use the pause animation button of the workbench, it will also stop the recording process.
 
 #### 3. Observations
 
@@ -59,12 +59,10 @@ For the Windows version, it will also be necessary to configure the POV-Ray Gui 
 
 3.2. Usage of other renderers. Still are necessary adjustments for animation, mainly the inclusion of automatic closing of the program window. If anyone knows how and wants to contribute, please post the instructions in the [FC forum topic - Movie Workbench](https://forum.freecadweb.org/viewtopic.php?f=8&t=74432).
 
-#### 4. Installation of the Movie Workbench and download the test file
+#### 4. Installation of the Movie Workbench
     
 4.1. The Movie Workbench is available at [FreeCAD-Movie](https://github.com/Francisco-Rosa/FreeCAD-Movie), but you can install it through the addon manager within the FC: Menu Tools - Addon Manager.
 
 4.2. The ExplodedAssembly workbench modified and prepared for recording is available at: [Modified ExplodedAssembly](https://github.com/Francisco-Rosa/ExplodedAssembly)
 
-If you have mastery over the functioning of the different python files of workbenches contained in the Mod folder of FC, you can only replace the modified file ('ExplodedAssembly.py'), first of all, save the original file or rename it, adding a _orig, for example.
-
-4.3. Test file. A file (that uses the ExplodedAssembly Workbench animation) is prepared to test the Movie workbench, just download it (from [FC forum topic - Movie Workbench](https://forum.freecadweb.org/viewtopic.php?f=8&t=74432)) and configure the clapperboard for your machine.
+If you have mastery over the functioning of the different python files of workbenches contained in the Mod folder of FC, you can only replace the modified file ('ExplodedAssembly.py'). But first, save the original file or rename it, adding a _orig, for example.
