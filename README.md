@@ -43,7 +43,7 @@ The Movie Workbench icon
 ### Preparation
 
 * If yoy want use the rendered frames (**R2**), you must install the Render Workbench, prepare rendering projects and test them preventively to make sure everything is working correctly (see information in [FreeCAD-Render](https://github.com/FreeCAD/FreeCAD-render)). It is also recommended to take advantage and use some cameras from this workbench that better show the animation.
-* If you want to use an animation from another workbench, script or macro of FreeCAD, it is necessary to prepare them for using this workbench (ex. [Modified ExplodedAssembly](https://github.com/Francisco-Rosa/ExplodedAssembly)). If you want to integrated your animation workbench, script or macro to Movie Workbench, see how in the [Connection.py](https://github.com/Francisco-Rosa/FreeCAD-Movie/blob/master/Connection.py).
+* If you want to use an animation from another workbench, script or macro of FreeCAD, it is necessary to prepare connection module for using then (ex. [Modified ExplodedAssembly](https://github.com/Francisco-Rosa/ExplodedAssembly)). For this, see the instructions inside the [Connection.py](https://github.com/Francisco-Rosa/FreeCAD-Movie/blob/master/Connection.py).
 
 
 ### Usage
