@@ -6,7 +6,6 @@ The Movie Workbench icon
 
 <img src=./icons//CreateVideoIcon.svg height=50>
 
-(Watch the [sample video](https://www.youtube.com/watch?v=NXHm2nitWug))
 ### Features
 ##### The Movie Camera toolbar (create and animate cameras):
 
@@ -21,6 +20,8 @@ The Movie Workbench icon
 * Create frames from the FreeCAD 3D views (**R1**) or the rendered ones (**R2**).   
 * Create videos from them.  
 * Check the results playing the videos you have created.
+
+(Watch the [sample video](https://www.youtube.com/watch?v=NXHm2nitWug))
 
 ### Installation
 
@@ -46,7 +47,6 @@ The Movie Workbench icon
 
 
 ### Usage
-(Watch the [tutorial video](https://www.youtube.com/watch?v=_IiIWtO76Tg))
 
 ##### To create camera animation go to Movie Camera toolbar and:
 <img src=./Docs/Image_MC_toolbar.jpg height=50>
@@ -73,6 +73,8 @@ The Movie Workbench icon
 8. After the animation finished, choose the folder to salve your video and click on <img src=./icons//CreateVideoIcon.svg height=20>  **create video**, choose or confirm the input frames folder.
 9. For playing video, choose the file and click on <img src=./icons//PlayVideoIcon.svg height=20> **play video**.
 
+(Watch the [Clapperboard tutorial video](https://www.youtube.com/watch?v=_IiIWtO76Tg))
+
 The Movie Camera properties
 
 <img src=./Docs/Image_MC_properties.jpg height=600>
@@ -81,7 +83,7 @@ The Clapperboard properties
 
 <img src=./Docs/Image_MW_toolbar_propr.jpg height=600>
 
-The Movie menu
+The Clapperboard menu
 
 <img src=./Docs/Image_MW_menu.jpg height=600>
 
