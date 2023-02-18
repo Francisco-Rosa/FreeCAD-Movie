@@ -152,60 +152,60 @@ class MovieCamera:
     # Movie Camera 07 - Camera Pos A-B - pos AB 
 
         obj.addProperty('App::PropertyFloat', 'Cam_01XPosA', 'Movie Camera 07 - Camera Pos A-B - pos AB', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'It is set when the Save position A button is pressed, after that, if necessary, you can make '
+                                                    'It is set when the Set position A button is pressed, after that, if necessary, you can make '
                                                     'adjustments to the x-value.')).Cam_01XPosA = 0                                          
         obj.addProperty('App::PropertyFloat', 'Cam_02YPosA', 'Movie Camera 07 - Camera Pos A-B - pos AB', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'It is set when the Save position A button is pressed, after that, if necessary, you can make '
+                                                    'It is set when the Set position A button is pressed, after that, if necessary, you can make '
                                                     'adjustments to the y-value.')).Cam_02YPosA = 0
         obj.addProperty('App::PropertyFloat', 'Cam_03ZPosA', 'Movie Camera 07 - Camera Pos A-B - pos AB', QT_TRANSLATE_NOOP('App::Property', 
-                                                     'It is set when the Save position A button is pressed, after that, if necessary, you can make '
+                                                     'It is set when the Set position A button is pressed, after that, if necessary, you can make '
                                                     'adjustments to the z-value.')).Cam_03ZPosA = 0
         obj.addProperty('App::PropertyFloat', 'Cam_04XPosB', 'Movie Camera 07 - Camera Pos A-B - pos AB', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'It is set when the Save position B button is pressed, after that, if necessary, you can make '
+                                                    'It is set when the Set position B button is pressed, after that, if necessary, you can make '
                                                     'adjustments to the x-value.')).Cam_04XPosB = 1000.0
         obj.addProperty('App::PropertyFloat', 'Cam_05YPosB', 'Movie Camera 07 - Camera Pos A-B - pos AB', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'It is set when the Save position B button is pressed, after that, if necessary, you can make '
+                                                    'It is set when the Set position B button is pressed, after that, if necessary, you can make '
                                                     'adjustments to the y-value.')).Cam_05YPosB = 1000.0
         obj.addProperty('App::PropertyFloat', 'Cam_06ZPosB', 'Movie Camera 07 - Camera Pos A-B - pos AB', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'It is set when the Save position B button is pressed, after that, if necessary, you can make '
+                                                    'It is set when the Set position B button is pressed, after that, if necessary, you can make '
                                                     'adjustments to the z-value.')).Cam_06ZPosB = 1000.0
 
     # Movie Camera 08 - Camera Pos A-B - angles
 
         obj.addProperty('App::PropertyAngle', 'Cam_01YawPosA', 'Movie Camera 08 - Camera Pos A-B - Angles', QT_TRANSLATE_NOOP(
-                                                    'App::Property', 'It is set when the Save position A button is pressed, after that, if '
+                                                    'App::Property', 'It is set when the Set position A button is pressed, after that, if '
                                                     'necessary, you can make little adjustments to the yaw value of the camera.')
                                                     ).Cam_01YawPosA = 0
         obj.addProperty('App::PropertyAngle', 'Cam_02PitchPosA', 'Movie Camera 08 - Camera Pos A-B - Angles', QT_TRANSLATE_NOOP(
-                                                    'App::Property', 'It is set when the Save position A button is pressed, after that, if '
+                                                    'App::Property', 'It is set when the Set position A button is pressed, after that, if '
                                                     'necessary, you can make little adjustments to the pitch value of the camera.'
                                                     )).Cam_02PitchPosA = 0
         obj.addProperty('App::PropertyAngle', 'Cam_03RollPosA', 'Movie Camera 08 - Camera Pos A-B - Angles', QT_TRANSLATE_NOOP(
-                                                    'App::Property', 'It is set when the Save position A button is pressed, after that, if '
+                                                    'App::Property', 'It is set when the Set position A button is pressed, after that, if '
                                                     'necessary, you can make little adjustments to the roll value of the camera.'
                                                     )).Cam_03RollPosA = 90
         obj.addProperty('App::PropertyAngle', 'Cam_04YawPosB', 'Movie Camera 08 - Camera Pos A-B - Angles', QT_TRANSLATE_NOOP(
-                                                    'App::Property', 'It is set when the Save position B button is pressed, after that, if '
+                                                    'App::Property', 'It is set when the Set position B button is pressed, after that, if '
                                                     'necessary, you can make little adjustments to the yaw value of the camera.'
                                                     )).Cam_04YawPosB = 30
         obj.addProperty('App::PropertyAngle', 'Cam_05PitchPosB', 'Movie Camera 08 - Camera Pos A-B - Angles', QT_TRANSLATE_NOOP(
-                                                    'App::Property', 'It is set when the Save position B button is pressed, after that, if '
+                                                    'App::Property', 'It is set when the Set position B button is pressed, after that, if '
                                                     'necessary, you can make little adjustments to the pitch value of the camera.'
                                                     )).Cam_05PitchPosB = 45
         obj.addProperty('App::PropertyAngle', 'Cam_06RollPosB', 'Movie Camera 08 - Camera Pos A-B - Angles', QT_TRANSLATE_NOOP(
-                                                    'App::Property', 'It is set when the Save position B button is pressed, after that, if '
+                                                    'App::Property', 'It is set when the Set position B button is pressed, after that, if '
                                                     'necessary, you can make little adjustments to the roll value of the camera.'
                                                     )).Cam_06RollPosB = 45
 
     # Movie Camera 09 - Camera Pos A-B - Zoom
 
         obj.addProperty('App::PropertyAngle', 'Cam_02ZoomPosA', 'Movie Camera 09 - Camera Pos A-B - Zoom', QT_TRANSLATE_NOOP(
-                                                    'App::Property', 'If Cam_04Zoom is True and after the Save position A button is pressed, '
+                                                    'App::Property', 'If Cam_04Zoom is True and after the Set position A button is pressed, '
                                                     'you can adjust the angle in degrees you want to start the '
                                                     'camera animation. Descending to zoom in, increasing to zoom out.'
                                                     )).Cam_02ZoomPosA = 50
         obj.addProperty('App::PropertyAngle', 'Cam_03ZoomPosB', 'Movie Camera 09 - Camera Pos A-B - Zoom', QT_TRANSLATE_NOOP(
-                                                    'App::Property', 'If Cam_04Zoom is True and after the Save position B button is pressed, '
+                                                    'App::Property', 'If Cam_04Zoom is True and after the Set position B button is pressed, '
                                                     'you can adjust the angle in degrees you want to finish the '
                                                     'camera animation. Descending to zoom in, increasing to zoom out.'
                                                     )).Cam_03ZoomPosB = 20
@@ -268,7 +268,7 @@ class EnableMovieCamera:
                 'MenuText': QT_TRANSLATE_NOOP('EnableMovieCamera', 'Enable one or more select movie cameras'),
                 'ToolTip': QT_TRANSLATE_NOOP('EnableMovieCamera', 
                                              'First, select one or more movie cameras that you want to use, '
-                                             'then click in this button to activate then to perform the the animation. After that, '
+                                             'then click on this button to activate then to perform the the animation. After that, '
                                              'if you enable a connection to another animation workbench in Cam_3Connection, '
                                              'you must re-enable the cameras.')}
 
@@ -318,7 +318,7 @@ class SetMovieCameraPosA:
                                              '(not when the camera target is set up to follow a route). ' 
                                              'First, select and activate the Movie Camera you want to configure. '
                                              'Position the 3D view with the desired framing to be the start '
-                                             'of the animation (Pos A), then click in Save the position A.')}
+                                             'of the animation (Pos A), then click on Set the position A.')}
 
     def IsActive(self):
         if Gui.ActiveDocument:
@@ -347,7 +347,7 @@ class SetMovieCameraPosB:
                                              '(not when the camera target is set up to follow a route). '
                                              'Select and activate the Movie Camera you want to configure (if not so). '
                                              'Position the 3D view with the desired framing to be the end '
-                                             'of the animation (Pos B), then click in Save the position B.')}
+                                             'of the animation (Pos B), then click on Set the position B.')}
 
     def IsActive(self):
         if Gui.ActiveDocument:
