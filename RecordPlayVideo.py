@@ -1,7 +1,7 @@
 ''' Movie workbench, record and play animation videos in FreeCAD '''
 
 # ***************************************************************************
-# *   Copyright (c) 2022 Francisco Rosa                                     *   
+# *   Copyright (c) 2022 Francisco Rosa                                     *
 # *                                                                         *
 # *   This file is part of the FreeCAD CAx development system.              *
 # *                                                                         *
@@ -43,7 +43,7 @@ FreeCADGui.addLanguagePath(LanguagePath)
 
 class Clapperboard:
     def __init__(self, obj):
-    	  # Camera group config
+        # Camera group config
         obj.addProperty('App::PropertyString', 'Cam_1Name', 'Camera config', QT_TRANSLATE_NOOP('App::Property', 
                                              'Indicate the chosen camera or view through which the recording will be performed. '
                                              'Write a short name, as this will be inserted in the nomenclature of each frame'
@@ -56,8 +56,8 @@ class Clapperboard:
                                              'It indicates whether the chosen camera is recording or not.'
                                              ' It is activated by the R1 or R2 buttons and deactivated by the '
                                              'Stop Recording one.')).Cam_3OnRec = False
-                                             
-        # R1 3DView frames group config                                                                               
+
+        # R1 3DView frames group config
 
         obj.addProperty('App::PropertyString', 'R1_1FrameName', 'R1 3DView frames config',  QT_TRANSLATE_NOOP('App::Property',
                                              'Indicate the main name of these frames. Write a short name, '
@@ -66,53 +66,52 @@ class Clapperboard:
         obj.addProperty('App::PropertyInteger', 'R1_2FrameInitial', 'R1 3DView frames config',  QT_TRANSLATE_NOOP('App::Property',
                                              'Indicate the initial number of these frames (zero to first one). '
                                              'This will be inserted in the nomenclature of each frame '
-                                             'created.')).R1_2FrameInitial = 0
+                                             'created.')).R1_2FrameInitial = 1
         obj.addProperty('App::PropertyInteger', 'R1_3FrameWidth', 'R1 3DView frames config',  QT_TRANSLATE_NOOP('App::Property',
-                                             'Configure the width in pixels of the created frames.')).R1_3FrameWidth = 800                                             
+                                             'Configure the width in pixels of the created frames.')).R1_3FrameWidth = 800
         obj.addProperty('App::PropertyInteger', 'R1_4FrameHeight', 'R1 3DView frames config',  QT_TRANSLATE_NOOP('App::Property',
                                              'Configure the heigth in pixels of the created frames.')).R1_4FrameHeight = 600
         obj.addProperty('App::PropertyPath', 'R1_5FrameOutputPath', 'R1 3DView frames config',  QT_TRANSLATE_NOOP('App::Property',
-                                             'The path to R1 frames folder')).R1_5FrameOutputPath = ""                         
+                                             'The path to R1 frames folder')).R1_5FrameOutputPath = ""
         obj.addProperty('App::PropertyBool', 'R1_6OnRec', 'R1 3DView frames config',  QT_TRANSLATE_NOOP('App::Property',
                                              'Indicates whether the chosen camera is recording the FC 3D views or not.'
-                                             ' Control this by the R1 and Stop Recording buttons.')).R1_6OnRec = False                                             
-                                             
-        # R2 Render frames group config                                         
+                                             ' Control this by the R1 and Stop Recording buttons.')).R1_6OnRec = False
+
+        # R2 Render frames group config
         obj.addProperty('App::PropertyString', 'R2_1FrameName', 'R2 Render frames config',  QT_TRANSLATE_NOOP('App::Property',
                                              'Indicate the main name of the rendered frames. Write a short name, '
                                              'as this will be inserted in the nomenclature of each frame '
                                              'created.')).R2_1FrameName = str(FreeCAD.ActiveDocument.Label) + '_R2_frame'
         obj.addProperty('App::PropertyInteger', 'R2_2FrameInitial', 'R2 Render frames config',  QT_TRANSLATE_NOOP('App::Property',
                                              'Indicate the initial number of these frames (zero to first one). '
-                                             'This will be inserted in the nomenclature of each frame created.')).R2_2FrameInitial = 0
+                                             'This will be inserted in the nomenclature of each frame created.')).R2_2FrameInitial = 1
         obj.addProperty('App::PropertyPath', 'R2_3FrameOutputPath', 'R2 Render frames config',  QT_TRANSLATE_NOOP('App::Property',
-                                             'The path to R2 frames folder')).R2_3FrameOutputPath = ""                                                                                   
+                                             'The path to R2 frames folder')).R2_3FrameOutputPath = ""
         obj.addProperty('App::PropertyString', 'R2_4RenderProject', 'R2 Render frames config',  QT_TRANSLATE_NOOP('App::Property',
                                              'Indicate the internal name (not its label) of one of the previously created '
-                                             'render projects.')).R2_4RenderProject = "Project"                                                      
+                                             'render projects.')).R2_4RenderProject = "Project"
         obj.addProperty('App::PropertyBool', 'R2_5OnRec', 'R2 Render frames config',  QT_TRANSLATE_NOOP('App::Property',
                                              'It indicates whether the chosen camera is recording the renders or not.'
                                              ' Control this by the R2 and Stop Recording buttons.')).R2_5OnRec = False 
-                                            
+
         # Videos group config   
         obj.addProperty('App::PropertyString', 'Video_1Name', 'Videos',  QT_TRANSLATE_NOOP('App::Property',
                                              'Indicate the main name for the created videos. '
                                              'Chose to add the 3DViews text or Renders one, according to the origin of the '
-                                             'frames.')).Video_1Name = str(FreeCAD.ActiveDocument.Label) + '_R1_frames or R2_frames'                                   
+                                             'frames.')).Video_1Name = str(FreeCAD.ActiveDocument.Label) + '_R1_frames or R2_frames'
         obj.addProperty('App::PropertyPath', 'Video_2InputFrames', 'Videos',  QT_TRANSLATE_NOOP('App::Property',
                                              'Confirm the path to the folder containing the frames for creating a video '
                                              'when clicking on the create video button.')).Video_2InputFrames = ""
         obj.addProperty('App::PropertyInteger', 'Video_3Fps','Videos', QT_TRANSLATE_NOOP('App::Property',
                                              'Indicate the frames per second of the video (fps) that will be created.'
-                                             )).Video_3Fps = 24                                             
+                                             )).Video_3Fps = 24
         obj.addProperty('App::PropertyPath', 'Video_4OutputPath', 'Videos',  QT_TRANSLATE_NOOP('App::Property',
                                              'Set path to folder to save created videos by clicking on the button with '
                                              'the three dots on the right.')).Video_4OutputPath = ""
         obj.addProperty('App::PropertyInteger', 'Video_5Number', 'Videos',  QT_TRANSLATE_NOOP('App::Property',
                                               'Indicate the initial number of the videos (zero to first one). '
-                                             'This will be inserted in the nomenclature of each one created.')).Video_5Number = 0                    
+                                             'This will be inserted in the nomenclature of each one created.')).Video_5Number = 0
         obj.Proxy = self
-
 
 class ClapperboardViewProvider:
     def __init__(self, obj):
@@ -130,16 +129,16 @@ def ActivatedClapperboard():
         folder = FreeCAD.ActiveDocument.addObject('App::DocumentObjectGroupPython', 'Clapperboard')
         Clapperboard(folder)
         ClapperboardViewProvider(folder.ViewObject)
-            
+
 # ======================================================================================
 
 # 1.2. Command classes
 
 class CreateClapperboard:
-	
+
     def QT_TRANSLATE_NOOP(Movie, text):
         return text
-	
+
     def GetResources(self):
         __dir__ = os.path.dirname(__file__)
         return {'Pixmap': __dir__ + '/icons/CreateClapperboardIcon.svg',
@@ -148,16 +147,15 @@ class CreateClapperboard:
                                              'Creates a clapperboard with the recording camera settings. '
                                              'Once created, complete and/or modify each of its properties '
                                              'before starting to record your frames or movies.')}
- 
-                                      
+
     def Activated(self):
         ActivatedClapperboard()
-        
+
 class StartRecord3DView:
-	
+
     def QT_TRANSLATE_NOOP(Render, text):
         return text
-	
+
     def GetResources(self):
         __dir__ = os.path.dirname(__file__)
         return {'Pixmap': __dir__ + '/icons/StartRecord3DViewIcon.svg',
@@ -175,15 +173,15 @@ class StartRecord3DView:
 
         else:
             return False
-                                   
+
     def Activated(self):
         startRecord3DView()
 
 class StartRecordRender:
-	
+
     def QT_TRANSLATE_NOOP(Render, text):
         return text
-	
+
     def GetResources(self):
         __dir__ = os.path.dirname(__file__)
         return {'Pixmap': __dir__ + '/icons/StartRecordRenderIcon.svg',
@@ -201,19 +199,19 @@ class StartRecordRender:
 
         else:
             return False
-                                   
+
     def Activated(self):
         startRecordRender()
 
 class StopRecordCamera:
-	
+
     def QT_TRANSLATE_NOOP(Render, text):
         return text
-	
+
     def GetResources(self):
         __dir__ = os.path.dirname(__file__)
         return {'Pixmap': __dir__ + '/icons/StopRecordCameraIcon.svg',
-                'Accel': 'Ctrl+k',     
+                'Accel': 'Ctrl+k',
                 'MenuText': QT_TRANSLATE_NOOP('StopCameraRecord', 'Stop Recording'),
                 'ToolTip': QT_TRANSLATE_NOOP('StopCameraRecord','Stops camera recording.')}
 
@@ -227,15 +225,15 @@ class StopRecordCamera:
 
         else:
             return False
-                                      
+
     def Activated(self):
         stopRecordCamera()
 
 class CreateVideo:
-	
+
     def QT_TRANSLATE_NOOP(Movie, text):
         return text
-	
+
     def GetResources(self):
         __dir__ = os.path.dirname(__file__)
         return {'Pixmap': __dir__ + '/icons/CreateVideoIcon.svg',
@@ -252,17 +250,15 @@ class CreateVideo:
 
         else:
             return False
-                         
-                                     
+
     def Activated(self):
         createVideo()
 
-      
 class PlayVideo:
-	
+
     def QT_TRANSLATE_NOOP(Render, text):
         return text
-	
+
     def GetResources(self):
         __dir__ = os.path.dirname(__file__)
         return {'Pixmap': __dir__ + '/icons/PlayVideoIcon.svg',
@@ -277,11 +273,10 @@ class PlayVideo:
 
         else:
             return False
-                         
-                                      
+
     def Activated(self):
         playVideo()
-        
+
 # ======================================================================================
 
 # 2. Command functions
@@ -294,10 +289,12 @@ def startRecord3DView():
     WindowTitle = translate('Movie', 'Select or confirm the folder to save the R1 frames')
     OpenDir = CL.R1_5FrameOutputPath
     CL.R1_5FrameOutputPath = QFileDialog.getExistingDirectory(FreeCADGui.getMainWindow(), WindowTitle, OpenDir)
-    
+
 def startRecordRender():
     import Render
+    global START_RENDER_FRAME
     CL = FreeCAD.ActiveDocument.Clapperboard
+    START_RENDER_FRAME = CL.R2_2FrameInitial
     CL.Cam_3OnRec = True
     CL.R2_5OnRec = True
     WindowTitle = translate('Movie', 'Select or confirm the folder to save the R2 frames')
@@ -316,31 +313,29 @@ def runRecordCamera():
     takeNum = str(f'{CL.Cam_2Take:0>2}')
     
     if CL.R1_6OnRec == True:
-        CL.R1_2FrameInitial += 1
-        name = CL.R1_1FrameName   
+        name = CL.R1_1FrameName
         frameNum = str(f'{CL.R1_2FrameInitial:0>4}')
         frameFinalName = name + '_' + camNum + '_' + takeNum +'_fr' + frameNum +'.png'
         pathAndName = CL.R1_5FrameOutputPath +'/' + frameFinalName
-        
         FreeCADGui.activeDocument().activeView().saveImage(pathAndName,CL.R1_3FrameWidth,CL.R1_4FrameHeight,'Current')
-
-        FreeCAD.Console.PrintMessage(translate('Movie', 'Frame 3DView # ' + frameNum +' has been completed') + '\n')    
+        FreeCAD.Console.PrintMessage(translate('Movie', 'Frame 3DView # ' + frameNum +' has been completed') + '\n')
+        CL.R1_2FrameInitial += 1
 
     if CL.R2_5OnRec == True :
-        CL.R2_2FrameInitial += 1
         name = CL.R2_1FrameName
         frameNum = str(f'{CL.R2_2FrameInitial:0>4}')
         frameFinalName = name + '_' + camNum + '_' + takeNum +'_fr' + frameNum +'.png'
         project =  FreeCAD.getDocument(FreeCAD.ActiveDocument.Label).getObject(CL.R2_4RenderProject)
-        
-        output_file=project.Proxy.render(wait_for_completion=True)
+        if CL.R2_2FrameInitial == START_RENDER_FRAME:
+            output_file=project.Proxy.render(skip_meshing=False, wait_for_completion=True)
+        else:
+            output_file=project.Proxy.render(skip_meshing=True, wait_for_completion=True)
         shutil.move(output_file, f"" + CL.R2_3FrameOutputPath +'/' + frameFinalName)
-        
         # Close render window
         if project.OpenAfterRender:
             FreeCADGui.runCommand('Std_CloseActiveWindow',0)
-
         FreeCAD.Console.PrintMessage(translate('Movie','Frame Render # ' + frameNum +' has been completed') + '\n')
+        CL.R2_2FrameInitial += 1
 
 # ======================================================================================
 
@@ -349,34 +344,34 @@ def runRecordCamera():
 def createVideo():
     import cv2
     CL = FreeCAD.ActiveDocument.Clapperboard
-    
+
     # Confirmation of the input frames folder to create video
     WindowTitle1 = translate('Movie', 'Select or confirm the input frames folder to create video')
     OpenDir = CL.R1_5FrameOutputPath
-    CL.Video_2InputFrames = QFileDialog.getExistingDirectory(FreeCADGui.getMainWindow(), WindowTitle1, OpenDir) 
-      
+    CL.Video_2InputFrames = QFileDialog.getExistingDirectory(FreeCADGui.getMainWindow(), WindowTitle1, OpenDir)
+
     pathFrames = CL.Video_2InputFrames +'/'
     outVideoPath = CL.Video_4OutputPath + '/'
     CL.Video_5Number += 1
     videoNum = str(f'{CL.Video_5Number:0>2}')
     outVideoName = CL.Video_1Name + '_'+ CL.Cam_1Name +'_'+ CL.Cam_2Take +'_'+ videoNum + '.mp4'
     outVideoFullPath = outVideoPath+outVideoName
-	
+
     cv2_fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-	
+
     inFrames = sorted(os.listdir(pathFrames))
 
     frames = []
-	
+
     for i in inFrames:
         i = pathFrames+i
         frames.append(i)
-	
+
     frame1 = cv2.imread(frames[0])
     size1 = list(frame1.shape)
     del size1[2]
     Heightframe1, Widthframe1 = size1
-	
+
     fps = CL.Video_3Fps
 
     video = cv2.VideoWriter(outVideoFullPath, cv2_fourcc, fps, (Widthframe1, Heightframe1)) #output video name, fourcc, fps, size (heigth, width)
@@ -389,30 +384,29 @@ def createVideo():
     video.release()
     FreeCAD.Console.PrintMessage(translate('Movie','outputed video to '+ outVideoPath)+'\n')
 
-
 def playVideo():
     import cv2
     import time
-   	
+
     CL = FreeCAD.ActiveDocument.Clapperboard
 
     MovieFileFilter = '; All files (*.*)'
     WindowTitle = translate('Movie', 'Select file to play')
     OpenDir = CL.Video_4OutputPath + '/'
-    PathAndFile = QFileDialog.getOpenFileName(FreeCADGui.getMainWindow(), WindowTitle, OpenDir, MovieFileFilter)    
-    
+    PathAndFile = QFileDialog.getOpenFileName(FreeCADGui.getMainWindow(), WindowTitle, OpenDir, MovieFileFilter)
+
     Video_PathAndFile = PathAndFile[0]
-    
+
     cap = cv2.VideoCapture(Video_PathAndFile)
-    
+
     fps2 = int(cap.get(cv2.CAP_PROP_FPS))
-    
+
     if cap.isOpened() == False:
         FreeCAD.Console.PrintMessage(translate('Movie','Error: video file not found!'))
-        
+
     else:
-        message2 = 'Movie at '+ str(fps2) + ' fps,' + ' press q to stop the video'   	
-    
+        message2 = 'Movie at '+ str(fps2) + ' fps,' + ' press q to stop the video'
+
     while cap.isOpened():
         sucess, frame = cap.read()
         if sucess == True:
@@ -420,10 +414,10 @@ def playVideo():
             cv2.imshow(message2, frame)
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
-    	        
+
         else:
             break
-    	     
+
     cap.release()
     #cv2.destroyAllWindows()
 
@@ -443,4 +437,3 @@ if FreeCAD.GuiUp:
 
 #https://wiki.freecad.org/Command
 #https://wiki.freecad.org/Translating_an_external_workbench
-
