@@ -1,7 +1,7 @@
 """FreeCAD init script of Movie Workbench"""
 
 # ***************************************************************************
-# *   Copyright (c) 2022 Francisco Rosa                                     *   
+# *   Copyright (c) 2022 Francisco Rosa                                     *
 # *                                                                         *
 # *   This file is part of the FreeCAD CAx development system.              *
 # *                                                                         *
@@ -106,35 +106,42 @@ static char * Movie_xpm[] = {
 "+&49&*s;&3u%%a;"
 };
 """
-                
+
     def Initialize(self):
         """This function is executed when the workbench is first activated.
         It is executed once in a FreeCAD session followed by the Activated function.
         """
-        import RecordPlayVideo # import here all the needed files that create your FreeCAD commands
+        # import here all the needed files that create your FreeCAD commands
+        import RecordPlayVideo
         import MovieCamera
+        import MovieObject
  
-        self.list1 = ['CreateClapperboard',
-                      'StartRecord3DView', 
-                      'StartRecordRender',
-                      'StopRecordCamera',
-                      'CreateVideo',
-                      'PlayVideo'] # a list of command names created in the line above
-        self.appendToolbar("Movietools", self.list1) # creates a new toolbar with your commands
-        self.appendMenu("Movie", self.list1) # creates a new menu
-        self.list2 = ['MovieCamera',
-                      'CreateMovieCamera',
+        self.list1 = ['CreateMovieCamera',
                       'EnableMovieCamera',
-                      'SetMovieCameraPosA',
-                      'SetMovieCameraPosB',
-                      'IniMovieAnimation', 
+                      'SetMoviePosA',
+                      'SetMoviePosB',
+                      'CreateMovieObjects',
+                      'EnableMovieObjects',
+                      'SetMovieObjectsAxis',
+                      'ExcludeMovieObjects',] # a list of command names created in the line above
+        self.appendToolbar("Movie Tools", self.list1) # creates a new toolbar with your commands
+        self.appendMenu("Movie Tools", self.list1) # creates a new menu
+        self.list2 = ['IniMovieAnimation',
                       'PrevMovieAnimation',
                       'PauseMovieAnimation',
                       'PlayMovieAnimation',
                       'PostMovieAnimation',
                       'EndMovieAnimation'] # a list of command names created in the line above
-        self.appendToolbar("MovieCameratools", self.list2) # creates a new toolbar with your commands        
-        self.appendMenu("Movie", self.list2) # creates a new menu
+        self.appendToolbar("Movie Play Tools", self.list2) # creates a new toolbar with your commands
+        self.appendMenu("Movie Play", self.list2) # creates a new menu
+        self.list3 = ['CreateClapperboard',
+                      'StartRecord3DView',
+                      'StartRecordRender',
+                      'StopRecordCamera',
+                      'CreateVideo',
+                      'PlayVideo'] # a list of command names created in the line above
+        self.appendToolbar("Movie Record tools", self.list3) # creates a new toolbar with your commands
+        self.appendMenu("Movie Record", self.list3) # creates a new menu
 
     def Activated(self):
         """This function is executed whenever the workbench is activated"""
@@ -150,12 +157,12 @@ static char * Movie_xpm[] = {
         """This function is executed whenever the user right-clicks on screen"""
         # "recipient" will be either "view" or "tree"
         self.appendContextMenu("Movie tools", self.list) # add commands to the context menu
-        
-    def GetClassName(self): 
+
+    def GetClassName(self):
         # This function is mandatory if this is a full Python workbench
         # This is not a template, the returned string should be exactly "Gui::PythonWorkbench"
         return "Gui::PythonWorkbench"
-            
+
 Gui.addWorkbench(Movie())
 
 #https://wiki.freecadweb.org/Workbench_creation
