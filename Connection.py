@@ -1,7 +1,7 @@
 ''' Movie Workbench, Connection Module '''
 
 # ***************************************************************************
-# *   Copyright (c) 2023 Francisco Rosa                                     *   
+# *   Copyright (c) 2023 Francisco Rosa                                     *
 # *                                                                         *
 # *   This file is part of the FreeCAD CAx development system.              *
 # *                                                                         *
@@ -42,63 +42,63 @@ workbenches. You can add them, according to the indicated numbered (01 to 06) su
 always coping, carrying out all necessary adaptations and tests then before finalizing the 
 additions. The connection works only with the first Movie Camera created.
 '''
-# ====================================================================================== 
+# ======================================================================================
 # 0. Global
 
-MC_presence = False
-CL_presence = False
-EA_presence = False
+MC_PRESENCE = False
+CL_PRESENCE = False
+EA_PRESENCE = False
 ''' 01. Include here the instructions for the Workbench you want to connect'''
-#WN_presence = False 
+#WN_PRESENCE = False 
 
 def verification():
 
-    global MC_presence
-    global CL_presence
-    global EA_presence
+    global MC_PRESENCE
+    global CL_PRESENCE
+    global EA_PRESENCE
     #global WN_presence
-        
-    if 'MovieCamera' in FreeCAD.ActiveDocument.Content:       
-        MC_presence = True
-    else:
-        MC_presence = False
-        
-    if 'Clapperboard' in FreeCAD.ActiveDocument.Content:        
-        CL_presence = True
-    else:
-        CL_presence = False 
 
-    if 'ExplodedAssembly' in FreeCAD.ActiveDocument.Content:        
-        EA_presence = True      
+    if 'MovieCamera' in FreeCAD.ActiveDocument.Content:
+        MC_PRESENCE = True
     else:
-        EA_presence = False
-        
-    '''   
-    if 'WorbenchName' in FreeCAD.ActiveDocument.Content:        
-        WN_presence = True      
+        MC_PRESENCE = False
+
+    if 'Clapperboard' in FreeCAD.ActiveDocument.Content:
+        CL_PRESENCE = True
     else:
-        WN_presence = False
+        CL_PRESENCE = False
+
+    if 'ExplodedAssembly' in FreeCAD.ActiveDocument.Content:
+        EA_PRESENCE = True
+    else:
+        EA_PRESENCE = False
+
     '''
-# ======================================================================================  
+    if 'WorbenchName' in FreeCAD.ActiveDocument.Content:
+        WN_PRESENCE = True
+    else:
+        WN_PRESENCE = False
+    '''
+# ======================================================================================
 # 1. Connection list
 
 '''02.Include in the connection list the name of the Workbench you want to connect'''
 
 connections = ['None', 'ExplodedAssembly']
 
-# ====================================================================================== 
+# ======================================================================================
 # 2. Functions
 
-# ====================================================================================== 
+# ======================================================================================
 '''Go to the beginning of the animation'''
 def connectionIni():
-	
-    MC = FreeCAD.ActiveDocument.MovieCamera
-    
+
+    from MovieCamera import MC
+
     '''ExplodedAssembly Workbench'''
-    if MC.Cam_3Connection == 'ExplodedAssembly':       
-        if EA_presence == True :
-            Gui.runCommand('GoToStart',0)                                                                                                      
+    if MC.Cam_7Connection == 'ExplodedAssembly':
+        if EA_PRESENCE == True :
+            Gui.runCommand('GoToStart',0)
         else:
             FreeCAD.Console.PrintMessage(translate('Movie', 'You must have an animation of '
                                                    'the ExplodedAssembly workbench first.') + '\n')
@@ -106,40 +106,39 @@ def connectionIni():
 
     '''03. Include here the instructions for the Workbench you want to connect'''
     '''WorkbenchName Workbench'''
-    if MC.Cam_3Connection == 'WorkbenchName':
-        if WN_presence == True:
-            Gui.runCommand('GoToStart WorkbenchName',0)                                                                                                   
+    if MC.Cam_7Connection == 'WorkbenchName':
+        if WN_PRESENCE == True:
+            Gui.runCommand('GoToStart WorkbenchName',0)
         else:
             FreeCAD.Console.PrintMessage(translate('Movie', 'You must have an animation of '
                                                    'the WorkbenchName Workbench first.') + '\n')
             return
 
-# ====================================================================================== 
+# ======================================================================================
 '''Play the animation'''
 def connectionPlay():
-	
-    MC = FreeCAD.ActiveDocument.MovieCamera
 
-    '''ExplodedAssembly Workbench'''    
+    from MovieCamera import MC
+    mc.modifyAnimationIndicator(Animation = True)
+
+    '''ExplodedAssembly Workbench'''
     '''Note: In this case, the number of camera steps can be less than 
     or equal to the ExplodedAssembly. If it is smaller, the animation 
-    of the objects will continue without the animation of the camera, 
-    but if it is greater, the camera will not continue to animate 
-    without the movement of the objects.'''
-    
-    if MC.Cam_3Connection == 'ExplodedAssembly':
+    of the objects will stop together with the camera.'''
 
-        if EA_presence == True:
-            if CL_presence == True:
+    if MC.Cam_7Connection == 'ExplodedAssembly':
+
+        if EA_PRESENCE == True:
+            if CL_PRESENCE == True:
                 CL = FreeCAD.ActiveDocument.Clapperboard
                 if CL.Cam_3OnRec == True:
-                    rpv.runRecordCamera()            
+                    rpv.runRecordCamera()
             Gui.runCommand('PlayForward',0)
-            MC.Cam_4OnAnim = False
-            if CL_presence == True:
+            mc.modifyAnimationIndicator(Animation = False)
+            if CL_PRESENCE == True:
                 CL = FreeCAD.ActiveDocument.Clapperboard
                 CL.Cam_3OnRec = False
-                
+
         else:
             FreeCAD.Console.PrintMessage(translate('Movie', 'You must have an animation of '
                                                    'the ExplodedAssembly workbench first.') + '\n')
@@ -148,57 +147,62 @@ def connectionPlay():
     '''04. Include here the instructions for the Workbench you want to connect'''
     '''WorkbenchName Workbench'''
 
-    if MC.Cam_3Connection == 'WorkbenchName':
-    	
-        if WN_presence == True:
-            import WorkbenchName as wn  
+    if MC.Cam_7Connection == 'WorkbenchName':
+
+        if WN_PRESENCE == True:
+            import WorkbenchName as wn
             steps = MC.Anim_3EndStep - MC.Anim_4CurrentStep
 
             if MC.Cam_Target == 'Follow the route':
-                steps = steps - MC.Cam_Target_Steps_Forward           
+                steps = steps - MC.Cam_Target_Steps_Forward
 
-            if CL_presence == True:               
+            if CL_PRESENCE == True:
                 CL = FreeCAD.ActiveDocument.Clapperboard
 
             for p in range (steps):
                 Gui.updateGui()
-                
+
                 '''Clapperboard records a frame'''
-                if CL_presence == True:
+                if CL_PRESENCE == True:
                     if CL.Cam_3OnRec == True:
                         rpv.runRecordCamera()
-                
+
                 '''Movie Camera takes a step forward'''
-                mc.postMovieAnimation()
-            
-                '''WorkbenchName takes a step forward'''                        
+                mc.postMovieCamera(condition = 'next')
+
+                '''WorkbenchName takes a step forward'''
                 try:
                     wn.runStepbyStepAnimation() # Animating step by step before Gui.updateGui()
-                except:            
+                except:
                     wn.stepStep = True # Instruction for animating pause step by step before Gui.updateGui()
                     wn.runAnimation()
-                
-                '''Pause the connectionPlay'''       
-                if MC.Cam_4OnAnim == False:
+
+                '''Pause the connectionPlay'''
+                if MC.Cam_8OnAnim == False:
                    wn.pauseAnimation # Pause animation WorkbenchName command/instruction
                    break
-                   
-            wn.stopAnimation # Stop animation WorkbenchName command/instruction (if not so)  
-                    
+
+            wn.stopAnimation # Stop animation WorkbenchName command/instruction (if not so)
+            mc.modifyAnimationIndicator(Animation = False)
+            if CL_PRESENCE == True:
+                CL = FreeCAD.ActiveDocument.Clapperboard
+                CL.Cam_3OnRec = False
         else:
             FreeCAD.Console.PrintMessage(translate('Movie', 'You must have an animation of '
                                                    'the WorkbenchName Workbench first.') + '\n')
             return
+    '''Enable the next camera, if so'''
+    mc.nextMovieCamera(condition = 'play')
 # ====================================================================================== 
-'''Pause the animation'''           
+'''Pause the animation'''
 def connectionPause():
-	
-    MC = FreeCAD.ActiveDocument.MovieCamera
-    
+
+    from MovieCamera import MC
+
     '''ExplodedAssembly Workbench'''
-    if MC.Cam_3Connection == 'ExplodedAssembly':
-        if EA_presence == True :
-            Gui.runCommand('StopAnimation',0)                                                                                                   
+    if MC.Cam_7Connection == 'ExplodedAssembly':
+        if EA_PRESENCE == True :
+            Gui.runCommand('StopAnimation',0)
         else:
             FreeCAD.Console.PrintMessage(translate('Movie', 'You must have an animation of '
                                                    'the ExplodedAssembly Workbench first.') + '\n')
@@ -206,9 +210,9 @@ def connectionPause():
 
     '''05. Include here the instructions for the Workbench you want to connect'''
     '''WorkbenchName Workbench'''
-    if MC.Cam_3Connection == 'WorkbenchName':
-        if WN_presence == True:
-            Gui.runCommand('PauseAnimationWorkbenchName',0)                                                                                                  
+    if MC.Cam_7Connection == 'WorkbenchName':
+        if WN_PRESENCE == True:
+            Gui.runCommand('PauseAnimationWorkbenchName',0)
         else:
             FreeCAD.Console.PrintMessage(translate('Movie', 'You must have an animation of '
                                                    'the WorkbenchName Workbench first.') + '\n')
@@ -216,23 +220,22 @@ def connectionPause():
 # ====================================================================================== 
 '''Go to the end of the animation'''
 def connectionEnd():
-	
-    MC = FreeCAD.ActiveDocument.MovieCamera
-    
+
+    from MovieCamera import MC
     '''ExplodedAssembly Workbench'''
-    if MC.Cam_3Connection == 'ExplodedAssembly':
-        if EA_presence == True :
-            Gui.runCommand('GoToEnd',0)                                                 
+    if MC.Cam_7Connection == 'ExplodedAssembly':
+        if EA_PRESENCE == True :
+            Gui.runCommand('GoToEnd',0)
         else:
             FreeCAD.Console.PrintMessage(translate('Movie', 'You must have an animation of '
                                                    'the ExplodedAssembly workbench first.') + '\n')
-            return          
+            return
 
     '''06. Include here the instructions for the Workbench you want to connect'''
     '''WorkbenchName Workbench'''
-    if MC.Cam_3Connection == 'WorkbenchName':
-        if WN_presence == True:
-            Gui.runCommand('GoToEndWorkbenchName',0)                                                                                                    
+    if MC.Cam_7Connection == 'WorkbenchName':
+        if WN_PRESENCE == True:
+            Gui.runCommand('GoToEndWorkbenchName',0)
         else:
             FreeCAD.Console.PrintMessage(translate('Movie', 'You must have an animation of '
                                                    'the WorkbenchName Workbench first.') + '\n')
@@ -240,26 +243,25 @@ def connectionEnd():
 
 # ====================================================================================== 
 
-'''Only from ExplodedAssembly Workbench'''  
+'''Only from ExplodedAssembly Workbench'''
 
 def connectionEA():
 
     EA = FreeCAD.ActiveDocument.ExplodedAssembly
-    MC = FreeCAD.ActiveDocument.MovieCamera
-    # 1. From play MC:     
-    if MC.Cam_3Connection == 'ExplodedAssembly' and MC.Cam_4OnAnim == True:
-        import MovieCamera as mc
-        mc.postMovieAnimation()
-        if MC.Cam_4OnAnim == False:
-            EA.InAnimation = False                   
-    if CL_presence == True:
+    from MovieCamera import MC
+    # 1. From play MC:
+    if MC_PRESENCE == True and MC.Cam_7Connection == 'ExplodedAssembly' and MC.Cam_8OnAnim == True:
+        mc.postMovieCamera(condition = 'next')
+        if MC.Cam_8OnAnim == False:
+            EA.InAnimation = False
+    if CL_PRESENCE == True:
         CL = FreeCAD.ActiveDocument.Clapperboard
         if CL.Cam_3OnRec == True:
             rpv.runRecordCamera()
             if EA.InAnimation == False:
                 rpv.stopRecordCamera()
-                        
-    else:
-        pass                                  
 
-# ======================================================================================              
+    else:
+        pass
+
+# ======================================================================================
