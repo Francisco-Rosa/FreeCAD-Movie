@@ -2,17 +2,17 @@
         
 #### Introduction
 
-The Movie workbench consists of two main parts. The first, Movie Camera, is in charge of producing camera animation in isolation or together with object animations using tools from other workbenches. The connection module provided can enable the integration between the workbenches.
+The Movie workbench consists of three main parts. The first, Movie Camera module, is in charge of producing camera animation in isolation or together with object animations using tools from this workbench or others. The second one, the Movie Objects module it is possible to animate objects separate or simultaneously with the Movie Camera.
 
-The second, Clapperboard, is in charge of producing the sequences of frames that will later compose the final videos of the animations. It has tools for creating and recording and play videos of animations within FreeCAD itself.  As a “bonus” it also allows the production and playback of videos from external files.
+The trird one, the Clapperboard module, is in charge of producing the sequences of frames that will later compose the final videos of the animations. It has tools for creating and recording and play videos of animations within FreeCAD itself.  As a “bonus” it also allows the production and playback of videos from external files. The concept of using a “Clapperboard” comes from the idea that the “action” is due to the animation (Movie Camera).
 
-The concept of using a “Clapperboard” comes from the idea that the “action” is due to the animation (Movie Camera).
+Finaly, the connection module can provide the integration with animations from others workbenches.
 
 #### Steps for using the Movie workbench:
 
 #### 1. Preparation
 
-1.1. Create an animation with the Movie Camera tools bar or with a workbench, script, or macro of FreeCAD that are prepared for using the Movie Workbench (ex. [Modified ExplodedAssembly](https://github.com/Francisco-Rosa/ExplodedAssembly)). If you want to integrated one of those to Movie Workbench, use the Connections.py module, it contains guidelines on how to establish the connection between them.
+1.1. Create an animation with the Movie Workbench or with a workbench, script, or macro of FreeCAD that are prepared for using this workbench (ex. [Modified ExplodedAssembly](https://github.com/Francisco-Rosa/ExplodedAssembly)). If you want to integrated one of those to Movie Workbench, use the Connections.py module, it contains guidelines on how to establish the connection between them.
 
 1.2. The instructions on how to create animations with the Movie Workbench are in README.md.
 
