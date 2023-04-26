@@ -2,11 +2,11 @@
         
 #### Introduction
 
-The Movie workbench consists of three main parts. The first, Movie Camera module, is in charge of producing camera animation in isolation or together with object animations using tools from this workbench or others. The second one, the Movie Objects module it is possible to animate objects separate or simultaneously with the Movie Camera.
+The Movie workbench consists of three main parts. The first, Movie Camera module, is in charge of producing camera animation in isolation or together with object animations using tools from this workbench or others. In the second one, the Movie Objects module, it is possible to animate objects separate or simultaneously with the Movie Camera.
 
-The trird one, the Clapperboard module, is in charge of producing the sequences of frames that will later compose the final videos of the animations. It has tools for creating and recording and play videos of animations within FreeCAD itself.  As a “bonus” it also allows the production and playback of videos from external files. The concept of using a “Clapperboard” comes from the idea that the “action” is due to the animation (Movie Camera).
+The third one, the Clapperboard module, is in charge of producing the sequences of frames that will later compose the final videos of the animations. It has tools for creating and recording and play videos of animations within FreeCAD itself. As a “bonus” it also allows the production and playback of videos from external files. The concept of using a “Clapperboard” comes from the idea that the “action” is due to the animation (Movie Camera).
 
-Finaly, the connection module can provide the integration with animations from others workbenches.
+Finally, the connection module can provide the integration with animations from others workbenches.
 
 #### Steps for using the Movie workbench:
 
@@ -21,7 +21,7 @@ Finaly, the connection module can provide the integration with animations from o
 Install the Render Workbench and the external rendering programs, indicating them in the FC preferences, and carry out all the necessary preparations. See instructions on the Render Workbench at:
 ![FreeCAD-Render](ttps://github.com/FreeCAD/FreeCAD-render); [Creating renderings](https://wiki.freecadweb.org/Manual:Creating_renderings); [Engine Install](https://github.com/FreeCAD/FreeCAD-render/blob/master/docs/EngineInstall.md).
 
-Prepare the render project(s) as per the instructions on the mentioned websites. Configure, in the properties window, that Open After Render be False and the Render Height and Width values for the final rendering images. For renderers other than POV-Ray, it is necessary to configure the value of Samples Per Pixel and it is recommended to activate the Denoiser.
+Prepare the render project(s) as per the instructions on the mentioned websites. Configure, in the properties window, that Open After Render be False and the Render Height and Width values for the final rendering images. For renderers other than POV-Ray, it is necessary to configure the value of Samples Per Pixel, and it is recommended to activate the Denoiser.
 
 Important: click on the render button to generate an image and verify that everything is installed and configured correctly.
     
@@ -33,7 +33,7 @@ The Movie Camera will adjust, automatically, the 'Aspec Ratio' of the selected r
 
 2.1. After the animations tested and finished, create and configure the **Clapperboard**
 
-Create a general animation recording configuration using the **Clapperboard**, clicking on its icon, Menu > Movie - Clapperboard or in the pop-up menu opened with the right mouse button.
+Create a general animation recording configuration using the **Clapperboard**, clicking on its icon, Menu > Movie – Clapperboard or in the pop-up menu opened with the right mouse button.
 
 Configure the **Clapperboard properties window** according to the guidelines ('tips') for each one and your needs. It comes almost completely pre-configured, however the paths for saving the generated frames and videos must be indicated before starting any recording. After creating your first video, you can complete the last property, the path to play a video.
      
@@ -41,13 +41,15 @@ Configure the **Clapperboard properties window** according to the guidelines ('t
 
 Select one or more Movie Camera in sequence and position your animation at the desired step (see more information in README.md).
 
-Create the 3D view frames - **R1**. For a preview of the animation with frames of the 3D view, click on **R1** (or menu Movie > Record 3DView Frames). Choose or confirm the folder to salve the frames (that you've configured above)  and start the animation (from a workbench, script or macro). The animation frames will be named and saved in the folder as configured in 'R1_5FrameOutpuPath' of the Clapperboard properties window. Messages on the bottom bar of the FC will show the recording progress, to better follow the process, open the report window.
+Create the 3D view frames – R1**. For a preview of the animation with frames of the 3D view, click on **R1** (or menu Movie > Record 3DView Frames). Choose or confirm the folder to salve the frames (that you've configured above)  and start the animation (from a workbench, script, or macro). The animation frames will be named and saved in the folder as configured in 'R1_5FrameOutpuPath' of the Clapperboard properties window. Messages on the bottom bar of the FC will show the recording progress, to better follow the process, open the report window.
 
-Create the video in FC. After finishing all desired animation recording steps, click on **Create Video** (or Menu > Movie > Create Video), choose or confirm the input frames folder (indicated in Video 'InputFrames' of the Clapperboard). After finishing the recording, a message in the report window will confirm the location where the file was saved. Important: it will be named and saved in the folder you configured before, respectively in Video Name and Video OutputPath of Clapperboard properties window.
+Create the video in FC. After finishing all desired animation recording steps, click on **Create Video** (or Menu > Movie > Create Video), select or confirm the input frames folder (indicated in Video 'Input Frames' of the Clapperboard). After finishing the recording, a message in the report window will confirm the location where the file was saved. Important: it will be named and saved in the folder you configured before, respectively in Video Name and Video Output Path of Clapperboard properties window.
 
-Play the video in the FC or an external program. Click on **Play Video** (or Menu > Movie > Play Video or workbench pop menu) and choose the file you want to play, or directly click on the created video file to open it with your system's video playback program for confirmation of the result. If you prefer, you can also import the frames created into an external video editing program that you already know, or assemble the final video with the various partial footage from the cameras used and include the sound.
+Play the video in the FC or an external program. Click on **Play Video** (or Menu > Movie > Play Video or workbench pop menu) and choose the file you want to play, or directly click on the created video file to open it with your system's video playback program for confirmation of the result.
 
-Repeat the previous items using the render frames - **R2**. Once satisfied with the result of the animation of the 3D views of the FC, you can start recording the rendered frames, according to the Render project(s) chosen and already properly configured (s). Repeat the four previous steps, but now confirming the properties corresponding to the Render in the Clapperboard properties window (mainly Render 'FrameOutputPath'), use the cameras configured for the render and activate **R2** (Record Render Frames).
+If you prefer, you can also import the frames created into an external video editing program that you already know, or assemble the final video with the various partial footage from the cameras used and include the sound.
+
+Repeat the previous items using the render frames – R2**. Once satisfied with the result of the animation of the 3D views of the FC, you can start recording the rendered frames, according to the Render project(s) selected and already properly configured (s). Repeat the four previous steps, but now confirming the properties corresponding to the Render in the Clapperboard properties window (mainly Render 'FrameOutputPath'), use the cameras configured for the render and activate **R2** (Record Render Frames).
 
 Stop recording. If you need or want to interrupt the recording process, click on **Stop Recording** or type **Crtl k**. This command only interrupts the recording, for the animation use the pause animation button of the workbench, it will also stop the recording process.
 
