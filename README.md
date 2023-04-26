@@ -1,5 +1,5 @@
 # FreeCAD Movie Workbench
-FreeCAD Workbench to create and animate camera, record and play videos of animations
+FreeCAD Workbench to animate cameras and objects, record and play videos
 
 
 The Movie Workbench icon
@@ -7,13 +7,17 @@ The Movie Workbench icon
 <img src=./icons//CreateVideoIcon.svg height=50>
 
 ### Features
-##### The Movie Camera toolbar (create and animate cameras):
+##### The Movie Camera and Objects toolbars (animate cameras and objects):
 
-* Create animations of one or more cameras, showing the details of your project.
-* With the connection module, it is possible to create animations of cameras and objects simultaneously.
-* It is possible to create camera animations between two chosen points, making it follow a path or keeping it on a fixed base.
+* Create animations of cameras and objects separately or simultaneously, showing the details of your project.
+* It is possible to create cameras/objects animations between two chosen points, making them follow a path or rotating them on a fixed base/axis.
 * The camera targets can be free, fixed or mobile with the option to make them follow the path together with the camera.
 * Once the camera animations are established, it is possible to make further adjustments to the positions, rotations and zooms of the cameras until reaching the final desired settings.
+* If you already have a animation in another workbench, you can add cameras animations and produce render videos with the connection module (see below more details).
+
+##### The Animation toolbar (visualize your animations within FreeCAD):
+
+* You can play, pause, go back and forward the cameras/objects animations in real time within FreeCAD, before record them in videos.
 
 ##### The Clapperboard toolbar (record and play videos):
 
@@ -43,22 +47,37 @@ The Movie Workbench icon
 ### Preparation
 
 * If yoy want use the rendered frames (**R2**), you must install the Render Workbench, prepare rendering projects and test them preventively to make sure everything is working correctly (see information in [FreeCAD-Render](https://github.com/FreeCAD/FreeCAD-render)). It is also recommended to take advantage and use some cameras from this workbench that better show the animation.
-* If you want to use an animation from another workbench, script or macro of FreeCAD, it is necessary to prepare connection module for using then (ex. [Modified ExplodedAssembly](https://github.com/Francisco-Rosa/ExplodedAssembly)). For this, see the instructions inside the [Connection.py](https://github.com/Francisco-Rosa/FreeCAD-Movie/blob/master/Connection.py).
+* If you want to use an animation from another workbench, script or macro of FreeCAD, it is necessary to prepare the connection module for using then (ex. [Modified ExplodedAssembly](https://github.com/Francisco-Rosa/ExplodedAssembly)). For this, see the instructions inside the [Connection.py](https://github.com/Francisco-Rosa/FreeCAD-Movie/blob/master/Connection.py).
 
 
 ### Usage
 
-##### To create camera animation go to Movie Camera toolbar and:
+##### To create camera animations go to Movie Camera toolbar and:
 <img src=./Docs/Image_MC_toolbar.jpg height=50>
 
 1. Click on the Create a Movie Camera button <img src=./icons//CreateMovieCameraIcon.svg height=20> to create one and to configure it (see the tips showed for each item in the property window - a Movie Camera properties image is showed below).
-2. To configure the movie camera to animations between two positions, first, select and activate the Movie Camera you want to configure with the Enable Movie Camera icon <img src=./icons//EnableMovieCameraIcon.svg height=20>. Position the 3D view with the desired framing to be the start of the animation (Pos A), click on Set the position A button <img src=./icons//SetMovieCameraPosAIcon.svg height=20>. Position the 3D view with the desired framing to be the end of the animation (Pos B), then click on Set the position B button <img src=./icons//SetMovieCameraPosBIcon.svg height=20>. Click on go to beginning <img src=./icons//IniMovieAnimationIcon.svg height=20> and to the end of the animation buttons <img src=./icons//EndMovieAnimationIcon.svg height=20> to confirm the configurations. Make the adjustments you want in the position, rotation and zoom of the Movie Camera (see Movie Camera properties image below).
+2. To configure the movie camera to animations between two positions, first, select and activate the Movie Camera you want to configure with the Enable Movie Camera icon <img src=./icons//EnableMovieCameraIcon.svg height=20>. Position the 3D view with the desired framing to be the start of the animation (Pos A), click on Set the position A button <img src=./icons//SetMoviePosAIcon.svg height=20>. Position the 3D view with the desired framing to be the end of the animation (Pos B), then click on Set the position B button <img src=./icons//SetMoviePosBIcon.svg height=20>. Click on go to beginning <img src=./icons//IniMovieAnimationIcon.svg height=20> and to the end of the animation buttons <img src=./icons//EndMovieAnimationIcon.svg height=20> to confirm the configurations. Make the adjustments you want in the position, rotation and zoom of the Movie Camera (see Movie Camera properties image below).
 3. To make that the Movie Camera follows a route, you must create a segment first to do so. It can be a line, arc, circle, ellipse, B-spline or Bézier curve, from Sketcher or Draft Workbenches. Select the segment created in Cam_Route_Selection property. Configure the remaining camera properties.
 4. To keep the movie Camera on a fixed base, you can use the Pos A <img src=./icons//SetMovieCameraPosAIcon.svg height=20> and B <img src=./icons//SetMovieCameraPosBIcon.svg height=20> buttons method explained, for example. Use the same position for then, adjusting the remaining settings as desired (rotation, zoom, steps, target, etc.).
 5. The targets of the Movie Cameras can be adjusted to follow paths, fixed or mobile points or objects or living free to permit use of rotations angles, for example.
-6. To create animations of cameras and objects simultaneously, you have to use an additional workbench that the connection module be already prepared to communicate with, if so, select the workbench you want to work in Cam_3Connection property.
-7. To perform an animation, first select the Movie Cameras <img src=./icons//MovieCameraIcon.svg height=20> you want to animate , the sequence of selection will be the one adopted for the animation. Run a round trip in the animation with the go buttons to the end <img src=./icons//EndMovieAnimationIcon.svg height=20> and to the beginning of the animation <img src=./icons//IniMovieAnimationIcon.svg height=20> to reset all the steps of the animation in their initial positions. Then click on play animation button <img src=./icons//PlayMovieAnimationIcon.svg height=20>. If there is a connection activated, the animation of objects will work too.
-8. Use the go to beginning <img src=./icons//IniMovieAnimationIcon.svg height=20>, one step back <img src=./icons//PrevMovieAnimationIcon.svg height=20> , pause <img src=./icons//PauseMovieAnimationIcon.svg height=20>, one step forward <img src=./icons//PostMovieAnimationIcon.svg height=20> and go to end <img src=./icons//EndMovieAnimationIcon.svg height=20> buttons as needed. They will also work with the workbench animations connected, if so.
+6. To create animations of cameras and objects simultaneously, you have to prepare one or more movie objects animations first (see instrutions below) and include them in sequency in Cam_5ObjectsSelected property, then in Cam_6Enable one, chose 'Camera and objects'.
+7. To apply animation from another workbench, you have to use one that the connection module be already prepared to communicate with, if so, select the workbench you want to work in Cam_3Connection property.
+8. To perform an animation, first select the Movie Cameras <img src=./icons//MovieCameraIcon.svg height=20> you want to animate , the sequence of selection will be the one adopted for the animation. Run a round trip in the animation with the go buttons to the end <img src=./icons//EndMovieAnimationIcon.svg height=20> and to the beginning of the animation <img src=./icons//IniMovieAnimationIcon.svg height=20> to reset all the steps of the animation in their initial positions. Then click on play animation button <img src=./icons//PlayMovieAnimationIcon.svg height=20>. If there is a connection activated, the animation of objects will work too.
+9. Use the go to beginning <img src=./icons//IniMovieAnimationIcon.svg height=20>, one step back <img src=./icons//PrevMovieAnimationIcon.svg height=20> , pause <img src=./icons//PauseMovieAnimationIcon.svg height=20>, one step forward <img src=./icons//PostMovieAnimationIcon.svg height=20> and go to end <img src=./icons//EndMovieAnimationIcon.svg height=20> buttons as needed. They will also work with the workbench animations connected, if so.
+
+##### To create object animations go to Movie Objects toolbar and:
+<img src=./Docs/Image_MC_toolbar.jpg height=50>
+
+1. Click on the Create a Movie Objects button <img src=./icons//CreateMovieObjectsIcon.svg height=20> to create one and to configure it (see the tips showed for each item in the property window - a Movie Objects properties image is showed below).
+2. To configure the movie objects to animations between two positions, first, select and activate the Movie Objects you want to configure with the Enable Movie Objects icon <img src=./icons//EnableMovieObjectsIcon.svg height=20>. Position each object at the desired position and angles to be the start of the animation (Pos A), click on Set the position A button <img src=./icons//SetMoviePosAIcon.svg height=20>. Now, position each object at the desired position and angles to be the end of the animation (Pos B), then click on Set the position B button <img src=./icons//SetMoviePosBIcon.svg height=20>. Click on go to beginning <img src=./icons//IniMovieAnimationIcon.svg height=20> and to the end of the animation buttons <img src=./icons//EndMovieAnimationIcon.svg height=20> to confirm the configurations.
+3. To make that the Movie Objects follows a route, you must create a segment first to do so. It can be a line, arc, circle, ellipse, B-spline or Bézier curve, from Sketcher or Draft Workbenches. Select the segment created in Objects_Route_Selection property. Configure the remaining object properties.
+4. To rotate a group of objects around a fixed axis, you have first create a MovieObjects and set its Pos A and B, then select those objects you want to rotate (first the objects, then the axis) and click on SetMovieObjectsAxis button <img src=./icons//SetMovieObjectsAxisIcon.svg height=20>. To erase these settings, first clique on enable the movie objects button <img src=./icons//EnableMovieObjectsIcon.svg height=20> then on SetMoviePosB button <img src=./icons//SetMoviePosBIcon.svg height=20>.
+5. If you want that the objects rotate around their centers of gravity, after createt a MovieObjects and set its Pos A and B, abilitate the Objects_RotationCG property.
+6. You can animate a series of movie objects in a desire sequency by clicking on them accordinly of that and enabling them. The animation will be preformed the sequence created.
+7. To create animations of cameras and objects simultaneously, you have to prepare one or more movie objects animations first (see instrutions below) and include them in sequency in Cam_5ObjectsSelected property, then in Cam_6Enable one, chose 'Camera and objects'.
+8. To apply animation from another workbench, you have to use one that the connection module be already prepared to communicate with, if so, select the workbench you want to work in Cam_3Connection property.
+9. To perform an animation, first select the Movie Cameras <img src=./icons//MovieCameraIcon.svg height=20> you want to animate , the sequence of selection will be the one adopted for the animation. Run a round trip in the animation with the go buttons to the end <img src=./icons//EndMovieAnimationIcon.svg height=20> and to the beginning of the animation <img src=./icons//IniMovieAnimationIcon.svg height=20> to reset all the steps of the animation in their initial positions. Then click on play animation button <img src=./icons//PlayMovieAnimationIcon.svg height=20>. If there is a connection activated, the animation of objects will work too.
+10. Use the go to beginning <img src=./icons//IniMovieAnimationIcon.svg height=20>, one step back <img src=./icons//PrevMovieAnimationIcon.svg height=20> , pause <img src=./icons//PauseMovieAnimationIcon.svg height=20>, one step forward <img src=./icons//PostMovieAnimationIcon.svg height=20> and go to end <img src=./icons//EndMovieAnimationIcon.svg height=20> buttons as needed. They will also work with the workbench animations connected, if so.
 
 ##### After the animations are done, go to Clapperboard toolbar and:
 <img src=./Docs/Image_MW_toolbar_2.jpg height=50>
