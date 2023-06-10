@@ -306,7 +306,6 @@ def connectionPlayBackward(Selection = None):
         ma.modifyAnimationIndicator(Animation = False)
         if CL != None:
             CL.Clap_04OnRec = False
-
     else:
         FreeCAD.Console.PrintMessage(translate('Movie', 'You must have an animation from '
                                                    'the ExplodedAssembly workbench first.') + '\n')
@@ -331,7 +330,6 @@ def connectionPlay(Selection = None):
         ma.modifyAnimationIndicator(Animation = False)
         if CL != None:
             CL.Clap_04OnRec = False
-
     else:
         FreeCAD.Console.PrintMessage(translate('Movie', 'You must have an animation from '
                                                    'the ExplodedAssembly Workbench first.') + '\n')
