@@ -79,7 +79,6 @@ class IniMovieAnimation:
         if Gui.ActiveDocument:
             if not ANIMATION:
                 return True
-
         else:
             return False
 
@@ -120,7 +119,6 @@ class PrevMovieAnimation:
         if Gui.ActiveDocument:
             if not ANIMATION:
                 return True
-
         else:
             return False
 
@@ -155,7 +153,6 @@ class PlayBackwardMovieAnimation:
         if Gui.ActiveDocument:
             if not ANIMATION:
                 return True
-
         else:
             return False
 
@@ -191,7 +188,6 @@ class PauseMovieAnimation:
         if Gui.ActiveDocument:
             if ANIMATION:
                 return True
-
         else:
             return False
 
@@ -227,7 +223,6 @@ class PlayMovieAnimation:
         if Gui.ActiveDocument:
             if not ANIMATION:
                 return True
-
         else:
             return False
 
@@ -301,7 +296,6 @@ class EndMovieAnimation:
         if Gui.ActiveDocument:
             if not ANIMATION:
                 return True
-
         else:
             return False
 
@@ -351,7 +345,6 @@ class SetMoviePosA:
         if Gui.ActiveDocument:
             if not ANIMATION:
                 return True
-
         else:
             return False
 
@@ -383,7 +376,6 @@ class SetMoviePosB:
         if Gui.ActiveDocument:
             if not ANIMATION:
                 return True
-
         else:
             return False
 
@@ -747,7 +739,6 @@ def prevMovieAnimation():
         ANIM_CURRENT_STEP -= 1
         if ENABLE_01 == 'Clapperboard':
             CL.Clap_02AnimCurrentStep = ANIM_CURRENT_STEP
-
     else:
         return
     getViewProjection()
@@ -871,7 +862,6 @@ def postMovieAnimation():
         ANIM_CURRENT_STEP += 1
         if ENABLE_01 == 'Clapperboard':
             CL.Clap_02AnimCurrentStep = ANIM_CURRENT_STEP
-
     else:
         return
     getViewProjection()
@@ -891,7 +881,6 @@ def getEndMovieAnimation():
                 ANIM_CURRENT_STEP = SEQ_ANIM_LIB[ANIM_CURRENT_STEP + 1][5]
         if ENABLE_01 == 'Clapperboard':
             CL.Clap_02AnimCurrentStep = ANIM_CURRENT_STEP
-            #return
         #FreeCAD.Console.PrintMessage(translate('Movie', f'ANIM_CURRENT_STEP e {ANIM_CURRENT_STEP}') + '\n')
         #FreeCAD.Console.PrintMessage(translate('Movie', f'ANIM_END_STEP e {ANIM_END_STEP}') + '\n')
 
