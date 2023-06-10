@@ -145,7 +145,6 @@ class CreateMovieObjects:
     def IsActive(self):
         if Gui.ActiveDocument:
             return True
-
         else:
             return False
 
@@ -206,7 +205,6 @@ class EnableMovieObjects:
     def IsActive(self):
         if Gui.ActiveDocument:
             return True
-
         else:
             return False
 
@@ -232,7 +230,6 @@ class SetMovieObjectsAxis:
         if Gui.ActiveDocument:
             if not MO.Obj_07AnimOnAnim:
                 return True
-
         else:
             return False
 
@@ -257,7 +254,6 @@ class ExcludeMovieObjects:
         if Gui.ActiveDocument:
             if not MO.Obj_07AnimOnAnim:
                 return True
-
         else:
             return False
 
