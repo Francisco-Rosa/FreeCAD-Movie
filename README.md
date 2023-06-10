@@ -52,8 +52,8 @@ The Movie Workbench icon
 
 ### Usage
 
-##### To create camera animations go to Movie Camera toolbar and:
-<img src=./Docs/Image_MC_toolbar.jpg height=50>
+##### To create camera animations go to Movie Cameras and objects toolbar and:
+<img src=./Docs/Movie_cameras_objects_toolbar.png height=50>
 
 1. Click on the Create a Movie Camera button <img src=./icons//CreateMovieCameraIcon.svg height=20> to create one and to configure it (see the tips showed for each item in the property window - a Movie Camera properties image is showed below).
 2. To configure the movie camera to animations between two positions, first, select and activate the Movie Camera you want to configure with the Enable Movie Camera icon <img src=./icons//EnableMovieCameraIcon.svg height=20>. Position the 3D view with the desired framing to be the start of the animation (Pos A), click on Set the Position A button <img src=./icons//SetMoviePosAIcon.svg height=20>. Position the 3D view with the desired framing to be the end of the animation (Pos B), then click on Set the Position B button <img src=./icons//SetMoviePosBIcon.svg height=20>. Click on go to beginning <img src=./icons//IniMovieAnimationIcon.svg height=20> and to the end of the animation buttons <img src=./icons//EndMovieAnimationIcon.svg height=20> to confirm the configurations. Make the adjustments you want in the position, rotation and zoom of the Movie Camera (see Movie Camera properties image below).
@@ -65,8 +65,10 @@ The Movie Workbench icon
 8. To perform an animation, first select one or more Movie Cameras <img src=./icons//MovieCameraIcon.svg height=20> you want to animate , the sequence of Movie Cameras selected will be the one adopted for the animation. Run a round trip in the animation with the go buttons to the end <img src=./icons//EndMovieAnimationIcon.svg height=20> and to the beginning of the animation <img src=./icons//IniMovieAnimationIcon.svg height=20> to reset all the steps of the animation in their initial positions. Then click on Play Animation button <img src=./icons//PlayMovieAnimationIcon.svg height=20>. You can play backwards too - Play Backward button <img src=./icons//PlayBackwardMovieAnimationIcon.svg height=20>. If a connection is previously configured and activated in the movie camera properties, objects related to this connection will be animated as well.
 9. Use the go to beginning <img src=./icons//IniMovieAnimationIcon.svg height=20>, one step back <img src=./icons//PrevMovieAnimationIcon.svg height=20> , pause <img src=./icons//PauseMovieAnimationIcon.svg height=20>, one step forward <img src=./icons//PostMovieAnimationIcon.svg height=20> and go to end <img src=./icons//EndMovieAnimationIcon.svg height=20> buttons as needed. They will also work with the objects or workbench animations connected, if so.
 
-##### To create object animations go to Movie Objects toolbar and:
-<img src=./Docs/Image_MC_toolbar.jpg height=50>
+<img src=./Docs/Movie_animation_toolbar.png height=50>
+
+##### To create object animations go to Movie Cameras and Objects toolbar and:
+<img src=./Docs/Movie_cameras_objects_toolbar.png height=50>
 
 1. Select the objects you want to animate, click on the Create a Movie Objects button <img src=./icons//CreateMovieObjectsIcon.svg height=20> to create one and to configure it (see the tips showed for each item in the property window - a Movie Objects properties image is showed below). These initial placements of the objects will be saved and they can be rescue when you delete the movie objects with the Exclude Movie Objects button <img src=./icons//ExcludeMovieObjectsIcon.svg height=20>.
 2. To configure the movie objects to animations between two positions, first, select and activate the Movie Objects you want to configure with the Enable Movie Objects icon <img src=./icons//EnableMovieObjectsIcon.svg height=20>. Position each object at the desired position and angles to be the start of the animation (Pos A), click on Set the Position A button <img src=./icons//SetMoviePosAIcon.svg height=20>. Now, position each object at the desired position and angles to be the end of the animation (Pos B), then click on Set the Position B button <img src=./icons//SetMoviePosBIcon.svg height=20>. Click on go to beginning <img src=./icons//IniMovieAnimationIcon.svg height=20> and to the end of the animation buttons <img src=./icons//EndMovieAnimationIcon.svg height=20> to confirm the configurations.
@@ -79,8 +81,10 @@ The Movie Workbench icon
 9. To perform an animation, first select one or more Movie Objects <img src=./icons//MovieObjectsIcon.svg height=20> (objects only) or Movie Cameras <img src=./icons//MovieCameraIcon.svg height=20> (camera and objects) you want to animate, the sequence of selection will be the one adopted for the animation. Run a round trip in the animation with the go buttons to the end <img src=./icons//EndMovieAnimationIcon.svg height=20> and to the beginning of the animation <img src=./icons//IniMovieAnimationIcon.svg height=20> to reset all the steps of the animation in their initial positions. Then click on Play Animation button <img src=./icons//PlayMovieAnimationIcon.svg height=20>. You can play backwards too - Play Backward button <img src=./icons//PlayBackwardMovieAnimationIcon.svg height=20>. The animation of connected workbenches objects only works when associated with a movie camera (see instructions for movie cameras animation above).
 10. Use the go to beginning <img src=./icons//IniMovieAnimationIcon.svg height=20>, one step back <img src=./icons//PrevMovieAnimationIcon.svg height=20> , pause <img src=./icons//PauseMovieAnimationIcon.svg height=20>, one step forward <img src=./icons//PostMovieAnimationIcon.svg height=20> and go to end <img src=./icons//EndMovieAnimationIcon.svg height=20> buttons as needed.
 
-##### After the animations are done, go to Clapperboard toolbar and:
-<img src=./Docs/Image_MW_toolbar_2.jpg height=50>
+<img src=./Docs/Movie_animation_toolbar.png height=50>
+
+##### After the animations are done, go to Movie Record and Play toolbar (Clapperboard) and:
+<img src=./Docs/Movie_record_play_toolbar.png height=50>
 
 1. Click on <img src=./icons//CreateClapperboardIcon.svg height=20>  to **create the Clapperboard** and <img src=./icons//ClapperboardIcon.svg height=20> to **configure it** in the property window (see the tips showed for each item).
 2. Select the cameras and objects you want to animate and record through the clapperboard using the corresponding fields in the property window. Enable the Clapperboard <img src=./icons//EnableMovieClapperboardIcon.svg height=20> and run a round trip, mentioned before.
@@ -94,17 +98,33 @@ The Movie Workbench icon
 
 (Watch the [Clapperboard tutorial video](https://www.youtube.com/watch?v=_IiIWtO76Tg))
 
-The Movie Camera properties
+##### The Movie Objects properties:
 
-<img src=./Docs/Image_MC_properties.jpg height=600>
+<img src=./Docs/Movie_objects_properties.png height=466>
 
-The Clapperboard properties
+##### The Movie Camera properties:
 
-<img src=./Docs/Image_MW_toolbar_propr.jpg height=600>
+<img src=./Docs/Movie_camera_properties.png height=1231>
 
-The Clapperboard menu
+##### The Clapperboard properties:
 
-<img src=./Docs/Image_MW_menu.jpg height=600>
+<img src=./Docs/Movie_Clapperboard_Properties.png width=900>
+
+##### The Movie Cameras and Objects menu:
+
+<img src=./Docs/Movie_Cameras_Objects_Menu.png width=900>
+
+##### The Movie Animation menu:
+
+<img src=./Docs/Movie_Animation_Menu.png width=900>
+
+##### The Movie Record and Play menu:
+
+<img src=./Docs/Movie_Record_Play_Menu.png width=900>
+
+##### The context menu:
+
+<img src=./Docs/Context_menu.png width=900>
 
  
 ### Documentation
