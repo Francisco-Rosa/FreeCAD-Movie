@@ -27,11 +27,11 @@
 
 import FreeCAD
 import FreeCADGui as Gui
-import RecordPlayVideo as rpv
+import MovieClapperboard as cl
 
 translate = FreeCAD.Qt.translate
 
-FreeCADGui.addLanguagePath(rpv.LanguagePath)
+FreeCADGui.addLanguagePath(cl.LanguagePath)
 
 class Movie (Workbench):
     """The Movie Workbench."""
@@ -39,7 +39,7 @@ class Movie (Workbench):
     from PySide.QtCore import QT_TRANSLATE_NOOP
 
     MenuText = "Movie"
-    ToolTip = QT_TRANSLATE_NOOP("Movie", "Workbench to create and visualize videos of animations in FreeCAD")
+    ToolTip = QT_TRANSLATE_NOOP("Movie", "Workbench to create and visualize animations and videos in FreeCAD")
     Icon = """
 /* XPM */
 static char * Movie_xpm[] = {
@@ -112,9 +112,10 @@ static char * Movie_xpm[] = {
         It is executed once in a FreeCAD session followed by the Activated function.
         """
         # import here all the needed files that create your FreeCAD commands
-        import RecordPlayVideo
+        import MovieClapperboard
         import MovieCamera
         import MovieObject
+        import MovieAnimation
  
         self.list1 = ['CreateMovieCamera',
                       'EnableMovieCamera',
@@ -124,24 +125,28 @@ static char * Movie_xpm[] = {
                       'EnableMovieObjects',
                       'SetMovieObjectsAxis',
                       'ExcludeMovieObjects',] # a list of command names created in the line above
-        self.appendToolbar("Movie Tools", self.list1) # creates a new toolbar with your commands
-        self.appendMenu("Movie Tools", self.list1) # creates a new menu
+        self.appendToolbar("Movie Cameras and Objects", self.list1) # creates the Movie Cameras and Objects toolbar with your commands
+        self.appendMenu("Movie Cameras and Objects", self.list1) # creates the Movie Cameras and Objects menu
+
         self.list2 = ['IniMovieAnimation',
                       'PrevMovieAnimation',
+                      'PlayBackwardMovieAnimation',
                       'PauseMovieAnimation',
                       'PlayMovieAnimation',
                       'PostMovieAnimation',
                       'EndMovieAnimation'] # a list of command names created in the line above
-        self.appendToolbar("Movie Play Tools", self.list2) # creates a new toolbar with your commands
-        self.appendMenu("Movie Play", self.list2) # creates a new menu
+        self.appendToolbar("Movie Animation", self.list2) # creates the Movie Animation toolbar with your commands
+        self.appendMenu("Movie Animation", self.list2) # creates the Movie Animation menu
+
         self.list3 = ['CreateClapperboard',
+                      'EnableMovieClapperboard',
                       'StartRecord3DView',
                       'StartRecordRender',
                       'StopRecordCamera',
                       'CreateVideo',
                       'PlayVideo'] # a list of command names created in the line above
-        self.appendToolbar("Movie Record tools", self.list3) # creates a new toolbar with your commands
-        self.appendMenu("Movie Record", self.list3) # creates a new menu
+        self.appendToolbar("Movie Record and Play", self.list3) # creates the Movie Record and Play toolbar with your commands
+        self.appendMenu("Movie Record and Play", self.list3) # creates the Movie Record and Play menu
 
     def Activated(self):
         """This function is executed whenever the workbench is activated"""
@@ -156,7 +161,9 @@ static char * Movie_xpm[] = {
     def ContextMenu(self, recipient):
         """This function is executed whenever the user right-clicks on screen"""
         # "recipient" will be either "view" or "tree"
-        self.appendContextMenu("Movie tools", self.list) # add commands to the context menu
+        self.appendContextMenu("Movie Cameras and Objects", self.list1) # add commands to the context menu
+        self.appendContextMenu("Movie Animation", self.list2) # add commands to the context menu
+        self.appendContextMenu("Movie Record and Play", self.list3) # add commands to the context menu
 
     def GetClassName(self):
         # This function is mandatory if this is a full Python workbench
