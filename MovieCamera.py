@@ -299,7 +299,6 @@ class EnableMovieCamera:
 def setMCPosA(Option = None):
 
     MC = Option
-
     Gui.runCommand('Std_PerspectiveCamera',1)
 
     if MC.Cam_01Target == 'Free':
