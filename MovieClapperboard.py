@@ -179,7 +179,6 @@ class EnableMovieClapperboard:
     def IsActive(self):
         if Gui.ActiveDocument:
             return True
-
         else:
             return False
 
@@ -206,7 +205,6 @@ class StartRecord3DView:
         if Gui.ActiveDocument:
             if not CL.Clap_04OnRec:
                 return True
-
         else:
             return False
 
@@ -232,7 +230,6 @@ class StartRecordRender:
         if Gui.ActiveDocument:
             if not CL.Clap_04OnRec:
                 return True
-
         else:
             return False
 
@@ -255,7 +252,6 @@ class StopRecordCamera:
         if Gui.ActiveDocument:
             if CL.Clap_04OnRec:
                 return True
-
         else:
             return False
 
@@ -280,7 +276,6 @@ class CreateVideo:
         if Gui.ActiveDocument:
             if not CL.Clap_04OnRec:
                 return True
-
         else:
             return False
 
@@ -303,7 +298,6 @@ class PlayVideo:
         if Gui.ActiveDocument:
             if not CL.Clap_04OnRec:
                 return True
-
         else:
             return False
 
@@ -448,7 +442,6 @@ def playVideo():
             cv2.imshow(message2, frame)
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
-
         else:
             break
 
