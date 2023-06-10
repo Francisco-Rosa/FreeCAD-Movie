@@ -8,7 +8,7 @@
    version="1.1"
    inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
    viewBox="0 0 64 64"
-   sodipodi:docname="ClapperboardIcon.svg"
+   sodipodi:docname="EnableMovieClapperboardIcon.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +42,7 @@
      inkscape:pageshadow="2"
      inkscape:zoom="5.5"
      inkscape:cx="92.818182"
-     inkscape:cy="70.272727"
+     inkscape:cy="41.181818"
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:document-units="px"
@@ -125,5 +125,14 @@
        id="path885-7-0"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccc" />
+    <g
+       id="g92"
+       transform="translate(1.9673323,-4.9424701)">
+      <path
+         style="fill:none;stroke:#0000ff;stroke-width:5.74938;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 18.800281,40.14941 4.54317,11.85176 21.728223,-19.555401"
+         id="path858"
+         inkscape:connector-curvature="0" />
+    </g>
   </g>
 </svg>

@@ -1,7 +1,7 @@
 """FreeCAD init script of Movie Workbench"""
 
 # ***************************************************************************
-# *   Copyright (c) 2022 Francisco Rosa                                     *   
+# *   Copyright (c) 2022 Francisco Rosa                                     *
 # *                                                                         *
 # *   This file is part of the FreeCAD CAx development system.              *
 # *                                                                         *
@@ -27,11 +27,11 @@
 
 import FreeCAD
 import FreeCADGui as Gui
-import RecordPlayVideo as rpv
+import MovieClapperboard as cl
 
 translate = FreeCAD.Qt.translate
 
-FreeCADGui.addLanguagePath(rpv.LanguagePath)
+FreeCADGui.addLanguagePath(cl.LanguagePath)
 
 class Movie (Workbench):
     """The Movie Workbench."""
@@ -39,7 +39,7 @@ class Movie (Workbench):
     from PySide.QtCore import QT_TRANSLATE_NOOP
 
     MenuText = "Movie"
-    ToolTip = QT_TRANSLATE_NOOP("Movie", "Workbench to create and visualize videos of animations in FreeCAD")
+    ToolTip = QT_TRANSLATE_NOOP("Movie", "Workbench to create and visualize animations and videos in FreeCAD")
     Icon = """
 /* XPM */
 static char * Movie_xpm[] = {
@@ -106,35 +106,47 @@ static char * Movie_xpm[] = {
 "+&49&*s;&3u%%a;"
 };
 """
-                
+
     def Initialize(self):
         """This function is executed when the workbench is first activated.
         It is executed once in a FreeCAD session followed by the Activated function.
         """
-        import RecordPlayVideo # import here all the needed files that create your FreeCAD commands
+        # import here all the needed files that create your FreeCAD commands
+        import MovieClapperboard
         import MovieCamera
+        import MovieObject
+        import MovieAnimation
  
-        self.list1 = ['CreateClapperboard',
-                      'StartRecord3DView', 
-                      'StartRecordRender',
-                      'StopRecordCamera',
-                      'CreateVideo',
-                      'PlayVideo'] # a list of command names created in the line above
-        self.appendToolbar("Movietools", self.list1) # creates a new toolbar with your commands
-        self.appendMenu("Movie", self.list1) # creates a new menu
-        self.list2 = ['MovieCamera',
-                      'CreateMovieCamera',
+        self.list1 = ['CreateMovieCamera',
                       'EnableMovieCamera',
-                      'SetMovieCameraPosA',
-                      'SetMovieCameraPosB',
-                      'IniMovieAnimation', 
+                      'SetMoviePosA',
+                      'SetMoviePosB',
+                      'CreateMovieObjects',
+                      'EnableMovieObjects',
+                      'SetMovieObjectsAxis',
+                      'ExcludeMovieObjects',] # a list of command names created in the line above
+        self.appendToolbar("Movie Cameras and Objects", self.list1) # creates the Movie Cameras and Objects toolbar with your commands
+        self.appendMenu("Movie Cameras and Objects", self.list1) # creates the Movie Cameras and Objects menu
+
+        self.list2 = ['IniMovieAnimation',
                       'PrevMovieAnimation',
+                      'PlayBackwardMovieAnimation',
                       'PauseMovieAnimation',
                       'PlayMovieAnimation',
                       'PostMovieAnimation',
                       'EndMovieAnimation'] # a list of command names created in the line above
-        self.appendToolbar("MovieCameratools", self.list2) # creates a new toolbar with your commands        
-        self.appendMenu("Movie", self.list2) # creates a new menu
+        self.appendToolbar("Movie Animation", self.list2) # creates the Movie Animation toolbar with your commands
+        self.appendMenu("Movie Animation", self.list2) # creates the Movie Animation menu
+
+        self.list3 = ['CreateClapperboard',
+                      'EnableMovieClapperboard',
+                      'StartRecord3DView',
+                      'StartRecordRender',
+                      'StopRecordCamera',
+                      'CreateVideo',
+                      'PlayVideo'] # a list of command names created in the line above
+        self.appendToolbar("Movie Record and Play", self.list3) # creates the Movie Record and Play toolbar with your commands
+        self.appendMenu("Movie Record and Play", self.list3) # creates the Movie Record and Play menu
 
     def Activated(self):
         """This function is executed whenever the workbench is activated"""
@@ -149,13 +161,15 @@ static char * Movie_xpm[] = {
     def ContextMenu(self, recipient):
         """This function is executed whenever the user right-clicks on screen"""
         # "recipient" will be either "view" or "tree"
-        self.appendContextMenu("Movie tools", self.list) # add commands to the context menu
-        
-    def GetClassName(self): 
+        self.appendContextMenu("Movie Cameras and Objects", self.list1) # add commands to the context menu
+        self.appendContextMenu("Movie Animation", self.list2) # add commands to the context menu
+        self.appendContextMenu("Movie Record and Play", self.list3) # add commands to the context menu
+
+    def GetClassName(self):
         # This function is mandatory if this is a full Python workbench
         # This is not a template, the returned string should be exactly "Gui::PythonWorkbench"
         return "Gui::PythonWorkbench"
-            
+
 Gui.addWorkbench(Movie())
 
 #https://wiki.freecadweb.org/Workbench_creation

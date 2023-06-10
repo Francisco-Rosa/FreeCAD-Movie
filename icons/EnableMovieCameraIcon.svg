@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   xmlns:ooo="http://xml.openoffice.org/svg/export"
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.2"
    width="17.2mm"
    height="17.2mm"
@@ -18,11 +10,19 @@
    stroke-linejoin="round"
    xml:space="preserve"
    id="svg108"
-   sodipodi:docname="EnableMovieCameraIcon1.svg"
-   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"><metadata
+   sodipodi:docname="EnableMovieCameraIcon.svg"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:ooo="http://xml.openoffice.org/svg/export"><metadata
    id="metadata112"><rdf:RDF><cc:Work
        rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><sodipodi:namedview
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title /></cc:Work></rdf:RDF></metadata><sodipodi:namedview
    pagecolor="#ffffff"
    bordercolor="#666666"
    borderopacity="1"
@@ -31,15 +31,15 @@
    guidetolerance="10"
    inkscape:pageopacity="0"
    inkscape:pageshadow="2"
-   inkscape:window-width="1920"
-   inkscape:window-height="1027"
+   inkscape:window-width="1846"
+   inkscape:window-height="1009"
    id="namedview110"
    showgrid="false"
    inkscape:zoom="5.1340611"
-   inkscape:cx="24.934348"
-   inkscape:cy="39.478745"
+   inkscape:cx="25.028919"
+   inkscape:cy="39.44246"
    inkscape:window-x="0"
-   inkscape:window-y="24"
+   inkscape:window-y="0"
    inkscape:window-maximized="1"
    inkscape:current-layer="svg108"
    inkscape:pagecheckerboard="0"
@@ -201,20 +201,19 @@
    cy="415.74554"
    r="297.43719" />
 
-<g
-   id="g861"><path
-     sodipodi:nodetypes="ccccc"
-     inkscape:connector-curvature="0"
-     id="rect921"
-     d="M 1379.1092,750.36446 1659.0981,600.27504 V 1193.7691 L 1379.1092,1053.6857 Z"
-     style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:110.87576294;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" /><rect
-     rx="203.59889"
-     y="360.67267"
-     x="61.089672"
-     height="1019.5978"
-     width="1277.6577"
-     id="rect1321"
-     style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:113.58155823;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" /></g><path
+<path
+   sodipodi:nodetypes="ccccc"
+   inkscape:connector-curvature="0"
+   id="rect921"
+   d="M 1379.1092,750.36446 1659.0981,600.27504 V 1193.7691 L 1379.1092,1053.6857 Z"
+   style="fill:#ffff00;fill-opacity:1;stroke:#000000;stroke-width:110.876;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" /><rect
+   rx="203.59889"
+   y="360.67267"
+   x="61.089672"
+   height="1019.5978"
+   width="1277.6577"
+   id="rect1321"
+   style="fill:#ffff00;fill-opacity:1;stroke:#000000;stroke-width:113.582;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" /><path
    style="fill:none;stroke:#008000;stroke-width:150.00000115;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
    d="M 365.8978,761.45093 484.4281,1070.6604 1051.312,560.4648"
    id="path858"
