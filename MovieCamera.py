@@ -257,7 +257,6 @@ class CreateMovieCamera:
     def IsActive(self):
         if Gui.ActiveDocument:
             return True
-
         else:
             return False
 
@@ -288,7 +287,6 @@ class EnableMovieCamera:
     def IsActive(self):
         if Gui.ActiveDocument:
             return True
-
         else:
             return False
 
@@ -362,7 +360,6 @@ def setMCPosA(Option = None):
 def setMCPosB(Option = None):
 
     MC = Option
-
     Gui.runCommand('Std_PerspectiveCamera',1)
 
     # Camera node position B
@@ -438,7 +435,6 @@ def getMovieCameraMobile(Selection = None):
 
     # Camera node for Pos AB
     else:
-
         xPosCamera = MC.Cam_01XPosA
         yPosCamera = MC.Cam_02YPosA
         zPosCamera = MC.Cam_03ZPosA
@@ -457,7 +453,6 @@ def getMovieCameraMobile(Selection = None):
 
     # Camera yaw, pitch and roll for Pos AB 
     if MC.Cam_01Target == 'Free':
-
         cameraYaw = MC.Cam_01YawPosA
         cameraPitch = MC.Cam_02PitchPosA
         cameraRoll = MC.Cam_03RollPosA
