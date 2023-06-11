@@ -249,10 +249,12 @@ class CreateMovieCamera:
         return {'Pixmap': __dir__ + '/icons/CreateMovieCameraIcon.svg',
                 'MenuText': QT_TRANSLATE_NOOP('CreateMovieCamera', 'Create a Movie Camera'),
                 'ToolTip': QT_TRANSLATE_NOOP('CreateMovieCamera', 
-                                             'Create a camera that follows a previously selected path, '
-                                             'goes from position A to B or keeps in a fixed base. '
-                                             'Configure its corresponding necessary properties '
-                                             'before starting the animation.')}
+                                              'Initially, a static camera is created. To make '
+                                              'it go from position A to position B, enable it, '
+                                              'follow the PosA and PosB instructions, and start '
+                                              'the animation. For the other possibilities,  adjust '
+                                              'the corresponding necessary settings (properties '
+                                              'window), enable it and start the animation.')}
 
     def IsActive(self):
         if Gui.ActiveDocument:
@@ -261,13 +263,22 @@ class CreateMovieCamera:
             return False
 
     def Activated(self):
+        global MC
         ActivatedMovieCamera(self)
-        MovieCamera.Cam_07OnAnim = False
+        MC.Cam_07OnAnim = False
+        # Provisional AB Positions
+        setMCPosA(Option = MC)
+        setMCPosB(Option = MC)
+        FreeCAD.Console.PrintMessage(translate('Movie', 'A static Movie Camera was created! '
+                                               'To animate the camera establish its AB positions, or '
+                                               'make the adjustments in its properties window') + '\n')
 
 def ActivatedMovieCamera(self):
+    global MC
     folder = FreeCAD.ActiveDocument.addObject('App::DocumentObjectGroupPython', 'MovieCamera')
     MovieCamera(folder)
     MovieCameraViewProvider(folder.ViewObject)
+    MC = folder
 
 # ======================================================================================
 
