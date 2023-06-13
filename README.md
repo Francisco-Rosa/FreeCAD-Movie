@@ -53,7 +53,7 @@ The Movie Workbench icon
 ### Usage
 
 ##### To create camera animations go to Movie Cameras and objects toolbar and:
-<img src=./Docs/Movie_cameras_objects_toolbar.png height=50>
+<img src=./Docs/Movie_cameras_objects_toolbar_01.png height=50>
 
 1. Click on the Create a Movie Camera button <img src=./icons//CreateMovieCameraIcon.svg height=20> to create one and to configure it (see the tips showed for each item in the property window - a Movie Camera properties image is showed below).
 2. Initially, a static camera is created. You can use it like this in object animation like a fixed camera. To configure the movie camera to animations between two positions, first, select and activate the Movie Camera you want to configure with the Enable Movie Camera icon <img src=./icons//EnableMovieCameraIcon.svg height=20>. Position the 3D view with the desired framing to be the start of the animation (Pos A), click on Set the Position A button <img src=./icons//SetMoviePosAIcon.svg height=20>. Position the 3D view with the desired framing to be the end of the animation (Pos B), then click on Set the Position B button <img src=./icons//SetMoviePosBIcon.svg height=20>. Click on go to beginning <img src=./icons//IniMovieAnimationIcon.svg height=20> and to the end of the animation buttons <img src=./icons//EndMovieAnimationIcon.svg height=20> to confirm the configurations. Make the adjustments you want in the position, rotation and zoom of the Movie Camera (see Movie Camera properties image below).
@@ -68,7 +68,7 @@ The Movie Workbench icon
 <img src=./Docs/Movie_animation_toolbar.png height=50>
 
 ##### To create object animations go to Movie Cameras and Objects toolbar and:
-<img src=./Docs/Movie_cameras_objects_toolbar.png height=50>
+<img src=./Docs/Movie_cameras_objects_toolbar_02.png height=50>
 
 1. Select the objects you want to animate, click on the Create a Movie Objects button <img src=./icons//CreateMovieObjectsIcon.svg height=20> to create one and to configure it (see the tips showed for each item in the property window - a Movie Objects properties image is showed below). These initial placements of the objects will be saved and they can be rescue when you delete the movie objects with the Exclude Movie Objects button <img src=./icons//ExcludeMovieObjectsIcon.svg height=20>.
 2. To configure the movie objects to animations between two positions, first, select and activate the Movie Objects you want to configure with the Enable Movie Objects icon <img src=./icons//EnableMovieObjectsIcon.svg height=20>. Position each object at the desired position and angles to be the start of the animation (Pos A), click on Set the Position A button <img src=./icons//SetMoviePosAIcon.svg height=20>. Now, position each object at the desired position and angles to be the end of the animation (Pos B), then click on Set the Position B button <img src=./icons//SetMoviePosBIcon.svg height=20>. Click on go to beginning <img src=./icons//IniMovieAnimationIcon.svg height=20> and to the end of the animation buttons <img src=./icons//EndMovieAnimationIcon.svg height=20> to confirm the configurations.
