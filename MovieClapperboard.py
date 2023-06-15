@@ -98,7 +98,7 @@ class Clapperboard:
         obj.addProperty('App::PropertyInteger', 'Frame_03Height', 'Frames config',  QT_TRANSLATE_NOOP('App::Property',
                                              'Configure the heigth in pixels of the created frames.')).Frame_03Height = 600
         obj.addProperty('App::PropertyPath', 'Frame_04OutputPath', 'Frames config',  QT_TRANSLATE_NOOP('App::Property',
-                                             'The path to R1 frames folder')).Frame_04OutputPath = ""
+                                             'Output folder to save R1 or R2 frames.')).Frame_04OutputPath = ""
         obj.addProperty('App::PropertyEnumeration', 'Frame_05Type', 'Frames config', QT_TRANSLATE_NOOP('App::Property', 
                                               'Indicate the type of frame to be saved.'
                                                )).Frame_05Type = ('R1-3DView', 'R2-Render')
