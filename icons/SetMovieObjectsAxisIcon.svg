@@ -8,7 +8,7 @@
    version="1.1"
    inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
    viewBox="0 0 64 64"
-   sodipodi:docname="SetAxisIcon.svg"
+   sodipodi:docname="SetMovieObjectsAxisIcon.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -53,9 +53,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.9552743"
-     inkscape:cx="54.212341"
-     inkscape:cy="-3.3243417"
+     inkscape:zoom="3.9105486"
+     inkscape:cx="32.348402"
+     inkscape:cy="30.046935"
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:document-units="px"
@@ -107,19 +107,20 @@
     </g>
     <g
        id="g40"
-       transform="matrix(1.1464379,0,0,1.1464379,-9.7646046,-5.6772783)">
+       transform="matrix(1.1464379,0,0,1.1464379,-9.7646046,-5.6772783)"
+       style="stroke:#000080">
       <path
-         style="fill:none;stroke:#000000;stroke-width:3.2617;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         style="fill:none;stroke:#000080;stroke-width:3.2617;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          d="m 31.028939,29.178867 -2e-6,22.771668 -18.804617,-10.85685 v -22.77167"
          id="path1925-2"
          sodipodi:nodetypes="cccc" />
       <path
-         style="fill:none;stroke:#000000;stroke-width:3.2617;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         style="fill:none;stroke:#000080;stroke-width:3.2617;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          d="m 31.028937,51.950535 18.804617,-10.85685 10e-7,-22.77167 L 31.028939,7.4651648 12.22432,18.322015 31.028937,29.178867"
          id="path1933"
          sodipodi:nodetypes="cccccc" />
       <path
-         style="fill:none;stroke:#000000;stroke-width:3.2617;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         style="fill:none;stroke:#000080;stroke-width:3.2617;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          d="M 49.833554,18.322015 31.028937,29.178867"
          id="path1933-3"
          sodipodi:nodetypes="cc" />
