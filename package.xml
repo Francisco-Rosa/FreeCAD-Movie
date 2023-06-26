@@ -2,30 +2,21 @@
 <package format="1" xmlns="https://wiki.freecad.org/Package_Metadata">
 
   <name>Movie Workbench</name>
-
   <description>Workbench to create and animate the movie camera, create and play videos of animations</description>
-
   <version>2023.06.10</version>
-
   <date>2023.06.10</date>
-  
-  <author email="fco.rosa@yahoo.com.br">F_Rosa</author>
-  
-  <maintainer email="fco.rosa@yahoo.com.br">F_Rosa</maintainer>
-  
+  <author email="fco.rosa@yahoo.com.br">F_Rosa</author>  
+  <maintainer email="fco.rosa@yahoo.com.br">F_Rosa</maintainer>  
   <license file="LICENSE">LGPLv2.1</license>
-
+  <freecadmin>0.20.0</freecadmin>
   <url type="repository" branch="master">https://github.com/Francisco-Rosa/FreeCAD-Movie</url>
-
   <url type="readme">https://github.com/Francisco-Rosa/FreeCAD-Movie/blob/master/README.md</url>
-
   <url type="discussion">https://forum.freecadweb.org/viewtopic.php?f=8&amp;t=74432</url>
-
   <icon>icons/CreateVideoIcon.svg</icon>
 
   <content>
     <workbench>
-      <depend optional="True" type="addon">Render</depend>
+      <depend optional="True" type="addon" version_gte="2023.02.05">Render</depend>
       <tag>freecad</tag>
       <tag>addons</tag>
       <tag>workbench</tag>
