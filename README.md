@@ -1,5 +1,5 @@
 # FreeCAD Movie Workbench
-FreeCAD Workbench to animate cameras and objects, record and play videos (for FreeCAD version 0.20 or superior)
+FreeCAD Workbench to animate cameras and objects, record and play videos
 
 
 The Movie Workbench icon
@@ -125,6 +125,9 @@ The Movie Workbench icon
 ### Documentation
 For more information, see the [TUTORIAL.md](https://github.com/Francisco-Rosa/FreeCAD-Movie/blob/master/TUTORIAL.md) (also inside the Movie folder, after the installation).
 Wiki documentation will be available as soon as possible.
+
+###  FreeCAD version 
+0.20 or superior
   
 ### Feedback 
 For discussion, please use the [Movie Workbench thread](https://forum.freecadweb.org/viewtopic.php?f=8&t=74432) in the FreeCAD forum.
