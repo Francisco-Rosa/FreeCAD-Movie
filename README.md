@@ -26,6 +26,7 @@ The Movie Workbench icon
 * Check the results playing the videos you have created.
 
 (Watch the [sample video](https://www.youtube.com/watch?v=NXHm2nitWug))
+(Watch the [tutorial video]( https://youtu.be/tjfDeOKgyyw ))
 
 ### Installation
 
@@ -46,7 +47,7 @@ The Movie Workbench icon
 
 ### Preparation
 
-* If yoy want use the rendered frames (**R2**), you must install the Render Workbench, prepare rendering projects and test them preventively to make sure everything is working correctly (see information in [FreeCAD-Render](https://github.com/FreeCAD/FreeCAD-render)). It is also recommended to take advantage and use some cameras from this workbench that better show the animation.
+* If yoy want use the rendered frames (**R2**), you must install the Render Workbench (from version 2023.02.05), prepare rendering projects and test them preventively to make sure everything is working correctly (see information in [FreeCAD-Render](https://github.com/FreeCAD/FreeCAD-render)). It is also recommended to take advantage and use some cameras from this workbench that better show the animation.
 * If you want to use an animation from another workbench, script or macro of FreeCAD, it is necessary to prepare the connection module for using then (ex. [Modified ExplodedAssembly](https://github.com/Francisco-Rosa/ExplodedAssembly)). For this, see the instructions inside the [Connection.py](https://github.com/Francisco-Rosa/FreeCAD-Movie/blob/master/Connection.py).
 
 
@@ -92,8 +93,6 @@ The Movie Workbench icon
 8. After the animation finished, choose the folder to salve your video and click on <img src=./icons//CreateVideoIcon.svg height=20>  **create video**, choose or confirm the input frames folder.
 9. For playing video, choose the file and click on <img src=./icons//PlayVideoIcon.svg height=20> **play video**.
 
-(Watch the [Clapperboard tutorial video](https://www.youtube.com/watch?v=_IiIWtO76Tg))
-
 ##### The Movie Objects properties:
 
 <img src=./Docs/Movie_objects_properties.png height=466>
@@ -126,6 +125,9 @@ The Movie Workbench icon
 ### Documentation
 For more information, see the [TUTORIAL.md](https://github.com/Francisco-Rosa/FreeCAD-Movie/blob/master/TUTORIAL.md) (also inside the Movie folder, after the installation).
 Wiki documentation will be available as soon as possible.
+
+###  FreeCAD version 
+0.20 or superior
   
 ### Feedback 
 For discussion, please use the [Movie Workbench thread](https://forum.freecadweb.org/viewtopic.php?f=8&t=74432) in the FreeCAD forum.
