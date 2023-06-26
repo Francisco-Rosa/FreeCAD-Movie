@@ -1,5 +1,5 @@
 # FreeCAD Movie Workbench
-FreeCAD Workbench to animate cameras and objects, record and play videos
+FreeCAD Workbench to animate cameras and objects, record and play videos (for FreeCAD version 0.20 or superior)
 
 
 The Movie Workbench icon
@@ -26,6 +26,7 @@ The Movie Workbench icon
 * Check the results playing the videos you have created.
 
 (Watch the [sample video](https://www.youtube.com/watch?v=NXHm2nitWug))
+(Watch the [tutorial video]( https://youtu.be/tjfDeOKgyyw ))
 
 ### Installation
 
@@ -46,7 +47,7 @@ The Movie Workbench icon
 
 ### Preparation
 
-* If yoy want use the rendered frames (**R2**), you must install the Render Workbench, prepare rendering projects and test them preventively to make sure everything is working correctly (see information in [FreeCAD-Render](https://github.com/FreeCAD/FreeCAD-render)). It is also recommended to take advantage and use some cameras from this workbench that better show the animation.
+* If yoy want use the rendered frames (**R2**), you must install the Render Workbench (from version 2023.02.05), prepare rendering projects and test them preventively to make sure everything is working correctly (see information in [FreeCAD-Render](https://github.com/FreeCAD/FreeCAD-render)). It is also recommended to take advantage and use some cameras from this workbench that better show the animation.
 * If you want to use an animation from another workbench, script or macro of FreeCAD, it is necessary to prepare the connection module for using then (ex. [Modified ExplodedAssembly](https://github.com/Francisco-Rosa/ExplodedAssembly)). For this, see the instructions inside the [Connection.py](https://github.com/Francisco-Rosa/FreeCAD-Movie/blob/master/Connection.py).
 
 
@@ -91,8 +92,6 @@ The Movie Workbench icon
 7. If you need to stop the animation, click on **pause button** <img src=./icons//PauseMovieAnimationIcon.svg height=20>, it will also stop recording.
 8. After the animation finished, choose the folder to salve your video and click on <img src=./icons//CreateVideoIcon.svg height=20>  **create video**, choose or confirm the input frames folder.
 9. For playing video, choose the file and click on <img src=./icons//PlayVideoIcon.svg height=20> **play video**.
-
-(Watch the [Clapperboard tutorial video](https://www.youtube.com/watch?v=_IiIWtO76Tg))
 
 ##### The Movie Objects properties:
 
