@@ -25,8 +25,11 @@ The Movie Workbench icon
 * Create videos from them.  
 * Check the results playing the videos you have created.
 
-(Watch the [sample video](https://www.youtube.com/watch?v=NXHm2nitWug))
-(Watch the [tutorial video]( https://youtu.be/tjfDeOKgyyw ))
+(Watch the [video tutorial on using camera sequence]( https://youtu.be/tjfDeOKgyyw ))
+
+(Watch the [example of animation video using the camera sequence](https://www.youtube.com/watch?v=cRXrg0eA7x4))
+
+(Watch the [example of animation video using the sequence of cameras and one that follows a path and target](https://www.youtube.com/watch?v=NXHm2nitWug))
 
 ### Installation
 
