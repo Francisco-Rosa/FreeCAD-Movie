@@ -61,7 +61,7 @@ Stop recording. If you need or want to interrupt the recording process, click on
 
 For the Windows version, it will also be necessary to configure the POV-Ray Gui to close after the rendering is finished. To do so, open the POV-Ray GUI, go to the render settings (menu - Render), click 'On Completion' and enable 'Exit POV-Ray for Windows'. Also disable all sound warnings (in Render menu - 'SoundSettings...') and any message openings that may appear after each completed render.
 
-3.3. Usage of other renderers. Still are necessary adjustments for animation, mainly the inclusion of automatic closing of the program window. If anyone knows how and wants to contribute, please post the instructions in the [FC forum topic - Movie Workbench](https://forum.freecadweb.org/viewtopic.php?f=8&t=74432).
+3.3. Usage of other renderers. Set Batch Mode to True in the Properties Window. It is recommended to leave the Denoiser active (True) for better final results, also adjust the number of Samples Per Pixel (higher values, longer rendering times). Problems and doubts, please post them in the [FC forum topic - Movie Workbench](https://forum.freecadweb.org/viewtopic.php?f=8&t=74432).
 
 #### 4. Installation of the Movie Workbench
     
