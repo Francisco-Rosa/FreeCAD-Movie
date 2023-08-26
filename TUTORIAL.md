@@ -57,7 +57,7 @@ Stop recording. If you need or want to interrupt the recording process, click on
 
 3.1. Important: use clones (or simple copies) of the objects to be animated, to avoid dependency problems between objects and their bases when they are animated.
 
-3.2. Usage of Render POV-Ray. In addition to already mentioned, you must configure for the render window not remains open after completion, deleting the '+P' in the 'Render parameters' field of the FC preferences. In addition,, if you don't want each frame to open before it's saved, set Open After Render to False.
+3.2. Usage of Render POV-Ray. In addition to already mentioned, you must configure for the render window not remains open after completion, deleting the '+P' in the 'Render parameters' field of the FC preferences. In addition, if you don't want each frame to open before it's saved, set Open After Render to False.
 
 For the Windows version, it will also be necessary to configure the POV-Ray Gui to close after the rendering is finished. To do so, open the POV-Ray GUI, go to the render settings (menu - Render), click 'On Completion' and enable 'Exit POV-Ray for Windows'. Also disable all sound warnings (in Render menu - 'SoundSettings...') and any message openings that may appear after each completed render.
 
