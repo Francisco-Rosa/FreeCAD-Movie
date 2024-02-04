@@ -31,6 +31,8 @@ The Movie Workbench icon
 
 (Watch the [example of animation video using the sequence of cameras and one that follows a path and target](https://www.youtube.com/watch?v=NXHm2nitWug))
 
+(Watch the [example of animation video using the sequence of cameras](https://www.youtube.com/watch?v=ePY68BC24cs))
+
 ### Installation
 
 ##### Via Addon Manager (Recommended)
