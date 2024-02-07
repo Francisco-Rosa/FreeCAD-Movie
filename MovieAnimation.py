@@ -52,7 +52,8 @@ ANIMATION_BACK = False
 # Notifications
 
 def getMessage(message = 'None'):
-    FreeCAD.Console.PrintMessage(translate('Movie', message) + '\n')
+    #FreeCAD.Console.PrintMessage(translate('Movie', message) + '\n')
+    FreeCAD.Console.PrintMessage(translate('Movie', '{}').format(message) + '\n')
 
 # ======================================================================================
 # 1. Classes
@@ -334,11 +335,11 @@ class SetMoviePosA:
                 'MenuText': QT_TRANSLATE_NOOP('SetMoviePosA', 'Set the A position of a camera or objects'),
                 'ToolTip': QT_TRANSLATE_NOOP('SetMoviePosA',
                                              'Applicable for creating an animation from point A to B '
-                                             '(not when the Movie Camera target or Movie Objects are set up to follow a route). ' 
-                                             'First, select and activate the Movie Camera or Movie Objects you want to configure. '
-                                             'For Movie Cameras, position the 3D view with the desired framing to be the start '
+                                             '(not when the MovieCamera target or MovieObjects are set up to follow a route). ' 
+                                             'First, select and activate the MovieCamera or MovieObjects you want to configure. '
+                                             'For MovieCameras, position the 3D view with the desired framing to be the start '
                                              'of the animation (Pos A), then click on Set the position A.'
-                                             'For Movie Objects, position, rotate and/or keep them in their current position, then '
+                                             'For MovieObjects, position, rotate and/or keep them in their current position, then '
                                              'click on this button')}
 
     def IsActive(self):
@@ -365,11 +366,11 @@ class SetMoviePosB:
                 'MenuText': QT_TRANSLATE_NOOP('SetMoviePosB', 'Set the B position of a camera or objects'),
                 'ToolTip': QT_TRANSLATE_NOOP('SetMoviePosB', 
                                              'Applicable for creating an animation from point A to B '
-                                             '(not when the Movie Camera target or Movie Objects are set up to follow a route). '
-                                             'Select and activate the Movie Camera or Movie Objects you want to configure (if not so). '
-                                             'For Movie Cameras, position the 3D view with the desired framing to be the end '
+                                             '(not when the MovieCamera target or MovieObjects are set up to follow a route). '
+                                             'Select and activate the MovieCamera or MovieObjects you want to configure (if not so). '
+                                             'For MovieCameras, position the 3D view with the desired framing to be the end '
                                              'of the animation (Pos B), then click on Set the position B.'
-                                             'For Movie Objects, position and/or rotate them in the final position, then '
+                                             'For MovieObjects, position and/or rotate them in the final position, then '
                                              'click on this button')}
 
     def IsActive(self):
@@ -400,7 +401,7 @@ def modifyAnimationIndicator(Animation = False):
             MC.Cam_07OnAnim = False
         if MO != None:
             MO.Obj_07AnimOnAnim = False
-        getMessage(message = 'ANIMATION = False')
+        getMessage(message = 'Animation = off')
     if Animation == True:
         ANIMATION = True
         if MC != None:
@@ -408,7 +409,7 @@ def modifyAnimationIndicator(Animation = False):
                 MC.Cam_07OnAnim = True
         if MO != None:
             MO.Obj_07AnimOnAnim = True
-        getMessage(message = 'ANIMATION = True')
+        getMessage(message = 'Animation = on')
     FreeCAD.ActiveDocument.recompute()
 
 def enableCameraObjects(Enable = 'None'):
@@ -607,7 +608,7 @@ def getSelectionSteps(Content = None):
                 InitCameraStep = NextStep
                 Values = []
                 if MC.Cam_07Connection == 'None':
-                     getMessage(message = 'Connection is enable, you have select one connection in Cam_07Connection')
+                     getMessage(message = 'Connection is enable, you need to select one connection in Cam_07Connection')
                      return
                 else:
                     # Camera and connection objects steps goes to SEQ_ANIM_LIB

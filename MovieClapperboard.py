@@ -349,7 +349,8 @@ def runRecordCamera(Back = False):
         frameFinalName = f'{CL.Frame_01Name}_{camNum}_{takeNum}_{CL.Frame_05Type}_{frameNum}.png'
         pathAndName = CL.Frame_04OutputPath +'/' + frameFinalName
         Gui.activeDocument().activeView().saveImage(pathAndName,CL.Frame_02Width,CL.Frame_03Height,'Current')
-        FreeCAD.Console.PrintMessage(translate('Movie', f'Frame 3DView {frameNum} has been completed' + '\n'))
+        #FreeCAD.Console.PrintMessage(translate('Movie', f'Frame 3DView {frameNum} has been completed' + '\n'))
+        FreeCAD.Console.PrintMessage(translate('Movie', 'Frame 3DView {} has been completed').format(frameNum) + '\n')
 
     if CL.Frame_07R2OnRec == True :
         if Back == False:
@@ -366,7 +367,8 @@ def runRecordCamera(Back = False):
         # Close render window
         if project.OpenAfterRender:
             Gui.runCommand('Std_CloseActiveWindow',0)
-        FreeCAD.Console.PrintMessage(translate('Movie', f'Frame Render {frameNum} has been completed') + '\n')
+        #FreeCAD.Console.PrintMessage(translate('Movie', f'Frame Render {frameNum} has been completed') + '\n')
+        FreeCAD.Console.PrintMessage(translate('Movie', 'Frame Render {} has been completed').format(frameNum) + '\n')
 
 # ======================================================================================
 # 2.2. Create and play video commands
@@ -408,11 +410,13 @@ def createVideo():
 
     for i in range(len(frames)):
         video.write(cv2.imread(frames[i]))
-        message = f'frame {i+1} of {len(frames)}'
-        FreeCAD.Console.PrintMessage(translate('Movie', message) + '\n')
+        #message = f'frame {i+1} of {len(frames)}'
+        #FreeCAD.Console.PrintMessage(translate('Movie', message) + '\n')
+        FreeCAD.Console.PrintMessage(translate('Movie', 'frame {} of {}').format(i+1, len(frames)) + '\n')
 
     video.release()
-    FreeCAD.Console.PrintMessage(translate('Movie', f'outputed video to {outVideoPath}')+'\n')
+    #FreeCAD.Console.PrintMessage(translate('Movie', f'outputed video to {outVideoPath}')+'\n')
+    FreeCAD.Console.PrintMessage(translate('Movie', 'outputed video to {}').format(outVideoPath)+'\n')
 
 def playVideo():
     import cv2
@@ -433,7 +437,8 @@ def playVideo():
         FreeCAD.Console.PrintMessage(translate('Movie','Error: video file not found!'))
 
     else:
-        message2 = f'Movie at {fps2} fps, press q to stop the video'
+        #message2 = f'Movie at {fps2} fps, press q to stop the video'
+        message2 = translate('Movie', 'Movie at {} fps, press q to stop the video').format(fps2)
 
     while cap.isOpened():
         sucess, frame = cap.read()
