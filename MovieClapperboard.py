@@ -159,7 +159,9 @@ class CreateClapperboard:
 
 def ActivatedClapperboard(self):
 
-    folder = FreeCAD.ActiveDocument.addObject('App::DocumentObjectGroupPython', 'Clapperboard')
+    default_name = translate('Movie', 'Clapperboard')
+    folder = FreeCAD.ActiveDocument.addObject('App::DocumentObjectGroupPython', default_name)
+    #folder = FreeCAD.ActiveDocument.addObject('App::DocumentObjectGroupPython', 'Clapperboard')
     Clapperboard(folder)
     ClapperboardViewProvider(folder.ViewObject)
 

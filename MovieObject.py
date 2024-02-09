@@ -183,7 +183,9 @@ class CreateMovieObjects:
 
 def ActivatedMovieObjects(self):
     global MO
-    folder = FreeCAD.ActiveDocument.addObject('App::DocumentObjectGroupPython', 'MovieObjects')
+    default_name = translate('Movie', 'MovieObjects')
+    folder = FreeCAD.ActiveDocument.addObject('App::DocumentObjectGroupPython', default_name)
+    #folder = FreeCAD.ActiveDocument.addObject('App::DocumentObjectGroupPython', 'MovieObjects')
     MovieObjects(folder)
     MovieObjectsViewProvider(folder.ViewObject)
     MO = folder
