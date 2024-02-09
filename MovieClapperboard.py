@@ -248,7 +248,7 @@ class StopRecordCamera:
         return {'Pixmap': __dir__ + '/icons/StopRecordCameraIcon.svg',
                 'Accel': 'Ctrl+k',
                 'MenuText': QT_TRANSLATE_NOOP('StopRecordCamera', 'Stops camera recording'),
-                'ToolTip': QT_TRANSLATE_NOOP('StopRecordCamera','Stop camera recording.')}
+                'ToolTip': QT_TRANSLATE_NOOP('StopRecordCamera', 'Stop camera recording.')}
 
     def IsActive(self):
         if Gui.ActiveDocument:
