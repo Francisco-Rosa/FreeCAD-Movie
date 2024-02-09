@@ -90,7 +90,7 @@ class IniMovieAnimation:
         if MC != None:
             if MC.Cam_06Enable == 'Camera and connection' or MC.Cam_06Enable == 'Connection':
                 if MC.Cam_07Connection == 'None':
-                    getMessage(message = 'Connection is enable, you have select one connection in Cam_07Connection')
+                    getMessage(message = 'Connection is enable, you have select one connection in "Cam_07Connection"')
                     return
                 else:
                     co.connectionIni(Selection = MC)
@@ -128,13 +128,13 @@ class PrevMovieAnimation:
         if MC != None:
             if MC.Cam_06Enable == 'Camera and connection' or MC.Cam_06Enable == 'Connection':
                 if MC.Cam_07Connection == 'None':
-                    getMessage(message = 'Connection is enable, you have select one connection in Cam_07Connection')
+                    getMessage(message = 'Connection is enable, you have select one connection in "Cam_07Connection"')
                     return
                 else:
                     co.connectionPrev(Selection = MC)
                     if MC.Cam_07Connection == 'ExplodedAssembly':
                         getMessage(message = 'PrevMovieAnimation '
-                                   'does not work with ExplodedAssembly')
+                                   'does not work with "ExplodedAssembly"')
                         return
         prevMovieAnimation()
 
@@ -163,7 +163,7 @@ class PlayBackwardMovieAnimation:
         if MC != None:
             if MC.Cam_06Enable == 'Camera and connection' or MC.Cam_06Enable == 'Connection':
                if MC.Cam_07Connection == 'None':
-                    getMessage(message = 'Connection is enable, you have select one connection in Cam_07Connection')
+                    getMessage(message = 'Connection is enable, you have select one connection in "Cam_07Connection"')
                     return
                else:
                    if MC.Cam_07Connection == 'ExplodedAssembly':
@@ -181,7 +181,7 @@ class PauseMovieAnimation:
     def GetResources(self):
         __dir__ = os.path.dirname(__file__)
         return {'Pixmap': __dir__ + '/icons/PauseMovieAnimationIcon.svg',
-                'MenuText': QT_TRANSLATE_NOOP('PauseMovieAnimation', 'PauseMovieAnimation'),
+                'MenuText': QT_TRANSLATE_NOOP('PauseMovieAnimation', 'Pause the animation'),
                 'ToolTip': QT_TRANSLATE_NOOP('PauseMovieAnimation', 
                                              'Pauses the animation')}
 
@@ -201,7 +201,7 @@ class PauseMovieAnimation:
         if MC != None:
             if MC.Cam_06Enable == 'Camera and connection' or MC.Cam_06Enable == 'Connection':
                if MC.Cam_07Connection == 'None':
-                    getMessage(message = 'Connection is enable, you have select one connection in Cam_07Connection')
+                    getMessage(message = 'Connection is enable, you have select one connection in "Cam_07Connection"')
                     return
                else:
                     co.connectionPause(Selection = MC)
@@ -233,7 +233,7 @@ class PlayMovieAnimation:
         if MC != None:
             if MC.Cam_06Enable == 'Camera and connection' or MC.Cam_06Enable == 'Connection':
                if MC.Cam_07Connection == 'None':
-                    getMessage(message = 'Connection is enable, you have select one connection in Cam_07Connection')
+                    getMessage(message = 'Connection is enable, you have select one connection in "Cam_07Connection"')
                     return
                else:
                    if MC.Cam_07Connection == 'ExplodedAssembly':
@@ -267,14 +267,14 @@ class PostMovieAnimation:
         if MC != None:
             if MC.Cam_06Enable == 'Camera and connection' or MC.Cam_06Enable == 'Connection':
                if MC.Cam_07Connection == 'None':
-                    getMessage(message = 'Connection is enable, you have select one connection in Cam_07Connection')
+                    getMessage(message = 'Connection is enable, you have select one connection in "Cam_07Connection"')
                     return
                else:
                     co.connectionPos(Selection = MC)
                     FreeCAD.ActiveDocument.recompute()
                     if MC.Cam_07Connection == 'ExplodedAssembly':
-                        getMessage(message = 'PostMovieAnimation '
-                                  'does not work with ExplodedAssembly')
+                        getMessage(message = '"PostMovieAnimation" '
+                                  'does not work with "ExplodedAssembly"')
                         return
         postMovieAnimation()
 
@@ -307,7 +307,7 @@ class EndMovieAnimation:
         if MC != None:
             if MC.Cam_06Enable == 'Camera and connection' or MC.Cam_06Enable == 'Connection':
                if MC.Cam_07Connection == 'None':
-                    getMessage(message = 'Connection is enable, you have select one connection in Cam_07Connection')
+                    getMessage(message = 'Connection is enable, you have select one connection in "Cam_07Connection"')
                     return
                else:
                     co.connectionEnd(Selection = MC)
@@ -332,14 +332,14 @@ class SetMoviePosA:
     def GetResources(self):
         __dir__ = os.path.dirname(__file__)
         return {'Pixmap': __dir__ + '/icons/SetMoviePosAIcon.svg',
-                'MenuText': QT_TRANSLATE_NOOP('SetMoviePosA', 'Set the A position of a camera or objects'),
+                'MenuText': QT_TRANSLATE_NOOP('SetMoviePosA', 'Set the position A of a camera or objects'),
                 'ToolTip': QT_TRANSLATE_NOOP('SetMoviePosA',
                                              'Applicable for creating an animation from point A to B '
-                                             '(not when the MovieCamera target or MovieObjects are set up to follow a route). ' 
-                                             'First, select and activate the MovieCamera or MovieObjects you want to configure. '
-                                             'For MovieCameras, position the 3D view with the desired framing to be the start '
-                                             'of the animation (Pos A), then click on Set the position A.'
-                                             'For MovieObjects, position, rotate and/or keep them in their current position, then '
+                                             '(not when the MovieCamera target or "MovieObjects" are set up to follow a route). ' 
+                                             'First, select and activate the "MovieCamera" or "MovieObjects" you want to configure. '
+                                             'For "MovieCameras", position the 3D view with the desired framing to be the start '
+                                             'of the animation (position A), then click on "Set the position A".'
+                                             'For "MovieObjects", position, rotate and/or keep them in their current position, then '
                                              'click on this button')}
 
     def IsActive(self):
@@ -363,14 +363,14 @@ class SetMoviePosB:
     def GetResources(self):
         __dir__ = os.path.dirname(__file__)
         return {'Pixmap': __dir__ + '/icons/SetMoviePosBIcon.svg',
-                'MenuText': QT_TRANSLATE_NOOP('SetMoviePosB', 'Set the B position of a camera or objects'),
+                'MenuText': QT_TRANSLATE_NOOP('SetMoviePosB', 'Set the position B of a camera or objects'),
                 'ToolTip': QT_TRANSLATE_NOOP('SetMoviePosB', 
                                              'Applicable for creating an animation from point A to B '
-                                             '(not when the MovieCamera target or MovieObjects are set up to follow a route). '
-                                             'Select and activate the MovieCamera or MovieObjects you want to configure (if not so). '
-                                             'For MovieCameras, position the 3D view with the desired framing to be the end '
-                                             'of the animation (Pos B), then click on Set the position B.'
-                                             'For MovieObjects, position and/or rotate them in the final position, then '
+                                             '(not when the "MovieCamera" target or "MovieObjects" are set up to follow a route). '
+                                             'Select and activate the "MovieCamera" or "MovieObjects" you want to configure (if not so). '
+                                             'For "MovieCameras", position the 3D view with the desired framing to be the end '
+                                             'of the animation (position B), then click on "Set the position B".'
+                                             'For "MovieObjects", position and/or rotate them in the final position, then '
                                              'click on this button')}
 
     def IsActive(self):
@@ -453,7 +453,7 @@ def enableMovieSelection(Enable = 'None'):
     for n in range(len(Selection)):
         if Enable == 'Camera':
             if not Selection[n].Name[5] == 'C':
-               getMessage(message = 'Select a MovieCamera')
+               getMessage(message = 'Select a "MovieCamera"')
                return
             else:
                 MC = Selection[0]
@@ -471,7 +471,7 @@ def enableMovieSelection(Enable = 'None'):
                     enableCameraObjects(Enable = 'Connection')
         if Enable == 'Objects':
             if not Selection[n].Name[5] == 'O':
-               getMessage(message = 'Select a MovieObjects')
+               getMessage(message = 'Select a "MovieObjects"')
                return
             else:
                 enableCameraObjects(Enable = 'Objects')
@@ -557,7 +557,7 @@ def getSelectionSteps(Content = None):
                     Objects = MC.Cam_05ObjectsSelected
                     pass
                 else:
-                    getMessage(message = 'Select MovieObjects in Cam_06Enable')
+                    getMessage(message = 'Select "MovieObjects" in "Cam_06Enable"')
                     return
 
                 #2 Setting Init and End camera steps
@@ -608,7 +608,7 @@ def getSelectionSteps(Content = None):
                 InitCameraStep = NextStep
                 Values = []
                 if MC.Cam_07Connection == 'None':
-                     getMessage(message = 'Connection is enable, you need to select one connection in Cam_07Connection')
+                     getMessage(message = 'Connection is enable, you need to select one connection in "Cam_07Connection"')
                      return
                 else:
                     # Camera and connection objects steps goes to SEQ_ANIM_LIB
@@ -677,7 +677,7 @@ def enableMovieClapperboard():
     Selection = []
     Selection = CL.Clap_03AnimationSelection
     if not Selection:
-        getMessage(message = 'Select at least one Movie Camera or Movie Object to enable')
+        getMessage(message = 'Select at least one "MovieCamera" or "MovieObjects" to enable')
         return
 
     for n4 in range(len(Selection)):
