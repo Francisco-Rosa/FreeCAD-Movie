@@ -132,7 +132,7 @@ static char * Movie_xpm[] = {
         #self.appendToolbar("Movie Cameras and Objects", self.list1) # creates the Movie Cameras and Objects toolbar with your commands
         #self.appendMenu("Movie Cameras and Objects", self.list1) # creates the Movie Cameras and Objects menu
         #default_title1 = QT_TRANSLATE_NOOP('Movie', 'Movie Cameras and Objects')
-        default_title1 = translate('Movie', 'Movie Cameras and Objects')
+        default_title1 = translate("InitGui", "Movie Cameras and Objects")
         self.appendToolbar(default_title1, self.list1) # creates the Movie Cameras and Objects toolbar with your commands
         self.appendMenu(default_title1, self.list1) # creates the Movie Cameras and Objects menu
 
@@ -146,7 +146,7 @@ static char * Movie_xpm[] = {
         #self.appendToolbar("Movie Animation", self.list2) # creates the Movie Animation toolbar with your commands
         #self.appendMenu("Movie Animation", self.list2) # creates the Movie Animation menu
         #default_title2 = QT_TRANSLATE_NOOP('Movie', 'Movie Animation')
-        default_title2 = translate('Movie', 'Movie Animation')
+        default_title2 = translate("InitGui", "Movie Animation")
         self.appendToolbar(default_title2, self.list2) # creates the Movie Animation toolbar with your commands
         self.appendMenu(default_title2, self.list2) # creates the Movie Animation menu
 
@@ -160,7 +160,7 @@ static char * Movie_xpm[] = {
         #self.appendToolbar("Movie Record and Play", self.list3) # creates the Movie Record and Play toolbar with your commands
         #self.appendMenu("Movie Record and Play", self.list3) # creates the Movie Record and Play menu
         #default_title3 = QT_TRANSLATE_NOOP('Movie', 'Movie Record and Play')
-        default_title3 = translate('Movie', 'Movie Record and Play')
+        default_title3 = translate("InitGui", "Movie Record and Play")
         self.appendToolbar(default_title3, self.list3) # creates the Movie Record and Play toolbar with your commands
         self.appendMenu(default_title3, self.list3) # creates the Movie Record and Play menu
 
@@ -169,7 +169,7 @@ static char * Movie_xpm[] = {
         #from PySide.QtCore import QT_TRANSLATE_NOOP
         translate = FreeCAD.Qt.translate
         #FreeCAD.Console.PrintMessage(QT_TRANSLATE_NOOP("Movie","Movie Workbench loaded") + "\n")
-        FreeCAD.Console.PrintMessage(translate("Movie","Movie Workbench loaded") + "\n")
+        FreeCAD.Console.PrintMessage(translate("InitGui","Movie Workbench loaded") + "\n")
         return
 
     def Deactivated(self):
@@ -187,9 +187,9 @@ static char * Movie_xpm[] = {
         #default_title1 = QT_TRANSLATE_NOOP('Movie', 'Movie Cameras and Objects')
         #default_title2 = QT_TRANSLATE_NOOP('Movie', 'Movie Animation')
         #default_title3 = QT_TRANSLATE_NOOP('Movie', 'Movie Record and Play')
-        default_title1 = translate('Movie', 'Movie Cameras and Objects')
-        default_title2 = translate('Movie', 'Movie Animation')
-        default_title3 = translate('Movie', 'Movie Record and Play')
+        default_title1 = translate("InitGui", "Movie Cameras and Objects")
+        default_title2 = translate("InitGui", "Movie Animation")
+        default_title3 = translate("InitGui", "Movie Record and Play")
         self.appendContextMenu(default_title1, self.list1) # add commands to the context menu
         self.appendContextMenu(default_title2, self.list2) # add commands to the context menu
         self.appendContextMenu(default_title3, self.list3) # add commands to the context menu
