@@ -116,6 +116,7 @@ static char * Movie_xpm[] = {
         import MovieCamera
         import MovieObject
         import MovieAnimation
+        from PySide.QtCore import QT_TRANSLATE_NOOP
  
         self.list1 = ['CreateMovieCamera',
                       'EnableMovieCamera',
@@ -125,8 +126,11 @@ static char * Movie_xpm[] = {
                       'EnableMovieObjects',
                       'SetMovieObjectsAxis',
                       'ExcludeMovieObjects',] # a list of command names created in the line above
-        self.appendToolbar("Movie Cameras and Objects", self.list1) # creates the Movie Cameras and Objects toolbar with your commands
-        self.appendMenu("Movie Cameras and Objects", self.list1) # creates the Movie Cameras and Objects menu
+        #self.appendToolbar("Movie Cameras and Objects", self.list1) # creates the Movie Cameras and Objects toolbar with your commands
+        #self.appendMenu("Movie Cameras and Objects", self.list1) # creates the Movie Cameras and Objects menu
+        default_title1 = QT_TRANSLATE_NOOP('Movie', 'Movie Cameras and Objects')
+        self.appendToolbar(default_title1, self.list1) # creates the Movie Cameras and Objects toolbar with your commands
+        self.appendMenu(default_title1, self.list1) # creates the Movie Cameras and Objects menu
 
         self.list2 = ['IniMovieAnimation',
                       'PrevMovieAnimation',
@@ -135,8 +139,11 @@ static char * Movie_xpm[] = {
                       'PlayMovieAnimation',
                       'PostMovieAnimation',
                       'EndMovieAnimation'] # a list of command names created in the line above
-        self.appendToolbar("Movie Animation", self.list2) # creates the Movie Animation toolbar with your commands
-        self.appendMenu("Movie Animation", self.list2) # creates the Movie Animation menu
+        #self.appendToolbar("Movie Animation", self.list2) # creates the Movie Animation toolbar with your commands
+        #self.appendMenu("Movie Animation", self.list2) # creates the Movie Animation menu
+        default_title2 = QT_TRANSLATE_NOOP('Movie', 'Movie Animation')
+        self.appendToolbar(default_title2, self.list2) # creates the Movie Animation toolbar with your commands
+        self.appendMenu(default_title2, self.list2) # creates the Movie Animation menu
 
         self.list3 = ['CreateClapperboard',
                       'EnableMovieClapperboard',
@@ -145,8 +152,11 @@ static char * Movie_xpm[] = {
                       'StopRecordCamera',
                       'CreateVideo',
                       'PlayVideo'] # a list of command names created in the line above
-        self.appendToolbar("Movie Record and Play", self.list3) # creates the Movie Record and Play toolbar with your commands
-        self.appendMenu("Movie Record and Play", self.list3) # creates the Movie Record and Play menu
+        #self.appendToolbar("Movie Record and Play", self.list3) # creates the Movie Record and Play toolbar with your commands
+        #self.appendMenu("Movie Record and Play", self.list3) # creates the Movie Record and Play menu
+        default_title3 = QT_TRANSLATE_NOOP('Movie', 'Movie Record and Play')
+        self.appendToolbar(default_title3, self.list3) # creates the Movie Record and Play toolbar with your commands
+        self.appendMenu(default_title3, self.list3) # creates the Movie Record and Play menu
 
     def Activated(self):
         """This function is executed whenever the workbench is activated"""
@@ -160,10 +170,17 @@ static char * Movie_xpm[] = {
 
     def ContextMenu(self, recipient):
         """This function is executed whenever the user right-clicks on screen"""
+        from PySide.QtCore import QT_TRANSLATE_NOOP
         # "recipient" will be either "view" or "tree"
-        self.appendContextMenu("Movie Cameras and Objects", self.list1) # add commands to the context menu
-        self.appendContextMenu("Movie Animation", self.list2) # add commands to the context menu
-        self.appendContextMenu("Movie Record and Play", self.list3) # add commands to the context menu
+        #self.appendContextMenu("Movie Cameras and Objects", self.list1) # add commands to the context menu
+        #self.appendContextMenu("Movie Animation", self.list2) # add commands to the context menu
+        #self.appendContextMenu("Movie Record and Play", self.list3) # add commands to the context menu
+        default_title1 = QT_TRANSLATE_NOOP('Movie', 'Movie Cameras and Objects')
+        default_title2 = QT_TRANSLATE_NOOP('Movie', 'Movie Animation')
+        default_title3 = QT_TRANSLATE_NOOP('Movie', 'Movie Record and Play')
+        self.appendContextMenu(default_title1, self.list1) # add commands to the context menu
+        self.appendContextMenu(default_title2, self.list2) # add commands to the context menu
+        self.appendContextMenu(default_title3, self.list3) # add commands to the context menu
 
     def GetClassName(self):
         # This function is mandatory if this is a full Python workbench
