@@ -159,11 +159,11 @@ class CreateClapperboard:
 
 def ActivatedClapperboard(self):
 
-    default_name = translate('Movie', 'Clapperboard')
-    folder = FreeCAD.ActiveDocument.addObject('App::DocumentObjectGroupPython', default_name)
-    #folder = FreeCAD.ActiveDocument.addObject('App::DocumentObjectGroupPython', 'Clapperboard')
+    default_label = translate('Movie', 'Clapperboard')
+    folder = FreeCAD.ActiveDocument.addObject('App::DocumentObjectGroupPython', 'Clapperboard')
     Clapperboard(folder)
     ClapperboardViewProvider(folder.ViewObject)
+    folder.Label = default_label
 
 class EnableMovieClapperboard:
 
@@ -248,7 +248,7 @@ class StopRecordCamera:
         return {'Pixmap': __dir__ + '/icons/StopRecordCameraIcon.svg',
                 'Accel': 'Ctrl+k',
                 'MenuText': QT_TRANSLATE_NOOP('StopRecordCamera', 'Stops camera recording'),
-                'ToolTip': QT_TRANSLATE_NOOP('StopRecordCamera', 'Stop camera recording.')}
+                'ToolTip': QT_TRANSLATE_NOOP('StopRecordCamera','Stop camera recording.')}
 
     def IsActive(self):
         if Gui.ActiveDocument:

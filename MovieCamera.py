@@ -276,12 +276,12 @@ class CreateMovieCamera:
 
 def ActivatedMovieCamera(self):
     global MC
-    default_name = translate('Movie', 'MovieCamera')
-    folder = FreeCAD.ActiveDocument.addObject('App::DocumentObjectGroupPython', default_name)
-    #folder = FreeCAD.ActiveDocument.addObject('App::DocumentObjectGroupPython', 'MovieCamera')
+    default_label = translate('Movie', 'MovieCamera')
+    folder = FreeCAD.ActiveDocument.addObject('App::DocumentObjectGroupPython', 'MovieCamera')
     MovieCamera(folder)
     MovieCameraViewProvider(folder.ViewObject)
     MC = folder
+    MC.Label = default_label
 
 # ======================================================================================
 
