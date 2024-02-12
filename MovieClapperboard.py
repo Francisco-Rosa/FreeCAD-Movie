@@ -49,8 +49,8 @@ class Clapperboard:
 
         # Animation config
         obj.addProperty('App::PropertyInteger', 'Clap_01AnimIniStep', 'Animation config', QT_TRANSLATE_NOOP('App::Property', 
-                                                'Indicate the step and/or frame which this section of the animation and/or recording will begin. '
-                                                'It is only indicative.')).Clap_01AnimIniStep = 0
+                                                'Indicate the step and/or frame which this section of the animation and/or recording will begin.'
+                                                )).Clap_01AnimIniStep = 0
         obj.addProperty('App::PropertyInteger', 'Clap_02AnimCurrentStep', 'Animation config', QT_TRANSLATE_NOOP('App::Property', 
                                                 'The current step of this section of the animation. It is only indicative.'
                                                 )).Clap_02AnimCurrentStep = 0
@@ -272,7 +272,7 @@ class CreateVideo:
                 'ToolTip': QT_TRANSLATE_NOOP('CreateVideo', 
                                              'Create a mp4 video of an animation. '
                                              'Configure the videos items in the Clapperboard. '
-                                             'After clicking on it, confirm the folder to salve the video.')}
+                                             'After clicking, confirm the folder to salve the video.')}
 
     def IsActive(self):
         if Gui.ActiveDocument:

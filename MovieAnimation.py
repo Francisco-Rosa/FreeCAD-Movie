@@ -132,7 +132,7 @@ class PrevMovieAnimation:
                 else:
                     co.connectionPrev(Selection = MC)
                     if MC.Cam_07Connection == 'ExplodedAssembly':
-                        getMessage(message = translate('MovieAnimation','PrevMovieAnimation '
+                        getMessage(message = translate('MovieAnimation','Take a step back '
                                    'does not work with ExplodedAssembly!'))
                         return
         prevMovieAnimation()
@@ -272,7 +272,7 @@ class PostMovieAnimation:
                     co.connectionPos(Selection = MC)
                     FreeCAD.ActiveDocument.recompute()
                     if MC.Cam_07Connection == 'ExplodedAssembly':
-                        getMessage(message = translate('MovieAnimation','PostMovieAnimation '
+                        getMessage(message = translate('MovieAnimation','Move one step forward '
                                   'does not work with ExplodedAssembly!'))
                         return
         postMovieAnimation()
@@ -419,7 +419,7 @@ def enableCameraObjects(Enable = 'None'):
         getMessage(message = translate('MovieAnimation','MovieCamera is enabled.'))
     if Enable == 'Objects':
         ENABLE_01 = 'Objects'
-        getMessage(message = translate('MovieAnimation','MovieObjects are enabled.'))
+        getMessage(message = translate('MovieAnimation','MovieObjects is enabled.'))
     if Enable == 'Camera and objects':
         ENABLE_01 = 'Camera and objects'
         getMessage(message = translate('MovieAnimation','MovieCamera and MovieObjects are enabled.'))
@@ -670,7 +670,7 @@ def enableMovieClapperboard():
     ClapSelection = None
     ClapSelection = Gui.Selection.getSelection()
     if not ClapSelection[0].Name[0] == 'C':
-        getMessage(message = translate('MovieAnimation','MovieAnimation','Select a Clapperboard!'))
+        getMessage(message = translate('MovieAnimation','Select a Clapperboard!'))
         return
     CL = ClapSelection[0]
     Selection = []

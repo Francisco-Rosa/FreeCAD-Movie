@@ -132,7 +132,7 @@ static char * Movie_xpm[] = {
         #self.appendToolbar("Movie Cameras and Objects", self.list1) # creates the Movie Cameras and Objects toolbar with your commands
         #self.appendMenu("Movie Cameras and Objects", self.list1) # creates the Movie Cameras and Objects menu
         #default_title1 = QT_TRANSLATE_NOOP('Movie', 'Movie Cameras and Objects')
-        default_title1 = translate("InitGui", "Cameras and Objects tools")
+        default_title1 = translate("InitGui", "Cameras and objects tools")
         default_title2 = translate("InitGui", "Cameras and Objects")
         self.appendToolbar(default_title1, self.list1) # creates the Movie Cameras and Objects toolbar with your commands
         self.appendMenu(default_title2, self.list1) # creates the Movie Cameras and Objects menu
@@ -162,7 +162,7 @@ static char * Movie_xpm[] = {
         #self.appendToolbar("Movie Record and Play", self.list3) # creates the Movie Record and Play toolbar with your commands
         #self.appendMenu("Movie Record and Play", self.list3) # creates the Movie Record and Play menu
         #default_title3 = QT_TRANSLATE_NOOP('Movie', 'Movie Record and Play')
-        default_title5 = translate("InitGui", "Record and Play tools")
+        default_title5 = translate("InitGui", "Record and play tools")
         default_title6 = translate("InitGui", "Record and Play")
         self.appendToolbar(default_title5, self.list3) # creates the Movie Record and Play toolbar with your commands
         self.appendMenu(default_title6, self.list3) # creates the Movie Record and Play menu

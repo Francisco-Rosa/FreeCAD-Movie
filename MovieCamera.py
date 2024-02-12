@@ -113,17 +113,17 @@ class MovieCamera:
     # Movie Camera 03 - Target config
 
         obj.addProperty('App::PropertyEnumeration', 'Cam_01Target', 'Movie Camera 03 - Target config', QT_TRANSLATE_NOOP(
-                                                    'App::Property', 'Choose the type of camera target. The target object must be '
-                                                    'selected in “Cam_02Target_ObjectSelection“, while in the Follow a route option '
-                                                    'you have to select the route in “Cam_02RouteSelection“.'
+                                                    'App::Property', 'Choose the camera target type. If you want to use an '
+                                                    'object or point as a target, choose “Follow an object or point“ and '
+                                                    'selected one of them in “Cam_02Target_ObjectSelection“, while for the '
+                                                    '“Follow a route“ option you must use “Cam_02RouteSelection“.'
                                                     )).Cam_01Target = ('Free', 'Follow an object or point', 'Follow a route')
         obj.addProperty('App::PropertyLink', 'Cam_02TargetObjectSelection', 'Movie Camera 03 - Target config', QT_TRANSLATE_NOOP('App::Property', 
                                                     'Select the point or object you want the camera to follow.'
                                                     )).Cam_02TargetObjectSelection = None
         obj.addProperty('App::PropertyInteger', 'Cam_03TargetStepsForward', 'Movie Camera 03 - Target config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'If you chose that the target follows the route, indicate here how many steps '
-                                                    'it will be in front of the camera on the path.'
-                                                    )).Cam_03TargetStepsForward = 10
+                                                    'If you chose for the target to follow a route, indicate here how many steps this will be '
+                                                    'in front of the camera on the route.')).Cam_03TargetStepsForward = 10
 
     # Movie Camera 04 - Camera follows a path
 
