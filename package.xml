@@ -7,7 +7,7 @@
   <date>2023.06.10</date>
   <author email="fco.rosa@yahoo.com.br">F_Rosa</author>  
   <maintainer email="fco.rosa@yahoo.com.br">F_Rosa</maintainer>  
-  <license file="LICENSE">LGPLv2.1</license>
+  <license file="LICENSE">LGPL-2.1-or-later</license>
   <freecadmin>0.20.0</freecadmin>
   <url type="repository" branch="master">https://github.com/Francisco-Rosa/FreeCAD-Movie</url>
   <url type="readme">https://github.com/Francisco-Rosa/FreeCAD-Movie/blob/master/README.md</url>
