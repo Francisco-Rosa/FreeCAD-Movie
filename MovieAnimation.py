@@ -400,7 +400,7 @@ def modifyAnimationIndicator(Animation = False):
             MC.Cam_07OnAnim = False
         if MO != None:
             MO.Obj_07AnimOnAnim = False
-        getMessage(message = translate('MovieAnimation','Animation = off.'))
+        getMessage(message = translate('MovieAnimation','Animation off.'))
     if Animation == True:
         ANIMATION = True
         if MC != None:
@@ -408,7 +408,7 @@ def modifyAnimationIndicator(Animation = False):
                 MC.Cam_07OnAnim = True
         if MO != None:
             MO.Obj_07AnimOnAnim = True
-        getMessage(message = translate('MovieAnimation','Animation = on.'))
+        getMessage(message = translate('MovieAnimation','Animation on.'))
     FreeCAD.ActiveDocument.recompute()
 
 def enableCameraObjects(Enable = 'None'):
@@ -416,19 +416,19 @@ def enableCameraObjects(Enable = 'None'):
     global MO
     if Enable == 'Camera':
         ENABLE_01 = 'Camera'
-        getMessage(message = translate('MovieAnimation','MovieCamera is enabled.'))
+        getMessage(message = translate('MovieAnimation','MovieCamera enabled.'))
     if Enable == 'Objects':
         ENABLE_01 = 'Objects'
-        getMessage(message = translate('MovieAnimation','MovieObjects is enabled.'))
+        getMessage(message = translate('MovieAnimation','MovieObjects enabled.'))
     if Enable == 'Camera and objects':
         ENABLE_01 = 'Camera and objects'
-        getMessage(message = translate('MovieAnimation','MovieCamera and MovieObjects are enabled.'))
+        getMessage(message = translate('MovieAnimation','MovieCamera and MovieObjects enabled.'))
     if Enable == 'Camera and connection':
         ENABLE_01 = 'Camera and connection'
-        getMessage(message = translate('MovieAnimation','MovieCamera and connection are enabled.'))
+        getMessage(message = translate('MovieAnimation','MovieCamera and connection enabled.'))
     if Enable == 'Clapperboard':
         ENABLE_01 = 'Clapperboard'
-        getMessage(message = translate('MovieAnimation','Clapperboard is enabled.'))
+        getMessage(message = translate('MovieAnimation','Clapperboard enabled.'))
 
 def getViewProjection():
     if MC != None:
@@ -657,10 +657,6 @@ def getSelectionSteps(Content = None):
     else:
         ANIM_FPS = AnimCameraFps
 
-    #FreeCAD.Console.PrintMessage(translate('Movie', f'EndObjectsStep e {EndObjectsStep}') + '\n')
-    #FreeCAD.Console.PrintMessage(translate('Movie', f'ANIM_END_STEP: {ANIM_END_STEP}') + '\n')
-    #FreeCAD.Console.PrintMessage(translate('Movie', f'SEQ_ANIM_LIB: {SEQ_ANIM_LIB}') + '\n')
-
 def enableMovieClapperboard():
     global CL
     global ANIM_FPS
@@ -701,7 +697,6 @@ def enableMovieClapperboard():
     enableCameraObjects(Enable = 'Clapperboard')
     ANIM_FPS = CL.Clap_05AnimFps
     return CL
-    #FreeCAD.Console.PrintMessage(translate('Movie', f'Clapperboard: {CL.Name}') + '\n')
 
 # ======================================================================================
 # 2.3. Animation commands
@@ -727,7 +722,6 @@ def recoverIniMovieAnimation():
         ANIM_CURRENT_STEP = ANIM_INI_STEP
         return
 
-    #FreeCAD.Console.PrintMessage(translate('Movie', f'STEP_POS e {STEP_POS}') + '\n')
     getViewProjection()
     getMovieMobile()
     Gui.updateGui()
@@ -817,9 +811,7 @@ def getMovieMobile():
                 if MO != None:
                     MO.Obj_07AnimOnAnim = False
                 OBJECTS_NAME = ObjectsN
-                #FreeCAD.Console.PrintMessage(translate('Movie', f'Objects e {ObjectsN}') + '\n')
                 MO = FreeCAD.ActiveDocument.getObject(ObjectsN)
-                #FreeCAD.Console.PrintMessage(translate('Movie', f'Objects e {MO.Name}') + '\n')
                 Gui.Selection.addSelection(MO)
                 MO.Obj_07AnimOnAnim = True
             MO.Obj_02AnimCurrentStep = (ANIM_CURRENT_STEP - SEQ_ANIM_LIB[ANIM_CURRENT_STEP][4]) + MO.Obj_01AnimIniStep
@@ -837,7 +829,6 @@ def getMovieMobile():
                 MC.Cam_07OnAnim = False
             CAMERA_NAME = CameraN
             MC = FreeCAD.ActiveDocument.getObject(CameraN)
-            #FreeCAD.Console.PrintMessage(translate('Movie', f'Camera e {MC.Name}') + '\n')
             Gui.Selection.addSelection(MC)
             MC.Cam_07OnAnim = True
         MC.Cam_02AnimCurrentStep = (ANIM_CURRENT_STEP - SEQ_ANIM_LIB[ANIM_CURRENT_STEP][1]) + MC.Cam_01AnimIniStep
@@ -882,12 +873,10 @@ def getEndMovieAnimation():
                 ANIM_CURRENT_STEP = SEQ_ANIM_LIB[ANIM_CURRENT_STEP + 1][5]
         if ENABLE_01 == 'Clapperboard':
             CL.Clap_02AnimCurrentStep = ANIM_CURRENT_STEP
-        #FreeCAD.Console.PrintMessage(translate('Movie', f'ANIM_CURRENT_STEP e {ANIM_CURRENT_STEP}') + '\n')
-        #FreeCAD.Console.PrintMessage(translate('Movie', f'ANIM_END_STEP e {ANIM_END_STEP}') + '\n')
 
     else:
         return
-    #FreeCAD.Console.PrintMessage(translate('Movie', f'STEP_POS e {STEP_POS}') + '\n')
+
     getMovieMobile()
     getViewProjection()
     Gui.updateGui()

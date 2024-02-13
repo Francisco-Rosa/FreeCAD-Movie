@@ -68,52 +68,59 @@ class MovieObjects:
 
 
         obj.addProperty('App::PropertyInteger', 'Obj_01AnimIniStep', 'Movie Objects 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Indicate the step which this section of the animation will begin. Changes will only take '
+                                                    'Initial step of the MovieObjects animaion. Indicate the step which this section of the '
+                                                    'animation will begin. Changes will only take '
                                                     'effect after MovieObjects has been re-enabled.')).Obj_01AnimIniStep = 0
         obj.addProperty('App::PropertyInteger', 'Obj_02AnimCurrentStep', 'Movie Objects 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'The current step of this section of the animation. It is only indicative.'
+                                                    'Current step of the MovieObjects animaion. It is only indicative.'
                                                     )).Obj_02AnimCurrentStep = 0
         obj.addProperty('App::PropertyInteger', 'Obj_03AnimEndStep', 'Movie Objects 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Indicate the step which this section of the animation will finish. Changes will only take '
+                                                    'End step of the MovieObjects animaion. Indicate the step which this section of the animation '
+                                                    'will finish. Changes will only take '
                                                     'effect after MovieObjects has been re-enabled.')).Obj_03AnimEndStep = 50
         obj.addProperty('App::PropertyInteger', 'Obj_04AnimTotalSteps', 'Movie Objects 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'This is the total number of steps that the animation of objects will be established in this '
-                                                    'section. It is the result of the difference between “Obj_03AnimEndStep“ and “Obj_01AnimIniStep“.'
+                                                    'Total steps of MovieObjects animaion. This is the total number of steps that the animation '
+                                                    'of objects will be established in this '
+                                                    'section. It is the result of the difference between End step (“Obj_03AnimEndStep“) and Initial '
+                                                    'step (“Obj_01AnimIniStep“).'
                                                     )).Obj_04AnimTotalSteps = 50
         obj.addProperty('App::PropertyInteger', 'Obj_05AnimFps', 'Movie Objects 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Indicate the fps through which the section of the animation will be '
+                                                    'Animation fps of the MovieObjects. Indicate the fps through which the section of the animation '
+                                                    'will be '
                                                     'performed. It is a simulation and will depend on the '
                                                     'computer performance. Changes will only take '
                                                     'effect after MovieObjects has been re-enabled.')).Obj_05AnimFps = 30
         obj.addProperty('App::PropertyString', 'Obj_06AnimTime', 'Movie Objects 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Animation time of this MovieObjects in hours, minutes, and seconds. '
+                                                    'Animation time of the MovieObjects. Time in hours, minutes, and seconds. '
                                                     'It is only indicative.'
                                                     )).Obj_06AnimTime = time.strftime("%H:%M:%S", time.gmtime(1.7))
         obj.addProperty('App::PropertyBool', 'Obj_07AnimOnAnim', 'Movie Objects 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
-                                                     'It is only indicative whether the objects are in animation or not. '
-                                                     'It should not be changed manually, it is controlled by the animations buttons.'
+                                                     'Animation on or off (“true” or “false”) of the MovieObjects. It is only indicative whether '
+                                                     'the objects are in animation or not. '
+                                                     'It should not be changed manually, it is controlled by the animation buttons.'
                                                      )).Obj_07AnimOnAnim = False
 
     # Movie Objects 02 - Objects follows a path
 
         obj.addProperty('App::PropertyBool', 'Obj_01Route', 'Movie Objects 02 - Objects follows a path', 
                                                     QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Choose “True“ if the objects follow a route. '
-                                                    'You have to select a single segment on “Obj_02RouteSelection“ to use it.'
+                                                    'Route of the MovieObjects. Choose true (“true”) if the objects follow a route. '
+                                                    'You have to select a single segment on Route selection (“Obj_02RouteSelection“) to use it.'
                                                     )).Obj_01Route = False
         obj.addProperty('App::PropertyLink', 'Obj_02RouteSelection', 'Movie Objects 02 - Objects follows a path', 
                                                     QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Choose the route through which the objects will be '
+                                                    'Route selection of the MovieObjects. Choose the route through which the objects will be '
                                                     'animate. You have to select a single segment such as: line, arc, circle, '
                                                     'ellipse, B-spline or Bézier curve, from Sketcher or Draft Workbenches.'
                                                     )).Obj_02RouteSelection = None
 
     # Movie Objects 03 - Objects rotation
         obj.addProperty('App::PropertyBool', 'Obj_01Rotation', 'Movie Objects 03 - Objects rotation', QT_TRANSLATE_NOOP(
-                                                    'App::Property', 'Choose “True“, if you want to '
-                                                    'animate the object angles.')).Obj_01Rotation = False
+                                                    'App::Property', 'Rotation of the MovieObjects. Choose true (“true”), if you want to '
+                                                    'animate the objects angles.')).Obj_01Rotation = False
         obj.addProperty('App::PropertyBool', 'Obj_02RotationCG', 'Movie Objects 03 - Objects rotation', QT_TRANSLATE_NOOP(
-                                                    'App::Property', 'Choose “True“, if you want to rotate objects by their '
+                                                    'App::Property', 'Rotation of the centers of gravities of the MovieObjects. Choose '
+                                                    'true (“true”), if you want to rotate the objects by their '
                                                     'centers of gravity.')).Obj_02RotationCG = False
 
         obj.Proxy = self

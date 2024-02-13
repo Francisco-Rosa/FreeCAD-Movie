@@ -49,84 +49,105 @@ class Clapperboard:
 
         # Animation config
         obj.addProperty('App::PropertyInteger', 'Clap_01AnimIniStep', 'Animation config', QT_TRANSLATE_NOOP('App::Property', 
+                                                'Initial step of the Clapperboard animation. '
                                                 'Indicate the step and/or frame which this section of the animation and/or recording will begin.'
                                                 )).Clap_01AnimIniStep = 0
         obj.addProperty('App::PropertyInteger', 'Clap_02AnimCurrentStep', 'Animation config', QT_TRANSLATE_NOOP('App::Property', 
-                                                'The current step of this section of the animation. It is only indicative.'
+                                                'Current step of the Clapperboard animation. It is only indicative.'
                                                 )).Clap_02AnimCurrentStep = 0
         obj.addProperty('App::PropertyInteger', 'Clap_03AnimEndStep', 'Animation config', QT_TRANSLATE_NOOP('App::Property', 
+                                                'End step of the Clapperboard animation. '
                                                 'Indicate the step which this section of the animation will finish.'
                                                 )).Clap_03AnimEndStep = 100
         obj.addProperty('App::PropertyInteger', 'Clap_04AnimTotalSteps', 'Animation config', QT_TRANSLATE_NOOP('App::Property', 
+                                                'Total steps of the Clapperboard animation. '
                                                 'Indicates the number of steps through which the the animation and/or '
                                                 'the recording will be perform in this section. It is only indicative.'
                                                 )).Clap_04AnimTotalSteps = 100
         obj.addProperty('App::PropertyInteger', 'Clap_05AnimFps', 'Animation config', QT_TRANSLATE_NOOP('App::Property', 
+                                                'Animation fps of the Clapperboard. '
                                                 'Indicate the fps through witch the section of the animation will be '
                                                 'performed. It is a simulation and will depend on the '
                                                 'computer performance.')).Clap_05AnimFps = 30
         obj.addProperty('App::PropertyString', 'Clap_06AnimTime', 'Animation config', QT_TRANSLATE_NOOP('App::Property', 
-                                                 'Animation time of this Clapperboard in hours, minutes and seconds. '
+                                                 'Animation time of the Clapperboard. '
+                                                 'Time in hours, minutes and seconds. '
                                                  'It is only indicative.'
                                                  )).Clap_06AnimTime = time.strftime("%H:%M:%S", time.gmtime(3.33))
 
         # Clapperboard config
         obj.addProperty('App::PropertyString', 'Clap_01Name', 'Clapperboard config', QT_TRANSLATE_NOOP('App::Property', 
+                                             'Name for this Clapperboard. '
                                              'Indicate the chosen Clapperboard through which the animation and '
-                                             'the recording will be performed. '
-                                             'Write a short name, as this will be inserted in the nomenclature of each frame'
-                                             ' created.')).Clap_01Name = 'Clap_00'
+                                             'the recording will be performed. Write a short name, as this will be inserted in the '
+                                             'nomenclature of each frame created.')).Clap_01Name = 'Clap_00'
         obj.addProperty('App::PropertyString', 'Clap_02Take', 'Clapperboard config', QT_TRANSLATE_NOOP('App::Property', 
+                                             'Take of the Clapperboard animation. '
                                              'Indicate the take of each recording made. Write a short name, '
                                              'as this will be inserted in the nomenclature of each frame '
                                              'created.')).Clap_02Take = 'Take_01'
         obj.addProperty('App::PropertyLinkList', 'Clap_03AnimationSelection', 'Clapperboard config', QT_TRANSLATE_NOOP('App::Property', 
-                                              'Select or choose the MovieCameras and/or the MovieObjects to animate with this Clapperboard.'
+                                              'Selection of the Clapperboard animation. '
+                                              'Select the MovieCameras and/or the MovieObjects to animate with this Clapperboard.'
                                                )).Clap_03AnimationSelection = None
         obj.addProperty('App::PropertyBool', 'Clap_04OnRec', 'Clapperboard config', QT_TRANSLATE_NOOP('App::Property', 
-                                             'It indicates whether the chosen Clapperboard is recording or not.'
-                                             ' It is activated by the “R1“ or “R2“ buttons and deactivated by the '
+                                             'Recording on or off (“true” or “false”) of the Clapperboard animation. '
+                                             'It indicates whether the chosen Clapperboard is '
+                                             'recording or not. It is activated by the “R1“ or “R2“ buttons and deactivated by the '
                                              'Stop Recording one.')).Clap_04OnRec = False
 
         # Frames config
         obj.addProperty('App::PropertyString', 'Frame_01Name', 'Frames config',  QT_TRANSLATE_NOOP('App::Property',
+                                             'Name of frame  of the Clapperboard animation. '
                                              'Indicate the main name of these frames. Write a short name, '
                                              'as this will be inserted in the nomenclature of each one '
                                              'created.')).Frame_01Name = str(FreeCAD.ActiveDocument.Label)
         obj.addProperty('App::PropertyInteger', 'Frame_02Width', 'Frames config',  QT_TRANSLATE_NOOP('App::Property',
+                                             'Width of frame of the Clapperboard animation. '
                                              'Configure the width in pixels of the created frames.')).Frame_02Width = 800
         obj.addProperty('App::PropertyInteger', 'Frame_03Height', 'Frames config',  QT_TRANSLATE_NOOP('App::Property',
+                                             'Height of frame of the Clapperboard animation. '
                                              'Configure the heigth in pixels of the created frames.')).Frame_03Height = 600
         obj.addProperty('App::PropertyPath', 'Frame_04OutputPath', 'Frames config',  QT_TRANSLATE_NOOP('App::Property',
-                                             'Output folder to save “R1“ or “R2“ frames.')).Frame_04OutputPath = ""
+                                             'Output path of the Clapperboard animation. '
+                                             'Indicate the output folder to save “R1“ or “R2“ frames.')).Frame_04OutputPath = ""
         obj.addProperty('App::PropertyEnumeration', 'Frame_05Type', 'Frames config', QT_TRANSLATE_NOOP('App::Property', 
-                                              'Indicate the type of frame to be saved.'
+                                              'Type of frame of the Clapperboard animation. Indicates the type of frame '
+                                              'to be saved.It is controlled by the “R1“ or “R2“ buttons.'
                                                )).Frame_05Type = ('R1-3DView', 'R2-Render')
         obj.addProperty('App::PropertyBool', 'Frame_06R1OnRec', 'Frames config',  QT_TRANSLATE_NOOP('App::Property',
-                                             'Indicates whether the chosen camera is recording the FC 3D views or not.'
+                                             '“R1“ recording on or off of the Clapperboard animation. '
+                                             'Indicates whether the chosen camera is recording the FreeCAD 3D views or not.'
                                              ' Control this by the “R1“ and Stop Recording buttons.')).Frame_06R1OnRec = False
         obj.addProperty('App::PropertyBool', 'Frame_07R2OnRec', 'Frames config',  QT_TRANSLATE_NOOP('App::Property',
+                                             '“R2“ recording on or off of the Clapperboard animation. '
                                              'It indicates whether the chosen camera is recording the renders or not.'
                                              ' Control this by the “R2“ and Stop Recording buttons.')).Frame_07R2OnRec = False 
         obj.addProperty('App::PropertyString', 'Frame_08R2RenderProject', 'Frames config',  QT_TRANSLATE_NOOP('App::Property',
+                                             'Render Project of the Clapperboard animation. '
                                              'Indicate the internal name (not its label) of one of the previously created '
                                              'render projects.')).Frame_08R2RenderProject = "Project"
 
         # Video group config
         obj.addProperty('App::PropertyString', 'Video_01Name', 'Video config',  QT_TRANSLATE_NOOP('App::Property',
-                                             'Indicate the main name for the created videos. '
+                                             'Name of the video of the Clapperboard animation. Indicate the main name for the created videos. '
                                              'Chose to add the 3DViews text or Renders one, according to the origin of the '
                                              'frames.')).Video_01Name = str(FreeCAD.ActiveDocument.Label)
         obj.addProperty('App::PropertyInteger', 'Video_02Number', 'Video config',  QT_TRANSLATE_NOOP('App::Property',
+                                              'Number of the video of the Clapperboard animation. '
                                               'Indicate the initial number of the videos (zero for the first one). '
                                              'This will be inserted in the nomenclature of each one created.')).Video_02Number = 0
         obj.addProperty('App::PropertyPath', 'Video_03InputFrames', 'Video config',  QT_TRANSLATE_NOOP('App::Property',
+                                             'Input frames for the video of the Clapperboard animation. '
                                              'Confirm the path to the folder containing the frames for creating a video '
-                                             'when clicking on the Create video button.')).Video_03InputFrames = ""
+                                             'by clicking on the Create video button or on the button with the three dots on the right.'
+                                             )).Video_03InputFrames = ""
         obj.addProperty('App::PropertyPath', 'Video_04OutputPath', 'Video config',  QT_TRANSLATE_NOOP('App::Property',
+                                             'Output path for the video of the Clapperboard animation. '
                                              'Set path to folder to save created videos by clicking on the button with '
                                              'the three dots on the right.')).Video_04OutputPath = ""
         obj.addProperty('App::PropertyInteger', 'Video_05Fps','Video config', QT_TRANSLATE_NOOP('App::Property',
+                                             'Fps of the video of the Clapperboard animation. '
                                              'Indicate the frames per second (fps) of the video that will be created.'
                                              )).Video_05Fps = 24
 
@@ -351,7 +372,6 @@ def runRecordCamera(Back = False):
         frameFinalName = f'{CL.Frame_01Name}_{camNum}_{takeNum}_{CL.Frame_05Type}_{frameNum}.png'
         pathAndName = CL.Frame_04OutputPath +'/' + frameFinalName
         Gui.activeDocument().activeView().saveImage(pathAndName,CL.Frame_02Width,CL.Frame_03Height,'Current')
-        #FreeCAD.Console.PrintMessage(translate('Movie', f'Frame 3DView {frameNum} has been completed' + '\n'))
         FreeCAD.Console.PrintMessage(translate('Movie', 'Frame 3DView {} has been completed.').format(frameNum) + '\n')
 
     if CL.Frame_07R2OnRec == True :
@@ -369,7 +389,6 @@ def runRecordCamera(Back = False):
         # Close render window
         if project.OpenAfterRender:
             Gui.runCommand('Std_CloseActiveWindow',0)
-        #FreeCAD.Console.PrintMessage(translate('Movie', f'Frame Render {frameNum} has been completed') + '\n')
         FreeCAD.Console.PrintMessage(translate('Movie', 'Frame render {} has been completed.').format(frameNum) + '\n')
 
 # ======================================================================================
@@ -412,13 +431,10 @@ def createVideo():
 
     for i in range(len(frames)):
         video.write(cv2.imread(frames[i]))
-        #message = f'frame {i+1} of {len(frames)}'
-        #FreeCAD.Console.PrintMessage(translate('Movie', message) + '\n')
         FreeCAD.Console.PrintMessage(translate('Movie', 'frame {} of {}.').format(i+1, len(frames)) + '\n')
 
     video.release()
-    #FreeCAD.Console.PrintMessage(translate('Movie', f'outputed video to {outVideoPath}')+'\n')
-    FreeCAD.Console.PrintMessage(translate('Movie', 'outputed video to {}.').format(outVideoPath)+'\n')
+    FreeCAD.Console.PrintMessage(translate('Movie', 'Outputed video to {}').format(outVideoPath)+'\n')
 
 def playVideo():
     import cv2
@@ -437,10 +453,11 @@ def playVideo():
 
     if cap.isOpened() == False:
         FreeCAD.Console.PrintMessage(translate('Movie','Error: video file not found!'))
+        return
 
     else:
-        #message2 = f'Movie at {fps2} fps, press q to stop the video'
-        message2 = translate('Movie', 'Movie at {} fps, press q to stop the video').format(fps2)
+        message2 = ('Movie at {} fps, press q to stop the video').format(fps2)
+        #message2 = (translate('Movie', 'Movie at {} fps, press q to stop the video').format(fps2))
 
     while cap.isOpened():
         sucess, frame = cap.read()
