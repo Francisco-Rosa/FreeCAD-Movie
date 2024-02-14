@@ -95,8 +95,8 @@ class MovieObjects:
                                                     'It is only indicative.'
                                                     )).Obj_06AnimTime = time.strftime("%H:%M:%S", time.gmtime(1.7))
         obj.addProperty('App::PropertyBool', 'Obj_07AnimOnAnim', 'Movie Objects 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
-                                                     'Animation on or off (“true” or “false”) of the MovieObjects. It is only indicative whether '
-                                                     'the objects are in animation or not. '
+                                                     'MovieObjects animation on or off. '
+                                                     'It is only indicative whether the objects are in animation or not. '
                                                      'It should not be changed manually, it is controlled by the animation buttons.'
                                                      )).Obj_07AnimOnAnim = False
 
@@ -104,7 +104,7 @@ class MovieObjects:
 
         obj.addProperty('App::PropertyBool', 'Obj_01Route', 'Movie Objects 02 - Objects follows a path', 
                                                     QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Route of the MovieObjects. Choose true (“true”) if the objects follow a route. '
+                                                    'Route of the MovieObjects. Choose “true” if the objects follow a route. '
                                                     'You have to select a single segment on Route selection (“Obj_02RouteSelection“) to use it.'
                                                     )).Obj_01Route = False
         obj.addProperty('App::PropertyLink', 'Obj_02RouteSelection', 'Movie Objects 02 - Objects follows a path', 
@@ -116,11 +116,11 @@ class MovieObjects:
 
     # Movie Objects 03 - Objects rotation
         obj.addProperty('App::PropertyBool', 'Obj_01Rotation', 'Movie Objects 03 - Objects rotation', QT_TRANSLATE_NOOP(
-                                                    'App::Property', 'Rotation of the MovieObjects. Choose true (“true”), if you want to '
+                                                    'App::Property', 'Rotation of the MovieObjects. Choose “true”, if you want to '
                                                     'animate the objects angles.')).Obj_01Rotation = False
         obj.addProperty('App::PropertyBool', 'Obj_02RotationCG', 'Movie Objects 03 - Objects rotation', QT_TRANSLATE_NOOP(
                                                     'App::Property', 'Rotation of the centers of gravities of the MovieObjects. Choose '
-                                                    'true (“true”), if you want to rotate the objects by their '
+                                                    '“true”, if you want to rotate the objects by their '
                                                     'centers of gravity.')).Obj_02RotationCG = False
 
         obj.Proxy = self

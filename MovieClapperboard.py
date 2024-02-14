@@ -91,10 +91,9 @@ class Clapperboard:
                                               'Select the MovieCameras and/or the MovieObjects to animate with this Clapperboard.'
                                                )).Clap_03AnimationSelection = None
         obj.addProperty('App::PropertyBool', 'Clap_04OnRec', 'Clapperboard config', QT_TRANSLATE_NOOP('App::Property', 
-                                             'Recording on or off (“true” or “false”) of the Clapperboard animation. '
-                                             'It indicates whether the chosen Clapperboard is '
-                                             'recording or not. It is activated by the “R1“ or “R2“ buttons and deactivated by the '
-                                             'Stop Recording one.')).Clap_04OnRec = False
+                                             'Recording Clapperboard animation on or off. '
+                                             'It indicates whether the chosen Clapperboard is recording or not. It is activated by '
+                                             'the “R1“ or “R2“ buttons and deactivated by the Stop Recording one.')).Clap_04OnRec = False
 
         # Frames config
         obj.addProperty('App::PropertyString', 'Frame_01Name', 'Frames config',  QT_TRANSLATE_NOOP('App::Property',
@@ -456,8 +455,9 @@ def playVideo():
         return
 
     else:
-        message2 = ('Movie at {} fps, press q to stop the video').format(fps2)
+        #message2 = ('Movie at {} fps, press q to stop the video').format(fps2)
         #message2 = (translate('Movie', 'Movie at {} fps, press q to stop the video').format(fps2))
+        message2 = translate('Movie', 'Video check, press q to stop playback')
 
     while cap.isOpened():
         sucess, frame = cap.read()
