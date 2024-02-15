@@ -3,8 +3,8 @@
 
   <name>Movie Workbench</name>
   <description>Workbench to create and animate the movie camera, create and play videos of animations</description>
-  <version>2023.06.10</version>
-  <date>2023.06.10</date>
+  <version>2024.02.15</version>
+  <date>2024.02.15</date>
   <author email="fco.rosa@yahoo.com.br">F_Rosa</author>  
   <maintainer email="fco.rosa@yahoo.com.br">F_Rosa</maintainer>  
   <license file="LICENSE">LGPL-2.1-or-later</license>

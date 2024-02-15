@@ -52,7 +52,7 @@ ANIMATION_BACK = False
 # Notifications
 
 def getMessage(message = 'None'):
-    FreeCAD.Console.PrintMessage(translate('Movie', message) + '\n')
+    FreeCAD.Console.PrintMessage(('{}').format(message) + '\n')
 
 # ======================================================================================
 # 1. Classes
@@ -67,12 +67,12 @@ class IniMovieAnimation:
     def GetResources(self):
         __dir__ = os.path.dirname(__file__)
         return {'Pixmap': __dir__ + '/icons/IniMovieAnimationIcon.svg',
-                'MenuText': QT_TRANSLATE_NOOP('IniMovieAnimation', 'Move to the beginning'),
+                'MenuText': QT_TRANSLATE_NOOP('IniMovieAnimation', 'Return to beginning'),
                 'ToolTip': QT_TRANSLATE_NOOP('IniMovieAnimation', 
                                              'On the first click, it returns to the beginning of the animation '
                                              'of the current camera/objects and resets them, if record is on it '
                                              'will turn off. On the second click, it goes '
-                                             'to the end of the animation of the previous camera/objects (if so)'),
+                                             'to the end of the animation of the previous camera/objects (if so).'),
                 'Accel': "Ctrl+1"}
 
     def IsActive(self):
@@ -89,7 +89,7 @@ class IniMovieAnimation:
         if MC != None:
             if MC.Cam_06Enable == 'Camera and connection' or MC.Cam_06Enable == 'Connection':
                 if MC.Cam_07Connection == 'None':
-                    getMessage(message = 'Connection is enable, you have select one connection in Cam_07Connection')
+                    getMessage(message = translate('MovieAnimation', 'Connection is enable, you must select one connection in “Cam_07Connection“!'))
                     return
                 else:
                     co.connectionIni(Selection = MC)
@@ -111,9 +111,9 @@ class PrevMovieAnimation:
     def GetResources(self):
         __dir__ = os.path.dirname(__file__)
         return {'Pixmap': __dir__ + '/icons/PrevMovieAnimationIcon.svg',
-                'MenuText': QT_TRANSLATE_NOOP('PrevMovieAnimation', 'Move one step back'),
+                'MenuText': QT_TRANSLATE_NOOP('PrevMovieAnimation', 'Take a step back'),
                 'ToolTip': QT_TRANSLATE_NOOP('PrevMovieAnimation', 
-                                             'Moves the animation one step back')}
+                                             'Moves the animation one step back.')}
 
     def IsActive(self):
         if Gui.ActiveDocument:
@@ -127,13 +127,13 @@ class PrevMovieAnimation:
         if MC != None:
             if MC.Cam_06Enable == 'Camera and connection' or MC.Cam_06Enable == 'Connection':
                 if MC.Cam_07Connection == 'None':
-                    getMessage(message = 'Connection is enable, you have select one connection in Cam_07Connection')
+                    getMessage(message = translate('MovieAnimation', 'Connection is enable, you must select one connection in “Cam_07Connection“!'))
                     return
                 else:
                     co.connectionPrev(Selection = MC)
                     if MC.Cam_07Connection == 'ExplodedAssembly':
-                        getMessage(message = 'PrevMovieAnimation '
-                                   'does not work with ExplodedAssembly')
+                        getMessage(message = translate('MovieAnimation','Take a step back '
+                                   'does not work with ExplodedAssembly!'))
                         return
         prevMovieAnimation()
 
@@ -147,7 +147,7 @@ class PlayBackwardMovieAnimation:
         return {'Pixmap': __dir__ + '/icons/PlayBackwardMovieAnimationIcon.svg',
                 'MenuText': QT_TRANSLATE_NOOP('PlayBackwardMovieAnimation', 'Play backward the animation'),
                 'ToolTip': QT_TRANSLATE_NOOP('PlayBackwardMovieAnimation', 
-                                             'Plays backward the animation')}
+                                             'Plays backward the animation.')}
 
     def IsActive(self):
         if Gui.ActiveDocument:
@@ -162,7 +162,7 @@ class PlayBackwardMovieAnimation:
         if MC != None:
             if MC.Cam_06Enable == 'Camera and connection' or MC.Cam_06Enable == 'Connection':
                if MC.Cam_07Connection == 'None':
-                    getMessage(message = 'Connection is enable, you have select one connection in Cam_07Connection')
+                    getMessage(message = translate('MovieAnimation', 'Connection is enable, you must select one connection in “Cam_07Connection“!'))
                     return
                else:
                    if MC.Cam_07Connection == 'ExplodedAssembly':
@@ -180,9 +180,9 @@ class PauseMovieAnimation:
     def GetResources(self):
         __dir__ = os.path.dirname(__file__)
         return {'Pixmap': __dir__ + '/icons/PauseMovieAnimationIcon.svg',
-                'MenuText': QT_TRANSLATE_NOOP('PauseMovieAnimation', 'PauseMovieAnimation'),
+                'MenuText': QT_TRANSLATE_NOOP('PauseMovieAnimation', 'Pause the animation'),
                 'ToolTip': QT_TRANSLATE_NOOP('PauseMovieAnimation', 
-                                             'Pauses the animation')}
+                                             'Pauses the animation.')}
 
     def IsActive(self):
         if Gui.ActiveDocument:
@@ -200,7 +200,7 @@ class PauseMovieAnimation:
         if MC != None:
             if MC.Cam_06Enable == 'Camera and connection' or MC.Cam_06Enable == 'Connection':
                if MC.Cam_07Connection == 'None':
-                    getMessage(message = 'Connection is enable, you have select one connection in Cam_07Connection')
+                    getMessage(message = translate('MovieAnimation', 'Connection is enable, you must select one connection in “Cam_07Connection“!'))
                     return
                else:
                     co.connectionPause(Selection = MC)
@@ -217,7 +217,7 @@ class PlayMovieAnimation:
         return {'Pixmap': __dir__ + '/icons/PlayMovieAnimationIcon.svg',
                 'MenuText': QT_TRANSLATE_NOOP('PlayMovieAnimation', 'Play the animation'),
                 'ToolTip': QT_TRANSLATE_NOOP('PlayMovieAnimation', 
-                                             'Plays the animation')}
+                                             'Plays the animation.')}
 
     def IsActive(self):
         if Gui.ActiveDocument:
@@ -232,7 +232,7 @@ class PlayMovieAnimation:
         if MC != None:
             if MC.Cam_06Enable == 'Camera and connection' or MC.Cam_06Enable == 'Connection':
                if MC.Cam_07Connection == 'None':
-                    getMessage(message = 'Connection is enable, you have select one connection in Cam_07Connection')
+                    getMessage(message = translate('MovieAnimation', 'Connection is enable, you must select one connection in “Cam_07Connection“!'))
                     return
                else:
                    if MC.Cam_07Connection == 'ExplodedAssembly':
@@ -252,7 +252,7 @@ class PostMovieAnimation:
         return {'Pixmap': __dir__ + '/icons/PostMovieAnimationIcon.svg',
                 'MenuText': QT_TRANSLATE_NOOP('PostMovieAnimation', 'Move one step forward'),
                 'ToolTip': QT_TRANSLATE_NOOP('PostMovieAnimation', 
-                                             'Moves the animation one step forward')}
+                                             'Moves the animation one step forward.')}
 
     def IsActive(self):
         if Gui.ActiveDocument:
@@ -266,14 +266,14 @@ class PostMovieAnimation:
         if MC != None:
             if MC.Cam_06Enable == 'Camera and connection' or MC.Cam_06Enable == 'Connection':
                if MC.Cam_07Connection == 'None':
-                    getMessage(message = 'Connection is enable, you have select one connection in Cam_07Connection')
+                    getMessage(message = translate('MovieAnimation', 'Connection is enable, you must select one connection in “Cam_07Connection“!'))
                     return
                else:
                     co.connectionPos(Selection = MC)
                     FreeCAD.ActiveDocument.recompute()
                     if MC.Cam_07Connection == 'ExplodedAssembly':
-                        getMessage(message = 'PostMovieAnimation '
-                                  'does not work with ExplodedAssembly')
+                        getMessage(message = translate('MovieAnimation','Move one step forward '
+                                  'does not work with ExplodedAssembly!'))
                         return
         postMovieAnimation()
 
@@ -289,7 +289,7 @@ class EndMovieAnimation:
                 'ToolTip': QT_TRANSLATE_NOOP('EndMovieAnimation', 
                                              'On the first click, it moves to the end of the animation of the current camera/objects. '
                                              'On the second click, it goes to the beginning of the animation of '
-                                             'the next camera/objects (if so.)'),
+                                             'the next camera/objects (if so.).'),
                 'Accel': "Ctrl+2"}
 
     def IsActive(self):
@@ -306,7 +306,7 @@ class EndMovieAnimation:
         if MC != None:
             if MC.Cam_06Enable == 'Camera and connection' or MC.Cam_06Enable == 'Connection':
                if MC.Cam_07Connection == 'None':
-                    getMessage(message = 'Connection is enable, you have select one connection in Cam_07Connection')
+                    getMessage(message = translate('MovieAnimation', 'Connection is enable, you must select one connection in “Cam_07Connection“!'))
                     return
                else:
                     co.connectionEnd(Selection = MC)
@@ -331,15 +331,15 @@ class SetMoviePosA:
     def GetResources(self):
         __dir__ = os.path.dirname(__file__)
         return {'Pixmap': __dir__ + '/icons/SetMoviePosAIcon.svg',
-                'MenuText': QT_TRANSLATE_NOOP('SetMoviePosA', 'Set the A position of a camera or objects'),
+                'MenuText': QT_TRANSLATE_NOOP('SetMoviePosA', 'Set position A'),
                 'ToolTip': QT_TRANSLATE_NOOP('SetMoviePosA',
                                              'Applicable for creating an animation from point A to B '
-                                             '(not when the Movie Camera target or Movie Objects are set up to follow a route). ' 
-                                             'First, select and activate the Movie Camera or Movie Objects you want to configure. '
-                                             'For Movie Cameras, position the 3D view with the desired framing to be the start '
-                                             'of the animation (Pos A), then click on Set the position A.'
-                                             'For Movie Objects, position, rotate and/or keep them in their current position, then '
-                                             'click on this button')}
+                                             '(not when the MovieCamera target or MovieObjects are set up to follow a route). ' 
+                                             'First, select and activate the MovieCamera or MovieObjects you want to configure. '
+                                             'For MovieCameras, position the 3D view with the desired framing to be the start '
+                                             'of the animation (position A), then click on Set position A.'
+                                             'For MovieObjects, position, rotate and/or keep them in their current position, then '
+                                             'click on this button.')}
 
     def IsActive(self):
         if Gui.ActiveDocument:
@@ -362,15 +362,15 @@ class SetMoviePosB:
     def GetResources(self):
         __dir__ = os.path.dirname(__file__)
         return {'Pixmap': __dir__ + '/icons/SetMoviePosBIcon.svg',
-                'MenuText': QT_TRANSLATE_NOOP('SetMoviePosB', 'Set the B position of a camera or objects'),
+                'MenuText': QT_TRANSLATE_NOOP('SetMoviePosB', 'Set position B'),
                 'ToolTip': QT_TRANSLATE_NOOP('SetMoviePosB', 
                                              'Applicable for creating an animation from point A to B '
-                                             '(not when the Movie Camera target or Movie Objects are set up to follow a route). '
-                                             'Select and activate the Movie Camera or Movie Objects you want to configure (if not so). '
-                                             'For Movie Cameras, position the 3D view with the desired framing to be the end '
-                                             'of the animation (Pos B), then click on Set the position B.'
-                                             'For Movie Objects, position and/or rotate them in the final position, then '
-                                             'click on this button')}
+                                             '(not when the MovieCamera target or MovieObjects are set up to follow a route). '
+                                             'Select and activate the MovieCamera or MovieObjects you want to configure (if not so). '
+                                             'For MovieCameras, position the 3D view with the desired framing to be the end '
+                                             'of the animation (position B), then click on Set position B.'
+                                             'For MovieObjects, position and/or rotate them in the final position, then '
+                                             'click on this button.')}
 
     def IsActive(self):
         if Gui.ActiveDocument:
@@ -400,7 +400,7 @@ def modifyAnimationIndicator(Animation = False):
             MC.Cam_07OnAnim = False
         if MO != None:
             MO.Obj_07AnimOnAnim = False
-        getMessage(message = 'ANIMATION = False')
+        getMessage(message = translate('MovieAnimation','Animation off.'))
     if Animation == True:
         ANIMATION = True
         if MC != None:
@@ -408,7 +408,7 @@ def modifyAnimationIndicator(Animation = False):
                 MC.Cam_07OnAnim = True
         if MO != None:
             MO.Obj_07AnimOnAnim = True
-        getMessage(message = 'ANIMATION = True')
+        getMessage(message = translate('MovieAnimation','Animation on.'))
     FreeCAD.ActiveDocument.recompute()
 
 def enableCameraObjects(Enable = 'None'):
@@ -416,19 +416,19 @@ def enableCameraObjects(Enable = 'None'):
     global MO
     if Enable == 'Camera':
         ENABLE_01 = 'Camera'
-        getMessage(message = 'Camera is enabled')
+        getMessage(message = translate('MovieAnimation','MovieCamera enabled.'))
     if Enable == 'Objects':
         ENABLE_01 = 'Objects'
-        getMessage(message = 'Objects are enabled')
+        getMessage(message = translate('MovieAnimation','MovieObjects enabled.'))
     if Enable == 'Camera and objects':
         ENABLE_01 = 'Camera and objects'
-        getMessage(message = 'Camera and objects are enabled')
+        getMessage(message = translate('MovieAnimation','MovieCamera and MovieObjects enabled.'))
     if Enable == 'Camera and connection':
         ENABLE_01 = 'Camera and connection'
-        getMessage(message = 'Camera and connection are enabled')
+        getMessage(message = translate('MovieAnimation','MovieCamera and connection enabled.'))
     if Enable == 'Clapperboard':
         ENABLE_01 = 'Clapperboard'
-        getMessage(message = 'Clapperboard is enabled')
+        getMessage(message = translate('MovieAnimation','Clapperboard enabled.'))
 
 def getViewProjection():
     if MC != None:
@@ -452,7 +452,7 @@ def enableMovieSelection(Enable = 'None'):
     for n in range(len(Selection)):
         if Enable == 'Camera':
             if not Selection[n].Name[5] == 'C':
-               getMessage(message = 'Select a MovieCamera')
+               getMessage(message = translate('MovieAnimation','Select a MovieCamera!'))
                return
             else:
                 MC = Selection[0]
@@ -470,7 +470,7 @@ def enableMovieSelection(Enable = 'None'):
                     enableCameraObjects(Enable = 'Connection')
         if Enable == 'Objects':
             if not Selection[n].Name[5] == 'O':
-               getMessage(message = 'Select a MovieObjects')
+               getMessage(message = translate('MovieAnimation','Select a MovieObjects!'))
                return
             else:
                 enableCameraObjects(Enable = 'Objects')
@@ -556,7 +556,7 @@ def getSelectionSteps(Content = None):
                     Objects = MC.Cam_05ObjectsSelected
                     pass
                 else:
-                    getMessage(message = 'Select MovieObjects in Cam_06Enable')
+                    getMessage(message = translate('MovieAnimation','Select MovieObjects in “Cam_06Enable“!'))
                     return
 
                 #2 Setting Init and End camera steps
@@ -607,7 +607,7 @@ def getSelectionSteps(Content = None):
                 InitCameraStep = NextStep
                 Values = []
                 if MC.Cam_07Connection == 'None':
-                     getMessage(message = 'Connection is enable, you have select one connection in Cam_07Connection')
+                     getMessage(message = translate('MovieAnimation', 'Connection is enable, you must select one connection in “Cam_07Connection“!'))
                      return
                 else:
                     # Camera and connection objects steps goes to SEQ_ANIM_LIB
@@ -657,10 +657,6 @@ def getSelectionSteps(Content = None):
     else:
         ANIM_FPS = AnimCameraFps
 
-    #FreeCAD.Console.PrintMessage(translate('Movie', f'EndObjectsStep e {EndObjectsStep}') + '\n')
-    #FreeCAD.Console.PrintMessage(translate('Movie', f'ANIM_END_STEP: {ANIM_END_STEP}') + '\n')
-    #FreeCAD.Console.PrintMessage(translate('Movie', f'SEQ_ANIM_LIB: {SEQ_ANIM_LIB}') + '\n')
-
 def enableMovieClapperboard():
     global CL
     global ANIM_FPS
@@ -670,13 +666,13 @@ def enableMovieClapperboard():
     ClapSelection = None
     ClapSelection = Gui.Selection.getSelection()
     if not ClapSelection[0].Name[0] == 'C':
-        getMessage(message = 'Select a Clapperboard')
+        getMessage(message = translate('MovieAnimation','Select a Clapperboard!'))
         return
     CL = ClapSelection[0]
     Selection = []
     Selection = CL.Clap_03AnimationSelection
     if not Selection:
-        getMessage(message = 'Select at least one Movie Camera or Movie Object to enable')
+        getMessage(message = translate('MovieAnimation','Select at least one MovieCamera or MovieObjects to enable!'))
         return
 
     for n4 in range(len(Selection)):
@@ -701,7 +697,6 @@ def enableMovieClapperboard():
     enableCameraObjects(Enable = 'Clapperboard')
     ANIM_FPS = CL.Clap_05AnimFps
     return CL
-    #FreeCAD.Console.PrintMessage(translate('Movie', f'Clapperboard: {CL.Name}') + '\n')
 
 # ======================================================================================
 # 2.3. Animation commands
@@ -727,7 +722,6 @@ def recoverIniMovieAnimation():
         ANIM_CURRENT_STEP = ANIM_INI_STEP
         return
 
-    #FreeCAD.Console.PrintMessage(translate('Movie', f'STEP_POS e {STEP_POS}') + '\n')
     getViewProjection()
     getMovieMobile()
     Gui.updateGui()
@@ -817,9 +811,7 @@ def getMovieMobile():
                 if MO != None:
                     MO.Obj_07AnimOnAnim = False
                 OBJECTS_NAME = ObjectsN
-                #FreeCAD.Console.PrintMessage(translate('Movie', f'Objects e {ObjectsN}') + '\n')
                 MO = FreeCAD.ActiveDocument.getObject(ObjectsN)
-                #FreeCAD.Console.PrintMessage(translate('Movie', f'Objects e {MO.Name}') + '\n')
                 Gui.Selection.addSelection(MO)
                 MO.Obj_07AnimOnAnim = True
             MO.Obj_02AnimCurrentStep = (ANIM_CURRENT_STEP - SEQ_ANIM_LIB[ANIM_CURRENT_STEP][4]) + MO.Obj_01AnimIniStep
@@ -837,7 +829,6 @@ def getMovieMobile():
                 MC.Cam_07OnAnim = False
             CAMERA_NAME = CameraN
             MC = FreeCAD.ActiveDocument.getObject(CameraN)
-            #FreeCAD.Console.PrintMessage(translate('Movie', f'Camera e {MC.Name}') + '\n')
             Gui.Selection.addSelection(MC)
             MC.Cam_07OnAnim = True
         MC.Cam_02AnimCurrentStep = (ANIM_CURRENT_STEP - SEQ_ANIM_LIB[ANIM_CURRENT_STEP][1]) + MC.Cam_01AnimIniStep
@@ -882,12 +873,10 @@ def getEndMovieAnimation():
                 ANIM_CURRENT_STEP = SEQ_ANIM_LIB[ANIM_CURRENT_STEP + 1][5]
         if ENABLE_01 == 'Clapperboard':
             CL.Clap_02AnimCurrentStep = ANIM_CURRENT_STEP
-        #FreeCAD.Console.PrintMessage(translate('Movie', f'ANIM_CURRENT_STEP e {ANIM_CURRENT_STEP}') + '\n')
-        #FreeCAD.Console.PrintMessage(translate('Movie', f'ANIM_END_STEP e {ANIM_END_STEP}') + '\n')
 
     else:
         return
-    #FreeCAD.Console.PrintMessage(translate('Movie', f'STEP_POS e {STEP_POS}') + '\n')
+
     getMovieMobile()
     getViewProjection()
     Gui.updateGui()

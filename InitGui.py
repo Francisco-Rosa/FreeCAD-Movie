@@ -29,17 +29,15 @@ import FreeCAD
 import FreeCADGui as Gui
 import MovieClapperboard as cl
 
-translate = FreeCAD.Qt.translate
-
 FreeCADGui.addLanguagePath(cl.LanguagePath)
 
 class Movie (Workbench):
     """The Movie Workbench."""
 
-    from PySide.QtCore import QT_TRANSLATE_NOOP
+    translate = FreeCAD.Qt.translate
 
-    MenuText = "Movie"
-    ToolTip = QT_TRANSLATE_NOOP("Movie", "Workbench to create and visualize animations and videos in FreeCAD")
+    MenuText = translate("InitGui", "Movie")
+    ToolTip = translate("InitGui", "Workbench to create and visualize animations and videos in FreeCAD")
     Icon = """
 /* XPM */
 static char * Movie_xpm[] = {
@@ -116,7 +114,8 @@ static char * Movie_xpm[] = {
         import MovieCamera
         import MovieObject
         import MovieAnimation
- 
+        translate = FreeCAD.Qt.translate
+
         self.list1 = ['CreateMovieCamera',
                       'EnableMovieCamera',
                       'SetMoviePosA',
@@ -125,8 +124,11 @@ static char * Movie_xpm[] = {
                       'EnableMovieObjects',
                       'SetMovieObjectsAxis',
                       'ExcludeMovieObjects',] # a list of command names created in the line above
-        self.appendToolbar("Movie Cameras and Objects", self.list1) # creates the Movie Cameras and Objects toolbar with your commands
-        self.appendMenu("Movie Cameras and Objects", self.list1) # creates the Movie Cameras and Objects menu
+
+        default_title1 = translate("InitGui", "Cameras and objects tools")
+        default_title2 = translate("InitGui", "Cameras and Objects")
+        self.appendToolbar(default_title1, self.list1) # creates the Movie Cameras and Objects toolbar with your commands
+        self.appendMenu(default_title2, self.list1) # creates the Movie Cameras and Objects menu
 
         self.list2 = ['IniMovieAnimation',
                       'PrevMovieAnimation',
@@ -135,8 +137,11 @@ static char * Movie_xpm[] = {
                       'PlayMovieAnimation',
                       'PostMovieAnimation',
                       'EndMovieAnimation'] # a list of command names created in the line above
-        self.appendToolbar("Movie Animation", self.list2) # creates the Movie Animation toolbar with your commands
-        self.appendMenu("Movie Animation", self.list2) # creates the Movie Animation menu
+
+        default_title3 = translate("InitGui", "Animation tools")
+        default_title4 = translate("InitGui", "Animation")
+        self.appendToolbar(default_title3, self.list2) # creates the Movie Animation toolbar with your commands
+        self.appendMenu(default_title4, self.list2) # creates the Movie Animation menu
 
         self.list3 = ['CreateClapperboard',
                       'EnableMovieClapperboard',
@@ -145,13 +150,18 @@ static char * Movie_xpm[] = {
                       'StopRecordCamera',
                       'CreateVideo',
                       'PlayVideo'] # a list of command names created in the line above
-        self.appendToolbar("Movie Record and Play", self.list3) # creates the Movie Record and Play toolbar with your commands
-        self.appendMenu("Movie Record and Play", self.list3) # creates the Movie Record and Play menu
+
+        default_title5 = translate("InitGui", "Record and play tools")
+        default_title6 = translate("InitGui", "Record and Play")
+        self.appendToolbar(default_title5, self.list3) # creates the Movie Record and Play toolbar with your commands
+        self.appendMenu(default_title6, self.list3) # creates the Movie Record and Play menu
 
     def Activated(self):
         """This function is executed whenever the workbench is activated"""
-        from PySide.QtCore import QT_TRANSLATE_NOOP
-        FreeCAD.Console.PrintMessage(QT_TRANSLATE_NOOP("Movie","Movie workbench loaded") + "\n")
+
+        translate = FreeCAD.Qt.translate
+
+        FreeCAD.Console.PrintMessage(translate("InitGui","Movie Workbench loaded") + "\n")
         return
 
     def Deactivated(self):
@@ -160,10 +170,16 @@ static char * Movie_xpm[] = {
 
     def ContextMenu(self, recipient):
         """This function is executed whenever the user right-clicks on screen"""
+
+        translate = FreeCAD.Qt.translate
+
         # "recipient" will be either "view" or "tree"
-        self.appendContextMenu("Movie Cameras and Objects", self.list1) # add commands to the context menu
-        self.appendContextMenu("Movie Animation", self.list2) # add commands to the context menu
-        self.appendContextMenu("Movie Record and Play", self.list3) # add commands to the context menu
+        default_title1 = translate("ContextMenu", "Cameras and Objects")
+        default_title2 = translate("ContextMenu", "Animation")
+        default_title3 = translate("ContextMenu", "Record and Play")
+        self.appendContextMenu(default_title1, self.list1) # add commands to the context menu
+        self.appendContextMenu(default_title2, self.list2) # add commands to the context menu
+        self.appendContextMenu(default_title3, self.list3) # add commands to the context menu
 
     def GetClassName(self):
         # This function is mandatory if this is a full Python workbench

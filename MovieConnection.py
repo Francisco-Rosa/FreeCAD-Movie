@@ -104,7 +104,7 @@ def connectionIni(Selection = None):
             Gui.runCommand('GoToStart',0)
         else:
             FreeCAD.Console.PrintMessage(translate('Movie', 'You must have an animation of '
-                                                   'the ExplodedAssembly workbench first.') + '\n')
+                                                   'the ExplodedAssembly Workbench first!') + '\n')
             return
 
     '''03. Include here the instructions for the Workbench you want to connect'''
@@ -116,7 +116,7 @@ def connectionIni(Selection = None):
             Gui.runCommand('GoToStart WorkbenchName',0)
         else:
             FreeCAD.Console.PrintMessage(translate('Movie', 'You must have an animation of '
-                                                   'the WorkbenchName Workbench first.') + '\n')
+                                                   'the WorkbenchName Workbench first!') + '\n')
             return
     '''
 # ======================================================================================
@@ -136,7 +136,7 @@ def connectionPrev(Selection = None):
             Gui.runCommand('PrevWorkbenchName',0)
         else:
             FreeCAD.Console.PrintMessage(translate('Movie', 'You must have an animation of '
-                                                   'the WorkbenchName Workbench first.') + '\n')
+                                                   'the WorkbenchName Workbench first!') + '\n')
             return
     '''
 # ======================================================================================
@@ -150,7 +150,7 @@ def connectionPause(Selection = None):
             Gui.runCommand('StopAnimation',0)
         else:
             FreeCAD.Console.PrintMessage(translate('Movie', 'You must have an animation of '
-                                                   'the ExplodedAssembly Workbench first.') + '\n')
+                                                   'the ExplodedAssembly Workbench first!') + '\n')
             return
 
     '''05. Include here the instructions for the Workbench you want to connect'''
@@ -162,7 +162,7 @@ def connectionPause(Selection = None):
             Gui.runCommand('PauseAnimationWorkbenchName',0)
         else:
             FreeCAD.Console.PrintMessage(translate('Movie', 'You must have an animation of '
-                                                   'the WorkbenchName Workbench first.') + '\n')
+                                                   'the WorkbenchName Workbench first!') + '\n')
             return
     '''
 # ======================================================================================
@@ -181,7 +181,7 @@ def connectionPos(Selection = None):
             Gui.runCommand('PosWorkbenchName',0)
         else:
             FreeCAD.Console.PrintMessage(translate('Movie', 'You must have an animation of '
-                                                   'the WorkbenchName Workbench first.') + '\n')
+                                                   'the WorkbenchName Workbench first!') + '\n')
             return
     '''
 # ======================================================================================
@@ -195,7 +195,7 @@ def connectionEnd(Selection = None):
             Gui.runCommand('GoToEnd',0)
         else:
             FreeCAD.Console.PrintMessage(translate('Movie', 'You must have an animation of '
-                                                   'the ExplodedAssembly workbench first.') + '\n')
+                                                   'the ExplodedAssembly Workbench first!') + '\n')
             return
 
     '''07. Include here the instructions for the Workbench you want to connect'''
@@ -207,7 +207,7 @@ def connectionEnd(Selection = None):
             Gui.runCommand('GoToEndWorkbenchName',0)
         else:
             FreeCAD.Console.PrintMessage(translate('Movie', 'You must have an animation of '
-                                                   'the WorkbenchName Workbench first.') + '\n')
+                                                   'the WorkbenchName Workbench first!') + '\n')
             return
     '''
 # ======================================================================================
@@ -308,7 +308,7 @@ def connectionPlayBackward(Selection = None):
             CL.Clap_04OnRec = False
     else:
         FreeCAD.Console.PrintMessage(translate('Movie', 'You must have an animation from '
-                                                   'the ExplodedAssembly workbench first.') + '\n')
+                                                   'the ExplodedAssembly workbench first!') + '\n')
         return
 
 '''Play the animation'''
@@ -332,7 +332,7 @@ def connectionPlay(Selection = None):
             CL.Clap_04OnRec = False
     else:
         FreeCAD.Console.PrintMessage(translate('Movie', 'You must have an animation from '
-                                                   'the ExplodedAssembly Workbench first.') + '\n')
+                                                   'the ExplodedAssembly Workbench first!') + '\n')
         return
 
 '''Playing the animation from the ExplodedAssembly Workbench'''
