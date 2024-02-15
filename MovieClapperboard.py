@@ -92,8 +92,8 @@ class Clapperboard:
                                                )).Clap_03AnimationSelection = None
         obj.addProperty('App::PropertyBool', 'Clap_04OnRec', 'Clapperboard config', QT_TRANSLATE_NOOP('App::Property', 
                                              'Recording Clapperboard animation on or off. '
-                                             'It indicates whether the chosen Clapperboard is recording or not. It is activated by '
-                                             'the “R1“ or “R2“ buttons and deactivated by the Stop Recording one.')).Clap_04OnRec = False
+                                             'It is activated by the “R1“ or “R2“ buttons and deactivated by the Stop Recording one.'
+                                             )).Clap_04OnRec = False
 
         # Frames config
         obj.addProperty('App::PropertyString', 'Frame_01Name', 'Frames config',  QT_TRANSLATE_NOOP('App::Property',
@@ -102,10 +102,12 @@ class Clapperboard:
                                              'as this will be inserted in the nomenclature of each one '
                                              'created.')).Frame_01Name = str(FreeCAD.ActiveDocument.Label)
         obj.addProperty('App::PropertyInteger', 'Frame_02Width', 'Frames config',  QT_TRANSLATE_NOOP('App::Property',
-                                             'Width of frame of the Clapperboard animation. '
+                                             'Width of frames of the Clapperboard animation. '
+                                             'Only valid for “R1“ frames.'
                                              'Configure the width in pixels of the created frames.')).Frame_02Width = 800
         obj.addProperty('App::PropertyInteger', 'Frame_03Height', 'Frames config',  QT_TRANSLATE_NOOP('App::Property',
-                                             'Height of frame of the Clapperboard animation. '
+                                             'Height of frames of the Clapperboard animation. '
+                                             'Only valid for “R1“ frames.'
                                              'Configure the heigth in pixels of the created frames.')).Frame_03Height = 600
         obj.addProperty('App::PropertyPath', 'Frame_04OutputPath', 'Frames config',  QT_TRANSLATE_NOOP('App::Property',
                                              'Output path of the Clapperboard animation. '
@@ -115,11 +117,11 @@ class Clapperboard:
                                               'to be saved.It is controlled by the “R1“ or “R2“ buttons.'
                                                )).Frame_05Type = ('R1-3DView', 'R2-Render')
         obj.addProperty('App::PropertyBool', 'Frame_06R1OnRec', 'Frames config',  QT_TRANSLATE_NOOP('App::Property',
-                                             '“R1“ recording on or off of the Clapperboard animation. '
+                                             '“R1“ recording of the Clapperboard animation on or off. '
                                              'Indicates whether the chosen camera is recording the FreeCAD 3D views or not.'
                                              ' Control this by the “R1“ and Stop Recording buttons.')).Frame_06R1OnRec = False
         obj.addProperty('App::PropertyBool', 'Frame_07R2OnRec', 'Frames config',  QT_TRANSLATE_NOOP('App::Property',
-                                             '“R2“ recording on or off of the Clapperboard animation. '
+                                             '“R2“ recording of the Clapperboard animation on or off. '
                                              'It indicates whether the chosen camera is recording the renders or not.'
                                              ' Control this by the “R2“ and Stop Recording buttons.')).Frame_07R2OnRec = False 
         obj.addProperty('App::PropertyString', 'Frame_08R2RenderProject', 'Frames config',  QT_TRANSLATE_NOOP('App::Property',
@@ -139,7 +141,7 @@ class Clapperboard:
         obj.addProperty('App::PropertyPath', 'Video_03InputFrames', 'Video config',  QT_TRANSLATE_NOOP('App::Property',
                                              'Input frames for the video of the Clapperboard animation. '
                                              'Confirm the path to the folder containing the frames for creating a video '
-                                             'by clicking on the Create video button or on the button with the three dots on the right.'
+                                             'by clicking on the Create video button or on the three dots on the right.'
                                              )).Video_03InputFrames = ""
         obj.addProperty('App::PropertyPath', 'Video_04OutputPath', 'Video config',  QT_TRANSLATE_NOOP('App::Property',
                                              'Output path for the video of the Clapperboard animation. '
@@ -267,8 +269,8 @@ class StopRecordCamera:
         __dir__ = os.path.dirname(__file__)
         return {'Pixmap': __dir__ + '/icons/StopRecordCameraIcon.svg',
                 'Accel': 'Ctrl+k',
-                'MenuText': QT_TRANSLATE_NOOP('StopRecordCamera', 'Stops recording'),
-                'ToolTip': QT_TRANSLATE_NOOP('StopRecordCamera','Stop camera recording.')}
+                'MenuText': QT_TRANSLATE_NOOP('StopRecordCamera', 'Stop recording'),
+                'ToolTip': QT_TRANSLATE_NOOP('StopRecordCamera','Stop the Clapperboard recording.')}
 
     def IsActive(self):
         if Gui.ActiveDocument:
@@ -455,9 +457,8 @@ def playVideo():
         return
 
     else:
-        #message2 = ('Movie at {} fps, press q to stop the video').format(fps2)
+        message2 = ('Movie preview at {} fps, press q to stop the video').format(fps2)
         #message2 = (translate('Movie', 'Movie at {} fps, press q to stop the video').format(fps2))
-        message2 = translate('Movie', 'Video check, press q to stop playback')
 
     while cap.isOpened():
         sucess, frame = cap.read()

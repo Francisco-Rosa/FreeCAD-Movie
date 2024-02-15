@@ -67,23 +67,21 @@ class MovieCamera:
                                                     'will finish. Changes will only take effect after MovieCamera has been re-enabled.'
                                                     )).Cam_03AnimEndStep = 100
         obj.addProperty('App::PropertyInteger', 'Cam_04AnimTotalSteps', 'Movie Camera 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Total steps of the MovieCamera animation. This is the number of steps the camera animation '
-                                                    'will have in this section. It is the result of the difference between end step '
+                                                    'Total steps of the MovieCamera animation. It is the result of the difference between end step '
                                                     '(“Cam_03AnimEndStep”) and initial step (“Cam_01AnimIniStep”).'
                                                     )).Cam_04AnimTotalSteps = 100
         obj.addProperty('App::PropertyInteger', 'Cam_05AnimFps', 'Movie Camera 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Animation fps of the MovieCamera. Specify the fps of the section animation. '
+                                                    'Animation fps of the MovieCamera. Specify the value for this animation section. '
                                                     'It is a simulation and will depend on the '
                                                     'computer performance. Changes will only take '
                                                     'effect after MovieCamera has been re-enabled.')).Cam_05AnimFps = 30
         obj.addProperty('App::PropertyString', 'Cam_06AnimTime', 'Movie Camera 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Animation time of the MovieCamera. Time in hours, minutes, and seconds. '
+                                                    'Animation time of the MovieCamera, in hours, minutes, and seconds. '
                                                     'It is only indicative.'
                                                     )).Cam_06AnimTime = time.strftime('%H:%M:%S', time.gmtime(3.33))
         obj.addProperty('App::PropertyBool', 'Cam_07OnAnim', 'Movie Camera 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
                                                     'MovieCamera animation on or off. '
-                                                    'It is only indicative whether the camera is in animation or not. It should not '
-                                                    'be changed manually, it is controlled by the animations buttons.'
+                                                    'It should not be changed manually, it is controlled by the animation buttons.'
                                                     )).Cam_07OnAnim = False
 
     # Movie Camera 02 - Camera config
@@ -115,21 +113,23 @@ class MovieCamera:
                                                     '(“Camera and objects”), MovieCamera and connection (“Camera and connection”), '
                                                     'or even just the MovieObjects (“Objects”) or connection (“Connection”) associated with '
                                                     'the this MovieCamera. For each combination change it will be necessary to re-enable the '
-                                                    'MovieCamera (Enable MovieCamera button).'
+                                                    'MovieCamera (Enable a MovieCamera button).'
                                                     )).Cam_06Enable = ('Camera', 'Camera and objects', 'Objects', 'Camera and connection', 'Connection')
         obj.addProperty('App::PropertyEnumeration', 'Cam_07Connection', 'Movie Camera 02 - Camera config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Connection for the MovieCamera animation. Choose the workbench through which the animation '
-                                                    'will be performed together, if so.Make sure the workbench is installed and that there '
+                                                    'Connection for CameraMovie animation. '
+                                                    'Choose the workbench through which the animation will be performed together, if so. '
+                                                    'Make sure the workbench is installed and that there '
                                                     'is an animation created with it.'
                                                     )).Cam_07Connection = list(co.connections)
 
     # Movie Camera 03 - Target config
 
         obj.addProperty('App::PropertyEnumeration', 'Cam_01Target', 'Movie Camera 03 - Target config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Target of the MovieCamera. Choose the camera target type. If you want to use an '
-                                                    'object or point as a target, choose Follow an object or point (“Follow an object or point”) and '
-                                                    'selected one of them in Target object selection (“Cam_02Target_ObjectSelection”), while for the '
-                                                    'Follow a route (“Follow a route”) option you must use Route selection (“Cam_02RouteSelection”).'
+                                                    'Target of the MovieCamera. '
+                                                    'If you want to use an object or point as a target, choose Follow an object or point '
+                                                    '(“Follow an object or point”) and selected one of them in Target object selection '
+                                                    '(“Cam_02Target_ObjectSelection”), while for the Follow a route (“Follow a route”) '
+                                                    'option you must use Route selection (“Cam_02RouteSelection”).'
                                                     )).Cam_01Target = ('Free', 'Follow an object or point', 'Follow a route')
         obj.addProperty('App::PropertyLink', 'Cam_02TargetObjectSelection', 'Movie Camera 03 - Target config', QT_TRANSLATE_NOOP('App::Property', 
                                                     'Target object selection of the MovieCamera. Select the point or object you want the camera to point to.'

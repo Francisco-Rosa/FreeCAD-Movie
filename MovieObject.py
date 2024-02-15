@@ -79,10 +79,8 @@ class MovieObjects:
                                                     'will finish. Changes will only take '
                                                     'effect after MovieObjects has been re-enabled.')).Obj_03AnimEndStep = 50
         obj.addProperty('App::PropertyInteger', 'Obj_04AnimTotalSteps', 'Movie Objects 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Total steps of MovieObjects animaion. This is the total number of steps that the animation '
-                                                    'of objects will be established in this '
-                                                    'section. It is the result of the difference between End step (“Obj_03AnimEndStep“) and Initial '
-                                                    'step (“Obj_01AnimIniStep“).'
+                                                    'Total steps of MovieObjects animaion. It is the result of the difference between End step '
+                                                    '(“Obj_03AnimEndStep“) and Initial step (“Obj_01AnimIniStep“).'
                                                     )).Obj_04AnimTotalSteps = 50
         obj.addProperty('App::PropertyInteger', 'Obj_05AnimFps', 'Movie Objects 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
                                                     'Animation fps of the MovieObjects. Indicate the fps through which the section of the animation '
@@ -91,12 +89,11 @@ class MovieObjects:
                                                     'computer performance. Changes will only take '
                                                     'effect after MovieObjects has been re-enabled.')).Obj_05AnimFps = 30
         obj.addProperty('App::PropertyString', 'Obj_06AnimTime', 'Movie Objects 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Animation time of the MovieObjects. Time in hours, minutes, and seconds. '
+                                                    'Animation time of the MovieObjects, in in hours, minutes, and seconds. '
                                                     'It is only indicative.'
                                                     )).Obj_06AnimTime = time.strftime("%H:%M:%S", time.gmtime(1.7))
         obj.addProperty('App::PropertyBool', 'Obj_07AnimOnAnim', 'Movie Objects 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
                                                      'MovieObjects animation on or off. '
-                                                     'It is only indicative whether the objects are in animation or not. '
                                                      'It should not be changed manually, it is controlled by the animation buttons.'
                                                      )).Obj_07AnimOnAnim = False
 
@@ -119,7 +116,7 @@ class MovieObjects:
                                                     'App::Property', 'Rotation of the MovieObjects. Choose “true”, if you want to '
                                                     'animate the objects angles.')).Obj_01Rotation = False
         obj.addProperty('App::PropertyBool', 'Obj_02RotationCG', 'Movie Objects 03 - Objects rotation', QT_TRANSLATE_NOOP(
-                                                    'App::Property', 'Rotation of the centers of gravities of the MovieObjects. Choose '
+                                                    'App::Property', 'Rotation by the centers of gravities of the MovieObjects. Choose '
                                                     '“true”, if you want to rotate the objects by their '
                                                     'centers of gravity.')).Obj_02RotationCG = False
 
