@@ -403,6 +403,8 @@ def getMovieObjectsMobile(Selection = None):
             else:
                 MO.Objects[n].Placement.Rotation.setYawPitchRoll(yawObjectn2, pitchObjectn2, rollObjectn2)
 
+            FreeCAD.ActiveDocument.recompute()
+
     # Objects that follow a route move one step
     if MO.Obj_01Route == True:
         if not MO.Obj_02RouteSelection:
