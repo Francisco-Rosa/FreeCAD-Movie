@@ -27,11 +27,13 @@ The Movie Workbench icon
 
 (Watch the [video tutorial on using camera sequence]( https://youtu.be/tjfDeOKgyyw ))
 
-(Watch the [example of animation video using the camera sequence](https://www.youtube.com/watch?v=cRXrg0eA7x4))
+(Watch the [video with the camera following a path and a target and animated objects](https://www.youtube.com/watch?v=cRXrg0eA7x4))
 
-(Watch the [example of animation video using the sequence of cameras and one that follows a path and target](https://www.youtube.com/watch?v=NXHm2nitWug))
+(Watch the [video using the sequence of cameras and one that follows a path and target, 3D view frames](https://www.youtube.com/watch?v=NXHm2nitWug))
 
-(Watch the [example of animation video using the sequence of cameras](https://www.youtube.com/watch?v=ePY68BC24cs))
+(Watch the [video using the sequence of cameras and one that follows a path and target, rendered frames](https://www.youtube.com/watch?v=0Pqoasgca2w))
+
+(Watch the [video with the cameras following paths and targets](https://www.youtube.com/watch?v=ePY68BC24cs))
 
 ### Installation
 
