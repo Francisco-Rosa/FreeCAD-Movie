@@ -97,19 +97,25 @@ class MovieObjects:
                                                      'It should not be changed manually, it is controlled by the animation buttons.'
                                                      )).Obj_07AnimOnAnim = False
 
-    # Movie Objects 02 - Objects follows a path
+    # Movie Objects 02 - Objects config
 
-        obj.addProperty('App::PropertyBool', 'Obj_01Route', 'Movie Objects 02 - Objects follows a path', 
+        obj.addProperty('App::PropertyBool', 'Obj_01Route', 'Movie Objects 02 - Objects config', 
                                                     QT_TRANSLATE_NOOP('App::Property', 
                                                     'Route of the MovieObjects. Choose “true” if the objects follow a route. '
                                                     'You have to select a single segment on Route selection (“Obj_02RouteSelection“) to use it.'
                                                     )).Obj_01Route = False
-        obj.addProperty('App::PropertyLink', 'Obj_02RouteSelection', 'Movie Objects 02 - Objects follows a path', 
+        obj.addProperty('App::PropertyLink', 'Obj_02RouteSelection', 'Movie Objects 02 - Objects config', 
                                                     QT_TRANSLATE_NOOP('App::Property', 
                                                     'Route selection of the MovieObjects. Choose the route through which the objects will be '
                                                     'animate. You have to select a single segment such as: line, arc, circle, '
                                                     'ellipse, B-spline or Bézier curve, from Sketcher or Draft Workbenches.'
                                                     )).Obj_02RouteSelection = None
+        obj.addProperty('App::PropertyBool', 'Obj_03Refresh', 'Movie Objects 02 - Objects config', 
+                                                    QT_TRANSLATE_NOOP('App::Property', 
+                                                    'Refresh on or off. Choose “true” if you need to update at each '
+                                                    'step of the animation. Sometimes needed in combination with other object animation '
+                                                    'workbenches. Note: This decreases the performance of object animations.'
+                                                    )).Obj_03Refresh = False
 
     # Movie Objects 03 - Objects rotation
         obj.addProperty('App::PropertyBool', 'Obj_01Rotation', 'Movie Objects 03 - Objects rotation', QT_TRANSLATE_NOOP(
@@ -357,7 +363,6 @@ def setObjectsAxis(Option = None):
     ma.modifyAnimationIndicator(Animation = False)
 
 def getMovieObjectsMobile(Selection = None):
-
     MO = Selection
     # Objects Pos AB yaw, pitch and roll
     if MO.Obj_01Rotation == True:
@@ -403,7 +408,10 @@ def getMovieObjectsMobile(Selection = None):
             else:
                 MO.Objects[n].Placement.Rotation.setYawPitchRoll(yawObjectn2, pitchObjectn2, rollObjectn2)
 
-            FreeCAD.ActiveDocument.recompute()
+            # Refreshes each step of objects animation
+            if(hasattr(MO, 'Obj_03Refresh')):
+                if MO.Obj_03Refresh == True:
+                    FreeCAD.ActiveDocument.recompute()
 
     # Objects that follow a route move one step
     if MO.Obj_01Route == True:

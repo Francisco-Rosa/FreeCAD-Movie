@@ -28,8 +28,10 @@
 import FreeCAD
 import FreeCADGui as Gui
 import MovieClapperboard as cl
+#from cl import iconPath
 
 FreeCADGui.addLanguagePath(cl.LanguagePath)
+FreeCADGui.updateLocale()
 
 class Movie (Workbench):
     """The Movie Workbench."""
@@ -38,6 +40,7 @@ class Movie (Workbench):
 
     MenuText = translate("InitGui", "Movie")
     ToolTip = translate("InitGui", "Workbench to create and visualize animations and videos in FreeCAD")
+    #Icon = os.path.join(iconPath, "Movie.svg")
     Icon = """
 /* XPM */
 static char * Movie_xpm[] = {
