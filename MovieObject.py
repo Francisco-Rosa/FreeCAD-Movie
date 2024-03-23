@@ -45,6 +45,16 @@ def enableObjectsSelection(Enable = None):
     global MO
     MO = Enable
 
+# Refreshes each step of objects animation
+OBJ_REFRESH = False
+def enableObjectsRefresh(Enable = False):
+    global OBJ_REFRESH
+    if Enable == True:
+        OBJ_REFRESH = True
+        #FreeCAD.Console.PrintMessage(translate('Movie', 'OBJ_REFRESH = True') + '\n')
+    else:
+        OBJ_REFRESH = False
+        #FreeCAD.Console.PrintMessage(translate('Movie', 'OBJ_REFRESH = False') + '\n')
 # ======================================================================================
 # 1. Classes
 
@@ -363,6 +373,7 @@ def setObjectsAxis(Option = None):
     ma.modifyAnimationIndicator(Animation = False)
 
 def getMovieObjectsMobile(Selection = None):
+    global OBJ_REFRESH
     MO = Selection
     # Objects Pos AB yaw, pitch and roll
     if MO.Obj_01Rotation == True:
@@ -409,9 +420,8 @@ def getMovieObjectsMobile(Selection = None):
                 MO.Objects[n].Placement.Rotation.setYawPitchRoll(yawObjectn2, pitchObjectn2, rollObjectn2)
 
             # Refreshes each step of objects animation
-            if(hasattr(MO, 'Obj_03Refresh')):
-                if MO.Obj_03Refresh == True:
-                    FreeCAD.ActiveDocument.recompute()
+            if OBJ_REFRESH == True:
+                FreeCAD.ActiveDocument.recompute()
 
     # Objects that follow a route move one step
     if MO.Obj_01Route == True:
