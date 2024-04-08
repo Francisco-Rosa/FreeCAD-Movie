@@ -30,6 +30,7 @@ import FreeCADGui as Gui
 import MovieClapperboard as cl
 
 FreeCADGui.addLanguagePath(cl.LanguagePath)
+FreeCADGui.updateLocale()
 
 class Movie (Workbench):
     """The Movie Workbench."""
