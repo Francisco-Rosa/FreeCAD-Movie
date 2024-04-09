@@ -815,11 +815,11 @@ def getMovieMobile():
                 MO = FreeCAD.ActiveDocument.getObject(ObjectsN)
                 Gui.Selection.addSelection(MO)
                 MO.Obj_07AnimOnAnim = True
-                # Refreshes each step of objects animation
-                if(hasattr(MO, 'Obj_03Refresh')) and MO.Obj_03Refresh == True:
-                    mo.enableObjectsRefresh(Enable = True)
-                else:
-                    mo.enableObjectsRefresh(Enable = False)
+                # New - Refreshes each step of objects animation
+                if(hasattr(MO, 'Obj_03Refresh')) and MO.Obj_03Refresh == True: # New
+                    mo.enableObjectsRefresh(Enable = True) # New
+                else: # New
+                    mo.enableObjectsRefresh(Enable = False) # New
             MO.Obj_02AnimCurrentStep = (ANIM_CURRENT_STEP - SEQ_ANIM_LIB[ANIM_CURRENT_STEP][4]) + MO.Obj_01AnimIniStep
             # Getting objects time animation
             t = (MO.Obj_02AnimCurrentStep - MO.Obj_01AnimIniStep) / MO.Obj_05AnimFps

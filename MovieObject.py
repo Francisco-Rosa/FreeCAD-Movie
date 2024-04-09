@@ -44,6 +44,13 @@ MO = None
 def enableObjectsSelection(Enable = None):
     global MO
     MO = Enable
+    # Updating PosA and PosB # New
+    if(hasattr(MO, 'PosAList')):
+        import ast # New
+        if MO.PosAList != []:
+            MO.PosA = ast.literal_eval(MO.PosAList[0]) # New
+        if MO.PosBList != []:
+            MO.PosB = ast.literal_eval(MO.PosBList[0]) # New
 
 # Refreshes each step of objects animation
 OBJ_REFRESH = False
@@ -51,10 +58,9 @@ def enableObjectsRefresh(Enable = False):
     global OBJ_REFRESH
     if Enable == True:
         OBJ_REFRESH = True
-        #FreeCAD.Console.PrintMessage(translate('Movie', 'OBJ_REFRESH = True') + '\n')
     else:
         OBJ_REFRESH = False
-        #FreeCAD.Console.PrintMessage(translate('Movie', 'OBJ_REFRESH = False') + '\n')
+
 # ======================================================================================
 # 1. Classes
 
@@ -120,12 +126,6 @@ class MovieObjects:
                                                     'animate. You have to select a single segment such as: line, arc, circle, '
                                                     'ellipse, B-spline or Bézier curve, from Sketcher or Draft Workbenches.'
                                                     )).Obj_02RouteSelection = None
-        obj.addProperty('App::PropertyBool', 'Obj_03Refresh', 'Movie Objects 02 - Objects config', 
-                                                    QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Refresh on or off. Choose “true” if you need to update at each '
-                                                    'step of the animation. Sometimes needed in combination with other object animation '
-                                                    'workbenches. Note: This decreases the performance of object animations.'
-                                                    )).Obj_03Refresh = False
 
     # Movie Objects 03 - Objects rotation
         obj.addProperty('App::PropertyBool', 'Obj_01Rotation', 'Movie Objects 03 - Objects rotation', QT_TRANSLATE_NOOP(
@@ -137,6 +137,21 @@ class MovieObjects:
                                                     'centers of gravity.')).Obj_02RotationCG = False
 
         obj.Proxy = self
+
+    # New properties
+    #def updateProps(self, obj):
+        obj.addProperty('App::PropertyStringList', 'PosAList', 'Movie Objects', QT_TRANSLATE_NOOP('App::Property', 
+                                                    'Placements of PosA of this MovieObjects.'
+                                                    )).PosAList = [] # New
+        obj.addProperty('App::PropertyStringList', 'PosBList', 'Movie Objects', QT_TRANSLATE_NOOP('App::Property', 
+                                                    'Placements of PosB of this MovieObjects.'
+                                                    )).PosBList = [] # New
+        obj.addProperty('App::PropertyBool', 'Obj_03Refresh', 'Movie Objects 02 - Objects config', 
+                                                    QT_TRANSLATE_NOOP('App::Property', 
+                                                    'Refresh on or off. Choose “true” if you need to update at each '
+                                                    'step of the animation. Sometimes needed in combination with other object animation '
+                                                    'workbenches. Note: This decreases the performance of object animations.'
+                                                    )).Obj_03Refresh = False
 
 class MovieObjectsViewProvider:
     def __init__(self, obj):
@@ -323,6 +338,8 @@ def setMOPosA(Option = None):
     ma.modifyAnimationIndicator(Animation = False)
     MO.Obj_01Rotation = True
     FreeCAD.Console.PrintMessage(translate('Movie', 'MovieObjects position A has been established.') + '\n')
+    if(hasattr(MO, 'PosAList')): # New
+        MO.PosAList = str(MO.PosA) # New
     Gui.updateGui()
 
 def setMOPosB(Option = None):
@@ -348,6 +365,8 @@ def setMOPosB(Option = None):
     ma.modifyAnimationIndicator(Animation = False)
     MO.Obj_01Rotation = True
     FreeCAD.Console.PrintMessage(translate('Movie', 'MovieObjects position B has been established.') + '\n')
+    if(hasattr(MO, 'PosBList')): # New
+        MO.PosBList = str(MO.PosB) # New
     Gui.updateGui()
 
 def setObjectsAxis(Option = None):
@@ -375,20 +394,23 @@ def setObjectsAxis(Option = None):
 def getMovieObjectsMobile(Selection = None):
     global OBJ_REFRESH
     MO = Selection
+
     # Objects Pos AB yaw, pitch and roll
     if MO.Obj_01Rotation == True:
 
         for n in range(len(MO.Objects)):
-            name = MO.Names[n] 
+            name = MO.Names[n]
             anglesAn = MO.PosA[name][1]
             anglesBn = MO.PosB[name][1]
 
             # Object rotate one step
             def getIncAngle(angleA = 0, angleB = 0):
-                if angleB - angleA <= 180:
-                    IncAngleStep = (angleB - angleA)/MO.Obj_04AnimTotalSteps
-                else:
-                    IncAngleStep = (angleB - angleA - 360)/MO.Obj_04AnimTotalSteps
+                #if angleB - angleA <= 180:
+                    #IncAngleStep = (angleB - angleA)/MO.Obj_04AnimTotalSteps
+                #else:
+                    #IncAngleStep = (angleB - angleA - 360)/MO.Obj_04AnimTotalSteps
+
+                IncAngleStep = (angleB - angleA)/MO.Obj_04AnimTotalSteps #Novo
                 IncAngle1 = IncAngleStep*MO.Obj_02AnimCurrentStep
                 return IncAngle1
 
@@ -419,9 +441,9 @@ def getMovieObjectsMobile(Selection = None):
             else:
                 MO.Objects[n].Placement.Rotation.setYawPitchRoll(yawObjectn2, pitchObjectn2, rollObjectn2)
 
-            # Refreshes each step of objects animation
-            if OBJ_REFRESH == True:
-                FreeCAD.ActiveDocument.recompute()
+            # New - Refreshes each step of objects animation
+            if OBJ_REFRESH == True: # New
+                FreeCAD.ActiveDocument.recompute() # New
 
     # Objects that follow a route move one step
     if MO.Obj_01Route == True:
