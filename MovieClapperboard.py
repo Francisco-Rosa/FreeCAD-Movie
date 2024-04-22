@@ -35,11 +35,10 @@ import MovieAnimation as ma
 translate = FreeCAD.Qt.translate
 
 _dir = os.path.dirname(__file__)
+IconPath = os.path.join(_dir, 'icons')
 LanguagePath = os.path.join(_dir, 'translations')
 #LanguagePath = os.path.dirname(__file__) + '/translations'
 Gui.addLanguagePath(LanguagePath)
-
-#iconPath = os.path.join(_dir, 'Icons')
 
 CL = None
 
