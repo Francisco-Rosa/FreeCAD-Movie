@@ -8,7 +8,7 @@ The Movie Workbench icon
 
 ### Features
 ##### The Movie Camera and Objects toolbars (animate cameras and objects):
-
+<img src=./Docs/Movie_cameras_objects_toolbar_01.png height=50>
 * Create animations of cameras and objects separately or simultaneously, showing the details of your project.
 * It is possible to create cameras/objects animations between two chosen points, making them follow a path or rotating them on a fixed base/axis.
 * The camera targets can be free, fixed, or mobile with the option to make them follow the path together with the camera.
@@ -16,11 +16,11 @@ The Movie Workbench icon
 * If you already have an animation in another workbench, you can add cameras animations and produce render videos with the connection module (see below more details).
 
 ##### The Animation toolbar (visualize your animations within FreeCAD):
-
+<img src=./Docs/Movie_animation_toolbar.png height=50>
 * You can play, pause, go back and forward the cameras/objects animations in real time within FreeCAD, before record them in videos.
 
 ##### The Clapperboard toolbar (record and play videos):
-
+<img src=./Docs/Movie_record_play_toolbar.png height=50>
 * Create frames from the FreeCAD 3D views (**R1**) or the rendered ones (**R2**).   
 * Create videos from them.  
 * Check the results playing the videos you have created.
