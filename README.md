@@ -38,6 +38,8 @@ The Movie Workbench icon
 
 (Watch the [video with the cameras following paths and targets](https://www.youtube.com/watch?v=ePY68BC24cs))
 
+(Watch the [Video with object animation by Sketches](https://www.youtube.com/watch?v=L-5tfH3OfGQ))
+
 ### Installation
 
 ##### Via Addon Manager (Recommended)
