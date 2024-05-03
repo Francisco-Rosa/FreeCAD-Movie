@@ -44,13 +44,13 @@ MO = None
 def enableObjectsSelection(Enable = None):
     global MO
     MO = Enable
-    # Updating PosA and PosB # New
+    # New - Updating PosA and PosB
     if(hasattr(MO, 'PosAList')):
-        import ast # New
+        import ast
         if MO.PosAList != []:
-            MO.PosA = ast.literal_eval(MO.PosAList[0]) # New
+            MO.PosA = ast.literal_eval(MO.PosAList[0])
         if MO.PosBList != []:
-            MO.PosB = ast.literal_eval(MO.PosBList[0]) # New
+            MO.PosB = ast.literal_eval(MO.PosBList[0])
 
 # Refreshes each step of objects animation
 OBJ_REFRESH = False
@@ -118,7 +118,10 @@ class MovieObjects:
         obj.addProperty('App::PropertyBool', 'Obj_01Route', 'Movie Objects 02 - Objects config', 
                                                     QT_TRANSLATE_NOOP('App::Property', 
                                                     'Route of the MovieObjects. Choose “true” if the objects follow a route. '
-                                                    'You have to select a single segment on Route selection (“Obj_02RouteSelection“) to use it.'
+                                                    'You have to select a single segment on Route selection (“Obj_02RouteSelection“) to use it. '
+                                                    'With the route activated, the coordinate settings for points A and B will be ignored, but not deleted. '
+                                                    'Disable the route and the animation of points A and B will be activated again, if it has already been'
+                                                    'configured before.'
                                                     )).Obj_01Route = False
         obj.addProperty('App::PropertyLink', 'Obj_02RouteSelection', 'Movie Objects 02 - Objects config', 
                                                     QT_TRANSLATE_NOOP('App::Property', 
@@ -395,7 +398,7 @@ def getMovieObjectsMobile(Selection = None):
     global OBJ_REFRESH
     MO = Selection
 
-    # Objects Pos AB yaw, pitch and roll
+    # Objects Pos AB - Angles: yaw, pitch and roll
     if MO.Obj_01Rotation == True:
 
         for n in range(len(MO.Objects)):
@@ -405,12 +408,8 @@ def getMovieObjectsMobile(Selection = None):
 
             # Object rotate one step
             def getIncAngle(angleA = 0, angleB = 0):
-                #if angleB - angleA <= 180:
-                    #IncAngleStep = (angleB - angleA)/MO.Obj_04AnimTotalSteps
-                #else:
-                    #IncAngleStep = (angleB - angleA - 360)/MO.Obj_04AnimTotalSteps
-
-                IncAngleStep = (angleB - angleA)/MO.Obj_04AnimTotalSteps #Novo
+                #New
+                IncAngleStep = (angleB - angleA)/MO.Obj_04AnimTotalSteps
                 IncAngle1 = IncAngleStep*MO.Obj_02AnimCurrentStep
                 return IncAngle1
 
@@ -441,11 +440,7 @@ def getMovieObjectsMobile(Selection = None):
             else:
                 MO.Objects[n].Placement.Rotation.setYawPitchRoll(yawObjectn2, pitchObjectn2, rollObjectn2)
 
-            # New - Refreshes each step of objects animation
-            if OBJ_REFRESH == True: # New
-                FreeCAD.ActiveDocument.recompute() # New
-
-    # Objects that follow a route move one step
+    # Objects that follow a route
     if MO.Obj_01Route == True:
         if not MO.Obj_02RouteSelection:
             FreeCAD.Console.PrintMessage(translate('Movie', 'You have to select '
@@ -457,20 +452,25 @@ def getMovieObjectsMobile(Selection = None):
         stepLength = route.Length/MO.Obj_04AnimTotalSteps
         currentStep = stepLength*MO.Obj_02AnimCurrentStep
         if currentStep > route.Length:
-            stepLength = route.Length
+            currentStep = route.Length
         currentPos = route.getParameterByLength(currentStep)
         currentVector = route.valueAt(currentPos)
 
-        # Transferring the position to the bases of the objects (through the average of the centers of gravity)
+        # Transferring the route position to the bases of the objects or there centers of gravity
+        # (through the average of the centers of gravity)
+        VectorCGAverageXY = FreeCAD.Vector(MO.PosGCAverage0[0], MO.PosGCAverage0[1], 0)
         for n in range(len(MO.Names)):
-            name = MO.Names[n]
-            VectorCGAverage = FreeCAD.Vector(MO.PosGCAverage0)
+            name = MO.Names[n]     
             # The gap1, difference between the average of the centers of gravity and the object's Pos0
-            gap1 = VectorCGAverage - FreeCAD.Vector(MO.Pos0[name][0])
-            # The average of the centers of gravity receives the values of current vector
-            VectorCGAverage = currentVector
+            gap1 = VectorCGAverageXY - FreeCAD.Vector(MO.Pos0[name][0])
+            # 1. Moving through the bases of objects:
             # The base of each object is the difference between current vector and the gap1
-            vector = VectorCGAverage - gap1
+            vector = currentVector - gap1
+            # 2. Moving through objects' centers of gravity:
+            # The difference between the current center of gravity and the object's base
+            gap2 = MO.Objects[n].Shape.CenterOfGravity - MO.Objects[n].Placement.Base
+            # The base of object will be the difference between the center of gravity and the gap2
+            vector = vector - gap2
             MO.Objects[n].Placement.Base = vector
     else:
         # Objects move one step (PosA - PosB)
@@ -497,6 +497,10 @@ def getMovieObjectsMobile(Selection = None):
                     # The base of object will be the difference between the center of gravity and the gap2
                     vector = CG - gap2
                     MO.Objects[n].Placement.Base = vector
+
+    # New - Refreshes each step of objects animation
+    if OBJ_REFRESH == True:
+        FreeCAD.ActiveDocument.recompute()
 
 # ======================================================================================
 

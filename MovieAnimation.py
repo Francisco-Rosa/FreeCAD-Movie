@@ -469,9 +469,12 @@ def enableMovieSelection(Enable = 'None'):
                 if MC.Cam_06Enable == 'Connection':
                     enableCameraObjects(Enable = 'Connection')
         if Enable == 'Objects':
+            if len(Selection[n].Name) < 5:
+                getMessage(message = translate('MovieAnimation','Select a MovieObjects!'))
+                return
             if not Selection[n].Name[5] == 'O':
-               getMessage(message = translate('MovieAnimation','Select a MovieObjects!'))
-               return
+                getMessage(message = translate('MovieAnimation','Select a MovieObjects!'))
+                return
             else:
                 enableCameraObjects(Enable = 'Objects')
                 MO = Selection[0]
