@@ -492,7 +492,7 @@ def getSelectionSteps(Content = None):
     global ANIM_CURRENT_STEP
     global ANIM_END_STEP
     global ANIM_FPS
-    global SEQ_ANIM_LIB
+    global SEQ_ANIM_DIC
 
     # Selection
     Selection = []
@@ -521,9 +521,9 @@ def getSelectionSteps(Content = None):
     # Animation sequence
     # Components = (CameraN, InitCameraStep, EndCameraStep, ObjectsN, InitObjectsStep, EndObjectsStep)
     Components = ()
-    SEQ_ANIM_LIB = {}
+    SEQ_ANIM_DIC = {}
 
-    # Cameras and Objects steps goes to SEQ_ANIM_LIB
+    # Cameras and Objects steps goes to SEQ_ANIM_DIC
     for n in range(len(Selection)):
         # Cameras ===========================================================================
         if Selection[n].Name[5] == 'C':
@@ -532,7 +532,8 @@ def getSelectionSteps(Content = None):
             # Camera-------------------------------------------------------------------------
             if MC.Cam_06Enable == 'Camera':
                 InitCameraStep = NextStep
-                EndCameraStep = EndCameraStep + (MC.Cam_03AnimEndStep - MC.Cam_01AnimIniStep)
+                #EndCameraStep = EndCameraStep + (MC.Cam_03AnimEndStep - MC.Cam_01AnimIniStep)
+                EndCameraStep = NextStep + (MC.Cam_03AnimEndStep - MC.Cam_01AnimIniStep)
                 if InitCameraStep == 0:
                     EndCameraStep -= 1
                 #MC.Cam_04AnimTotalSteps = MC.Cam_03AnimEndStep
@@ -543,19 +544,19 @@ def getSelectionSteps(Content = None):
                 t = (MC.Cam_03AnimEndStep - MC.Cam_01AnimIniStep) / MC.Cam_05AnimFps
                 MC.Cam_06AnimTime = getTimeAnimation(secs = t)
 
-                # Cameras steps goes to SEQ_ANIM_LIB
+                #1. Cameras steps goes to SEQ_ANIM_DIC
                 Components = (CameraN, InitCameraStep, EndCameraStep, 'None', InitCameraStep, EndCameraStep)
                 for s1 in range(MC.Cam_03AnimEndStep + 1):
                     stepCamera = InitCameraStep + s1
-                    SEQ_ANIM_LIB[stepCamera] = Components
+                    SEQ_ANIM_DIC[stepCamera] = Components
 
-                # Adding total camera steps to total animation
+                #2. Adding total camera steps to total animation
                 ANIM_END_STEP = EndCameraStep
                 NextStep = ANIM_END_STEP + 1
 
             # Camera and Objects ----------------------------------------------------------------
             if MC.Cam_06Enable == 'Camera and objects' or MC.Cam_06Enable == 'Objects':
-                #1 Verifying
+                #1. Verifying
                 if MC.Cam_05ObjectsSelected != None:
                     Objects = MC.Cam_05ObjectsSelected
                     pass
@@ -563,14 +564,16 @@ def getSelectionSteps(Content = None):
                     getMessage(message = translate('MovieAnimation','Select MovieObjects in “Cam_06Enable“!'))
                     return
 
-                #2 Setting Init and End camera steps
+                #2. Setting Init and End camera steps
                 InitCameraStep = NextStep
                 interval0 = MC.Cam_04AnimTotalSteps - MC.Cam_03AnimEndStep
                 MC.Cam_04AnimTotalSteps = 0
                 for n1 in range(len(Objects)):
                     MO = Objects[n1]
-                    interval1 = MO.Obj_03AnimEndStep - MO.Obj_01AnimIniStep
+                    #interval1 = MO.Obj_03AnimEndStep - MO.Obj_01AnimIniStep
+                    interval1 = (MO.Obj_03AnimEndStep - MO.Obj_01AnimIniStep) + 1
                     MC.Cam_04AnimTotalSteps = MC.Cam_04AnimTotalSteps + interval1
+                MC.Cam_04AnimTotalSteps -=1
                 MC.Cam_03AnimEndStep = MC.Cam_04AnimTotalSteps - interval0
                 if MC.Cam_01Target == 'Follow a route':
                     MC.Cam_04AnimTotalSteps = MC.Cam_04AnimTotalSteps + MC.Cam_03TargetStepsForward
@@ -581,8 +584,9 @@ def getSelectionSteps(Content = None):
 
                 # Total camera steps adds to EndCameraStep
                 EndCameraStep = EndCameraStep + MC.Cam_03AnimEndStep
+                #EndCameraStep = NextStep + MC.Cam_03AnimEndStep
 
-                #3 Setting Init and End objects step
+                #3. Setting Init and End objects step
                 EndObjectsStep = NextStep
                 for n2 in range(len(Objects)):
                     MO = Objects[n2]
@@ -592,17 +596,18 @@ def getSelectionSteps(Content = None):
 
                     # Objects key steps
                     InitObjectsStep = NextStep
-                    EndObjectsStep = EndObjectsStep + (MO.Obj_03AnimEndStep - MO.Obj_01AnimIniStep)
+                    #EndObjectsStep = EndObjectsStep + (MO.Obj_03AnimEndStep - MO.Obj_01AnimIniStep)
+                    EndObjectsStep = NextStep + (MO.Obj_03AnimEndStep - MO.Obj_01AnimIniStep)
                     NextStep = EndObjectsStep + 1
 
-                    #4 Camera and objects key steps goes to SEQ_ANIM_LIB
+                #4. Camera and objects key steps goes to SEQ_ANIM_DIC
                     ObjectsN = MO.Name
                     Components = (CameraN, InitCameraStep, EndCameraStep, ObjectsN, InitObjectsStep, EndObjectsStep)
                     for s2 in range(MO.Obj_03AnimEndStep + 1):
                         stepObjects = InitObjectsStep + s2
-                        SEQ_ANIM_LIB[stepObjects] = Components
+                        SEQ_ANIM_DIC[stepObjects] = Components
 
-                #5 Adding total camera steps to total animation
+                #5. Adding total camera steps to total animation
                 ANIM_END_STEP = EndCameraStep
                 NextStep = ANIM_END_STEP + 1
 
@@ -614,15 +619,15 @@ def getSelectionSteps(Content = None):
                      getMessage(message = translate('MovieAnimation', 'Connection is enable, you must select one connection in “Cam_07Connection“!'))
                      return
                 else:
-                    # Camera and connection objects steps goes to SEQ_ANIM_LIB
+                #1. Camera and connection objects steps goes to SEQ_ANIM_DIC
                     co.verification(Selection = MC)
                     Values = co.connectionSteps(v0 = InitObjectsStep, v1 = EndObjectsStep, 
                                                 v2 = InitCameraStep, v3 = EndCameraStep, v4 = NextStep,
-                                                 v5 = SEQ_ANIM_LIB, Selection = MC)
+                                                 v5 = SEQ_ANIM_DIC, Selection = MC)
                 EndCameraStep = Values[0]
-                SEQ_ANIM_LIB = Values[1]
+                SEQ_ANIM_DIC = Values[1]
 
-                # Adding total camera steps to total animation
+                #2. Adding total camera steps to total animation
                 ANIM_END_STEP = EndCameraStep
                 NextStep = ANIM_END_STEP + 1
 
@@ -636,18 +641,19 @@ def getSelectionSteps(Content = None):
             t = (MO.Obj_03AnimEndStep - MO.Obj_01AnimIniStep) / MO.Obj_05AnimFps
             MO.Obj_06AnimTime = getTimeAnimation(secs = t)
 
-            # Object key steps goes to SEQ_ANIM_LIB
+            #1. Object key steps goes to SEQ_ANIM_DIC
             InitObjectsStep = NextStep
-            EndObjectsStep = EndObjectsStep + (MO.Obj_03AnimEndStep - MO.Obj_01AnimIniStep)
+            #EndObjectsStep = EndObjectsStep + (MO.Obj_03AnimEndStep - MO.Obj_01AnimIniStep)
+            EndObjectsStep = NextStep + (MO.Obj_03AnimEndStep - MO.Obj_01AnimIniStep)
             ObjectsN = MO.Name
             Components = ('None', None, None, ObjectsN, InitObjectsStep, EndObjectsStep)
             for s4 in range(MO.Obj_03AnimEndStep + 1):
                 stepObjects1 = InitObjectsStep + s4
-                SEQ_ANIM_LIB[stepObjects1] = Components
+                SEQ_ANIM_DIC[stepObjects1] = Components
             Anim_ObjectsFps = MO.Obj_05AnimFps
             #FreeCAD.Console.PrintMessage(translate('Movie', f'MO: {MO.Name}') + '\n')
 
-            # Adding total camera steps to total animation
+            #2. Adding total camera steps to total animation
             ANIM_END_STEP = EndObjectsStep
             NextStep = ANIM_END_STEP + 1
 
@@ -660,6 +666,8 @@ def getSelectionSteps(Content = None):
         ANIM_FPS = Anim_ObjectsFps
     else:
         ANIM_FPS = AnimCameraFps
+        
+    #FreeCAD.Console.PrintMessage(f'SEQ_ANIM_LIB: {SEQ_ANIM_DIC}' + '\n')
 
 def enableMovieClapperboard():
     global CL
@@ -716,10 +724,10 @@ def recoverIniMovieAnimation():
 
     if ANIM_CURRENT_STEP > ANIM_INI_STEP:
         STEP_POS = 'P'
-        if ANIM_CURRENT_STEP > SEQ_ANIM_LIB[ANIM_CURRENT_STEP][4]:
-            ANIM_CURRENT_STEP = SEQ_ANIM_LIB[ANIM_CURRENT_STEP][4]
+        if ANIM_CURRENT_STEP > SEQ_ANIM_DIC[ANIM_CURRENT_STEP][4]:
+            ANIM_CURRENT_STEP = SEQ_ANIM_DIC[ANIM_CURRENT_STEP][4]
         else:
-            ANIM_CURRENT_STEP = SEQ_ANIM_LIB[ANIM_CURRENT_STEP - 1][4]
+            ANIM_CURRENT_STEP = SEQ_ANIM_DIC[ANIM_CURRENT_STEP - 1][4]
         if ENABLE_01 == 'Clapperboard':
             CL.Clap_02AnimCurrentStep = ANIM_CURRENT_STEP
     else:
@@ -805,8 +813,8 @@ def getMovieMobile():
     global CAMERA_NAME
     global OBJECTS_NAME
 
-    CameraN = SEQ_ANIM_LIB[ANIM_CURRENT_STEP][0]
-    ObjectsN = SEQ_ANIM_LIB[ANIM_CURRENT_STEP][3]
+    CameraN = SEQ_ANIM_DIC[ANIM_CURRENT_STEP][0]
+    ObjectsN = SEQ_ANIM_DIC[ANIM_CURRENT_STEP][3]
 
     if ObjectsN != 'None':
         if ObjectsN[5] == 'O':
@@ -823,7 +831,7 @@ def getMovieMobile():
                     mo.enableObjectsRefresh(Enable = True) # New
                 else: # New
                     mo.enableObjectsRefresh(Enable = False) # New
-            MO.Obj_02AnimCurrentStep = (ANIM_CURRENT_STEP - SEQ_ANIM_LIB[ANIM_CURRENT_STEP][4]) + MO.Obj_01AnimIniStep
+            MO.Obj_02AnimCurrentStep = (ANIM_CURRENT_STEP - SEQ_ANIM_DIC[ANIM_CURRENT_STEP][4]) + MO.Obj_01AnimIniStep
             # Getting objects time animation
             t = (MO.Obj_02AnimCurrentStep - MO.Obj_01AnimIniStep) / MO.Obj_05AnimFps
             MO.Obj_06AnimTime = getTimeAnimation(secs = t)
@@ -840,7 +848,7 @@ def getMovieMobile():
             MC = FreeCAD.ActiveDocument.getObject(CameraN)
             Gui.Selection.addSelection(MC)
             MC.Cam_07OnAnim = True
-        MC.Cam_02AnimCurrentStep = (ANIM_CURRENT_STEP - SEQ_ANIM_LIB[ANIM_CURRENT_STEP][1]) + MC.Cam_01AnimIniStep
+        MC.Cam_02AnimCurrentStep = (ANIM_CURRENT_STEP - SEQ_ANIM_DIC[ANIM_CURRENT_STEP][1]) + MC.Cam_01AnimIniStep
         if MC.Cam_06Enable == 'Objects' or MC.Cam_06Enable == 'Connection':
             enableCamera = False
         if enableCamera != False:
@@ -875,11 +883,11 @@ def getEndMovieAnimation():
 
     if ANIM_CURRENT_STEP < ANIM_END_STEP:
         STEP_POS = 'P'
-        if ANIM_CURRENT_STEP < SEQ_ANIM_LIB[ANIM_CURRENT_STEP][5]:
-            ANIM_CURRENT_STEP = SEQ_ANIM_LIB[ANIM_CURRENT_STEP][5]
+        if ANIM_CURRENT_STEP < SEQ_ANIM_DIC[ANIM_CURRENT_STEP][5]:
+            ANIM_CURRENT_STEP = SEQ_ANIM_DIC[ANIM_CURRENT_STEP][5]
         else:
             if ANIM_CURRENT_STEP + 1 < ANIM_END_STEP:
-                ANIM_CURRENT_STEP = SEQ_ANIM_LIB[ANIM_CURRENT_STEP + 1][5]
+                ANIM_CURRENT_STEP = SEQ_ANIM_DIC[ANIM_CURRENT_STEP + 1][5]
         if ENABLE_01 == 'Clapperboard':
             CL.Clap_02AnimCurrentStep = ANIM_CURRENT_STEP
 
