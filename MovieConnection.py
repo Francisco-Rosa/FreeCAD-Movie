@@ -31,6 +31,7 @@ import time
 import MovieCamera as mc
 import MovieAnimation as ma
 import MovieClapperboard as cl
+import MovieObject as ob
 
 translate = FreeCAD.Qt.translate
 

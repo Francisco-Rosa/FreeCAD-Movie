@@ -61,7 +61,7 @@ class MovieCamera:
                                                     'Initial step of the MovieCamera animation. Indicate the step which this section of '
                                                     'the animation will begin.')).Cam_01AnimIniStep = 0
         obj.addProperty('App::PropertyInteger', 'Cam_02AnimCurrentStep', 'Movie Camera 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Current step of the MovieCamera animation. It only indicative.')).Cam_02AnimCurrentStep = 0
+                                                    'Current step of the MovieCamera animation. It is only indicative.')).Cam_02AnimCurrentStep = 0
         obj.addProperty('App::PropertyInteger', 'Cam_03AnimEndStep', 'Movie Camera 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
                                                     'End step of the MovieCamera animation. Indicate the step which this section of the animation '
                                                     'will finish. Changes will only take effect after MovieCamera has been re-enabled.'

@@ -39,72 +39,8 @@ class Movie (Workbench):
 
     MenuText = translate("InitGui", "Movie")
     ToolTip = translate("InitGui", "Workbench to create and visualize animations and videos in FreeCAD")
-    Icon = """
-/* XPM */
-static char * Movie_xpm[] = {
-/* columns rows colors chars-per-pixel */
-"15 13 45 1 ",
-"  c black",
-". c #060606",
-"X c #0E0E0E",
-"o c #111111",
-"O c #131313",
-"+ c gray8",
-"@ c #151515",
-"# c #191919",
-"$ c gray10",
-"% c gray11",
-"& c #1D1D1D",
-"* c gray12",
-"= c #222222",
-"- c #272727",
-"; c #282828",
-": c gray16",
-"> c #2D2D2D",
-", c gray18",
-"< c #2F2F2F",
-"1 c gray19",
-"2 c #313131",
-"3 c #353535",
-"4 c gray21",
-"5 c gray22",
-"6 c #3C3C3C",
-"7 c gray24",
-"8 c #3F3F3F",
-"9 c #414141",
-"0 c gray26",
-"q c gray27",
-"w c #464646",
-"e c gray28",
-"r c #484848",
-"t c #494949",
-"y c gray29",
-"u c #4C4C4C",
-"i c gray31",
-"p c #505050",
-"a c #515151",
-"s c #555555",
-"d c #656565",
-"f c #868686",
-"g c gray59",
-"h c gray64",
-"j c white",
-/* pixels */
-"o@26@#s=@1y+@p:",
-"X id @h< uf .g4",
-"O>70>1t3>6w>,r$",
-"ujjjjjjjjjjjjjp",
-"ujjjjjjjjjjjjjp",
-"ujjjjjjjjjjjjjp",
-"ujjjjjjjjjjjjjp",
-"ujjjjjjjjjjjjjp",
-"ujjjjjjjjjjjjjp",
-"ujjjjjjjjjjjjjp",
-"o;58;:t<;5q--e$",
-"X id @h< uf .g4",
-"+&49&*s;&3u%%a;"
-};
-"""
+    from MovieClapperboard import IconPath
+    Icon = os.path.join(IconPath, "MovieWBIcon.svg")
 
     def Initialize(self):
         """This function is executed when the workbench is first activated.

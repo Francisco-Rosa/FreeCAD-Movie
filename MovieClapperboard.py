@@ -34,7 +34,10 @@ import MovieAnimation as ma
 
 translate = FreeCAD.Qt.translate
 
-LanguagePath = os.path.dirname(__file__) + '/translations'
+_dir = os.path.dirname(__file__)
+IconPath = os.path.join(_dir, 'icons')
+LanguagePath = os.path.join(_dir, 'translations')
+#LanguagePath = os.path.dirname(__file__) + '/translations'
 Gui.addLanguagePath(LanguagePath)
 
 CL = None
@@ -370,7 +373,8 @@ def runRecordCamera(Back = False):
             frameNum = str(f'{CL.Clap_02AnimCurrentStep:0>4}')
         else:
             frameNum = str(f'{(CL.Clap_04AnimTotalSteps - CL.Clap_02AnimCurrentStep):0>4}')
-        frameFinalName = f'{CL.Frame_01Name}_{camNum}_{takeNum}_{CL.Frame_05Type}_{frameNum}.png'
+        #frameFinalName = f'{CL.Frame_01Name}_{camNum}_{takeNum}_{CL.Frame_05Type}_{frameNum}.png'
+        frameFinalName = f'{CL.Frame_01Name}_{camNum}_{takeNum}_{CL.Frame_05Type}_{frameNum}.jpg'
         pathAndName = CL.Frame_04OutputPath +'/' + frameFinalName
         Gui.activeDocument().activeView().saveImage(pathAndName,CL.Frame_02Width,CL.Frame_03Height,'Current')
         FreeCAD.Console.PrintMessage(translate('Movie', 'Frame 3DView {} has been completed.').format(frameNum) + '\n')

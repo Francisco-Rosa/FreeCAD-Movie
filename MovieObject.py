@@ -44,6 +44,22 @@ MO = None
 def enableObjectsSelection(Enable = None):
     global MO
     MO = Enable
+    # New - Updating PosA and PosB
+    if(hasattr(MO, 'PosAList')):
+        import ast
+        if MO.PosAList != []:
+            MO.PosA = ast.literal_eval(MO.PosAList[0])
+        if MO.PosBList != []:
+            MO.PosB = ast.literal_eval(MO.PosBList[0])
+
+# Refreshes each step of objects animation
+OBJ_REFRESH = False
+def enableObjectsRefresh(Enable = False):
+    global OBJ_REFRESH
+    if Enable == True:
+        OBJ_REFRESH = True
+    else:
+        OBJ_REFRESH = False
 
 # ======================================================================================
 # 1. Classes
@@ -97,14 +113,17 @@ class MovieObjects:
                                                      'It should not be changed manually, it is controlled by the animation buttons.'
                                                      )).Obj_07AnimOnAnim = False
 
-    # Movie Objects 02 - Objects follows a path
+    # Movie Objects 02 - Objects config
 
-        obj.addProperty('App::PropertyBool', 'Obj_01Route', 'Movie Objects 02 - Objects follows a path', 
+        obj.addProperty('App::PropertyBool', 'Obj_01Route', 'Movie Objects 02 - Objects config', 
                                                     QT_TRANSLATE_NOOP('App::Property', 
                                                     'Route of the MovieObjects. Choose “true” if the objects follow a route. '
-                                                    'You have to select a single segment on Route selection (“Obj_02RouteSelection“) to use it.'
+                                                    'You have to select a single segment on Route selection (“Obj_02RouteSelection“) to use it. '
+                                                    'With the route activated, the coordinate settings for points A and B will be ignored, but not deleted. '
+                                                    'Disable the route and the animation of points A and B will be activated again, if it has already been'
+                                                    'configured before.'
                                                     )).Obj_01Route = False
-        obj.addProperty('App::PropertyLink', 'Obj_02RouteSelection', 'Movie Objects 02 - Objects follows a path', 
+        obj.addProperty('App::PropertyLink', 'Obj_02RouteSelection', 'Movie Objects 02 - Objects config', 
                                                     QT_TRANSLATE_NOOP('App::Property', 
                                                     'Route selection of the MovieObjects. Choose the route through which the objects will be '
                                                     'animate. You have to select a single segment such as: line, arc, circle, '
@@ -121,6 +140,21 @@ class MovieObjects:
                                                     'centers of gravity.')).Obj_02RotationCG = False
 
         obj.Proxy = self
+
+    # New properties
+    #def updateProps(self, obj):
+        obj.addProperty('App::PropertyStringList', 'PosAList', 'Movie Objects', QT_TRANSLATE_NOOP('App::Property', 
+                                                    'Placements of PosA of this MovieObjects.'
+                                                    )).PosAList = [] # New
+        obj.addProperty('App::PropertyStringList', 'PosBList', 'Movie Objects', QT_TRANSLATE_NOOP('App::Property', 
+                                                    'Placements of PosB of this MovieObjects.'
+                                                    )).PosBList = [] # New
+        obj.addProperty('App::PropertyBool', 'Obj_03Refresh', 'Movie Objects 02 - Objects config', 
+                                                    QT_TRANSLATE_NOOP('App::Property', 
+                                                    'Refresh on or off. Choose “true” if you need to update at each '
+                                                    'step of the animation. Sometimes needed in combination with other object animation '
+                                                    'workbenches. Note: This decreases the performance of object animations.'
+                                                    )).Obj_03Refresh = False
 
 class MovieObjectsViewProvider:
     def __init__(self, obj):
@@ -307,6 +341,8 @@ def setMOPosA(Option = None):
     ma.modifyAnimationIndicator(Animation = False)
     MO.Obj_01Rotation = True
     FreeCAD.Console.PrintMessage(translate('Movie', 'MovieObjects position A has been established.') + '\n')
+    if(hasattr(MO, 'PosAList')): # New
+        MO.PosAList = str(MO.PosA) # New
     Gui.updateGui()
 
 def setMOPosB(Option = None):
@@ -332,6 +368,8 @@ def setMOPosB(Option = None):
     ma.modifyAnimationIndicator(Animation = False)
     MO.Obj_01Rotation = True
     FreeCAD.Console.PrintMessage(translate('Movie', 'MovieObjects position B has been established.') + '\n')
+    if(hasattr(MO, 'PosBList')): # New
+        MO.PosBList = str(MO.PosB) # New
     Gui.updateGui()
 
 def setObjectsAxis(Option = None):
@@ -357,22 +395,21 @@ def setObjectsAxis(Option = None):
     ma.modifyAnimationIndicator(Animation = False)
 
 def getMovieObjectsMobile(Selection = None):
-
+    global OBJ_REFRESH
     MO = Selection
-    # Objects Pos AB yaw, pitch and roll
+
+    # Objects Pos AB - Angles: yaw, pitch and roll
     if MO.Obj_01Rotation == True:
 
         for n in range(len(MO.Objects)):
-            name = MO.Names[n] 
+            name = MO.Names[n]
             anglesAn = MO.PosA[name][1]
             anglesBn = MO.PosB[name][1]
 
             # Object rotate one step
             def getIncAngle(angleA = 0, angleB = 0):
-                if angleB - angleA <= 180:
-                    IncAngleStep = (angleB - angleA)/MO.Obj_04AnimTotalSteps
-                else:
-                    IncAngleStep = (angleB - angleA - 360)/MO.Obj_04AnimTotalSteps
+                #New
+                IncAngleStep = (angleB - angleA)/MO.Obj_04AnimTotalSteps
                 IncAngle1 = IncAngleStep*MO.Obj_02AnimCurrentStep
                 return IncAngle1
 
@@ -403,7 +440,7 @@ def getMovieObjectsMobile(Selection = None):
             else:
                 MO.Objects[n].Placement.Rotation.setYawPitchRoll(yawObjectn2, pitchObjectn2, rollObjectn2)
 
-    # Objects that follow a route move one step
+    # Objects that follow a route
     if MO.Obj_01Route == True:
         if not MO.Obj_02RouteSelection:
             FreeCAD.Console.PrintMessage(translate('Movie', 'You have to select '
@@ -415,20 +452,25 @@ def getMovieObjectsMobile(Selection = None):
         stepLength = route.Length/MO.Obj_04AnimTotalSteps
         currentStep = stepLength*MO.Obj_02AnimCurrentStep
         if currentStep > route.Length:
-            stepLength = route.Length
+            currentStep = route.Length
         currentPos = route.getParameterByLength(currentStep)
         currentVector = route.valueAt(currentPos)
 
-        # Transferring the position to the bases of the objects (through the average of the centers of gravity)
+        # Transferring the route position to the bases of the objects or there centers of gravity
+        # (through the average of the centers of gravity)
+        VectorCGAverageXY = FreeCAD.Vector(MO.PosGCAverage0[0], MO.PosGCAverage0[1], 0)
         for n in range(len(MO.Names)):
-            name = MO.Names[n]
-            VectorCGAverage = FreeCAD.Vector(MO.PosGCAverage0)
+            name = MO.Names[n]     
             # The gap1, difference between the average of the centers of gravity and the object's Pos0
-            gap1 = VectorCGAverage - FreeCAD.Vector(MO.Pos0[name][0])
-            # The average of the centers of gravity receives the values of current vector
-            VectorCGAverage = currentVector
+            gap1 = VectorCGAverageXY - FreeCAD.Vector(MO.Pos0[name][0])
+            # 1. Moving through the bases of objects:
             # The base of each object is the difference between current vector and the gap1
-            vector = VectorCGAverage - gap1
+            vector = currentVector - gap1
+            # 2. Moving through objects' centers of gravity:
+            # The difference between the current center of gravity and the object's base
+            gap2 = MO.Objects[n].Shape.CenterOfGravity - MO.Objects[n].Placement.Base
+            # The base of object will be the difference between the center of gravity and the gap2
+            vector = vector - gap2
             MO.Objects[n].Placement.Base = vector
     else:
         # Objects move one step (PosA - PosB)
@@ -455,6 +497,10 @@ def getMovieObjectsMobile(Selection = None):
                     # The base of object will be the difference between the center of gravity and the gap2
                     vector = CG - gap2
                     MO.Objects[n].Placement.Base = vector
+
+    # New - Refreshes each step of objects animation
+    if OBJ_REFRESH == True:
+        FreeCAD.ActiveDocument.recompute()
 
 # ======================================================================================
 
