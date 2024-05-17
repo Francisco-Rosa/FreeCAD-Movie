@@ -4,7 +4,7 @@
   <context>
     <name>App::Property</name>
     <message>
-      <location filename="../MovieObject.py" line="55"/>
+      <location filename="../MovieObject.py" line="71"/>
       <source>List of objects of this MovieObjects.</source>
       <translation>Lista de objetos deste ObjetosFilme.</translation>
     </message>
@@ -14,12 +14,6 @@
       <translation>Passo inicial da animação da CameraFilme.
 Indique o passo em que esta seção da 
 animação começará.</translation>
-    </message>
-    <message>
-      <location filename="../MovieCamera.py" line="63"/>
-      <source>Current step of the MovieCamera animation. It only indicative.</source>
-      <translation>Passo atual da animação da CameraFilme. 
-É apenas indicativo.</translation>
     </message>
     <message>
       <location filename="../MovieCamera.py" line="65"/>
@@ -110,26 +104,26 @@ após isso, se necessário, você pode fazer pequenos ajustes
 no valor de rotação da câmera.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="51"/>
+      <location filename="../MovieClapperboard.py" line="54"/>
       <source>Initial step of the Clapperboard animation. Indicate the step and/or frame which this section of the animation and/or recording will begin.</source>
       <translation>Passo inicial da animação da Claquete. 
 Indique o passo e/ou quadro em que esta 
 seção da animação e/ou gravação será iniciada.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="55"/>
+      <location filename="../MovieClapperboard.py" line="58"/>
       <source>Current step of the Clapperboard animation. It is only indicative.</source>
       <translation>Passo atual da animação da Claquete. 
 É apenas indicativo.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="58"/>
+      <location filename="../MovieClapperboard.py" line="61"/>
       <source>End step of the Clapperboard animation. Indicate the step which this section of the animation will finish.</source>
       <translation>Passo final da animação da Claquete. 
 Indique o passo que esta seção da animação terminará.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="62"/>
+      <location filename="../MovieClapperboard.py" line="65"/>
       <source>Total steps of the Clapperboard animation. Indicates the number of steps through which the the animation and/or the recording will be perform in this section. It is only indicative.</source>
       <translation>Passos totais da animação da Claquete. 
 Indica o número de passo pelos quais será 
@@ -137,7 +131,7 @@ realizada a animação e/ou gravação nesta seção.
 É apenas indicativo.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="79"/>
+      <location filename="../MovieClapperboard.py" line="82"/>
       <source>Name for this Clapperboard. Indicate the chosen Clapperboard through which the animation and the recording will be performed. Write a short name, as this will be inserted in the nomenclature of each frame created.</source>
       <translation>Nome para esta Claquete. 
 Indique a claquete escolhida através da qual 
@@ -146,7 +140,7 @@ Escreva um nome abreviado, pois este será
 inserido na nomenclatura de cada quadro criado.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="84"/>
+      <location filename="../MovieClapperboard.py" line="87"/>
       <source>Take of the Clapperboard animation. Indicate the take of each recording made. Write a short name, as this will be inserted in the nomenclature of each frame created.</source>
       <translation>Tomada da animação da Claquete. 
 Indique a tomada de cada gravação realizada. 
@@ -154,14 +148,14 @@ Escreva um nome abreviado, pois este será
 inserido na nomenclatura de cada quadro criado.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="89"/>
+      <location filename="../MovieClapperboard.py" line="92"/>
       <source>Selection of the Clapperboard animation. Select the MovieCameras and/or the MovieObjects to animate with this Clapperboard.</source>
       <translation>Seleção da animação da Claquete. 
 Selecione as CameraFilmes e/ou 
 ObjetosFilmes para animar com esta Claquete.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="99"/>
+      <location filename="../MovieClapperboard.py" line="102"/>
       <source>Name of frame  of the Clapperboard animation. Indicate the main name of these frames. Write a short name, as this will be inserted in the nomenclature of each one created.</source>
       <translation>Nome do quadro da animação da Claquete.
  Indique o nome principal destes quadros. 
@@ -169,20 +163,20 @@ Escreva um nome abreviado, pois este será
 inserido na nomenclatura de cada um criado.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="112"/>
+      <location filename="../MovieClapperboard.py" line="115"/>
       <source>Output path of the Clapperboard animation. Indicate the output folder to save “R1“ or “R2“ frames.</source>
       <translation>Caminho de saída da animação da Claquete. 
 Indique a pasta de saída para salvar os quadros “R1“ ou “R2“.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="127"/>
+      <location filename="../MovieClapperboard.py" line="130"/>
       <source>Render Project of the Clapperboard animation. Indicate the internal name (not its label) of one of the previously created render projects.</source>
       <translation>Projeto de renderização da animação da Claquete. 
 Indique o nome interno (não seu rótulo) de um dos 
 projetos de renderização previamente criados.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="133"/>
+      <location filename="../MovieClapperboard.py" line="136"/>
       <source>Name of the video of the Clapperboard animation. Indicate the main name for the created videos. Chose to add the 3DViews text or Renders one, according to the origin of the frames.</source>
       <translation>Nome do vídeo da animação da Claquete. 
 Indique o nome principal dos vídeos criados. 
@@ -190,28 +184,28 @@ Opte por adicionar o texto Vistas3D ou Renders,
 de acordo com a origem dos quadros.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="137"/>
+      <location filename="../MovieClapperboard.py" line="140"/>
       <source>Number of the video of the Clapperboard animation. Indicate the initial number of the videos (zero for the first one). This will be inserted in the nomenclature of each one created.</source>
       <translation>Número do vídeo da animação da Claquete. 
 Indique o número inicial dos vídeos (zero para o primeiro). 
 Este será inserido na nomenclatura de cada um criado.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="146"/>
+      <location filename="../MovieClapperboard.py" line="149"/>
       <source>Output path for the video of the Clapperboard animation. Set path to folder to save created videos by clicking on the button with the three dots on the right.</source>
       <translation>Caminho de saída do vídeo da animação da Claquete. 
 Defina o caminho da pasta para salvar os vídeos 
 criados clicando no botão com os três pontos à direita.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="150"/>
+      <location filename="../MovieClapperboard.py" line="153"/>
       <source>Fps of the video of the Clapperboard animation. Indicate the frames per second (fps) of the video that will be created.</source>
       <translation>Fps do vídeo da animação da Claquete. 
 Indique os quadros por segundo (fps) 
 do vídeo que será criado.</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="70"/>
+      <location filename="../MovieObject.py" line="86"/>
       <source>Initial step of the MovieObjects animaion. Indicate the step which this section of the animation will begin. Changes will only take effect after MovieObjects has been re-enabled.</source>
       <translation>Passo inicial da animação do ObjetosFilme. 
 Indique o passo em que esta seção da animação 
@@ -219,20 +213,20 @@ começará. As alterações só terão efeito depois
 que ObjetosFilme for reativado.</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="74"/>
+      <location filename="../MovieObject.py" line="90"/>
       <source>Current step of the MovieObjects animaion. It is only indicative.</source>
       <translation>Passo atual da animação do ObjetosFilme. 
 É apenas indicativo.</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="77"/>
+      <location filename="../MovieObject.py" line="93"/>
       <source>End step of the MovieObjects animaion. Indicate the step which this section of the animation will finish. Changes will only take effect after MovieObjects has been re-enabled.</source>
       <translation>Passo final da animação do ObjetosFilme. 
 Indique o passo que esta seção da animação terminará. 
 As alterações só terão efeito depois que ObjetosFilme for reativado.</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="85"/>
+      <location filename="../MovieObject.py" line="101"/>
       <source>Animation fps of the MovieObjects. Indicate the fps through which the section of the animation will be performed. It is a simulation and will depend on the computer performance. Changes will only take effect after MovieObjects has been re-enabled.</source>
       <translation>Fps da animação do ObjetosFilme. 
 Indique o fps através do qual será realizado o trecho da animação. 
@@ -304,27 +298,27 @@ você pode fazer pequenos ajustes no valor
 do ângulo vertical da câmera.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="67"/>
+      <location filename="../MovieClapperboard.py" line="70"/>
       <source>Animation fps of the Clapperboard. Indicate the fps through witch the section of the animation will be performed. It is a simulation and will depend on the computer performance.</source>
       <translation>Quadro por segundo (fps) da animação da Claquete. 
 Indique os fps através dos quais será realizado o trecho da animação. 
 É uma simulação e dependerá do desempenho do computador.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="72"/>
+      <location filename="../MovieClapperboard.py" line="75"/>
       <source>Animation time of the Clapperboard. Time in hours, minutes and seconds. It is only indicative.</source>
       <translation>Tempo de animação desta Claquete em horas, 
 minutos e segundos. É apenas indicativo.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="115"/>
+      <location filename="../MovieClapperboard.py" line="118"/>
       <source>Type of frame of the Clapperboard animation. Indicates the type of frame to be saved.It is controlled by the “R1“ or “R2“ buttons.</source>
       <translation>Tipo de quadro da animação da Claquete. 
 Indica o tipo de quadro a ser salvo. 
 É controlado pelos botões “R1“ ou “R2“.</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="107"/>
+      <location filename="../MovieObject.py" line="126"/>
       <source>Route selection of the MovieObjects. Choose the route through which the objects will be animate. You have to select a single segment such as: line, arc, circle, ellipse, B-spline or Bézier curve, from Sketcher or Draft Workbenches.</source>
       <translation>Seleção da rota do ObjetosFilme. 
 Escolha a rota pela qual os objetos serão animados. 
@@ -417,15 +411,7 @@ Diminuindo o valor para aproximar o zoom e aumentando para
 afastá-lo.</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="102"/>
-      <source>Route of the MovieObjects. Choose “true” if the objects follow a route. You have to select a single segment on Route selection (“Obj_02RouteSelection“) to use it.</source>
-      <translation>Rota do ObjetosFilme. 
-Escolha "verdadeiro" se os objetos seguem uma rota. 
-Você deve selecionar um único segmento em Seleção da rota 
-(“Obj_02RouteSelection“) para usá-lo.</translation>
-    </message>
-    <message>
-      <location filename="../MovieObject.py" line="115"/>
+      <location filename="../MovieObject.py" line="134"/>
       <source>Rotation of the MovieObjects. Choose “true”, if you want to animate the objects angles.</source>
       <translation>Rotação do ObjetosFilme. 
 Escolha "verdadeiro", se desejar animar os ângulos dos objetos.</translation>
@@ -482,28 +468,28 @@ Seguir uma rota (“Follow a route”) você deve usar a
 Seleção de rota (“Cam_02RouteSelection”).</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="93"/>
+      <location filename="../MovieClapperboard.py" line="96"/>
       <source>Recording Clapperboard animation on or off. It is activated by the “R1“ or “R2“ buttons and deactivated by the Stop Recording one.</source>
       <translation>Gravação de animação da Claquete ligada ou desligada. 
 É ativada pelos botões “R1” ou “R2” e desativada pelo 
 botão Stop Recording.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="119"/>
+      <location filename="../MovieClapperboard.py" line="122"/>
       <source>“R1“ recording of the Clapperboard animation on or off. Indicates whether the chosen camera is recording the FreeCAD 3D views or not. Control this by the “R1“ and Stop Recording buttons.</source>
       <translation>Gravação “R1” da animação da Claquete ligada ou desligada. 
 Indica se a câmera escolhida está gravando as visualizações 
 3D do FreeCAD ou não. Controle isso pelos botões “R1“ e Parar gravação.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="123"/>
+      <location filename="../MovieClapperboard.py" line="126"/>
       <source>“R2“ recording of the Clapperboard animation on or off. It indicates whether the chosen camera is recording the renders or not. Control this by the “R2“ and Stop Recording buttons.</source>
       <translation>Gravação “R2” da animação da Claquete ligada ou desligada. 
 Indica se a câmera escolhida está gravando as renderizações 
 ou não. Controle isso pelos botões “R2“ e Parar Gravação.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="141"/>
+      <location filename="../MovieClapperboard.py" line="144"/>
       <source>Input frames for the video of the Clapperboard animation. Confirm the path to the folder containing the frames for creating a video by clicking on the Create video button or on the three dots on the right.</source>
       <translation>Quadros de entrada para o vídeo da animação da Claquete. 
 Confirme o caminho para a pasta que contém os 
@@ -511,26 +497,26 @@ quadros para a criação do vídeo clicando no botão
 Criar vídeo ou nos três pontos à direita.</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="81"/>
+      <location filename="../MovieObject.py" line="97"/>
       <source>Total steps of MovieObjects animaion. It is the result of the difference between End step (“Obj_03AnimEndStep“) and Initial step (“Obj_01AnimIniStep“).</source>
       <translation>Total de passos da animação do ObjetosFilme. 
 É o resultado da diferença entre o Passo final (“Cam_03AnimEndStep”) e o Passo inicial (“Cam_01AnimIniStep“).</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="91"/>
+      <location filename="../MovieObject.py" line="107"/>
       <source>Animation time of the MovieObjects, in in hours, minutes, and seconds. It is only indicative.</source>
       <translation>Tempo de animação do ObjetosFilme, em horas, 
 minutos e segundos. É apenas indicativo.</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="95"/>
+      <location filename="../MovieObject.py" line="111"/>
       <source>MovieObjects animation on or off. It should not be changed manually, it is controlled by the animation buttons.</source>
       <translation>Animação da CameraFilme ativada ou desativada. 
 Não deve ser alterado manualmente, é controlado 
 pelos botões de animação.</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="118"/>
+      <location filename="../MovieObject.py" line="137"/>
       <source>Rotation by the centers of gravities of the MovieObjects. Choose “true”, if you want to rotate the objects by their centers of gravity.</source>
       <translation>Rotação pelos centros de gravidade do ObjetosFilme. 
 Escolha "verdadeiro" se desejar girar os objetos 
@@ -547,34 +533,62 @@ esteja instalada e que haja uma animação
 criada com ela.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="104"/>
+      <location filename="../MovieClapperboard.py" line="107"/>
       <source>Width of frames of the Clapperboard animation. Only valid for “R1“ frames.Configure the width in pixels of the created frames.</source>
       <translation>Largura dos quadros da animação da Claquete. 
 Válido apenas para quadros “R1”. 
 Configure a largura em píxeis dos quadros criados.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="108"/>
+      <location filename="../MovieClapperboard.py" line="111"/>
       <source>Height of frames of the Clapperboard animation. Only valid for “R1“ frames.Configure the heigth in pixels of the created frames.</source>
       <translation>Altura dos quadros da animação da Claquete. 
 Válido somente para quadros "R1".
 Configure a altura em píxeis dos quadros criados.</translation>
     </message>
+    <message>
+      <location filename="../MovieCamera.py" line="63"/>
+      <source>Current step of the MovieCamera animation. It is only indicative.</source>
+      <translation>Passo atual da animação da CameraFilme. 
+É apenas indicativo.</translation>
+    </message>
+    <message>
+      <location filename="../MovieObject.py" line="118"/>
+      <source>Route of the MovieObjects. Choose “true” if the objects follow a route. You have to select a single segment on Route selection (“Obj_02RouteSelection“) to use it. With the route activated, the coordinate settings for points A and B will be ignored, but not deleted. Disable the route and the animation of points A and B will be activated again, if it has already beenconfigured before.</source>
+      <translation>Rota dos ObjetosFilme. Escolha “true” se os objetos seguirem uma rota. Você deve selecionar um único segmento na seleção de rota (“Obj_02RouteSelection“) para usá-lo. Com a rota ativada, as configurações de coordenadas dos pontos A e B serão ignoradas, mas não excluídas. Desative a rota e a animação dos pontos A e B será ativada novamente, caso já tenha sido configurada anteriormente.</translation>
+    </message>
+    <message>
+      <location filename="../MovieObject.py" line="146"/>
+      <source>Placements of PosA of this MovieObjects.</source>
+      <translation>Posicionamentos da PosA deste ObjetosFilme.</translation>
+    </message>
+    <message>
+      <location filename="../MovieObject.py" line="149"/>
+      <source>Placements of PosB of this MovieObjects.</source>
+      <translation>Posicionamentos da PosB deste ObjetosFilme.</translation>
+    </message>
+    <message>
+      <location filename="../MovieObject.py" line="152"/>
+      <source>Refresh on or off. Choose “true” if you need to update at each step of the animation. Sometimes needed in combination with other object animation workbenches. Note: This decreases the performance of object animations.</source>
+      <translation>Atualização ativada ou desativada. Escolha “true” se precisar atualizar a cada etapa da animação.
+Às vezes necessário em combinação com outras bancadas de animação de objetos.
+Nota: Isso diminui o desempenho das animações de objetos.</translation>
+    </message>
   </context>
   <context>
     <name>ContextMenu</name>
     <message>
-      <location filename="../InitGui.py" line="177"/>
+      <location filename="../InitGui.py" line="114"/>
       <source>Cameras and Objects</source>
       <translation>Câmeras e Objetos</translation>
     </message>
     <message>
-      <location filename="../InitGui.py" line="178"/>
+      <location filename="../InitGui.py" line="115"/>
       <source>Animation</source>
       <translation>Animação</translation>
     </message>
     <message>
-      <location filename="../InitGui.py" line="179"/>
+      <location filename="../InitGui.py" line="116"/>
       <source>Record and Play</source>
       <translation>Gravar e Reproduzir</translation>
     </message>
@@ -582,12 +596,12 @@ Configure a altura em píxeis dos quadros criados.</translation>
   <context>
     <name>CreateClapperboard</name>
     <message>
-      <location filename="../MovieClapperboard.py" line="173"/>
+      <location filename="../MovieClapperboard.py" line="176"/>
       <source>Clapperboard</source>
       <translation>Claquete</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="174"/>
+      <location filename="../MovieClapperboard.py" line="177"/>
       <source>Create a Clapperboard to play and record animations. Once created, complete and/or modify each of its properties before enabling it to start recording your frames or movies.</source>
       <translation>Crie uma Claquete para reproduzir e gravar animações. 
 Uma vez criada, complete e/ou modifique cada uma de 
@@ -616,12 +630,12 @@ a animação.</translation>
   <context>
     <name>CreateMovieObjects</name>
     <message>
-      <location filename="../MovieObject.py" line="144"/>
+      <location filename="../MovieObject.py" line="178"/>
       <source>MovieObjects</source>
       <translation>ObjetosFilme</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="145"/>
+      <location filename="../MovieObject.py" line="179"/>
       <source>First select a group of objects you want to animate and click here. Objects can move from position A to B, follow a route, rotate around their gravity centers or a chosen axis.</source>
       <translation>Primeiro selecione um grupo de objetos que deseja animar e clique aqui. 
 Os objetos podem mover-se da posição A para B, seguir uma rota, girar 
@@ -631,12 +645,12 @@ em torno de seus centros de gravidade ou de um eixo escolhido.</translation>
   <context>
     <name>CreateVideo</name>
     <message>
-      <location filename="../MovieClapperboard.py" line="293"/>
+      <location filename="../MovieClapperboard.py" line="296"/>
       <source>Create video</source>
       <translation>Criar vídeo</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="294"/>
+      <location filename="../MovieClapperboard.py" line="297"/>
       <source>Create a mp4 video of an animation. Configure the videos items in the Clapperboard. After clicking, confirm the folder to salve the video.</source>
       <translation>Crie um vídeo mp4 de uma animação. Configure os itens 
 de vídeos na Claquete. Após o clique, confirme a pasta 
@@ -660,12 +674,12 @@ configurar e clique neste botão para ativá-la.</translation>
   <context>
     <name>EnableMovieClapperboard</name>
     <message>
-      <location filename="../MovieClapperboard.py" line="198"/>
+      <location filename="../MovieClapperboard.py" line="201"/>
       <source>Enables a Clapperboard</source>
       <translation>Habilita uma Claquete</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="199"/>
+      <location filename="../MovieClapperboard.py" line="202"/>
       <source>Enable a Clapperboard. First, select the Clapperboard that you want to configure, then click this button to activate it.</source>
       <translation>Habilite uma Claquete. Primeiro, selecione a Claquete 
 que deseja configurar e clique neste botão para ativá-la.</translation>
@@ -674,12 +688,12 @@ que deseja configurar e clique neste botão para ativá-la.</translation>
   <context>
     <name>EnableMovieObjects</name>
     <message>
-      <location filename="../MovieObject.py" line="207"/>
+      <location filename="../MovieObject.py" line="241"/>
       <source>Enable a MovieObjects</source>
       <translation>Habilitar um ObjetosFilme</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="208"/>
+      <location filename="../MovieObject.py" line="242"/>
       <source>Select the MovieObjects that you want to configure, then click on this button to be possible to configure its positions A and B, set an axis or exclude it.</source>
       <translation>Selecione o ObjetosFilme que deseja configurar, 
 clique neste botão para configurar suas posições 
@@ -704,12 +718,12 @@ No segundo clique, vai para o início da animação da próxima câmera/objetos
   <context>
     <name>ExcludeMovieObjects</name>
     <message>
-      <location filename="../MovieObject.py" line="255"/>
+      <location filename="../MovieObject.py" line="289"/>
       <source>Exclude a MovieObjects</source>
       <translation>Excluir um ObjetosFilme</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="256"/>
+      <location filename="../MovieObject.py" line="290"/>
       <source>Select a MovieObjects that you want to exclude, then click on this button. Objects positions and angles will revert to the values set when the MovieObjects were created.</source>
       <translation>Selecione um ObjetosFilme que você deseja excluir e clique neste botão. 
 As posições e ângulos dos objetos serão revertidos para os valores 
@@ -735,47 +749,47 @@ da câmera/objetos anteriores (se houver).</translation>
   <context>
     <name>InitGui</name>
     <message>
-      <location filename="../InitGui.py" line="39"/>
+      <location filename="../InitGui.py" line="40"/>
       <source>Movie</source>
       <translation>Filme</translation>
     </message>
     <message>
-      <location filename="../InitGui.py" line="40"/>
+      <location filename="../InitGui.py" line="41"/>
       <source>Workbench to create and visualize animations and videos in FreeCAD</source>
       <translation>Bancada para criar e visualizar animações e vídeos no FreeCAD</translation>
     </message>
     <message>
-      <location filename="../InitGui.py" line="129"/>
+      <location filename="../InitGui.py" line="66"/>
       <source>Cameras and Objects</source>
       <translation>Câmeras e Objetos</translation>
     </message>
     <message>
-      <location filename="../InitGui.py" line="141"/>
+      <location filename="../InitGui.py" line="78"/>
       <source>Animation tools</source>
       <translation>Ferramentas de animação</translation>
     </message>
     <message>
-      <location filename="../InitGui.py" line="142"/>
+      <location filename="../InitGui.py" line="79"/>
       <source>Animation</source>
       <translation>Animação</translation>
     </message>
     <message>
-      <location filename="../InitGui.py" line="155"/>
+      <location filename="../InitGui.py" line="92"/>
       <source>Record and Play</source>
       <translation>Gravar e Reproduzir</translation>
     </message>
     <message>
-      <location filename="../InitGui.py" line="164"/>
+      <location filename="../InitGui.py" line="101"/>
       <source>Movie Workbench loaded</source>
       <translation>Bancada Filme carregada</translation>
     </message>
     <message>
-      <location filename="../InitGui.py" line="128"/>
+      <location filename="../InitGui.py" line="65"/>
       <source>Cameras and objects tools</source>
       <translation>Ferramentas das câmeras e objetos</translation>
     </message>
     <message>
-      <location filename="../InitGui.py" line="154"/>
+      <location filename="../InitGui.py" line="91"/>
       <source>Record and play tools</source>
       <translation>Ferramentas de gravação e reprodução</translation>
     </message>
@@ -805,98 +819,98 @@ ou faça os ajustes em sua janela de propriedades.</translation>
       <translation>Posição B da CameraFilme estabelecida.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="184"/>
+      <location filename="../MovieClapperboard.py" line="187"/>
       <source>Clapperboard</source>
       <translation>Claquete</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="341"/>
+      <location filename="../MovieClapperboard.py" line="344"/>
       <source>Select or confirm the folder to save the “R1“ frames</source>
       <translation>Selecione ou confirme a pasta para salvar os quadros de "R1"</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="353"/>
+      <location filename="../MovieClapperboard.py" line="356"/>
       <source>Select or confirm the folder to save the “R2“ frames</source>
       <translation>Selecione ou confirme a pasta para salvar os quadros de "R2"</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="376"/>
+      <location filename="../MovieClapperboard.py" line="380"/>
       <source>Frame 3DView {} has been completed.</source>
       <translation>O quadro {} da Vista3D foi concluído.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="393"/>
+      <location filename="../MovieClapperboard.py" line="397"/>
       <source>Frame render {} has been completed.</source>
       <translation>O quadro {} da renderização foi concluído.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="403"/>
+      <location filename="../MovieClapperboard.py" line="407"/>
       <source>Select or confirm the input frames folder to create video</source>
       <translation>Selecione ou confirme a pasta dos quadros de entrada para criar o vídeo</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="435"/>
+      <location filename="../MovieClapperboard.py" line="439"/>
       <source>frame {} of {}.</source>
       <translation>quadro {} de {}.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="445"/>
+      <location filename="../MovieClapperboard.py" line="449"/>
       <source>Select file to play</source>
       <translation>Selecione o arquivo para reproduzir</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="456"/>
+      <location filename="../MovieClapperboard.py" line="460"/>
       <source>Error: video file not found!</source>
       <translation>Erro: arquivo de vídeo não encontrado!</translation>
     </message>
     <message>
-      <location filename="../MovieConnection.py" line="197"/>
+      <location filename="../MovieConnection.py" line="198"/>
       <source>You must have an animation of the ExplodedAssembly Workbench first!</source>
       <translation>Você deve ter uma animação da Bancada ExplodedAssembly primeiro!</translation>
     </message>
     <message>
-      <location filename="../MovieConnection.py" line="310"/>
+      <location filename="../MovieConnection.py" line="311"/>
       <source>You must have an animation from the ExplodedAssembly workbench first!</source>
       <translation>Você deve ter uma animação da Bancada ExplodedAssembly primeiro!</translation>
     </message>
     <message>
-      <location filename="../MovieConnection.py" line="334"/>
+      <location filename="../MovieConnection.py" line="335"/>
       <source>You must have an animation from the ExplodedAssembly Workbench first!</source>
       <translation>Você deve ter uma animação da Bancada ExplodedAssembly primeiro!</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="161"/>
+      <location filename="../MovieObject.py" line="195"/>
       <source>Select at least one object to create a MovieObjects!</source>
       <translation>Selecione pelo menos um objeto para criar um ObjetosFilme!</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="192"/>
+      <location filename="../MovieObject.py" line="226"/>
       <source>MovieObjects</source>
       <translation>ObjetosFilme</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="276"/>
+      <location filename="../MovieObject.py" line="310"/>
       <source>Select a MovieObjects to exclude!</source>
       <translation>Selecione um ObjetosFilme para excluir!</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="309"/>
+      <location filename="../MovieObject.py" line="343"/>
       <source>MovieObjects position A has been established.</source>
       <translation>Posição A do ObjetosFilme foi estabelecida.</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="334"/>
+      <location filename="../MovieObject.py" line="370"/>
       <source>MovieObjects position B has been established.</source>
       <translation>Posição B do ObjetosFilme foi estabelecida.</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="342"/>
+      <location filename="../MovieObject.py" line="380"/>
       <source>First select the objects you want to rotate then the axis of rotation.</source>
       <translation>Primeiro selecione os objetos que deseja 
 girar e depois o eixo de rotação.</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="409"/>
+      <location filename="../MovieObject.py" line="446"/>
       <source>You have to select a route in “Obj_02RouteSelection“!</source>
       <translation>Você deve selecionar uma rota em 
 "Cam_02RouteSelection"!</translation>
@@ -919,7 +933,7 @@ girar e depois o eixo de rotação.</translation>
 "Cam_02TargetObjectSelection"!</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="438"/>
+      <location filename="../MovieClapperboard.py" line="442"/>
       <source>Outputed video to {}</source>
       <translation>Vídeo enviado para {}</translation>
     </message>
@@ -927,7 +941,7 @@ girar e depois o eixo de rotação.</translation>
   <context>
     <name>MovieAnimation</name>
     <message>
-      <location filename="../MovieAnimation.py" line="610"/>
+      <location filename="../MovieAnimation.py" line="619"/>
       <source>Connection is enable, you must select one connection in “Cam_07Connection“!</source>
       <translation>A conexão está habilitada, você deve selecionar 
 uma conexão em “Cam_07Connection“!</translation>
@@ -938,17 +952,17 @@ uma conexão em “Cam_07Connection“!</translation>
       <translation>Selecione uma CameraFilme!</translation>
     </message>
     <message>
-      <location filename="../MovieAnimation.py" line="473"/>
+      <location filename="../MovieAnimation.py" line="476"/>
       <source>Select a MovieObjects!</source>
       <translation>Selecione um ObjetosFilme!</translation>
     </message>
     <message>
-      <location filename="../MovieAnimation.py" line="559"/>
+      <location filename="../MovieAnimation.py" line="564"/>
       <source>Select MovieObjects in “Cam_06Enable“!</source>
       <translation>Selecione ObjetosFilmes em “Cam_06Enable“!</translation>
     </message>
     <message>
-      <location filename="../MovieAnimation.py" line="675"/>
+      <location filename="../MovieAnimation.py" line="687"/>
       <source>Select at least one MovieCamera or MovieObjects to enable!</source>
       <translation>Selecione pelo menos uma CameraFilme ou ObjetosFilme para ativar!</translation>
     </message>
@@ -963,7 +977,7 @@ uma conexão em “Cam_07Connection“!</translation>
       <translation>Mover um passo à frente não funciona com ExplodedAssembly!</translation>
     </message>
     <message>
-      <location filename="../MovieAnimation.py" line="669"/>
+      <location filename="../MovieAnimation.py" line="681"/>
       <source>Select a Clapperboard!</source>
       <translation>Selecione uma Claquete!</translation>
     </message>
@@ -1045,12 +1059,12 @@ uma conexão em “Cam_07Connection“!</translation>
   <context>
     <name>PlayVideo</name>
     <message>
-      <location filename="../MovieClapperboard.py" line="317"/>
+      <location filename="../MovieClapperboard.py" line="320"/>
       <source>Play video</source>
       <translation>Reproduzir vídeo</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="318"/>
+      <location filename="../MovieClapperboard.py" line="321"/>
       <source>Play a video file indicated in the dialog window.</source>
       <translation>Reproduza um arquivo de vídeo indicado na janela de diálogo.</translation>
     </message>
@@ -1084,12 +1098,12 @@ uma conexão em “Cam_07Connection“!</translation>
   <context>
     <name>SetMovieObjectsAxis</name>
     <message>
-      <location filename="../MovieObject.py" line="230"/>
+      <location filename="../MovieObject.py" line="264"/>
       <source>Set an axis</source>
       <translation>Definir um eixo</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="231"/>
+      <location filename="../MovieObject.py" line="265"/>
       <source>After create a MovieObjects, position A and B set, select those objects you want to rotate around a axis. Select first the objects, then the axis. To erase these settings, click on Set position B button.</source>
       <translation>Após criar um ObjetosFilme, com as posições A e B definidas, 
 selecione os objetos que deseja que girem em torno de um eixo. 
@@ -1143,12 +1157,12 @@ suas posições finais e clique neste botão.</translation>
   <context>
     <name>StartRecord3DView</name>
     <message>
-      <location filename="../MovieClapperboard.py" line="221"/>
+      <location filename="../MovieClapperboard.py" line="224"/>
       <source>“R1“ - Record 3DViews</source>
       <translation>“R1“ - Gravar vistas 3D</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="222"/>
+      <location filename="../MovieClapperboard.py" line="225"/>
       <source>Triggers the recording of frames according to the “Frames config“ of the properties window of the Clapperboard. After clicking on it, confirm the folder to salve the frames and play the animation.</source>
       <translation>Engatilha a gravação dos quadros conforme “Frames config“ 
 da janela de propriedades da Claquete. 
@@ -1159,12 +1173,12 @@ os quadros e reproduzir a animação.</translation>
   <context>
     <name>StartRecordRender</name>
     <message>
-      <location filename="../MovieClapperboard.py" line="246"/>
+      <location filename="../MovieClapperboard.py" line="249"/>
       <source>“R2“ - Record renders</source>
       <translation>“R2“ - Gravar renderizações</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="247"/>
+      <location filename="../MovieClapperboard.py" line="250"/>
       <source>Triggers the recording of frames according to the “Frames config“ of the properties window of the Clapperboard. After clicking on it, confirm the folder to salve the frames and play the animation.</source>
       <translation>Engatilha a gravação dos quadros conforme “Frames config“ 
 da janela de propriedades da Claquete. 
@@ -1175,12 +1189,12 @@ os quadros e reproduzir a animação.</translation>
   <context>
     <name>StopRecordCamera</name>
     <message>
-      <location filename="../MovieClapperboard.py" line="272"/>
+      <location filename="../MovieClapperboard.py" line="275"/>
       <source>Stop recording</source>
       <translation>Parar gravação</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="273"/>
+      <location filename="../MovieClapperboard.py" line="276"/>
       <source>Stop the Clapperboard recording.</source>
       <translation>Pare a gravação da Claquete.</translation>
     </message>
