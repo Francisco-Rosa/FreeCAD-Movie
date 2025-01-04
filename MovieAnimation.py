@@ -334,11 +334,11 @@ class SetMoviePosA:
                 'MenuText': QT_TRANSLATE_NOOP('SetMoviePosA', 'Set position A'),
                 'ToolTip': QT_TRANSLATE_NOOP('SetMoviePosA',
                                              'Applicable for creating an animation from point A to B '
-                                             '(not when the MovieCamera target or MovieObjects are set up to follow a route). ' 
+                                             '(not when the MovieCamera target or MovieObjects are set up to follow a route). '
                                              'First, select and activate the MovieCamera or MovieObjects you want to configure. '
                                              'For MovieCameras, position the 3D view with the desired framing to be the start '
-                                             'of the animation (position A), then click on Set position A.'
-                                             'For MovieObjects, position, rotate and/or keep them in their current position, then '
+                                             'of the animation (position A), then click on Set position A. '
+                                             'For MovieObjects, position, rotate or keep them in their current position, then '
                                              'click on this button.')}
 
     def IsActive(self):
@@ -366,10 +366,10 @@ class SetMoviePosB:
                 'ToolTip': QT_TRANSLATE_NOOP('SetMoviePosB', 
                                              'Applicable for creating an animation from point A to B '
                                              '(not when the MovieCamera target or MovieObjects are set up to follow a route). '
-                                             'Select and activate the MovieCamera or MovieObjects you want to configure (if not so). '
+                                             'Select and activate the MovieCamera or MovieObjects you want to configure. '
                                              'For MovieCameras, position the 3D view with the desired framing to be the end '
-                                             'of the animation (position B), then click on Set position B.'
-                                             'For MovieObjects, position and/or rotate them in the final position, then '
+                                             'of the animation (position B), then click on Set position B. '
+                                             'For MovieObjects, position and/or rotate them to the final position, then '
                                              'click on this button.')}
 
     def IsActive(self):
