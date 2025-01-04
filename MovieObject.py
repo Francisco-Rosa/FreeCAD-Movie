@@ -45,7 +45,8 @@ def enableObjectsSelection(Enable = None):
     global MO
     MO = Enable
     # New - Updating PosA and PosB
-    if(hasattr(MO, 'PosAList')):
+    #if(hasattr(MO, 'PosAList')):
+    if hasattr(MO, 'PosAList'):
         import ast
         if MO.PosAList != []:
             MO.PosA = ast.literal_eval(MO.PosAList[0])
@@ -84,18 +85,18 @@ class MovieObjects:
 
 
         obj.addProperty('App::PropertyInteger', 'Obj_01AnimIniStep', 'Movie Objects 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Initial step of the MovieObjects animaion. Indicate the step which this section of the '
+                                                    'Initial step of the MovieObjects animation. Indicate the step which this section of the '
                                                     'animation will begin. Changes will only take '
                                                     'effect after MovieObjects has been re-enabled.')).Obj_01AnimIniStep = 0
         obj.addProperty('App::PropertyInteger', 'Obj_02AnimCurrentStep', 'Movie Objects 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Current step of the MovieObjects animaion. It is only indicative.'
+                                                    'Current step of the MovieObjects animation. It is only indicative.'
                                                     )).Obj_02AnimCurrentStep = 0
         obj.addProperty('App::PropertyInteger', 'Obj_03AnimEndStep', 'Movie Objects 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'End step of the MovieObjects animaion. Indicate the step which this section of the animation '
+                                                    'End step of the MovieObjects animation. Indicate the step which this section of the animation '
                                                     'will finish. Changes will only take '
                                                     'effect after MovieObjects has been re-enabled.')).Obj_03AnimEndStep = 50
         obj.addProperty('App::PropertyInteger', 'Obj_04AnimTotalSteps', 'Movie Objects 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Total steps of MovieObjects animaion. It is the result of the difference between End step '
+                                                    'Total steps of MovieObjects animation. It is the result of the difference between End step '
                                                     '(“Obj_03AnimEndStep“) and Initial step (“Obj_01AnimIniStep“).'
                                                     )).Obj_04AnimTotalSteps = 50
         obj.addProperty('App::PropertyInteger', 'Obj_05AnimFps', 'Movie Objects 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
@@ -120,7 +121,7 @@ class MovieObjects:
                                                     'Route of the MovieObjects. Choose “true” if the objects follow a route. '
                                                     'You have to select a single segment on Route selection (“Obj_02RouteSelection“) to use it. '
                                                     'With the route activated, the coordinate settings for points A and B will be ignored, but not deleted. '
-                                                    'Disable the route and the animation of points A and B will be activated again, if it has already been'
+                                                    'Disable the route and the animation of points A and B will be activated again, if it has already been '
                                                     'configured before.'
                                                     )).Obj_01Route = False
         obj.addProperty('App::PropertyLink', 'Obj_02RouteSelection', 'Movie Objects 02 - Objects config', 
