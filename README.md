@@ -1,44 +1,57 @@
-# FreeCAD Movie Workbench
-FreeCAD Workbench to animate cameras and objects, record and play videos
+## FreeCAD Movie Workbench
+Workbench to animate cameras and objects, record and play videos
 
-
-The Movie Workbench icon
-
-<img src=./icons//MovieWBIcon.svg height=50>
+### Worbench Icon
+![Movie Workbench Icon](./icons//MovieWBIcon.svg)
 
 ### Features
-##### The Movie Camera and Objects toolbars (animate cameras and objects):
-<img src=./Docs/Movie_cameras_objects_toolbar_01.png height=50>
+#### Animate Cameras and Objects
 
 * Create animations of cameras and objects separately or simultaneously, showing the details of your project.
-* It is possible to create cameras/objects animations between two chosen points, making them follow a path or rotating them on a fixed base/axis.
-* The camera targets can be free, fixed, or mobile with the option to make them follow the path together with the camera.
-* Once the camera animations are established, it is possible to make further adjustments to the positions, rotations, and zooms of the cameras until reaching the final desired settings.
+* Ability to create cameras/objects animations between two chosen points, making them follow a path or rotating them on a fixed base/axis.
+* Camera targets can be free, fixed, or mobile with the option to make them follow the path together with the camera.
+* Ability to re-edit animations and adjust positions, rotations, and zooming of the cameras.
 * If you already have an animation in another workbench, you can add cameras animations and produce render videos with the connection module (see below more details).
 
-##### The Animation toolbar (visualize your animations within FreeCAD):
-<img src=./Docs/Movie_animation_toolbar.png height=50>
+#### Visualize your Animations
 
-* You can play, pause, go back and forward the cameras/objects animations in real time within FreeCAD, before record them in videos.
+* Ability to Play, pause, scrub forward and backward the cameras/objects animations in real time prior to recording.
 
-##### The Clapperboard toolbar (record and play videos):
-<img src=./Docs/Movie_record_play_toolbar.png height=50>
+#### Record and Play
 
-* Create frames from the FreeCAD 3D views (**R1**) or the rendered ones (**R2**).   
+* Create frames from the FreeCAD 3D view (**R1**) or the rendered ones (**R2**).   
 * Create videos from them.  
 * Check the results playing the videos you have created.
 
-(Watch the [video tutorial on using camera sequence]( https://youtu.be/tjfDeOKgyyw ))
+### Tutorials
 
-(Watch the [video with the camera following a path and a target and animated objects](https://www.youtube.com/watch?v=cRXrg0eA7x4))
+##### Using Camera Sequence
 
-(Watch the [video using the sequence of cameras and one that follows a path and target, 3D view frames](https://www.youtube.com/watch?v=NXHm2nitWug))
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=tjfDeOKgyyw" target="_blank"><img src="http://img.youtube.com/vi/tjfDeOKgyyw/1.jpg" alt="Using camera sequence" width="240" height="180" border="3" /></a>
 
-(Watch the [video using the sequence of cameras and one that follows a path and target, rendered frames](https://www.youtube.com/watch?v=0Pqoasgca2w))
+##### Tracking a path, target and animated objects
 
-(Watch the [video with the cameras following paths and targets](https://www.youtube.com/watch?v=ePY68BC24cs))
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=cRXrg0eA7x4" target="_blank"><img src="http://img.youtube.com/vi/cRXrg0eA7x4/2.jpg" alt="Tracking a path, target and animated objects" width="240" height="180" border="3" /></a>
 
-(Watch the [Video with object animation by Sketches](https://www.youtube.com/watch?v=L-5tfH3OfGQ))
+##### Sequence of cameras that track path, target, and 3D view frames
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=NXHm2nitWug" target="_blank"><img src="http://img.youtube.com/vi/NXHm2nitWug/0.jpg" alt="Tracking path, target, and 3D view frames" width="240" height="180" border="3" /></a>
+
+##### Sequence of cameras that track a path, target, and rendered frames
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=0Pqoasgca2w" target="_blank"><img src="http://img.youtube.com/vi/0Pqoasgca2w/3.jpg" alt="Tracking a path, target and rendered frames" width="240" height="180" border="3" /></a>
+
+##### Cameras tracking paths and targets
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=ePY68BC24cs" target="_blank"><img src="http://img.youtube.com/vi/ePY68BC24cs/3.jpg" alt="Cameras tracking paths and targets" width="240" height="180" border="3" /></a>
+
+##### Video with object animation by Sketches
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=L-5tfH3OfGQ" target="_blank"><img src="http://img.youtube.com/vi/L-5tfH3OfGQ/1.jpg" alt="Video with object animation by Sketches" width="240" height="180" border="3" /></a>
+
+
+### Prerequisites 
+FreeCAD ≥ v0.20 
 
 ### Installation
 
@@ -65,13 +78,16 @@ Result: Reopening FreeCAD will now show Movie workbench available in the [workbe
 ### Preparation
 
 * If you want to use the rendered frames (**R2**), you must install the Render Workbench (from version 2023.02.05), prepare rendering projects and test them preventively to make sure everything is working correctly (see information in [FreeCAD-Render](https://github.com/FreeCAD/FreeCAD-render)). It is also recommended to take advantage and use some cameras from this workbench that better show the animation.
-* If you want to use an animation from another workbench, script or macro of FreeCAD, it is necessary to prepare the connection module for using them (ex. [Modified ExplodedAssembly](https://github.com/Francisco-Rosa/ExplodedAssembly)). For this, see the instructions inside the [MovieConnection.py](https://github.com/Francisco-Rosa/FreeCAD-Movie/blob/master/MovieConnection.py).
+* If you want to use an animation from another workbench, script or macro of FreeCAD, it is necessary to prepare the connection module for using them (ex. [Modified ExplodedAssembly](https://github.com/Francisco-Rosa/ExplodedAssembly)). For this, see the instructions inside the [Connection.py](https://github.com/Francisco-Rosa/FreeCAD-Movie/blob/master/Connection.py).
 
 
 ### Usage
 
-##### To create camera animations, go to Movie Cameras and objects toolbar and:
+##### Create Camera Animations 
+
 <img src=./Docs/Movie_cameras_objects_toolbar_01.png height=50> <img src=./Docs/Movie_animation_toolbar.png height=50>
+The toolbar above is the Movie Cameras and Objects 
+
 
 1. Click on the Create a Movie Camera button <img src=./icons//CreateMovieCameraIcon.svg height=20> to create one and to configure it (see the tips showed for each item in the property window - a Movie Camera properties image is shown below).
 2. Initially, a static camera is created. You can use it like this in a object animation, as a fixed camera. To configure the movie camera to animations between two positions, first, select and activate the Movie Camera you want to configure with the Enable Movie Camera icon <img src=./icons//EnableMovieCameraIcon.svg height=20>. Position the 3D view with the desired framing to be the start of the animation (Pos A), click on Set the Position A button <img src=./icons//SetMoviePosAIcon.svg height=20>. Position the 3D view with the desired framing to be the end of the animation (Pos B), then click on Set the Position B button <img src=./icons//SetMoviePosBIcon.svg height=20>. Click on go to beginning <img src=./icons//IniMovieAnimationIcon.svg height=20> and to the end of the animation buttons <img src=./icons//EndMovieAnimationIcon.svg height=20> to confirm the configurations. Make the adjustments you want in the position, rotation, and zoom of the Movie Camera (see Movie Camera properties image below).
@@ -137,20 +153,16 @@ Result: Reopening FreeCAD will now show Movie workbench available in the [workbe
 ##### The context menu:
 
 <img src=./Docs/Context_menu.png width=900>
-
  
 ### Documentation
 For more information, see the [TUTORIAL.md](https://github.com/Francisco-Rosa/FreeCAD-Movie/blob/master/TUTORIAL.md) (also inside the Movie folder, after the installation).
 Wiki documentation will be available as soon as possible.
 
-###  FreeCAD version 
-0.20 or superior
-  
-### Feedback 
+  ### Feedback 
 For discussion, please use the [Movie Workbench thread](https://forum.freecadweb.org/viewtopic.php?f=8&t=74432) in the FreeCAD forum.
 
 #### License 
-LGPL-2.1
+LGPL-2.1 [LICENCE](./LICENCE)
 
 #### Author
 Francisco Rosa
