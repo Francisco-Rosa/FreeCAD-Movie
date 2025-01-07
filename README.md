@@ -44,18 +44,23 @@ The Movie Workbench icon
 
 ##### Via Addon Manager (Recommended)
 
-- Menu Tools > Addon Manager
-- Locating Movie Worbench and installing it
-- Restart FreeCAD
-   
+1. Go to Tools > [Addon Manager](https://wiki.freecad.org/Std_AddonMgr)
+1. Locate 'Movie Worbench' and install it
+1. Restart FreeCAD
+
+Result: Reopening FreeCAD will now show Movie workbench available in the [workbench selector dropdown](https://wiki.freecad.org/Std_Workbench).
 
 ##### Manually install using GitHub
-  
+
+<details><summary>Expand to read manual installation instructions</summary>
+
 - Download the ZIP file (click 'Clone or Download' button above) 
 - For Ubuntu and similar OS's, extract it inside */home/username/.local/share/FreeCAD/Mod*   
 - For Windows, extract it inside *C: \Users\your_user_name\AppData\Roaming\FreeCAD\Mod*
 - On macOS it is usually */Users/username/Library/Preferences/FreeCAD/Mod*
 - Launch FreeCAD
+
+</details>
 
 ### Preparation
 
