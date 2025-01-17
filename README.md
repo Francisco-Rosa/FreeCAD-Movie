@@ -27,11 +27,11 @@ Workbench to animate cameras and objects, record and play videos
 
 ##### Using Camera Sequence
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=tjfDeOKgyyw" target="_blank"><img src="http://img.youtube.com/vi/tjfDeOKgyyw/1.jpg" alt="Using camera sequence" width="240" height="180" border="3" /></a>
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=tjfDeOKgyyw" target="_blank"><img src="http://img.youtube.com/vi/tjfDeOKgyyw/0.jpg" alt="Using camera sequence" width="240" height="180" border="3" /></a>
 
 ##### Tracking a path, target and animated objects
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=cRXrg0eA7x4" target="_blank"><img src="http://img.youtube.com/vi/cRXrg0eA7x4/2.jpg" alt="Tracking a path, target and animated objects" width="240" height="180" border="3" /></a>
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=cRXrg0eA7x4" target="_blank"><img src="http://img.youtube.com/vi/cRXrg0eA7x4/0.jpg" alt="Tracking a path, target and animated objects" width="240" height="180" border="3" /></a>
 
 ##### Sequence of cameras that track path, target, and 3D view frames
 
@@ -39,15 +39,15 @@ Workbench to animate cameras and objects, record and play videos
 
 ##### Sequence of cameras that track a path, target, and rendered frames
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=0Pqoasgca2w" target="_blank"><img src="http://img.youtube.com/vi/0Pqoasgca2w/3.jpg" alt="Tracking a path, target and rendered frames" width="240" height="180" border="3" /></a>
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=0Pqoasgca2w" target="_blank"><img src="http://img.youtube.com/vi/0Pqoasgca2w/0.jpg" alt="Tracking a path, target and rendered frames" width="240" height="180" border="3" /></a>
 
 ##### Cameras tracking paths and targets
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=ePY68BC24cs" target="_blank"><img src="http://img.youtube.com/vi/ePY68BC24cs/3.jpg" alt="Cameras tracking paths and targets" width="240" height="180" border="3" /></a>
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=ePY68BC24cs" target="_blank"><img src="http://img.youtube.com/vi/ePY68BC24cs/0.jpg" alt="Cameras tracking paths and targets" width="240" height="180" border="3" /></a>
 
 ##### Video with object animation by Sketches
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=L-5tfH3OfGQ" target="_blank"><img src="http://img.youtube.com/vi/L-5tfH3OfGQ/1.jpg" alt="Video with object animation by Sketches" width="240" height="180" border="3" /></a>
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=L-5tfH3OfGQ" target="_blank"><img src="http://img.youtube.com/vi/L-5tfH3OfGQ/0.jpg" alt="Video with object animation by Sketches" width="240" height="180" border="3" /></a>
 
 
 ### Prerequisites 
