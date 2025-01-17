@@ -78,7 +78,7 @@ Result: Reopening FreeCAD will now show Movie workbench available in the [workbe
 ### Preparation
 
 * If you want to use the rendered frames (**R2**), you must install the Render Workbench (from version 2023.02.05), prepare rendering projects and test them preventively to make sure everything is working correctly (see information in [FreeCAD-Render](https://github.com/FreeCAD/FreeCAD-render)). It is also recommended to take advantage and use some cameras from this workbench that better show the animation.
-* If you want to use an animation from another workbench, script or macro of FreeCAD, it is necessary to prepare the connection module for using them (ex. [Modified ExplodedAssembly](https://github.com/Francisco-Rosa/ExplodedAssembly)). For this, see the instructions inside the [Connection.py](https://github.com/Francisco-Rosa/FreeCAD-Movie/blob/master/Connection.py).
+* If you want to use an animation from another workbench, script or macro of FreeCAD, it is necessary to prepare the connection module for using them (ex. [Modified ExplodedAssembly](https://github.com/Francisco-Rosa/ExplodedAssembly)). For this, see the instructions inside the [MovieConnection.py](https://github.com/Francisco-Rosa/FreeCAD-Movie/blob/master/MovieConnection.py).
 
 
 ### Usage
