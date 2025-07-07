@@ -26,6 +26,7 @@
   <content>
     <workbench>
       <depend optional="True" type="addon">Render</depend>
+      <depend optional="true" type="python">opencv-python</depend>
       <tag>freecad</tag>
       <tag>addons</tag>
       <tag>workbench</tag>
