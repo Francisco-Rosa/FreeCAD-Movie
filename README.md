@@ -159,7 +159,7 @@ For more information, see the [TUTORIAL.md](https://github.com/Francisco-Rosa/Fr
 Wiki documentation will be available as soon as possible.
 
   ### Feedback 
-For discussion, please use the [Movie Workbench thread](https://forum.freecadweb.org/viewtopic.php?f=8&t=74432) in the FreeCAD forum.
+For discussion, please use the [Movie Workbench thread](https://forum.freecad.org/viewtopic.php?t=74432&hilit=movie+workbench) in the FreeCAD forum.
 
 #### License 
 LGPL-2.1 [LICENCE](./LICENCE)
