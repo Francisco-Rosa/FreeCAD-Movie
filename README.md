@@ -1,7 +1,7 @@
 ## FreeCAD Movie Workbench
 Workbench to animate cameras and objects, record and play videos
 
-### Worbench Icon
+### Workbench Icon
 ![Movie Workbench Icon](./icons//MovieWBIcon.svg)
 
 ### Features
@@ -58,7 +58,7 @@ FreeCAD ≥ v0.20
 ##### Via Addon Manager (Recommended)
 
 1. Go to Tools > [Addon Manager](https://wiki.freecad.org/Std_AddonMgr)
-1. Locate 'Movie Worbench' and install it
+1. Locate 'Movie Workbench' and install it
 1. Restart FreeCAD
 
 Result: Reopening FreeCAD will now show Movie workbench available in the [workbench selector dropdown](https://wiki.freecad.org/Std_Workbench).
