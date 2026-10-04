@@ -23,6 +23,8 @@
 # *                                                                         *
 # ***************************************************************************/
 
+"""Creates a animation of cameras to play in FreeCAD."""
+
 import FreeCAD
 import FreeCADGui as Gui
 from pivy import coin
@@ -43,208 +45,433 @@ Gui.addLanguagePath(LanguagePath)
 
 MC = None
 
-def enableCameraSelection(Enable = None):
-    global MC
-    MC = Enable
+#VIEW_00 = translate("MovieCamera", "3D view")
+#VIEW_01 = translate("MovieCamera", "Render")
 
 # ======================================================================================
 # 1. Classes
 
 class MovieCamera:
+
     '''Class to create a camera to be animated'''
 
-    def __init__(self, obj):
+    def __init__(self,obj):
+        obj.Proxy = self
+        self.setProperties(obj)
 
-    # Movie Camera 1 - Animation config
+    def setProperties(self,obj):
 
-        obj.addProperty('App::PropertyInteger', 'Cam_01AnimIniStep', 'Movie Camera 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Initial step of the MovieCamera animation. Indicate the step which this section of '
-                                                    'the animation will begin.')).Cam_01AnimIniStep = 0
-        obj.addProperty('App::PropertyInteger', 'Cam_02AnimCurrentStep', 'Movie Camera 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Current step of the MovieCamera animation. It is only indicative.')).Cam_02AnimCurrentStep = 0
-        obj.addProperty('App::PropertyInteger', 'Cam_03AnimEndStep', 'Movie Camera 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'End step of the MovieCamera animation. Indicate the step which this section of the animation '
-                                                    'will finish. Changes will only take effect after MovieCamera has been re-enabled.'
-                                                    )).Cam_03AnimEndStep = 100
-        obj.addProperty('App::PropertyInteger', 'Cam_04AnimTotalSteps', 'Movie Camera 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Total steps of the MovieCamera animation. It is the result of the difference between end step '
-                                                    '(“Cam_03AnimEndStep”) and initial step (“Cam_01AnimIniStep”).'
-                                                    )).Cam_04AnimTotalSteps = 100
-        obj.addProperty('App::PropertyInteger', 'Cam_05AnimFps', 'Movie Camera 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Animation fps of the MovieCamera. Specify the value for this animation section. '
-                                                    'It is a simulation and will depend on the '
-                                                    'computer performance. Changes will only take '
-                                                    'effect after MovieCamera has been re-enabled.')).Cam_05AnimFps = 30
-        obj.addProperty('App::PropertyString', 'Cam_06AnimTime', 'Movie Camera 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Animation time of the MovieCamera, in hours, minutes, and seconds. '
-                                                    'It is only indicative.'
-                                                    )).Cam_06AnimTime = time.strftime('%H:%M:%S', time.gmtime(3.33))
-        obj.addProperty('App::PropertyBool', 'Cam_07OnAnim', 'Movie Camera 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'MovieCamera animation on or off. '
-                                                    'It should not be changed manually, it is controlled by the animation buttons.'
-                                                    )).Cam_07OnAnim = False
+        """Gives the object properties to MovieCamera."""
 
-    # Movie Camera 02 - Camera config
+        pl = obj.PropertiesList
 
-        obj.addProperty('App::PropertyEnumeration', 'Cam_01Type', 'Movie Camera 02 - Camera config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Camera type for the MovieCamera. Choose the camera through which this section of '
-                                                    'the animation will be performed: “3DView” for 3D views and the “Render” for '
-                                                    'adopting the settings of a camera from the Render Workbench, previously created and adjusted.'
-                                                    )).Cam_01Type = ('3DView', 'Render')
-        obj.addProperty('App::PropertyLink', 'Cam_02Render_Selection', 'Movie Camera 02 - Camera config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Render camera selection for the MovieCamera animation. If you have chosen “Render” '
-                                                    'in Camera type (“Cam_01Type”), you have to select which one will be used in this '
-                                                    'section of the animation.'
-                                                    )).Cam_02Render_Selection = None
-        obj.addProperty('App::PropertyInteger', 'Cam_03RenderWidth', 'Movie Camera 02 - Camera config',  QT_TRANSLATE_NOOP('App::Property',
-                                                    'Render image width of the MovieCamera animation. Configure the width in pixels that will '
-                                                    'compose the aspect ratio of the image (“AspectRatio”).'
-                                                    )).Cam_03RenderWidth = 800
-        obj.addProperty('App::PropertyInteger', 'Cam_04RenderHeight', 'Movie Camera 02 - Camera config',  QT_TRANSLATE_NOOP('App::Property',
-                                                    'Render image height of the MovieCamera animation. Configure the height in pixels that will '
-                                                    'compose the aspect ratio of the image (“AspectRatio”).'
-                                                    )).Cam_04RenderHeight = 600
-        obj.addProperty('App::PropertyLinkList', 'Cam_05ObjectsSelected', 'Movie Camera 02 - Camera config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Objects selected for the MovieCamera animation. Select the MoveObjects to animate '
-                                                    'together with this MovieCamera.')).Cam_05ObjectsSelected = None
-        obj.addProperty('App::PropertyEnumeration', 'Cam_06Enable', 'Movie Camera 02 - Camera config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Enable the combinations for the MovieCamera animation. Configure the combination of '
-                                                    'objects to animate together: only MovieCamera (“Camera”), MovieCamera and MovieObjects '
-                                                    '(“Camera and objects”), MovieCamera and connection (“Camera and connection”), '
-                                                    'or even just the MovieObjects (“Objects”) or connection (“Connection”) associated with '
-                                                    'this MovieCamera. For each combination change it will be necessary to re-enable the '
-                                                    'MovieCamera (Enable a MovieCamera button).'
-                                                    )).Cam_06Enable = ('Camera', 'Camera and objects', 'Objects', 'Camera and connection', 'Connection')
-        obj.addProperty('App::PropertyEnumeration', 'Cam_07Connection', 'Movie Camera 02 - Camera config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Connection for MovieCamera animation. '
-                                                    'Choose the workbench through which the animation will be performed together, if so. '
-                                                    'Make sure the workbench is installed and that there '
-                                                    'is an animation created with it.'
+        # Movie Camera 1 - Animation config
+        if not 'Cam_01AnimIniStep' in pl:
+            obj.addProperty('App::PropertyInteger', 'Cam_01AnimIniStep', 'Movie Camera 01 - Animation config',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Initial step of the MovieCamera animation.\n'
+                                                    '\n'
+                                                    'Indicate the step which this section of \n'
+                                                    'the animation will begin.')
+                                                    ).Cam_01AnimIniStep = 1
+        if not 'Cam_02AnimCurrentStep' in pl:
+            obj.addProperty('App::PropertyInteger', 'Cam_02AnimCurrentStep', 'Movie Camera 01 - Animation config',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Current step of the MovieCamera animation.\n'
+                                                    '\n'
+                                                    'It is only indicative.')
+                                                    ).Cam_02AnimCurrentStep = 1
+        if not 'Cam_03AnimEndStep' in pl:
+            obj.addProperty('App::PropertyInteger', 'Cam_03AnimEndStep', 'Movie Camera 01 - Animation config',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'End step of the MovieCamera animation.\n'
+                                                    '\n'
+                                                    'Indicate the step which this section of \n'
+                                                    'the animation will finish. \n'
+                                                    '\n'
+                                                    'Changes will only take effect after \n'
+                                                    'MovieCamera has been re-enabled.')
+                                                    ).Cam_03AnimEndStep = 100
+        if not 'Cam_04AnimTotalSteps' in pl:
+            obj.addProperty('App::PropertyInteger', 'Cam_04AnimTotalSteps', 'Movie Camera 01 - Animation config',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Total steps of the MovieCamera animation.\n'
+                                                    '\n'
+                                                    'It is the result of the difference between \n'
+                                                    'end step (“Cam_03AnimEndStep”) and initial \n'
+                                                    'step (“Cam_01AnimIniStep”).')
+                                                    ).Cam_04AnimTotalSteps = 100
+        if not 'Cam_05AnimFps' in pl:
+            obj.addProperty('App::PropertyInteger', 'Cam_05AnimFps', 'Movie Camera 01 - Animation config',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Animation fps of the MovieCamera.\n'
+                                                    '\n'
+                                                    'Specify the value for this animation \n'
+                                                    'section.\n'
+                                                    'It is a simulation and will depend on \n'
+                                                    'the computer performance. \n'
+                                                    '\n'
+                                                    'Changes will only take effect after \n'
+                                                    'MovieCamera has been re-enabled.')
+                                                    ).Cam_05AnimFps = 30
+        if not 'Cam_06AnimTime' in pl:
+            obj.addProperty('App::PropertyString', 'Cam_06AnimTime', 'Movie Camera 01 - Animation config',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Animation time of the MovieCamera, \n'
+                                                    'in hours, minutes, and seconds. \n'
+                                                    '\n'
+                                                    'It is only indicative.')
+                                                    ).Cam_06AnimTime = time.strftime('%H:%M:%S', time.gmtime(3.33))
+        if not 'Cam_07OnAnim' in pl:
+            obj.addProperty('App::PropertyBool', 'Cam_07OnAnim', 'Movie Camera 01 - Animation config',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'MovieCamera animation on or off. \n'
+                                                    '\n'
+                                                    'It should not be changed manually, \n'
+                                                    'it is controlled by the animation \n'
+                                                    'buttons.')
+                                                    ).Cam_07OnAnim = False
+        # Movie Camera 02 - Camera config
+        if not 'Cam_01Type' in pl:
+            from MovieAnimation import VIEW_00, VIEW_01
+            obj.addProperty('App::PropertyEnumeration', 'Cam_01Type', 'Movie Camera 02 - Camera config',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Camera type for the MovieCamera.\n'
+                                                    '\n'
+                                                    'Choose the camera through which this section \n'
+                                                    'of the animation will be performed: “3D view” \n'
+                                                    'for 3D views and the “Render” for adopting \n'
+                                                    'the settings of a camera from the Render \n'
+                                                    'Workbench, previously created and adjusted.')
+                                                    ).Cam_01Type = (f"00 - {VIEW_00}",
+                                                                    f"01 - {VIEW_01}")
+        if not 'Cam_02Render_Selection' in pl:
+            obj.addProperty('App::PropertyLink', 'Cam_02Render_Selection', 'Movie Camera 02 - Camera config',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Render camera selection for the MovieCamera animation.\n'
+                                                    '\n'
+                                                    'If you have chosen “Render” in Camera type (“Cam_01Type”), \n'
+                                                    'you have to select which one will be used in this \n'
+                                                    'section of the animation.')
+                                                    ).Cam_02Render_Selection = None
+        if not 'Cam_03RenderWidth' in pl:
+            obj.addProperty('App::PropertyInteger', 'Cam_03RenderWidth', 'Movie Camera 02 - Camera config',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Render image width of the MovieCamera animation.\n'
+                                                    '\n'
+                                                    'Configure the width in pixels that will compose \n'
+                                                    'the aspect ratio of the image (“AspectRatio”).')
+                                                    ).Cam_03RenderWidth = 800
+        if not 'Cam_04RenderHeight' in pl:
+            obj.addProperty('App::PropertyInteger', 'Cam_04RenderHeight', 'Movie Camera 02 - Camera config',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Render image height of the MovieCamera animation.\n'
+                                                    '\n'
+                                                    'Configure the height in pixels that will compose \n'
+                                                    'the aspect ratio of the image (“AspectRatio”).')
+                                                    ).Cam_04RenderHeight = 600
+        if not 'Cam_05ObjectsSelected' in pl:
+            obj.addProperty('App::PropertyLinkList', 'Cam_05ObjectsSelected', 'Movie Camera 02 - Camera config',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Objects selected for the MovieCamera animation.\n'
+                                                    '\n'
+                                                    'Select the MoveObjects to animate together \n'
+                                                    'with this MovieCamera.')
+                                                    ).Cam_05ObjectsSelected = None
+        if not 'Cam_06Enable' in pl:
+            obj.addProperty('App::PropertyEnumeration', 'Cam_06Enable', 'Movie Camera 02 - Camera config',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Enable the combinations for the MovieCamera animation.\n'
+                                                    '\n'
+                                                    'Configure the combination of objects to animate together: \n'
+                                                    'only MovieCamera (“Camera”), MovieCamera and MovieObjects \n'
+                                                    '(“Camera and objects”), MovieCamera and connection \n'
+                                                    '(“Camera and connection”), or even just the MovieObjects \n'
+                                                    '(“Objects”) or connection (“Connection”) associated with \n'
+                                                    'this MovieCamera.\n'
+                                                    '\n'
+                                                    'For each combination change it will be necessary to \n'
+                                                    're-enable the MovieCamera.')
+                                                    ).Cam_06Enable = ('00 - ' + translate("MovieCamera", "Camera"),
+                                                                      '01 - ' + translate("MovieCamera", "Camera and objects"),
+                                                                      '02 - ' + translate("MovieCamera", "Objects"),
+                                                                      '03 - ' + translate("MovieCamera", "Camera and connection"),
+                                                                      '04 - ' + translate("MovieCamera", "Connection"))
+        if not 'Cam_07Connection' in pl:
+            obj.addProperty('App::PropertyEnumeration', 'Cam_07Connection', 'Movie Camera 02 - Camera config',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Connection for MovieCamera animation. \n'
+                                                    '\n'
+                                                    'Choose the workbench through which the \n'
+                                                    'animation will be performed together, if so.\n'
+                                                    '\n'
+                                                    'Make sure the workbench is installed and \n'
+                                                    'that there is an animation created with it.'
                                                     )).Cam_07Connection = list(co.connections)
 
-    # Movie Camera 03 - Target config
+        # Movie Camera 03 - Target config
+        if not 'Cam_01Target' in pl:
+            obj.addProperty('App::PropertyEnumeration', 'Cam_01Target', 'Movie Camera 03 - Target config',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Target of the MovieCamera. \n'
+                                                    '\n'
+                                                    'If you want to use an object or point as a target, \n'
+                                                    'choose “Follow an object or point” and select one of \n'
+                                                    'them in target object selection (“Cam_02Target_ObjectSelection”), \n'
+                                                    'while for the “Follow a route” option you must use route \n'
+                                                    'selection (“Cam_02RouteSelection”).')
+                                                    ).Cam_01Target = ('00 - ' + translate("MovieCamera", "Free"),
+                                                                      '01 - ' + translate('MovieCamera', 'Follow an object or point'),
+                                                                      '02 - ' + translate("MovieCamera", "Follow a route"))
+        if not 'Cam_02TargetObjectSelection' in pl:
+            obj.addProperty('App::PropertyLink', 'Cam_02TargetObjectSelection', 'Movie Camera 03 - Target config',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Target object selection of the MovieCamera.\n'
+                                                    '\n'
+                                                    'Select the point or object you want the \n'
+                                                    'camera to point to.')
+                                                    ).Cam_02TargetObjectSelection = None
+        if not 'Cam_03TargetStepsForward' in pl:
+            obj.addProperty('App::PropertyInteger', 'Cam_03TargetStepsForward', 'Movie Camera 03 - Target config',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Target ahead of the MovieCamera.\n'
+                                                    '\n'
+                                                    'If you chose for the target to \n'
+                                                    '“follow a route”, in “Cam_01Target”, \n'
+                                                    'you need to specify how many steps \n'
+                                                    'this target will be ahead of the \n'
+                                                    'camera on the same route.')
+                                                    ).Cam_03TargetStepsForward = 10
 
-        obj.addProperty('App::PropertyEnumeration', 'Cam_01Target', 'Movie Camera 03 - Target config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Target of the MovieCamera. '
-                                                    'If you want to use an object or point as a target, choose Follow an object or point '
-                                                    '(“Follow an object or point”) and select one of them in Target object selection '
-                                                    '(“Cam_02Target_ObjectSelection”), while for the Follow a route (“Follow a route”) '
-                                                    'option you must use Route selection (“Cam_02RouteSelection”).'
-                                                    )).Cam_01Target = ('Free', 'Follow an object or point', 'Follow a route')
-        obj.addProperty('App::PropertyLink', 'Cam_02TargetObjectSelection', 'Movie Camera 03 - Target config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Target object selection of the MovieCamera. Select the point or object you want the camera to point to.'
-                                                    )).Cam_02TargetObjectSelection = None
-        obj.addProperty('App::PropertyInteger', 'Cam_03TargetStepsForward', 'Movie Camera 03 - Target config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Target ahead of the MovieCamera. If you chose for the target to “follow a route”, '
-                                                    'in “Cam_01Target”, you need to specify how many steps this target will be ahead of the camera '
-                                                    'on the same route.'
-                                                    )).Cam_03TargetStepsForward = 10
-
-    # Movie Camera 04 - Camera follows a path
-
-        obj.addProperty('App::PropertyBool', 'Cam_01Route', 'Movie Camera 04 - Camera follows a path', 
+        # Movie Camera 04 - Camera follows a path
+        if not 'Cam_01Route' in pl:
+            obj.addProperty('App::PropertyBool', 'Cam_01Route', 'Movie Camera 04 - Camera follows a path',
                                                     QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Route of the MovieCamera animation. Choose “true” if the camera will be animate on a route. '
-                                                    'You have to select a single segment on Route selection (“Cam_02RouteSelection”) to use it.'
-                                                    )).Cam_01Route = False
-        obj.addProperty('App::PropertyLink', 'Cam_02RouteSelection', 'Movie Camera 04 - Camera follows a path', 
+                                                    'Route of the MovieCamera animation.\n'
+                                                    '\n'
+                                                    'Enable it so that the camera follows a route. \n'
+                                                    'You have to select a single segment on route \n'
+                                                    'selection (“Cam_02RouteSelection”) \n'
+                                                    'to use it.')
+                                                    ).Cam_01Route = False
+        if not 'Cam_02RouteSelection' in pl:
+            obj.addProperty('App::PropertyLink', 'Cam_02RouteSelection', 'Movie Camera 04 - Camera follows a path',
                                                     QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Route selection for the MovieCamera animation. Choose the route through which the camera will be '
-                                                    'animate. You have to select a single segment such as: line, arc, circle, '
-                                                    'ellipse, B-spline or Bézier curve, from Sketcher or Draft Workbenches.'
-                                                    )).Cam_02RouteSelection = None
+                                                    'Route selection for the MovieCamera animation.\n'
+                                                    '\n'
+                                                    'Choose the route through which the camera will be \n'
+                                                    'animate. You have to select a single segment such \n'
+                                                    'as: line, arc, circle, ellipse, B-spline or Bézier \n'
+                                                    'curve, from Sketcher or Draft Workbenches.')
+                                                    ).Cam_02RouteSelection = None
 
-    # Movie Camera 05 - Camera Pos A-B - pos On/Off
-
-        obj.addProperty('App::PropertyBool', 'Cam_01XMov', 'Movie Camera 05 - Camera Pos A-B - pos On/Off', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'X movement of the MovieCamera. Choose “true”, if you want to animate the camera in X direction.'
+        # Movie Camera 05 - Camera Pos A-B - pos On/Off
+        if not 'Cam_01XMov' in pl:
+            obj.addProperty('App::PropertyBool', 'Cam_01XMov', 'Movie Camera 05 - Camera Pos A-B - pos On/Off',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'X movement of the MovieCamera.\n'
+                                                    '\n'
+                                                    'Enable this if you want to \n'
+                                                    'animate the camera in X direction.'
                                                     )).Cam_01XMov = False
-        obj.addProperty('App::PropertyBool', 'Cam_02YMov', 'Movie Camera 05 - Camera Pos A-B - pos On/Off', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Y movement of the MovieCamera. Choose “true”, if you want to animate the camera in Y direction.'
-                                                    )).Cam_02YMov = False
-        obj.addProperty('App::PropertyBool', 'Cam_03ZMov', 'Movie Camera 05 - Camera Pos A-B - pos On/Off', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Z movement of the MovieCamera. Choose “true”, if you want to animate the camera in Z direction.'
-                                                    )).Cam_03ZMov = False
+        if not 'Cam_02YMov' in pl:
+            obj.addProperty('App::PropertyBool', 'Cam_02YMov', 'Movie Camera 05 - Camera Pos A-B - pos On/Off',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Y movement of the MovieCamera.\n'
+                                                    '\n'
+                                                    'Enable this if you want to \n'
+                                                    'animate the camera in Y direction.')
+                                                    ).Cam_02YMov = False
+        if not 'Cam_03ZMov' in pl:
+            obj.addProperty('App::PropertyBool', 'Cam_03ZMov', 'Movie Camera 05 - Camera Pos A-B - pos On/Off',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Z movement of the MovieCamera.\n'
+                                                    '\n'
+                                                    'Enable this if you want to \n'
+                                                    'animate the camera in Z direction.')
+                                                    ).Cam_03ZMov = False
 
-    # Movie Camera 06 - Camera Pos A-B - angles, zoom - On/Off
+        # Movie Camera 06 - Camera Pos A-B - angles, zoom - On/Off
+        if not 'Cam_01Yaw' in pl:
+            obj.addProperty('App::PropertyBool', 'Cam_01Yaw', 'Movie Camera 06 - Camera Pos A-B - angles, zoom - On/Off',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Yaw of the MovieCamera.\n'
+                                                    '\n'
+                                                    'Enable this if you want to \n'
+                                                    'animate the camera horizontal angle.')
+                                                    ).Cam_01Yaw = False
+        if not 'Cam_02Pitch' in pl:
+            obj.addProperty('App::PropertyBool', 'Cam_02Pitch', 'Movie Camera 06 - Camera Pos A-B - angles, zoom - On/Off',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Pitch of the MovieCamera.\n'
+                                                    '\n'
+                                                    'Enable this if you want to \n'
+                                                    'animate the camera vertical angle.')
+                                                    ).Cam_02Pitch = False
+        if not 'Cam_03Roll' in pl:
+            obj.addProperty('App::PropertyBool', 'Cam_03Roll', 'Movie Camera 06 - Camera Pos A-B - angles, zoom - On/Off',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Roll of the MovieCamera.\n'
+                                                    '\n'
+                                                    'Enable this if you want to \n'
+                                                    'animate the camera roll angle.')
+                                                    ).Cam_03Roll = False
+        if not 'Cam_04Zoom' in pl:
+            obj.addProperty('App::PropertyBool', 'Cam_04Zoom', 'Movie Camera 06 - Camera Pos A-B - angles, zoom - On/Off',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Zoom of the MovieCamera.\n'
+                                                    '\n'
+                                                    'Enable this if you want to \n'
+                                                    'animate the camera zoom.')
+                                                    ).Cam_04Zoom = False
 
-        obj.addProperty('App::PropertyBool', 'Cam_01Yaw', 'Movie Camera 06 - Camera Pos A-B - angles, zoom - On/Off', QT_TRANSLATE_NOOP(
-                                                    'App::Property', 'Yaw of the MovieCamera. Choose “true”, if you want '
-                                                    'to animate the camera horizontal angle.')).Cam_01Yaw = False
-        obj.addProperty('App::PropertyBool', 'Cam_02Pitch', 'Movie Camera 06 - Camera Pos A-B - angles, zoom - On/Off', QT_TRANSLATE_NOOP(
-                                                    'App::Property', 'Pitch of the MovieCamera. Choose “true”, if you want '
-                                                    'to animate the camera vertical angle.')).Cam_02Pitch = False
-        obj.addProperty('App::PropertyBool', 'Cam_03Roll', 'Movie Camera 06 - Camera Pos A-B - angles, zoom - On/Off', QT_TRANSLATE_NOOP(
-                                                    'App::Property', 'Roll of the MovieCamera. Choose “true”, if you want '
-                                                    'to animate the camera roll angle.')).Cam_03Roll = False
-        obj.addProperty('App::PropertyBool', 'Cam_04Zoom', 'Movie Camera 06 - Camera Pos A-B - angles, zoom - On/Off', QT_TRANSLATE_NOOP(
-                                                    'App::Property', 'Zoom of the MovieCamera. Choose “true”, if you want to animate the camera zoom.'
-                                                    )).Cam_04Zoom = False
+        # Movie Camera 07 - Camera Pos A
+        if not 'Cam_01XPosA' in pl:
+            obj.addProperty('App::PropertyFloat', 'Cam_01XPosA', 'Movie Camera 07 - Camera Pos A',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'X of Position A of the MovieCamera.\n'
+                                                    '\n'
+                                                    'It is set when the “Set position \n'
+                                                    'A” button is pressed, after that, \n'
+                                                    'if necessary, you can make adjustments \n'
+                                                    'to the x-value.')
+                                                    ).Cam_01XPosA = 0
+        if not 'Cam_02YPosA' in pl:
+            obj.addProperty('App::PropertyFloat', 'Cam_02YPosA', 'Movie Camera 07 - Camera Pos A',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Y of Position A of the MovieCamera.\n'
+                                                    '\n'
+                                                    'It is set when the “Set position \n'
+                                                    'A” button is pressed, after that, \n'
+                                                    'if necessary, you can make adjustments \n'
+                                                    'to the y-value.')
+                                                    ).Cam_02YPosA = 0
+        if not 'Cam_03ZPosA' in pl:
+            obj.addProperty('App::PropertyFloat', 'Cam_03ZPosA', 'Movie Camera 07 - Camera Pos A',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                     'Z of Position A of the MovieCamera.\n'
+                                                     '\n'
+                                                     'It is set when the “Set position A” button \n'
+                                                     'is pressed, after that, if necessary, \n'
+                                                     'you can make adjustments to the z-value.')
+                                                     ).Cam_03ZPosA = 0
+        if not 'Cam_04XPosB' in pl:
+            obj.addProperty('App::PropertyFloat', 'Cam_04XPosB', 'Movie Camera 08 - Camera Pos B',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'X of Position B of the MovieCamera.\n'
+                                                    '\n'
+                                                    'It is set when the “Set position B” button \n'
+                                                    'is pressed, after that, if necessary, \n'
+                                                    'you can make adjustments to the x-value.')
+                                                    ).Cam_04XPosB = 1000.0
+        if not 'Cam_05YPosB' in pl:
+            obj.addProperty('App::PropertyFloat', 'Cam_05YPosB', 'Movie Camera 08 - Camera Pos B',
+                                                   QT_TRANSLATE_NOOP('App::Property',
+                                                    'Y of Position B of the MovieCamera.\n'
+                                                    '\n'
+                                                    'It is set when the “Set position B” button \n'
+                                                    'is pressed, after that, if necessary, \n'
+                                                    'you can make adjustments to the y-value.')
+                                                    ).Cam_05YPosB = 1000.0
+        if not 'Cam_06ZPosB' in pl:
+            obj.addProperty('App::PropertyFloat', 'Cam_06ZPosB', 'Movie Camera 08 - Camera Pos B',
+                                                   QT_TRANSLATE_NOOP('App::Property',
+                                                    'Z of Position B of the MovieCamera.\n'
+                                                    '\n'
+                                                    'It is set when the “Set position B” button \n'
+                                                    'is pressed, after that, if necessary, \n'
+                                                    'you can make adjustments to the z-value.')
+                                                    ).Cam_06ZPosB = 1000.0
 
-    # Movie Camera 07 - Camera Pos A-B - pos AB 
+        # Movie Camera 08 - Camera Pos B
+        if not 'Cam_01YawPosA' in pl:
+            obj.addProperty('App::PropertyAngle', 'Cam_01YawPosA', 'Movie Camera 09 - Camera Rot A',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Yaw of Position A of the MovieCamera.\n'
+                                                    '\n'
+                                                    'It is set when the “Set position A” button \n'
+                                                    'is pressed, after that, if necessary, \n'
+                                                    'you can make little adjustments to the \n'
+                                                    'horizontal angle value of the camera.')
+                                                    ).Cam_01YawPosA = 0
+        if not 'Cam_02PitchPosA' in pl:
+            obj.addProperty('App::PropertyAngle', 'Cam_02PitchPosA', 'Movie Camera 09 - Camera Rot A',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Pitch of Position A of the MovieCamera.\n'
+                                                    '\n'
+                                                    'It is set when the “Set position A” button \n'
+                                                    'is pressed, after that, if necessary, \n'
+                                                    'you can make little adjustments to the \n'
+                                                    'vertical angle value of the camera.')
+                                                    ).Cam_02PitchPosA = 0
+        if not 'Cam_03RollPosA' in pl:
+           obj.addProperty('App::PropertyAngle', 'Cam_03RollPosA', 'Movie Camera 09 - Camera Rot A',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Roll of Position A of the MovieCamera.\n'
+                                                    '\n'
+                                                    'It is set when the “Set position A” button \n'
+                                                    'is pressed, after that, if necessary, \n'
+                                                    'you can make little adjustments to the \n'
+                                                    'roll value of the camera.')
+                                                    ).Cam_03RollPosA = 90
+        if not 'Cam_04YawPosB' in pl:
+            obj.addProperty('App::PropertyAngle', 'Cam_04YawPosB', 'Movie Camera 10 - Camera Rot B',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Yaw of Position B of the MovieCamera.\n'
+                                                    '\n'
+                                                    'It is set when the “Set position B” button \n'
+                                                    'is pressed, after that, if necessary, \n'
+                                                    'you can make little adjustments to the \n'
+                                                    'horizontal angle value of the camera.')
+                                                    ).Cam_04YawPosB = 30
+        if not 'Cam_05PitchPosB' in pl:
+            obj.addProperty('App::PropertyAngle', 'Cam_05PitchPosB', 'Movie Camera 10 - Camera Rot B',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Pitch of Position B of the MovieCamera.\n'
+                                                    '\n'
+                                                    'It is set when the “Set position B” button \n'
+                                                    'is pressed, after that, if necessary, \n'
+                                                    'you can make little adjustments to the \n'
+                                                    'vertical angle value of the camera.')
+                                                    ).Cam_05PitchPosB = 45
+        if not 'Cam_06RollPosB' in pl:
+            obj.addProperty('App::PropertyAngle', 'Cam_06RollPosB', 'Movie Camera 10 - Camera Rot B',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Roll of Position B of the MovieCamera.\n'
+                                                    '\n'
+                                                    'It is set when the “Set position B” button \n'
+                                                    'is pressed, after that, if necessary, \n'
+                                                    'you can make little adjustments to the \n'
+                                                    'roll value of the camera.')
+                                                    ).Cam_06RollPosB = 45
 
-        obj.addProperty('App::PropertyFloat', 'Cam_01XPosA', 'Movie Camera 07 - Camera Pos A-B - pos AB', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'X of Position A of the MovieCamera. It is set when the Set position A button is pressed, after that, '
-                                                    'if necessary, you can make adjustments to the x-value.')).Cam_01XPosA = 0
-        obj.addProperty('App::PropertyFloat', 'Cam_02YPosA', 'Movie Camera 07 - Camera Pos A-B - pos AB', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Y of Position A of the MovieCamera. It is set when the Set position A button is pressed, after that, '
-                                                    'if necessary, you can make adjustments to the y-value.')).Cam_02YPosA = 0
-        obj.addProperty('App::PropertyFloat', 'Cam_03ZPosA', 'Movie Camera 07 - Camera Pos A-B - pos AB', QT_TRANSLATE_NOOP('App::Property', 
-                                                     'Z of Position A of the MovieCamera. It is set when the Set position A button is pressed, after that, '
-                                                     'if necessary, you can make adjustments to the z-value.')).Cam_03ZPosA = 0
-        obj.addProperty('App::PropertyFloat', 'Cam_04XPosB', 'Movie Camera 07 - Camera Pos A-B - pos AB', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'X of Position B of the MovieCamera. It is set when the Set position B button is pressed, after that, '
-                                                    'if necessary, you can make adjustments to the x-value.')).Cam_04XPosB = 1000.0
-        obj.addProperty('App::PropertyFloat', 'Cam_05YPosB', 'Movie Camera 07 - Camera Pos A-B - pos AB', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Y of Position B of the MovieCamera. It is set when the Set position B button is pressed, after that, '
-                                                    'if necessary, you can make adjustments to the y-value.')).Cam_05YPosB = 1000.0
-        obj.addProperty('App::PropertyFloat', 'Cam_06ZPosB', 'Movie Camera 07 - Camera Pos A-B - pos AB', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Z of Position B of the MovieCamera. It is set when the Set position B button is pressed, after that, '
-                                                    'if necessary, you can make adjustments to the z-value.')).Cam_06ZPosB = 1000.0
-
-    # Movie Camera 08 - Camera Pos A-B - angles
-
-        obj.addProperty('App::PropertyAngle', 'Cam_01YawPosA', 'Movie Camera 08 - Camera Pos A-B - Angles', QT_TRANSLATE_NOOP(
-                                                    'App::Property', 'Yaw of Position A of the MovieCamera. It is set when the Set position A button '
-                                                    'is pressed, after that, if necessary, you can make little adjustments to the horizontal angle '
-                                                    'value of the camera.')).Cam_01YawPosA = 0
-        obj.addProperty('App::PropertyAngle', 'Cam_02PitchPosA', 'Movie Camera 08 - Camera Pos A-B - Angles', QT_TRANSLATE_NOOP(
-                                                    'App::Property', 'Pitch of Position A of the MovieCamera. It is set when the Set position A button '
-                                                    'is pressed, after that, if necessary, you can make little adjustments to the vertical angle '
-                                                    'value of the camera.')).Cam_02PitchPosA = 0
-        obj.addProperty('App::PropertyAngle', 'Cam_03RollPosA', 'Movie Camera 08 - Camera Pos A-B - Angles', QT_TRANSLATE_NOOP(
-                                                    'App::Property', 'Roll of Position A of the MovieCamera. It is set when the Set position A button '
-                                                    'is pressed, after that, if necessary, you can make little adjustments to the roll value of the camera.'
-                                                    )).Cam_03RollPosA = 90
-        obj.addProperty('App::PropertyAngle', 'Cam_04YawPosB', 'Movie Camera 08 - Camera Pos A-B - Angles', QT_TRANSLATE_NOOP(
-                                                    'App::Property', 'Yaw of Position B of the MovieCamera. It is set when the Set position B button '
-                                                    'is pressed, after that, if necessary, you can make little adjustments to the horizontal angle value '
-                                                    'of the camera.')).Cam_04YawPosB = 30
-        obj.addProperty('App::PropertyAngle', 'Cam_05PitchPosB', 'Movie Camera 08 - Camera Pos A-B - Angles', QT_TRANSLATE_NOOP(
-                                                    'App::Property', 'Pitch of Position B of the MovieCamera. It is set when the Set position B button '
-                                                    'is pressed, after that, if necessary, you can make little adjustments to the vertical angle value '
-                                                    'of the camera.')).Cam_05PitchPosB = 45
-        obj.addProperty('App::PropertyAngle', 'Cam_06RollPosB', 'Movie Camera 08 - Camera Pos A-B - Angles', QT_TRANSLATE_NOOP(
-                                                    'App::Property', 'Roll of Position B of the MovieCamera. It is set when the Set position B button '
-                                                    'is pressed, after that, if necessary, you can make little adjustments to the roll value of the camera.'
-                                                    )).Cam_06RollPosB = 45
-
-    # Movie Camera 09 - Camera Pos A-B - Zoom
-
-        obj.addProperty('App::PropertyAngle', 'Cam_02ZoomPosA', 'Movie Camera 09 - Camera Pos A-B - Zoom', QT_TRANSLATE_NOOP(
-                                                    'App::Property', 'Zoom of Position A of the MovieCamera. If Zoom of the MovieCamera (“Cam_04Zoom”) '
-                                                    'is “true” and after the Set position A button is pressed, '
-                                                    'you can adjust the angle in degrees you want to start the '
-                                                    'camera animation. Decreasing the value to zoom in and increasing to zoom out.'
-                                                    )).Cam_02ZoomPosA = 50
-        obj.addProperty('App::PropertyAngle', 'Cam_03ZoomPosB', 'Movie Camera 09 - Camera Pos A-B - Zoom', QT_TRANSLATE_NOOP(
-                                                    'App::Property', 'Zoom of Position B of the MovieCamera. If Zoom of the MovieCamera (“Cam_04Zoom”) '
-                                                    'is “true” and after the Set position B button is pressed, '
-                                                    'you can adjust the angle in degrees you want to finish the '
-                                                    'camera animation. Decreasing the value to zoom in and increasing to zoom out.'
-                                                    )).Cam_03ZoomPosB = 20
-
-        obj.Proxy = self
+        # Movie Camera 09 - Camera Pos A-B - Zoom
+        if not 'Cam_02ZoomPosA' in pl:
+            obj.addProperty('App::PropertyAngle', 'Cam_02ZoomPosA', 'Movie Camera 11 - Camera Zoom A-B',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Zoom of Position A of the MovieCamera.\n'
+                                                    '\n'
+                                                    'If Zoom of the MovieCamera (“Cam_04Zoom”) \n'
+                                                    'is enabled and after the Set position A button \n'
+                                                    'is pressed, you can adjust the angle in degrees \n'
+                                                    'you want to start the camera animation. \n'
+                                                    '\n'
+                                                    'Decreasing the value to zoom in and increasing \n'
+                                                    'to zoom out.')
+                                                    ).Cam_02ZoomPosA = 50
+        if not 'Cam_03ZoomPosB' in pl:
+            obj.addProperty('App::PropertyAngle', 'Cam_03ZoomPosB', 'Movie Camera 11 - Camera Zoom A-B',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Zoom of Position B of the MovieCamera.\n'
+                                                    '\n'
+                                                    'If Zoom of the MovieCamera (“Cam_04Zoom”) \n'
+                                                    'is enabled and after the Set position B button \n'
+                                                    'is pressed, you can adjust the angle in degrees \n'
+                                                    'you want to finish the camera animation. \n'
+                                                    '\n'
+                                                    'Decreasing the value to zoom in and increasing \n'
+                                                    'to zoom out.')
+                                                    ).Cam_03ZoomPosB = 20
 
 class MovieCameraViewProvider:
     def __init__(self, obj):
@@ -259,80 +486,147 @@ class MovieCameraViewProvider:
 
 class CreateMovieCamera:
 
-    def QT_TRANSLATE_NOOP(Movie, text):
+    """Creates a MovieCamera."""
+
+    def QT_TRANSLATE_NOOP(self, text):
         return text
 
     def GetResources(self):
         __dir__ = os.path.dirname(__file__)
         return {'Pixmap': __dir__ + '/icons/CreateMovieCameraIcon.svg',
-                'MenuText': QT_TRANSLATE_NOOP('CreateMovieCamera', 'MovieCamera'),
-                'ToolTip': QT_TRANSLATE_NOOP('CreateMovieCamera', 'Create a MovieCamera. '
-                                              'Initially, a static camera is created. To make '
-                                              'it go from position A to position B, enable it, '
-                                              'follow the positions A and B instructions, and start '
-                                              'the animation. For the other possibilities,  adjust '
-                                              'the corresponding necessary settings (properties '
-                                              'window), enable it and start the animation.')}
+                'MenuText': QT_TRANSLATE_NOOP('CreateMovieCamera',
+                                              'MovieCamera'),
+                'ToolTip': QT_TRANSLATE_NOOP('CreateMovieCamera',
+                                              'Creates a MovieCamera. \n'
+                                              '\n'
+                                              '1. Initially, a static camera is created (its positions \n'
+                                              'A and B are identical). You can use it to control the \n'
+                                              'display of object animations.\n'
+                                              '\n'
+                                              '2. To animate an isolated camera that move e/or rotates \n'
+                                              'establish its B position, since A has already been \n'
+                                              'established(see the positions A and B instructions).\n'
+                                              '\n'
+                                              '3. There are two ways to create a walkthrough:\n'
+                                              '\n'
+                                              'Using a path. Enable “Cam_01Route” in the \n'
+                                              'properties window and specify an previous line \n'
+                                              'or continuous curves under “Cam_02_Route Selection”.\n'
+                                              '\n'
+                                              'Using a sequence of cameras. Go to point B of the \n'
+                                              'first created MovieCamera, then select it and click \n'
+                                              'this button. Repeat this process until the last camera, \n'
+                                              'then set point B for this one.\n'
+                                              '\n'
+                                              '4. If you want the camera to point at an object, \n'
+                                              'select “Follow an object or point” under \n'
+                                              '“Cam_01_Target” and specify the object in \n'
+                                              '“Cam_02_Target Object Selection”.\n'
+                                              '\n'
+                                              '5. Make finer adjustments in the properties window, \n'
+                                              'if necessary.\n'
+                                              '\n'
+                                              '6. To view the animation, select (sequentially) one \n'
+                                              'or more created MovieCameras and click the “Enable an \n'
+                                              'object for animation” button. Control the animation \n'
+                                              'using the “Animation tools” buttons.\n'
+                                              '\n'
+                                              '7. To save a video from the animation, indicate the \n'
+                                              'MovieCameras on a Clapperboard, to do so, see the \n'
+                                              'corresponding instructions.'
+                                              )}
 
     def IsActive(self):
         if Gui.ActiveDocument:
-            return True
+            selection = []
+            selection = Gui.Selection.getSelection()
+            if not selection:
+                return True
+            if any(condition for condition in [selection[0].Name[0:11] == 'MovieCamera',
+                                               selection[0].Name[0:12] == 'MovieObjects'
+                                               ]):
+                return True
+            else:
+                return False
         else:
             return False
 
     def Activated(self):
         global MC
-        ActivatedMovieCamera(self)
+        doc = FreeCAD.ActiveDocument
+        #Create a new MovieCamera from a existing one
+        selection = []
+        selection = Gui.Selection.getSelection()
+        if not selection:
+            ActivatedMovieCamera(self)
+            # Provisional AB Positions
+            setMCPosA(Option = MC)
+            setMCPosB(Option = MC)
+            FreeCAD.Console.PrintMessage(
+                            translate('MovieObjects',
+                            'A static MovieCamera was created!\n'
+                            'To animate the MovieCamera without a MovieObjects\n'
+                            'it is necessary to reset the MovieCamera B \n'
+                            'position or enable “CAm_01Route” and \n'
+                            'indicate a path at “Cam_02RouteSelection”!'
+                            ) + '\n')
+        else:
+            if selection[0].Name[0:11] == 'MovieCamera':
+                oldMC = selection[0]
+                seq_label = translate('MovieCamera', 'MovieCamera #')
+                oldMC.Label = seq_label
+                # Makes a copy of last MovieCamera
+                MC = doc.copyObject(oldMC)
+                # PosA = PosB
+                setMCPosA(Option = MC)
+                setMCPosB(Option = MC)
+                MC.Label = seq_label
+                FreeCAD.Console.PrintMessage(translate('MovieCamera',
+                                                       'A sequenced MovieCamera was created!'
+                                                       ) + '\n')
+                pass
+            else:
+                FreeCAD.Console.PrintMessage(translate('MovieCamera',
+                                                       'To create a sequenced MovieCameras, \n'
+                                                       'select the last MovieCamera inserted!'
+                                                       ) + '\n')
+                return
         MC.Cam_07OnAnim = False
-        # Provisional AB Positions
-        setMCPosA(Option = MC)
-        setMCPosB(Option = MC)
-        FreeCAD.Console.PrintMessage(translate('Movie', 'A static MovieCamera was created! '
-                                               'To animate the camera establish its A and B positions, or '
-                                               'make the adjustments in its properties window.') + '\n')
+        doc.recompute()
 
 def ActivatedMovieCamera(self):
     global MC
-    default_label = translate('Movie', 'MovieCamera')
-    folder = FreeCAD.ActiveDocument.addObject('App::DocumentObjectGroupPython', 'MovieCamera')
+    default_label = translate('MovieCamera',
+                              'MovieCamera')
+    folder = FreeCAD.ActiveDocument.addObject('App::DocumentObjectGroupPython',
+                                              'MovieCamera')
     MovieCamera(folder)
     MovieCameraViewProvider(folder.ViewObject)
+    MC = None
     MC = folder
     MC.Label = default_label
+    FreeCAD.ActiveDocument.recompute()
 
 # ======================================================================================
 
-class EnableMovieCamera:
-
-    def QT_TRANSLATE_NOOP(Movie, text):
-        return text
-
-    def GetResources(self):
-        __dir__ = os.path.dirname(__file__)
-        return {'Pixmap': __dir__ + '/icons/EnableMovieCameraIcon.svg',
-                'MenuText': QT_TRANSLATE_NOOP('EnableMovieCamera', 'Enable a MovieCamera'),
-                'ToolTip': QT_TRANSLATE_NOOP('EnableMovieCamera', 
-                                             'First, select a MovieCamera that you want to configure, '
-                                             'then click on this button to activate it.')}
-
-    def IsActive(self):
-        if Gui.ActiveDocument:
-            return True
-        else:
-            return False
-
-    def Activated(self):
-        ma.enableMovieSelection(Enable = 'Camera')
-
-# ======================================================================================  
 # 3. Functions
 
+def enableCameraSelection(Enable = None):
+
+    """Enables MovieCamera selected"""
+
+    global MC
+    MC = Enable
+
 def setMCPosA(Option = None):
+
+    """Sets the A position for a MovieCamera."""
 
     MC = Option
     Gui.runCommand('Std_PerspectiveCamera',1)
 
-    if MC.Cam_01Target == 'Free':
+    #if MC.Cam_01Target == 'Free':
+    if MC.Cam_01Target[0:2] == '00': # 'Free'
         MC.Cam_01XMov = True
         MC.Cam_02YMov = True
         MC.Cam_03ZMov = True
@@ -341,7 +635,8 @@ def setMCPosA(Option = None):
         MC.Cam_03Roll = True
         MC.Cam_04Zoom = True
 
-    if MC.Cam_01Target == 'Follow an object or point' :
+    #if MC.Cam_01Target == 'Follow an object or point' :
+    if MC.Cam_01Target[0:2] == '01': # 'Follow an object or point'
         MC.Cam_01XMov = True
         MC.Cam_02YMov = True
         MC.Cam_03ZMov = True
@@ -370,7 +665,8 @@ def setMCPosA(Option = None):
     MC.Cam_02ZoomPosA = degrees(float(cameraNodeA.heightAngle.getValue()))
 
     # Render camera angles and zoom pos A
-    if MC.Cam_01Type == 'Render':
+    #if MC.Cam_01Type == 'Render':
+    if MC.Cam_01Type[0:2] == '01': # Render
         if 'Camera' in FreeCAD.ActiveDocument.Content and MC.Cam_02Render_Selection:
             renderCameraA = MC.Cam_02Render_Selection
             renderCameraA.ViewObject.Proxy.set_camera_from_gui()
@@ -378,16 +674,22 @@ def setMCPosA(Option = None):
             renderCameraA.ViewportMapping = 'CROP_VIEWPORT_FILL_FRAME'
             renderCameraA.ViewObject.Proxy.set_gui_from_camera()
         else:
-            FreeCAD.Console.PrintMessage(translate('Movie', 'You have to select a render '
-                                                   'camera in “Cam_02Render_Selection”!') + '\n')
+            FreeCAD.Console.PrintMessage(translate('MovieCamera',
+                                                   'You have to select a render '
+                                                   'camera in “Cam_02Render_Selection”!'
+                                                   ) + '\n')
             return
 
-    ma.modifyAnimationIndicator(Animation = False)
+    ma.modifyAnimationIndicator(animation = False, obj = MC)
     MC.Cam_02AnimCurrentStep = 0
-    FreeCAD.Console.PrintMessage(translate('Movie', 'MovieCamera position A has been established.') + '\n')
+    FreeCAD.Console.PrintMessage(translate('MovieCamera',
+                                           'MovieCamera position A has been established.'
+                                           ) + '\n')
     Gui.updateGui()
 
 def setMCPosB(Option = None):
+
+    """Sets the B position for a MovieCamera."""
 
     MC = Option
     Gui.runCommand('Std_PerspectiveCamera',1)
@@ -412,7 +714,8 @@ def setMCPosB(Option = None):
     MC.Cam_03ZoomPosB = degrees(float(cameraNodeB.heightAngle.getValue()))
 
     # Render camera angles and zoom pos B
-    if MC.Cam_01Type == 'Render':
+    #if MC.Cam_01Type == 'Render':
+    if MC.Cam_01Type[0:2] == '01': # Render
         if 'Camera' in FreeCAD.ActiveDocument.Content and MC.Cam_02Render_Selection:
             renderCameraB = MC.Cam_02Render_Selection
             renderCameraB.ViewObject.Proxy.set_camera_from_gui()
@@ -420,18 +723,24 @@ def setMCPosB(Option = None):
             renderCameraB.ViewportMapping = 'CROP_VIEWPORT_FILL_FRAME'
             renderCameraB.ViewObject.Proxy.set_gui_from_camera()
         else:
-            FreeCAD.Console.PrintMessage(translate('Movie', 'You have to select a render '
-                                                   'camera in “Cam_02Render_Selection”!') + '\n')
+            FreeCAD.Console.PrintMessage(translate('MovieCamera',
+                                                   'You have to select a render '
+                                                   'camera in “Cam_02Render_Selection”!'
+                                                   ) + '\n')
             return
 
-    ma.modifyAnimationIndicator(Animation = False)
+    ma.modifyAnimationIndicator(animation = False, obj = MC)
     MC.Cam_02AnimCurrentStep = MC.Cam_04AnimTotalSteps
-    FreeCAD.Console.PrintMessage(translate('Movie', 'MovieCamera position B has been established.') + '\n')
+    FreeCAD.Console.PrintMessage(translate('MovieCamera',
+                                           'MovieCamera position B has been established.'
+                                           ) + '\n')
     Gui.updateGui()
 
 # ======================================================================================
 
 def getMovieCameraMobile(Selection = None):
+
+    """Gets the positions of a MovieCamera."""
 
     MC = Selection
     # Getting camera node
@@ -440,9 +749,11 @@ def getMovieCameraMobile(Selection = None):
     # Camera node follows route
     if MC.Cam_01Route == True:
         if not MC.Cam_02RouteSelection:
-            FreeCAD.Console.PrintMessage(translate('Movie', 'You have to select '
-                                                   'a route in “Cam_02RouteSelection”!') + '\n')
-            ma.modifyAnimationIndicator(Animation = False)
+            FreeCAD.Console.PrintMessage(translate('MovieCamera',
+                                                   'You have to select '
+                                                   'a route in “Cam_02RouteSelection”!'
+                                                   ) + '\n')
+            ma.modifyAnimationIndicator(animation = False, obj = MC)
             return
 
         route = MC.Cam_02RouteSelection.Shape.Edges[0]
@@ -455,13 +766,15 @@ def getMovieCameraMobile(Selection = None):
         cameraNode.position.setValue(currentVector)
 
         # Target follows the route
-        if MC.Cam_01Target == 'Follow a route':
+        #if MC.Cam_01Target == 'Follow a route':
+        if MC.Cam_01Target[0:2] == '02': # 'Follow a route'
 
             lengthTarget  = currentStep + stepLength*MC.Cam_03TargetStepsForward
             posTarget = route.getParameterByLength(lengthTarget)
             vectorTarget = route.valueAt(posTarget)
             cameraTarget = (vectorTarget)
-            cameraNode.pointAt(coin.SbVec3f(cameraTarget), coin.SbVec3f( 0, 0, 1 ) )
+            cameraNode.pointAt(coin.SbVec3f(cameraTarget),
+                               coin.SbVec3f( 0, 0, 1 ) )
 
     # Camera node for Pos AB
     else:
@@ -482,7 +795,8 @@ def getMovieCameraMobile(Selection = None):
         cameraNode.position.setValue(xPosCamera, yPosCamera, zPosCamera)
 
     # Camera yaw, pitch and roll for Pos AB 
-    if MC.Cam_01Target == 'Free':
+    #if MC.Cam_01Target == 'Free':
+    if MC.Cam_01Target[0:2] == '00': # 'Free'
         cameraYaw = MC.Cam_01YawPosA
         cameraPitch = MC.Cam_02PitchPosA
         cameraRoll = MC.Cam_03RollPosA
@@ -510,22 +824,28 @@ def getMovieCameraMobile(Selection = None):
         cameraNode.heightAngle.setValue(radians(float(cameraHeightAngle)))
 
     # Object or point target
-    if MC.Cam_01Target == 'Follow an object or point':
+    #if MC.Cam_01Target == 'Follow an object or point':
+    if MC.Cam_01Target[0:2] == '01': # 'Follow an object or point'
         if not MC.Cam_02TargetObjectSelection:
-            FreeCAD.Console.PrintMessage(translate('Movie', 'You have to select an '
-                                                   'object or point in “Cam_02TargetObjectSelection”!') + '\n')
-            ma.modifyAnimationIndicator(Animation = False)
+            FreeCAD.Console.PrintMessage(translate('MovieCamera',
+                                                   'You have to select an object or \n'
+                                                   'point in “Cam_02TargetObjectSelection”!'
+                                                   ) + '\n')
+            ma.modifyAnimationIndicator(animation = False, obj = MC)
             return
 
         cameraFixedTarget = MC.Cam_02TargetObjectSelection.Placement.Base
         cameraNode.pointAt( coin.SbVec3f(cameraFixedTarget), coin.SbVec3f( 0, 0, 1 ) )
 
     #  Render camera
-    if MC.Cam_01Type == 'Render':
+    #if MC.Cam_01Type == 'Render':
+    if MC.Cam_01Type[0:2] == '01': # Render
         if not MC.Cam_02Render_Selection:
-            FreeCAD.Console.PrintMessage(translate('Movie', 'You have to select '
-                                                   'a render camera in “Cam_02Render_Selection”!') + '\n')
-            ma.modifyAnimationIndicator(Animation = False)
+            FreeCAD.Console.PrintMessage(translate('MovieCamera',
+                                                   'You have to select a render \n'
+                                                   'camera in “Cam_02Render_Selection”!'
+                                                   ) + '\n')
+            ma.modifyAnimationIndicator(animation = False, obj = MC)
             return
 
         renderCamera = MC.Cam_02Render_Selection
@@ -543,6 +863,5 @@ def getMovieCameraMobile(Selection = None):
 
 if FreeCAD.GuiUp:
     FreeCAD.Gui.addCommand('CreateMovieCamera', CreateMovieCamera())
-    FreeCAD.Gui.addCommand('EnableMovieCamera', EnableMovieCamera())
 
 # ======================================================================================

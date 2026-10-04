@@ -23,11 +23,12 @@
 # *                                                                         *
 # ***************************************************************************/
 
+"""Creates a animation of objects to play in FreeCAD."""
+
 import FreeCAD
 import FreeCADGui as Gui
 import os
 import time
-from math import degrees, radians
 from PySide.QtCore import QT_TRANSLATE_NOOP
 import MovieAnimation as ma
 
@@ -37,124 +38,186 @@ LanguagePath = os.path.dirname(__file__) + '/translations'
 Gui.addLanguagePath(LanguagePath)
 
 # ======================================================================================
-# 0. Global
+# 0. Globals
 
 MO = None
-
-def enableObjectsSelection(Enable = None):
-    global MO
-    MO = Enable
-    # New - Updating PosA and PosB
-    #if(hasattr(MO, 'PosAList')):
-    if hasattr(MO, 'PosAList'):
-        import ast
-        if MO.PosAList != []:
-            MO.PosA = ast.literal_eval(MO.PosAList[0])
-        if MO.PosBList != []:
-            MO.PosB = ast.literal_eval(MO.PosBList[0])
-
-# Refreshes each step of objects animation
 OBJ_REFRESH = False
-def enableObjectsRefresh(Enable = False):
-    global OBJ_REFRESH
-    if Enable == True:
-        OBJ_REFRESH = True
-    else:
-        OBJ_REFRESH = False
-
 # ======================================================================================
 # 1. Classes
 
 class MovieObjects:
+
     '''Class to create a group of objects to be animated'''
 
-    def __init__(self, obj):
-        obj.addProperty('App::PropertyLinkList', 'Objects', 'Movie Objects', QT_TRANSLATE_NOOP('App::Property', 
+    def __init__(self,obj):
+        obj.Proxy = self
+        self.setProperties(obj)
+
+    def setProperties(self,obj):
+
+        """Gives the object properties to MovieObjects."""
+
+        pl = obj.PropertiesList
+
+        if not 'Objects' in pl:
+            obj.addProperty('App::PropertyLinkList', 'Objects', 'Movie Objects',
+                                                    QT_TRANSLATE_NOOP('App::Property',
                                                     'List of objects of this MovieObjects.'
                                                     )).Objects = []
-        obj.addProperty('App::PropertyPythonObject', 'Names').Names = []
-        obj.addProperty('App::PropertyPythonObject', 'CenterGravityA').CenterGravityA = {}
-        obj.addProperty('App::PropertyPythonObject', 'CenterGravityB').CenterGravityB = {}
-        obj.addProperty('App::PropertyPythonObject', 'Pos0').Pos0 = {} # Placement0
-        obj.addProperty('App::PropertyPythonObject', 'PosA').PosA = {} # PlacementA
-        obj.addProperty('App::PropertyPythonObject', 'PosB').PosB = {} # PlacementB
-        obj.addProperty('App::PropertyPythonObject', 'ObjectAxis').ObjectAxis = {}
-        obj.addProperty('App::PropertyPythonObject', 'PosGCAverage0').PosGCAverage0 = []
+        if not 'Names' in pl:
+            obj.addProperty('App::PropertyPythonObject', 'Names').Names = []
+        if not 'CenterGravityA' in pl:
+            obj.addProperty('App::PropertyPythonObject', 'CenterGravityA').CenterGravityA = {}
+        if not 'CenterGravityB' in pl:
+            obj.addProperty('App::PropertyPythonObject', 'CenterGravityB').CenterGravityB = {}
+        if not 'Pos0' in pl:
+            obj.addProperty('App::PropertyPythonObject', 'Pos0').Pos0 = {} # Placement0
+        if not 'PosA' in pl:
+            obj.addProperty('App::PropertyPythonObject', 'PosA').PosA = {} # PlacementA
+        if not 'PosB' in pl:
+            obj.addProperty('App::PropertyPythonObject', 'PosB').PosB = {} # PlacementB
+        if not 'ObjectAxis' in pl:
+            obj.addProperty('App::PropertyPythonObject', 'ObjectAxis').ObjectAxis = {}
+        if not 'PosGCAverage0' in pl:
+            obj.addProperty('App::PropertyPythonObject', 'PosGCAverage0').PosGCAverage0 = []
 
-    # Movie Objects 01 - Animation config 
-
-
-        obj.addProperty('App::PropertyInteger', 'Obj_01AnimIniStep', 'Movie Objects 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Initial step of the MovieObjects animation. Indicate the step which this section of the '
-                                                    'animation will begin. Changes will only take '
-                                                    'effect after MovieObjects has been re-enabled.')).Obj_01AnimIniStep = 0
-        obj.addProperty('App::PropertyInteger', 'Obj_02AnimCurrentStep', 'Movie Objects 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Current step of the MovieObjects animation. It is only indicative.'
-                                                    )).Obj_02AnimCurrentStep = 0
-        obj.addProperty('App::PropertyInteger', 'Obj_03AnimEndStep', 'Movie Objects 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'End step of the MovieObjects animation. Indicate the step which this section of the animation '
-                                                    'will finish. Changes will only take '
-                                                    'effect after MovieObjects has been re-enabled.')).Obj_03AnimEndStep = 50
-        obj.addProperty('App::PropertyInteger', 'Obj_04AnimTotalSteps', 'Movie Objects 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Total steps of MovieObjects animation. It is the result of the difference between End step '
-                                                    '(“Obj_03AnimEndStep“) and Initial step (“Obj_01AnimIniStep“).'
+        # Movie Objects 01 - Animation config
+        if not 'Obj_01AnimIniStep' in pl:
+            obj.addProperty('App::PropertyInteger', 'Obj_01AnimIniStep', 'Movie Objects 01 - Animation config',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Initial step of the MovieObjects animation.\n'
+                                                    '\n'
+                                                    'Indicate the step which this section of the \n'
+                                                    'animation will begin. Changes will only take \n'
+                                                    'effect after MovieObjects has been re-enabled.'
+                                                    )).Obj_01AnimIniStep = 1
+        if not 'Obj_02AnimCurrentStep' in pl:
+            obj.addProperty('App::PropertyInteger', 'Obj_02AnimCurrentStep', 'Movie Objects 01 - Animation config',
+                                                     QT_TRANSLATE_NOOP('App::Property',
+                                                    'Current step of the MovieObjects animation.\n'
+                                                    '\n'
+                                                    'It is only indicative.'
+                                                    )).Obj_02AnimCurrentStep = 1
+        if not 'Obj_03AnimEndStep' in pl:
+            obj.addProperty('App::PropertyInteger', 'Obj_03AnimEndStep', 'Movie Objects 01 - Animation config',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'End step of the MovieObjects animation.\n'
+                                                    '\n'
+                                                    'Indicate the step which this section of \n'
+                                                    'the animation will finish. Changes will \n'
+                                                    'only take effect after MovieObjects has \n'
+                                                    'been re-enabled.'
+                                                    )).Obj_03AnimEndStep = 50
+        if not 'Obj_04AnimTotalSteps' in pl:
+            obj.addProperty('App::PropertyInteger', 'Obj_04AnimTotalSteps', 'Movie Objects 01 - Animation config',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Total steps of MovieObjects animation.\n'
+                                                    '\n'
+                                                    'It is the result of the difference \n'
+                                                    'between End step (“Obj_03AnimEndStep”) \n'
+                                                    'and Initial step (“Obj_01AnimIniStep”).'
                                                     )).Obj_04AnimTotalSteps = 50
-        obj.addProperty('App::PropertyInteger', 'Obj_05AnimFps', 'Movie Objects 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Animation fps of the MovieObjects. Indicate the fps through which the section of the animation '
-                                                    'will be '
-                                                    'performed. It is a simulation and will depend on the '
-                                                    'computer performance. Changes will only take '
-                                                    'effect after MovieObjects has been re-enabled.')).Obj_05AnimFps = 30
-        obj.addProperty('App::PropertyString', 'Obj_06AnimTime', 'Movie Objects 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Animation time of the MovieObjects, in in hours, minutes, and seconds. '
+        if not 'Obj_05AnimFps' in pl:
+            obj.addProperty('App::PropertyInteger', 'Obj_05AnimFps', 'Movie Objects 01 - Animation config',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Animation fps of the MovieObjects.\n'
+                                                    '\n'
+                                                    'Indicate the fps through which the \n'
+                                                    'section of the animation will be performed. \n'
+                                                    'It is a simulation and will depend on the \n'
+                                                    'computer performance. Changes will only take \n'
+                                                    'effect after MovieObjects has been re-enabled.'
+                                                    )).Obj_05AnimFps = 30
+        if not 'Obj_06AnimTime' in pl:
+            obj.addProperty('App::PropertyString', 'Obj_06AnimTime', 'Movie Objects 01 - Animation config',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Animation time of the MovieObjects, \n'
+                                                    'in in hours, minutes, and seconds. \n'
+                                                    '\n'
                                                     'It is only indicative.'
                                                     )).Obj_06AnimTime = time.strftime("%H:%M:%S", time.gmtime(1.7))
-        obj.addProperty('App::PropertyBool', 'Obj_07AnimOnAnim', 'Movie Objects 01 - Animation config', QT_TRANSLATE_NOOP('App::Property', 
-                                                     'MovieObjects animation on or off. '
-                                                     'It should not be changed manually, it is controlled by the animation buttons.'
-                                                     )).Obj_07AnimOnAnim = False
+        if not 'Obj_07AnimOnAnim' in pl:
+            obj.addProperty('App::PropertyBool', 'Obj_07AnimOnAnim', 'Movie Objects 01 - Animation config',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'MovieObjects animation on or off. \n'
+                                                    '\n'
+                                                    'It should not be changed manually, \n'
+                                                    'it is controlled by the animation buttons.'
+                                                    )).Obj_07AnimOnAnim = False
 
-    # Movie Objects 02 - Objects config
-
-        obj.addProperty('App::PropertyBool', 'Obj_01Route', 'Movie Objects 02 - Objects config', 
+        # Movie Objects 02 - Objects config
+        if not 'Obj_01Route' in pl:
+            obj.addProperty('App::PropertyBool', 'Obj_01Route', 'Movie Objects 02 - Objects config',
                                                     QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Route of the MovieObjects. Choose “true” if the objects follow a route. '
-                                                    'You have to select a single segment on Route selection (“Obj_02RouteSelection“) to use it. '
-                                                    'With the route activated, the coordinate settings for points A and B will be ignored, but not deleted. '
-                                                    'Disable the route and the animation of points A and B will be activated again, if it has already been '
-                                                    'configured before.'
+                                                    'Route of the MovieObjects. \n'
+                                                    '\n'
+                                                    'Enable this so that the objects follow a route. \n'
+                                                    'You have to select a single segment on route \n'
+                                                    'selection (“Obj_02RouteSelection”) to use it. \n'
+                                                    'With the route activated, the coordinate \n'
+                                                    'settings for points A and B will be ignored, \n'
+                                                    'but not deleted. \n'
+                                                    '\n'
+                                                    'Disable the route and the animation of \n'
+                                                    'points A and B will be activated again, \n'
+                                                    'if it has already been configured before.'
                                                     )).Obj_01Route = False
-        obj.addProperty('App::PropertyLink', 'Obj_02RouteSelection', 'Movie Objects 02 - Objects config', 
+        if not 'Obj_02RouteSelection' in pl:
+            obj.addProperty('App::PropertyLink', 'Obj_02RouteSelection', 'Movie Objects 02 - Objects config',
                                                     QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Route selection of the MovieObjects. Choose the route through which the objects will be '
-                                                    'animate. You have to select a single segment such as: line, arc, circle, '
-                                                    'ellipse, B-spline or Bézier curve, from Sketcher or Draft Workbenches.'
+                                                    'Route selection of the MovieObjects.\n'
+                                                    '\n'
+                                                    'Choose the route through which the \n'
+                                                    'objects will be animate. You have to \n'
+                                                    'select a single segment such as: line, \n'
+                                                    'arc, circle, ellipse, B-spline or \n'
+                                                    'Bézier curve, from Sketcher or Draft \n'
+                                                    'Workbenches.'
                                                     )).Obj_02RouteSelection = None
 
-    # Movie Objects 03 - Objects rotation
-        obj.addProperty('App::PropertyBool', 'Obj_01Rotation', 'Movie Objects 03 - Objects rotation', QT_TRANSLATE_NOOP(
-                                                    'App::Property', 'Rotation of the MovieObjects. Choose “true”, if you want to '
-                                                    'animate the objects angles.')).Obj_01Rotation = False
-        obj.addProperty('App::PropertyBool', 'Obj_02RotationCG', 'Movie Objects 03 - Objects rotation', QT_TRANSLATE_NOOP(
-                                                    'App::Property', 'Rotation by the centers of gravities of the MovieObjects. Choose '
-                                                    '“true”, if you want to rotate the objects by their '
-                                                    'centers of gravity.')).Obj_02RotationCG = False
+        # Movie Objects 03 - Objects rotation
+        if not 'Obj_01Rotation' in pl:
+            obj.addProperty('App::PropertyBool', 'Obj_01Rotation', 'Movie Objects 03 - Objects rotation',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Rotation of the MovieObjects.\n'
+                                                    '\n'
+                                                    'Enable this if you want to animate \n'
+                                                    'the objects angles.'
+                                                    )).Obj_01Rotation = False
+        if not 'Obj_02RotationCG' in pl:
+            obj.addProperty('App::PropertyBool', 'Obj_02RotationCG', 'Movie Objects 03 - Objects rotation',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Rotation by the centers of gravities \n'
+                                                    'of the MovieObjects.\n'
+                                                    '\n'
+                                                    'Enable this if you want to rotate \n'
+                                                    'the objects by their centers of gravity.'
+                                                    )).Obj_02RotationCG = False
 
-        obj.Proxy = self
-
-    # New properties
-    #def updateProps(self, obj):
-        obj.addProperty('App::PropertyStringList', 'PosAList', 'Movie Objects', QT_TRANSLATE_NOOP('App::Property', 
+        # New properties
+        #def updateProps(self, obj):
+        if not 'PosAList' in pl:
+            obj.addProperty('App::PropertyStringList', 'PosAList', 'Movie Objects',
+                                                    QT_TRANSLATE_NOOP('App::Property',
                                                     'Placements of PosA of this MovieObjects.'
                                                     )).PosAList = [] # New
-        obj.addProperty('App::PropertyStringList', 'PosBList', 'Movie Objects', QT_TRANSLATE_NOOP('App::Property', 
+        if not 'PosBList' in pl:
+            obj.addProperty('App::PropertyStringList', 'PosBList', 'Movie Objects',
+                                                    QT_TRANSLATE_NOOP('App::Property',
                                                     'Placements of PosB of this MovieObjects.'
                                                     )).PosBList = [] # New
-        obj.addProperty('App::PropertyBool', 'Obj_03Refresh', 'Movie Objects 02 - Objects config', 
+        if not 'Obj_03Refresh' in pl:
+            obj.addProperty('App::PropertyBool', 'Obj_03Refresh', 'Movie Objects 02 - Objects config',
                                                     QT_TRANSLATE_NOOP('App::Property', 
-                                                    'Refresh on or off. Choose “true” if you need to update at each '
-                                                    'step of the animation. Sometimes needed in combination with other object animation '
-                                                    'workbenches. Note: This decreases the performance of object animations.'
+                                                    'Refresh on or off.\n'
+                                                    '\n'
+                                                    'Enable this if you need to update \n'
+                                                    'at each step of the animation. \n'
+                                                    'Sometimes needed in combination \n'
+                                                    'with other object animation workbenches.\n'
+                                                    '\n'
+                                                    'Note: This decreases the performance \n'
+                                                    'of object animations.'
                                                     )).Obj_03Refresh = False
 
 class MovieObjectsViewProvider:
@@ -164,27 +227,86 @@ class MovieObjectsViewProvider:
     def getIcon(self):
         __dir__ = os.path.dirname(__file__)
         return __dir__ + '/icons/MovieObjectsIcon.svg'
+        '''
+        from MovieAnimation import ENABLE_01
+        print(f'MovieObject icon, ENABLE_01 = {ENABLE_01}')
+        if ENABLE_01 == 'Objects':
+            return __dir__ + '/icons/EnableMovieObjectsIcon.svg'
+        else:
+            return __dir__ + '/icons/MovieObjectsIcon.svg'
+        '''
 
 # ======================================================================================
 # 2. Command classes
 
 class CreateMovieObjects:
 
-    def QT_TRANSLATE_NOOP(Movie, text):
+    """Creates a MovieObjects."""
+
+    def QT_TRANSLATE_NOOP(self, text):
         return text
 
     def GetResources(self):
         __dir__ = os.path.dirname(__file__)
         return {'Pixmap': __dir__ + '/icons/CreateMovieObjectsIcon.svg',
-                'MenuText': QT_TRANSLATE_NOOP('CreateMovieObjects', 'MovieObjects'),
-                'ToolTip': QT_TRANSLATE_NOOP('CreateMovieObjects', 
-                                             'First select a group of objects you want to animate and '
-                                             'click here. Objects can move from position A to B, '
-                                             'follow a route, rotate around their gravity centers or a chosen axis.')}
+                'MenuText': QT_TRANSLATE_NOOP('CreateMovieObjects',
+                                              'MovieObjects'),
+                'ToolTip': QT_TRANSLATE_NOOP('CreateMovieObjects',
+                                             'Objects can be animated from position A to B, \n'
+                                             'follow a route, rotate around their \n'
+                                             'gravity centers or a chosen axis.\n'
+                                             '\n'
+                                             '1. First select a group of objects \n'
+                                             'you want to animate and click here.\n'
+                                             '\n'
+                                             '2. To animate one or more objects \n'
+                                             'together from point A to B, that move \n'
+                                             'and/or rotate, establish their A and B \n'
+                                             'positions (see the positions A and B \n'
+                                             'instructions).\n'
+                                             '\n'
+                                             '3. Using a path. Enable “Obj_01Route” \n'
+                                             'in the properties window and specify an \n'
+                                             'previous line or continuous curves under \n'
+                                             '“Obj_02_Route Selection”.\n'
+                                             '\n'
+                                             '4. Rotating around their gravity centers. \n'
+                                             'Specify the initial (PosA) and final (Pos B) \n'
+                                             'rotations and enable the “Obj_Rotation CG” property.\n'
+                                             '\n'
+                                             '5. Rotating around chosen axis. See “Rotation \n'
+                                             'axis” instruction button.\n'
+                                             '\n'
+                                             '6. Make finer adjustments in the properties window, \n'
+                                             'if necessary.\n'
+                                             '\n'
+                                             '7. To view the animation, select one or more created \n'
+                                             'MovieObjects (sequentially) and click the “Enable an \n'
+                                             'object for animation” button. Control the animation using \n'
+                                             'the “Animation tools” buttons.\n'
+                                             '\n'
+                                             '8. To save a video from the animation, indicate the \n'
+                                             'MovieObjects on a Clapperboard, to do so, see the \n'
+                                             'corresponding instructions.'
+                                             )}
 
     def IsActive(self):
         if Gui.ActiveDocument:
-            return True
+            selection = []
+            selection = Gui.Selection.getSelection()
+            if not selection:
+                return False
+            else:
+                if selection[0].Name[0:11] != 'MovieCamera':
+                    if selection[0].Name[0:12] != 'MovieObjects':
+                        if selection[0].Name[0:12] != 'Clapperboard':
+                            return True
+                        else:
+                            return False
+                    else:
+                        return False
+                else:
+                    return False
         else:
             return False
 
@@ -193,8 +315,9 @@ class CreateMovieObjects:
         listObjects = []
         listObjects = Gui.Selection.getSelection()
         if not listObjects:
-            FreeCAD.Console.PrintMessage(translate('Movie', 'Select at least one '
-                                                   'object to create a MovieObjects!') + '\n')
+            FreeCAD.Console.PrintMessage(translate('MovieObjects',
+                                                   'Select at least one object to create a '
+                                                   'MovieObjects!') + '\n')
             return
         else:
             Gui.Selection.clearSelection()
@@ -204,10 +327,12 @@ class CreateMovieObjects:
             sumCG = FreeCAD.Vector(0,0,0)
 
             for n in range(len(listObjects)):
+                #Get object names (MO.Names)
                 Object = listObjects[n]
                 name = Object.Name
                 MO.Names.append(name)
-                MO.ObjectAxis[name] = 'None' # Apply no external rotation axis to object
+                MO.ObjectAxis[name] = 'None' # Applies no external rotation axis to object
+                #Get object placements
                 vectorCenterGravity0 = listObjects[n].Shape.CenterOfGravity
                 sumCG = sumCG + vectorCenterGravity0
                 vectorBase0 = listObjects[n].Placement.Base
@@ -219,84 +344,102 @@ class CreateMovieObjects:
             # Initial vector of gravity centers average
             vectorGCAverage0 = sumCG/len(listObjects)
             MO.PosGCAverage0 = (vectorGCAverage0[0], vectorGCAverage0[1], vectorGCAverage0[2])
-            ma.modifyAnimationIndicator(Animation = False)
+            # Applies an automatic initial A position
+            setMOPosAB(obj = MO, position = 'A')
+            setMOPosAB(obj = MO, position = 'B') #Repeat position A
+            # Updates animation indicator
+            ma.modifyAnimationIndicator(animation = False)
+            FreeCAD.Console.PrintMessage(translate('MovieObjects',
+                                                   'A MovieObject was created with the \n'
+                                                   'pre-established position A!') + '\n')
 
 def ActivatedMovieObjects(self):
     global MO
 
-    default_label = translate('Movie', 'MovieObjects')
-    folder = FreeCAD.ActiveDocument.addObject('App::DocumentObjectGroupPython', 'MovieObjects')
+    default_label = translate('MovieObjects',
+                              'MovieObjects')
+    folder = FreeCAD.ActiveDocument.addObject('App::DocumentObjectGroupPython',
+                                              'MovieObjects')
     MovieObjects(folder)
     MovieObjectsViewProvider(folder.ViewObject)
+    MO = None
     MO = folder
     MO.Label = default_label
-
-class EnableMovieObjects:
-
-    def QT_TRANSLATE_NOOP(Movie, text):
-        return text
-
-    def GetResources(self):
-        __dir__ = os.path.dirname(__file__)
-        return {'Pixmap': __dir__ + '/icons/EnableMovieObjectsIcon.svg',
-                'MenuText': QT_TRANSLATE_NOOP('EnableMovieObjects', 'Enable a MovieObjects'),
-                'ToolTip': QT_TRANSLATE_NOOP('EnableMovieObjects',
-                                             'Select the MovieObjects that you want to configure, '
-                                             'then click on this button to be possible to configure '
-                                             'its positions A and B, set an axis or exclude it.')}
-
-    def IsActive(self):
-        if Gui.ActiveDocument:
-            return True
-        else:
-            return False
-
-    def Activated(self):
-        ma.enableMovieSelection(Enable = 'Objects')
+    FreeCAD.ActiveDocument.recompute()
 
 class SetMovieObjectsAxis:
 
-    def QT_TRANSLATE_NOOP(Movie, text):
+    """Sets a MovieObjects axis."""
+
+    def QT_TRANSLATE_NOOP(self, text):
         return text
 
     def GetResources(self):
         __dir__ = os.path.dirname(__file__)
         return {'Pixmap': __dir__ + '/icons/SetMovieObjectsAxisIcon.svg',
-                'MenuText': QT_TRANSLATE_NOOP('SetMovieObjectsAxis', 'Set an axis'),
-                'ToolTip': QT_TRANSLATE_NOOP('SetMovieObjectsAxis', 
-                                             'After create a MovieObjects, position A and B set, select those '
-                                             'objects you want to rotate around a axis. '
-                                             'Select first the objects, then the axis. '
-                                             'To erase these settings, click on Set position B button.')}
+                'MenuText': QT_TRANSLATE_NOOP('SetMovieObjectsAxis',
+                                               'Rotation axis'),
+                'ToolTip': QT_TRANSLATE_NOOP('SetMovieObjectsAxis',
+                                            '1. First create a MovieObjects, set their rotation A and B.\n'
+                                            '\n'
+                                            '2. Then, define a rotation axis for objects of a created \n'
+                                            'MovieObject. The rotation axis can be a line (from Draft \n'
+                                            'or Sketch) or even an object edge.\n'
+                                            '\n'
+                                            '3. After that, select first the objects you want to rotate, \n'
+                                            'then the axis and click this button.\n'
+                                            '\n'
+                                            '4. To erase these settings, enable the MovieObjects and \n'
+                                            'click on “Set position B” button.'
+                                            )}
 
     def IsActive(self):
         if Gui.ActiveDocument:
             if not MO.Obj_07AnimOnAnim:
-                return True
+                selection = []
+                selection = Gui.Selection.getSelection()
+                if not selection:
+                    return False
+                else:
+                    if selection[0].Name[0:12] == 'MovieObjects':
+                        return True
         else:
             return False
 
     def Activated(self):
-        setObjectsAxis(Option = MO)
+        setObjectsAxis(obj = MO)
 
 class ExcludeMovieObjects:
 
-    def QT_TRANSLATE_NOOP(Movie, text):
+    """Excludes a MovieObjects."""
+
+    def QT_TRANSLATE_NOOP(self, text):
         return text
 
     def GetResources(self):
         __dir__ = os.path.dirname(__file__)
         return {'Pixmap': __dir__ + '/icons/ExcludeMovieObjectsIcon.svg',
-                'MenuText': QT_TRANSLATE_NOOP('ExcludeMovieObjects', 'Exclude a MovieObjects'),
-                'ToolTip': QT_TRANSLATE_NOOP('ExcludeMovieObjects', 
-                                             'Select a MovieObjects that you want to exclude, '
-                                             'then click on this button. Objects positions and angles '
-                                             'will revert to the values set when the MovieObjects were created.')}
+                'MenuText': QT_TRANSLATE_NOOP('ExcludeMovieObjects',
+                                              'Exclude a MovieObjects'),
+                'ToolTip': QT_TRANSLATE_NOOP('ExcludeMovieObjects',
+                                             'Select a MovieObjects that you want to exclude, \n'
+                                             'then click on this button. \n'
+                                             '\n'
+                                             'Objects positions and angles will revert to \n'
+                                             'the values set when the MovieObjects were \n'
+                                             'created.'
+                                             )}
 
     def IsActive(self):
         if Gui.ActiveDocument:
             if not MO.Obj_07AnimOnAnim:
-                return True
+                selection = []
+                selection = Gui.Selection.getSelection()
+                if not selection:
+                    return False
+                else:
+                    if selection[0].Name[0:12] == 'MovieObjects':
+                        return True
         else:
             return False
 
@@ -304,12 +447,16 @@ class ExcludeMovieObjects:
         excludeMovieObjects()
 
 def excludeMovieObjects():
+
+    """Excludes a MovieObjects."""
+
     global MO
     selection = []
     selection = Gui.Selection.getSelection()
     if not selection:
-        FreeCAD.Console.PrintMessage(translate('Movie', 'Select a '
-                                                   'MovieObjects to exclude!') + '\n')
+        FreeCAD.Console.PrintMessage(translate('MovieObjects',
+                                               'Select a MovieObjects to exclude!\n'
+                                               ) + '\n')
         return
     else:
         MO = selection[0]
@@ -322,64 +469,59 @@ def excludeMovieObjects():
 # ======================================================================================
 # 3. Functions
 
-def setMOPosA(Option = None):
+#New
+def setMOPosAB(obj = None,
+               position = None):
 
-    MO = Option
+    """Sets the A and B positions for a MovieObjects."""
 
-    # PosA - positions, angles and centers of gravity of objects
+    MO = obj
+    Pos = position # A or B
+
+    # PosA or PosB - positions, angles and centers of gravity of objects
     for n in range(len(MO.Names)):
         name = MO.Names[n]
-        vectorCGA = MO.Objects[n].Shape.CenterOfGravity
-        coordCGA = (vectorCGA[0], vectorCGA[1], vectorCGA[2])
-        MO.CenterGravityA[name] = coordCGA
-        vectorBaseA = MO.Objects[n].Placement.Base
-        coordBaseA = (vectorBaseA[0], vectorBaseA[1], vectorBaseA[2])
-        rotationA = MO.Objects[n].Placement.Rotation.getYawPitchRoll()
-        placementA = (coordBaseA, rotationA)
-        MO.PosA[name] = placementA
+        vectorCG = MO.Objects[n].Shape.CenterOfGravity
+        coordCG = (vectorCG[0], vectorCG[1], vectorCG[2])
+        vectorBase = MO.Objects[n].Placement.Base
+        coordBase= (vectorBase[0], vectorBase[1], vectorBase[2])
+        rotation = MO.Objects[n].Placement.Rotation.getYawPitchRoll()
+        placement = (coordBase, rotation)
+        if Pos == 'A':
+            MO.CenterGravityA[name] = coordCG
+            MO.PosA[name] = placement
+        if Pos == 'B':
+            MO.CenterGravityB[name] = coordCG
+            MO.PosB[name] = placement
 
-    MO.Obj_02AnimCurrentStep = 0
-    ma.modifyAnimationIndicator(Animation = False)
+    #Save object placements
+    if Pos == 'A':
+        if(hasattr(MO, 'PosAList')): # New
+            MO.Obj_02AnimCurrentStep = 0
+            MO.PosAList = str(MO.PosA) # New
+    if Pos == 'B':
+        if(hasattr(MO, 'PosBList')): # New
+            MO.Obj_02AnimCurrentStep = MO.Obj_04AnimTotalSteps
+            MO.PosBList = str(MO.PosB) # New
+    ma.modifyAnimationIndicator(animation = False, obj = MO)
     MO.Obj_01Rotation = True
-    FreeCAD.Console.PrintMessage(translate('Movie', 'MovieObjects position A has been established.') + '\n')
-    if(hasattr(MO, 'PosAList')): # New
-        MO.PosAList = str(MO.PosA) # New
-    Gui.updateGui()
+    FreeCAD.Console.PrintMessage(translate('MovieObjects',
+                                          ('MovieObjects position {} has been established.'
+                                          ).format(Pos) + '\n'))
+    FreeCAD.ActiveDocument.recompute()
 
-def setMOPosB(Option = None):
+def setObjectsAxis(obj = None):
 
-    MO = Option
+    """Sets a MovieObjects axis."""
 
-    # PosB - positions, angles and centers of gravity of objects
-    MO.ObjectAxis = {} #Delete any config. of previous setMovieObjectsAxis
-
-    for n in range(len(MO.Names)):
-        name = MO.Names[n]
-        MO.ObjectAxis[name] = 'None' # Delete any previous external rotation axis to object
-        vectorCGB = MO.Objects[n].Shape.CenterOfGravity
-        coordCGB = (vectorCGB[0], vectorCGB[1], vectorCGB[2])
-        MO.CenterGravityB[name] = coordCGB
-        vectorBaseB = MO.Objects[n].Placement.Base
-        coordBaseB = (vectorBaseB[0], vectorBaseB[1], vectorBaseB[2])
-        rotationB = MO.Objects[n].Placement.Rotation.getYawPitchRoll()
-        placementB = (coordBaseB, rotationB)
-        MO.PosB[name] = placementB
-
-    MO.Obj_02AnimCurrentStep = MO.Obj_04AnimTotalSteps
-    ma.modifyAnimationIndicator(Animation = False)
-    MO.Obj_01Rotation = True
-    FreeCAD.Console.PrintMessage(translate('Movie', 'MovieObjects position B has been established.') + '\n')
-    if(hasattr(MO, 'PosBList')): # New
-        MO.PosBList = str(MO.PosB) # New
-    Gui.updateGui()
-
-def setObjectsAxis(Option = None):
-    MO = Option
+    MO = obj
     listObjects = []
     listObjects = Gui.Selection.getSelection()
     if not listObjects:
-        FreeCAD.Console.PrintMessage(translate('Movie', 'First select the objects '
-                                               'you want to rotate then the axis of rotation.') + '\n')
+        FreeCAD.Console.PrintMessage(translate('MovieObjects',
+                                               'First select the objects you want \n'
+                                               'to rotate then the axis of rotation.'
+                                               ) + '\n')
         return
     else:
         Gui.Selection.clearSelection()
@@ -393,20 +535,21 @@ def setObjectsAxis(Option = None):
             if name != AxisName:
                 MO.ObjectAxis[name] = AxisName
 
-    ma.modifyAnimationIndicator(Animation = False)
+    ma.modifyAnimationIndicator(animation = False, obj = MO)
 
 def getMovieObjectsMobile(Selection = None):
+
+    """Gets the positions of a MovieObjects."""
+
     global OBJ_REFRESH
     MO = Selection
 
     # Objects Pos AB - Angles: yaw, pitch and roll
     if MO.Obj_01Rotation == True:
-
         for n in range(len(MO.Objects)):
             name = MO.Names[n]
             anglesAn = MO.PosA[name][1]
             anglesBn = MO.PosB[name][1]
-
             # Object rotate one step
             def getIncAngle(angleA = 0, angleB = 0):
                 #New
@@ -422,7 +565,6 @@ def getMovieObjectsMobile(Selection = None):
 
             rollObjectn1 = getIncAngle(angleA = anglesAn[2], angleB = anglesBn[2])
             rollObjectn2 = anglesAn[2] + rollObjectn1
- 
             # Object Rotates around a chosen axis
             if MO.ObjectAxis[name] != 'None':
                 # Reset to the PosA
@@ -436,7 +578,6 @@ def getMovieObjectsMobile(Selection = None):
                 centerRot = axisObject.Placement.Base
                 placement = FreeCAD.Placement(objBase, objRot, centerRot)
                 MO.Objects[n].Placement = placement.multiply(MO.Objects[n].Placement)
-
             # Object Rotates without a chosen axis
             else:
                 MO.Objects[n].Placement.Rotation.setYawPitchRoll(yawObjectn2, pitchObjectn2, rollObjectn2)
@@ -444,9 +585,10 @@ def getMovieObjectsMobile(Selection = None):
     # Objects that follow a route
     if MO.Obj_01Route == True:
         if not MO.Obj_02RouteSelection:
-            FreeCAD.Console.PrintMessage(translate('Movie', 'You have to select '
-                                                   'a route in “Obj_02RouteSelection“!') + '\n')
-            ma.modifyAnimationIndicator(Animation = False)
+            FreeCAD.Console.PrintMessage(translate('MovieObjects',
+                                                   'You have to select a route in “Obj_02RouteSelection”!'
+                                                   ) + '\n')
+            ma.modifyAnimationIndicator(animation = False, obj = MO)
             return
         # Calculating the current vector on the route
         route = MO.Obj_02RouteSelection.Shape.Edges[0]
@@ -503,13 +645,36 @@ def getMovieObjectsMobile(Selection = None):
     if OBJ_REFRESH == True:
         FreeCAD.ActiveDocument.recompute()
 
+def enableObjectsSelection(obj2 = None):
+
+    """Enables position A and B of MovieObjects."""
+
+    global MO
+    MO = obj2
+    # New - Updating PosA and PosB
+    if hasattr(MO, 'PosAList'):
+        import ast
+        if MO.PosAList != []:
+            MO.PosA = ast.literal_eval(MO.PosAList[0])
+        if MO.PosBList != []:
+            MO.PosB = ast.literal_eval(MO.PosBList[0])
+
+def enableObjectsRefresh(refres = False):
+
+    """Refreshes each step of objects animation."""
+
+    global OBJ_REFRESH
+    if refres == True:
+        OBJ_REFRESH = True
+    else:
+        OBJ_REFRESH = False
+
 # ======================================================================================
 
 # 3. Commands
 
 if FreeCAD.GuiUp:
     FreeCAD.Gui.addCommand('CreateMovieObjects', CreateMovieObjects())
-    FreeCAD.Gui.addCommand('EnableMovieObjects', EnableMovieObjects())
     FreeCAD.Gui.addCommand('SetMovieObjectsAxis', SetMovieObjectsAxis())
     FreeCAD.Gui.addCommand('ExcludeMovieObjects', ExcludeMovieObjects())
 
