@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
    version="1.2"
-   width="17.98mm"
-   height="17.98mm"
-   viewBox="0 0 1798 1798"
+   width="17.2mm"
+   height="17.2mm"
+   viewBox="0 0 1720 1720"
    preserveAspectRatio="xMidYMid"
    fill-rule="evenodd"
    stroke-width="28.222"
    stroke-linejoin="round"
    xml:space="preserve"
-   id="svg66"
-   sodipodi:docname="PlayMovieAnimationIcon.svg"
+   id="svg80"
+   sodipodi:docname="SetMovieCameraPosAIcon.svg"
    inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -20,7 +20,7 @@
    xmlns:cc="http://creativecommons.org/ns#"
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:ooo="http://xml.openoffice.org/svg/export"><metadata
-   id="metadata70"><rdf:RDF><cc:Work
+   id="metadata84"><rdf:RDF><cc:Work
        rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
          rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><sodipodi:namedview
    pagecolor="#ffffff"
@@ -33,15 +33,15 @@
    inkscape:pageshadow="2"
    inkscape:window-width="1846"
    inkscape:window-height="1009"
-   id="namedview68"
+   id="namedview82"
    showgrid="false"
-   inkscape:zoom="3.4728403"
-   inkscape:cx="-103.66155"
-   inkscape:cy="34.121926"
+   inkscape:zoom="5.1340609"
+   inkscape:cx="47.233565"
+   inkscape:cy="40.41635"
    inkscape:window-x="0"
    inkscape:window-y="0"
    inkscape:window-maximized="1"
-   inkscape:current-layer="svg66"
+   inkscape:current-layer="svg80"
    inkscape:pagecheckerboard="0"
    inkscape:document-units="mm" />
  <defs
@@ -53,8 +53,8 @@
    <rect
    x="0"
    y="0"
-   width="1798"
-   height="1798"
+   width="1720"
+   height="1720"
    id="rect2" />
   </clipPath>
   <clipPath
@@ -63,8 +63,8 @@
    <rect
    x="1"
    y="1"
-   width="1795"
-   height="1795"
+   width="1717"
+   height="1717"
    id="rect5" />
   </clipPath>
  </defs>
@@ -73,7 +73,7 @@
    id="defs12">
   <g
    ooo:slide="id1"
-   ooo:id-list="id3"
+   ooo:id-list="id3 id4 id5"
    id="g10" />
  </defs>
  <defs
@@ -163,55 +163,28 @@
    class="BackgroundObjects" />
   </g>
  </g>
- <g
-   class="SlideGroup"
-   id="g64"
-   style="fill:none">
-  <g
-   id="g62"
-   style="fill:none">
-   <g
-   id="container-id1"
-   style="fill:none">
-    <g
-   id="id1"
-   class="Slide"
-   clip-path="url(#presentation_clip_path)"
-   style="fill:none">
-     <g
-   class="Page"
-   id="g58"
-   style="fill:none">
-      <g
-   class="com.sun.star.drawing.PolyPolygonShape"
-   id="g56"
-   style="fill:none">
-       <g
-   id="id3"
-   style="fill:none">
-        <rect
-   class="BoundingBox"
-   stroke="none"
-   fill="none"
-   x="523"
-   y="131"
-   width="893"
-   height="1522"
-   id="rect51"
-   style="fill:none" />
-        <path
-   fill="none"
-   stroke="rgb(0,0,0)"
-   stroke-width="282"
-   stroke-linejoin="round"
-   d="M 665,1510 L 671,273 1273,898 665,1510 Z"
-   id="path53"
-   style="fill:none" />
-       </g>
-      </g>
-     </g>
-    </g>
-   </g>
-  </g>
- </g>
+ 
+<g
+   id="g160"><path
+     sodipodi:nodetypes="sssss"
+     inkscape:connector-curvature="0"
+     id="path891"
+     d="m 1036.4952,263.01052 c 0,108.12512 -87.65273,195.77784 -195.77783,195.77781 -108.1251,0 -195.77781,-87.65272 -195.77781,-195.77781 0,-108.1251 87.65271,-195.777813 195.77781,-195.777813 108.1251,-3.1e-5 195.77783,87.652693 195.77783,195.777813 z"
+     style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:110.4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" /><path
+     sodipodi:nodetypes="scss"
+     inkscape:connector-curvature="0"
+     id="path912"
+     d="m 666.2239,362.82535 c -62.00881,-154.73779 172.76974,389.37549 172.76974,389.37549 0,0 240.44816,-549.36471 170.23596,-379.59271 -47.94397,115.92778 -291.91863,117.70071 -343.0057,-9.78278 z"
+     style="fill:#ff0000;stroke:#ff0000;stroke-width:110.4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" /></g><text
+   xml:space="preserve"
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1025.29px;line-height:1.25;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:25.6329"
+   x="481.83298"
+   y="1726.1943"
+   id="text821-3-0"><tspan
+     sodipodi:role="line"
+     x="481.83298"
+     y="1726.1943"
+     id="tspan819-0-9"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:1025.29px;font-family:Arial;-inkscape-font-specification:'Arial, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#000000;stroke-width:25.6329">A</tspan></text>
+
 </svg>
