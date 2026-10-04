@@ -8,7 +8,7 @@
    version="1.1"
    inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
    viewBox="0 0 64 64"
-   sodipodi:docname="PlayVideoIcon.svg"
+   sodipodi:docname="RecordVideoIcon.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -149,7 +149,7 @@
        y="48.579426" />
     <path
        sodipodi:type="star"
-       style="fill:#008033;stroke:#008033;stroke-width:26.4567"
+       style="fill:#ff0000;stroke:#ff0000;stroke-width:26.4567"
        id="path1"
        inkscape:flatsided="false"
        sodipodi:sides="3"
