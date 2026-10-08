@@ -85,19 +85,16 @@ print(user_mod_path)
 * If you want to use the rendered frames, you must install the Render Workbench, prepare rendering projects and test them preventively to make sure everything is working correctly (see information in [FreeCAD-Render](https://github.com/FreeCAD/FreeCAD-render)). It is also recommended to take advantage and use some cameras from this workbench that better show the animation.
 * If you want to use an animation from another workbench, script or macro of FreeCAD, it is necessary to prepare the connection module for using them (ex. [Modified ExplodedAssembly](https://github.com/Francisco-Rosa/ExplodedAssembly)). For this, see the instructions inside the [MovieConnection.py](https://github.com/Francisco-Rosa/FreeCAD-Movie/blob/master/MovieConnection.py).
 
-
 ### Usage
 
+<img src=./Docs/Toolbars.webp height=60>
+The (new) Movie Workbench toolbars
 
+##### Create Camera Animations 
 
 ##### The Movie Cameras and Objects menu:
 
 <img src=./Docs/Movie_Cameras_Objects_Menu.webp width=900>
-
-##### Create Camera Animations 
-
-<img src=./Docs/Toolbars.webp height=60>
-The (new) Movie Workbench toolbars
 
 1. Click on the **MovieCamera** button <img src=./icons//CreateMovieCameraIcon.svg height=20> to create one and to configure it (see the tips showed for each item in the property window - a Movie Camera properties image is shown below).
 
