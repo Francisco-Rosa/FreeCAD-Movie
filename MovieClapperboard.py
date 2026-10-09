@@ -615,7 +615,6 @@ class RecordTaskPanel:
         self.spinBox_frame_from = QtWidgets.QSpinBox()
         self.spinBox_frame_from.setMaximum(10000)
         self.spinBox_frame_from.setValue(CL.Clap_01AnimIniStep)
-        print(f'TIP_ANIM_INIT = {TIP_ANIM_INIT}')
         self.spinBox_frame_from.setToolTip(TIP_ANIM_INIT)
         self.label_frame_to = QtWidgets.QLabel(translate('MovieClapperboard',
                                                                  'to:'))
@@ -938,7 +937,6 @@ class RecordTaskPanel:
                 return
             startRecordRender(auto = True)
         # Create video
-        print(f'{self.checkBox_save_video.isChecked()}')
         if self.checkBox_save_video.isChecked() is True:
             print('createVideo was activated')
         # Video fps
@@ -964,7 +962,6 @@ class RecordTaskPanel:
         """Triggered automatically when the user clicks 'Cancel'."""
 
         global CL
-        print("Record panel was canceled.")
         '''
         # Delete tempfile
         temp_dir = tempfile.gettempdir()

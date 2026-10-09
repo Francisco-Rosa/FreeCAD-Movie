@@ -40,8 +40,6 @@ Gui.addLanguagePath(LanguagePath)
 
 VIEW_00 = translate('MovieAnimation', '3D view')
 VIEW_01 = translate('MovieAnimation', 'Render')
-print(f'VIEW_00 = {VIEW_00}')
-print(f'VIEW_01 = {VIEW_01}')
 
 TIP_CONNECTION = translate('MovieAnimation',
                            'Connection is enable, you must select \n'
@@ -52,14 +50,12 @@ MESSAGE = translate('MovieClapperboard',
                     'This version of FreeCAD seems unable to import cv2!\n'
                     'To create or play back a video, try a different version, like 1.0, \n'
                     'or use the images generated here in an external recording program.')  + '\n'
-print(f'MESSAGE = {MESSAGE}')
 TIP_ANIM_INIT = translate('App::Property',
                         'Initial step of the Clapperboard animation.\n'
                         '\n'
                         'Indicate the step and/or frame which this \n'
                         'section of the animation and/or recording \n'
                         'will begin.')
-print(f'TIP_ANIM_INIT = {TIP_ANIM_INIT}')
 TIP_ANIM_END = translate('App::Property',
                         'End step of the Clapperboard animation.\n'
                         '\n'

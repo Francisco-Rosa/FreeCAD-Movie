@@ -51,11 +51,6 @@ CL = None
 STEP_POS = 'I'
 ANIMATION_BACK = False
 
-VIEW_00 = translate('MovieAnimation', '3D view')
-VIEW_01 = translate('MovieAnimation', 'Render')
-print(f'VIEW_00 = {VIEW_00}')
-print(f'VIEW_01 = {VIEW_01}')
-
 TIP_CONNECTION = translate('MovieAnimation',
                            'Connection is enable, you must select \n'
                            'one connection in “Cam_07Connection“!')
