@@ -1,7 +1,7 @@
 ## FreeCAD Movie Workbench
 Workbench to animate cameras and objects, record and play videos
 
-### Worbench Icon
+### Workbench Icon
 ![Movie Workbench Icon](./icons//MovieWBIcon.svg)
 
 ### Features
@@ -104,7 +104,7 @@ The (new) Movie Workbench toolbars
 
 2. Initially, a static camera is created. You can use it like this in a object animation, as a fixed camera. To configure the movie camera to animations between two positions, first, select and activate the Movie Camera you want to configure with the **Enable an object for animation** button - <img src=./icons//EnableAnimationIcon.svg height=20>. Position the 3D view with the desired framing to be the start of the animation (Pos A), click on **Set position A** button - <img src=./icons//SetMoviePosAIcon.svg height=20>. Position the 3D view with the desired framing to be the end of the animation (Pos B), then click on **Set position B** button - <img src=./icons//SetMoviePosBIcon.svg height=20>. Click on **Return to beginning** - <img src=./icons//IniMovieAnimationIcon.svg height=20> and **Move to the end** of the animation buttons - <img src=./icons//EndMovieAnimationIcon.svg height=20> to confirm the configurations. Make the adjustments you want in the position, rotation, and zoom of the Movie Camera (see Movie Camera properties image below).
 3. To make that the Movie Camera follows a route, you must create a segment first to do so. It can be a line, arc, circle, ellipse, B-spline or Bézier curve, from Sketcher or Draft Workbenches. Select the segment created in Cam_Route_Selection property. Configure the remaining camera properties.
-4. To keep the movie Camera on a fixed base, you can use the **Set position A** - <img src=./icons//SetMoviePosAIcon.svg height=20> and **Sete postion B** - <img src=./icons//SetMoviePosBIcon.svg height=20> buttons method explained, for example. Use the same position for then, adjusting the remaining settings as desired (rotation, zoom, steps, target, etc.).
+4. To keep the movie Camera on a fixed base, you can use the **Set position A** - <img src=./icons//SetMoviePosAIcon.svg height=20> and **Set position B** - <img src=./icons//SetMoviePosBIcon.svg height=20> buttons method explained, for example. Use the same position for then, adjusting the remaining settings as desired (rotation, zoom, steps, target, etc.).
 5. The targets of the Movie Cameras can be adjusted to follow paths, fixed or mobile points or objects or living free to permit use of rotations angles, for example.
 6. To create animations of cameras and objects simultaneously, prepare one or more movie camera animations (according to the previous instructions) then create the objects animations (see instructions below) and include them in sequence in Cam_5ObjectsSelected property, in Cam_6Enable one, chose 'Camera and objects'.
 7. To apply animation from another workbench, you have to use one that the connection module be already prepared to communicate with, if so, select the workbench you want to work in Cam_3Connection property.
@@ -167,7 +167,7 @@ The (new) Movie Workbench toolbars
 
 ## Suggested workflow:
 
-Working with A/B keyframes (cameras and objects) and paths:
+Working with A/B key frames (cameras and objects) and paths:
 
 1.Positioning and saving cameras and/or objects
 
@@ -176,7 +176,7 @@ Working with A/B keyframes (cameras and objects) and paths:
 
 To use cameras, position the 3D view at the desired point and click **MovieCamera** (MC). This will create a static camera, as positions A and B are currently identical. To create a camera movement, reposition the 3D view to the next desired point and click **Set position B**.
 
-If you wish to create a paththrough using sequential cameras, select the previous **MovieCamera** (which already has distinct keyframes A and B) and click **MovieCamera**. This creates a new **MovieCamera* based on the previous one, with its A and B positions matching the predecessor's position B. Reposition the 3D view to the next desired point and click **Set position B** again. To continue the paththrough, repeat the process; for the final **MovieCamera**, specify its position B. After finishing and testing the path, delete the duplicate frames (the first frame of the copies). Return to the first step of each copied camera, advance one step, and reset position A for each copy.
+If you wish to create a path through using sequential cameras, select the previous **MovieCamera** (which already has distinct key frames A and B) and click **MovieCamera**. This creates a new **MovieCamera* based on the previous one, with its A and B positions matching the predecessor's position B. Reposition the 3D view to the next desired point and click **Set position B** again. To continue the path through, repeat the process; for the final **MovieCamera**, specify its position B. After finishing and testing the path, delete the duplicate frames (the first frame of the copies). Return to the first step of each copied camera, advance one step, and reset position A for each copy.
 
 If you want a single camera to follow a pre-established route, see item 2.
 
