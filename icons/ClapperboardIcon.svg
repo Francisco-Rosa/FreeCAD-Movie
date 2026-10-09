@@ -6,7 +6,7 @@
    height="64"
    id="svg4152"
    version="1.1"
-   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
    viewBox="0 0 64 64"
    sodipodi:docname="ClapperboardIcon.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -16,6 +16,8 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:cc="http://creativecommons.org/ns#"
    xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <title
+     id="title1">Clapperboard</title>
   <defs
      id="defs4154">
     <inkscape:perspective
@@ -41,18 +43,20 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="5.5"
-     inkscape:cx="92.818182"
+     inkscape:cx="93"
      inkscape:cy="70.272727"
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:document-units="px"
      inkscape:grid-bbox="true"
-     inkscape:window-width="1846"
-     inkscape:window-height="1009"
+     inkscape:window-width="2978"
+     inkscape:window-height="1638"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:pagecheckerboard="0" />
+     inkscape:pagecheckerboard="0"
+     inkscape:showpageshadow="2"
+     inkscape:deskcolor="#d1d1d1" />
   <metadata
      id="metadata4157">
     <rdf:RDF>
@@ -61,6 +65,12 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Clapperboard</dc:title>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>F_Rosa</dc:title>
+          </cc:Agent>
+        </dc:creator>
       </cc:Work>
     </rdf:RDF>
   </metadata>

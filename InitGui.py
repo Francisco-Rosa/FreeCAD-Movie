@@ -47,20 +47,24 @@ class Movie (Workbench):
         It is executed once in a FreeCAD session followed by the Activated function.
         """
         # import here all the needed files that create your FreeCAD commands
-        import MovieClapperboard
-        import MovieCamera
-        import MovieObject
+        import MovieMessages
         import MovieAnimation
+        import MovieCamera
+        import MovieClapperboard
+        import MovieObject
+
         translate = FreeCAD.Qt.translate
 
         self.list1 = ['CreateMovieCamera',
-                      'EnableMovieCamera',
                       'SetMoviePosA',
                       'SetMoviePosB',
                       'CreateMovieObjects',
-                      'EnableMovieObjects',
                       'SetMovieObjectsAxis',
-                      'ExcludeMovieObjects',] # a list of command names created in the line above
+                      'ExcludeMovieObjects',
+                      'CreateClapperboard',
+                      'EnableAnimation',
+                      'DisableAnimation'
+                      ] # a list of command names created in the line above
 
         default_title1 = translate("InitGui", "Cameras and objects tools")
         default_title2 = translate("InitGui", "Cameras and Objects")
@@ -70,23 +74,22 @@ class Movie (Workbench):
         self.list2 = ['IniMovieAnimation',
                       'PrevMovieAnimation',
                       'PlayBackwardMovieAnimation',
+                      'EnableMovieRecord',
+                      'StopMovieRecord',
                       'PauseMovieAnimation',
                       'PlayMovieAnimation',
                       'PostMovieAnimation',
-                      'EndMovieAnimation'] # a list of command names created in the line above
+                      'EndMovieAnimation'
+                      ] # a list of command names created in the line above
 
         default_title3 = translate("InitGui", "Animation tools")
         default_title4 = translate("InitGui", "Animation")
         self.appendToolbar(default_title3, self.list2) # creates the Movie Animation toolbar with your commands
         self.appendMenu(default_title4, self.list2) # creates the Movie Animation menu
 
-        self.list3 = ['CreateClapperboard',
-                      'EnableMovieClapperboard',
-                      'StartRecord3DView',
-                      'StartRecordRender',
-                      'StopRecordCamera',
-                      'CreateVideo',
-                      'PlayVideo'] # a list of command names created in the line above
+        self.list3 = ['RecordVideo',
+                      'PlayVideo',
+                      ]# a list of command names created in the line above
 
         default_title5 = translate("InitGui", "Record and play tools")
         default_title6 = translate("InitGui", "Record and Play")
