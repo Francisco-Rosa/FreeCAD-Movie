@@ -21,7 +21,7 @@ Finally, the connection module can provide the integration with animations from 
 1.3. Configure the Render projects and cameras if you want to use them.
 
 Install the Render Workbench and the external rendering programs, indicating them in the FC preferences, and carry out all the necessary preparations. See instructions on the Render Workbench at:
-![FreeCAD-Render](ttps://github.com/FreeCAD/FreeCAD-render); [Creating renderings](https://wiki.freecadweb.org/Manual:Creating_renderings); [Engine Install](https://github.com/FreeCAD/FreeCAD-render/blob/master/docs/EngineInstall.md).
+![FreeCAD-Render](https://github.com/FreeCAD/FreeCAD-render); [Creating renderings](https://wiki.freecad.org/Manual:Creating_renderings); [Engine Install](https://github.com/FreeCAD/FreeCAD-render/blob/master/docs/EngineInstall.md).
 
 Prepare the render project(s) as per the instructions on the mentioned websites. Configure, in the properties window, that 'Open After Render' be 'False' and the 'Render Height' and 'Width' values for the final rendering images. For renderers other than POV-Ray, it is necessary to configure the value of 'Samples Per Pixel', and it is recommended to activate the 'Denoiser'.
 
