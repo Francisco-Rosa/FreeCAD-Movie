@@ -64,14 +64,15 @@ class Clapperboard:
 
         """Gives the object properties to Clapperboard."""
 
+        from MovieMessages import TIP_ANIM_INIT, TIP_ANIM_END, TIP_FRAME_NAME
+        from MovieMessages import TIP_FRAME_WIDTH, TIP_FRAME_HEIGHT, TIP_FRAME_OUTPUT
+        from MovieMessages import TIP_FRAME_TYPE, TIP_FRAME_RENDER, TIP_VIDEO_NAME
+        from MovieMessages import TIP_VIDEO_NUMBER, TIP_VIDEO_OUTPUT, TIP_VIDEO_FPS, TIP_VIDEO_PLAY
+
         pl = obj.PropertiesList
 
         # Animation config
         if not 'Clap_01AnimIniStep' in pl:
-            from MovieMessages import TIP_ANIM_INIT, TIP_ANIM_END, TIP_FRAME_NAME
-            from MovieMessages import TIP_FRAME_WIDTH, TIP_FRAME_HEIGHT, TIP_FRAME_OUTPUT
-            from MovieMessages import TIP_FRAME_TYPE, TIP_FRAME_RENDER, TIP_VIDEO_NAME
-            from MovieMessages import TIP_VIDEO_NUMBER, TIP_VIDEO_OUTPUT, TIP_VIDEO_FPS, TIP_VIDEO_PLAY
 
             obj.addProperty('App::PropertyInteger', 'Clap_01AnimIniStep', 'Animation config',
                                                 TIP_ANIM_INIT).Clap_01AnimIniStep = 1
