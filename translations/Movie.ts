@@ -387,7 +387,7 @@ to zoom out.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="56"/>
+        <location filename="../MovieMessages.py" line="56"/>
         <source>Initial step of the Clapperboard animation.
 
 Indicate the step and/or frame which this 
@@ -396,7 +396,7 @@ will begin.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="63"/>
+        <location filename="../MovieMessages.py" line="63"/>
         <source>End step of the Clapperboard animation.
 
 Indicate the step which this section of 
@@ -404,7 +404,7 @@ the animation will finish.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="68"/>
+        <location filename="../MovieMessages.py" line="68"/>
         <source>Name of frame of the Clapperboard animation.
 
 Indicate the main name of frames. Write a 
@@ -413,21 +413,21 @@ the nomenclature of each one created.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="74"/>
+        <location filename="../MovieMessages.py" line="74"/>
         <source>Width of frames of the Clapperboard animation.
 
 Configure the width in pixels of the frames.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="78"/>
+        <location filename="../MovieMessages.py" line="78"/>
         <source>Height of frames of the Clapperboard animation.
 
 Configure the height in pixels of the frames.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="82"/>
+        <location filename="../MovieMessages.py" line="82"/>
         <source>Output path of the Clapperboard animation frames.
 
 Confirm the folder where the animation frames 
@@ -439,17 +439,7 @@ specify a folder other than the temporary folder.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="91"/>
-        <source>Type of frame of the Clapperboard animation.
-
-Indicates the type of frame to be saved. 
-To generate rendered images, you need to have 
-the Render Workbench installed and a project 
-already prepared.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../MovieClapperboard.py" line="103"/>
+        <location filename="../MovieMessages.py" line="103"/>
         <source>Name of the video of the Clapperboard animation.
 
 Indicate the main name for the created videos. 
@@ -459,7 +449,7 @@ of the frames.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="110"/>
+        <location filename="../MovieMessages.py" line="110"/>
         <source>Number of the video of the Clapperboard animation.
 
 Indicate the initial number of the videos. This will 
@@ -467,7 +457,7 @@ be inserted in the nomenclature of each one created.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="115"/>
+        <location filename="../MovieMessages.py" line="115"/>
         <source>Output path for the video of the Clapperboard 
 animation.
 
@@ -477,7 +467,7 @@ on the right.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="122"/>
+        <location filename="../MovieMessages.py" line="122"/>
         <source>Fps of the video of the Clapperboard animation.
 
 Indicate the frames per second (fps) of the video 
@@ -485,7 +475,7 @@ that will be created.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="127"/>
+        <location filename="../MovieMessages.py" line="127"/>
         <source>Read-only. 
 
 Indicates whether the animation video will play 
@@ -493,14 +483,14 @@ automatically after being generated.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="157"/>
+        <location filename="../MovieClapperboard.py" line="79"/>
         <source>Current step of the Clapperboard animation.
 
 It is only indicative.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="167"/>
+        <location filename="../MovieClapperboard.py" line="89"/>
         <source>Total steps of the Clapperboard animation.
 
 Indicates the number of steps through which 
@@ -511,7 +501,7 @@ It is only indicative.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="178"/>
+        <location filename="../MovieClapperboard.py" line="100"/>
         <source>Animation fps of the Clapperboard.
 
 Indicate the fps through which the 
@@ -523,7 +513,7 @@ on the computer performance.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="190"/>
+        <location filename="../MovieClapperboard.py" line="112"/>
         <source>Animation time of the Clapperboard.
 
 Time in hours, minutes and seconds. 
@@ -531,7 +521,7 @@ It is only indicative.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="201"/>
+        <location filename="../MovieClapperboard.py" line="123"/>
         <source>Name for this Clapperboard.
 
 It will indicate the Clapperboard 
@@ -544,7 +534,7 @@ of each frame created.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="214"/>
+        <location filename="../MovieClapperboard.py" line="136"/>
         <source>Take of the Clapperboard animation.
 
 Indicate the take of each recording 
@@ -554,7 +544,7 @@ of each frame created.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="224"/>
+        <location filename="../MovieClapperboard.py" line="146"/>
         <source>Selection of the Clapperboard animation.
 
 Select the MovieCameras and/or the MovieObjects 
@@ -562,7 +552,7 @@ to animate with this Clapperboard.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="232"/>
+        <location filename="../MovieClapperboard.py" line="154"/>
         <source>Recording Clapperboard animation on or off.
 
 It is activated by the “Enable recording” button 
@@ -570,7 +560,7 @@ and deactivated by the “Stop recording” one.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="260"/>
+        <location filename="../MovieClapperboard.py" line="182"/>
         <source>“3D view” recording of the Clapperboard animation 
 on or off.
 
@@ -581,7 +571,7 @@ It is indicative only.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="271"/>
+        <location filename="../MovieClapperboard.py" line="193"/>
         <source>“Render” recording of the Clapperboard animation 
 on or off.
 
@@ -592,7 +582,7 @@ It is indicative only.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="294"/>
+        <location filename="../MovieClapperboard.py" line="216"/>
         <source>Input frames for the video of the Clapperboard 
 animation.
 
@@ -737,25 +727,35 @@ of object animations.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="98"/>
+        <location filename="../MovieMessages.py" line="98"/>
         <source>To use images rendered by the Render Workbench, you must specify an existing Render Project!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../MovieMessages.py" line="91"/>
+        <source>Type of frame of the Clapperboard animation.
+
+Select the type of image to be generated: from 
+the FreeCAD 3D view or rendered. For the latter 
+option, you must specify a project already prepared 
+using the Render Workbench.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ContextMenu</name>
     <message>
-        <location filename="../InitGui.py" line="115"/>
+        <location filename="../InitGui.py" line="117"/>
         <source>Cameras and Objects</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../InitGui.py" line="116"/>
+        <location filename="../InitGui.py" line="118"/>
         <source>Animation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../InitGui.py" line="117"/>
+        <location filename="../InitGui.py" line="119"/>
         <source>Record and Play</source>
         <translation type="unfinished"></translation>
     </message>
@@ -763,12 +763,12 @@ of object animations.</source>
 <context>
     <name>CreateClapperboard</name>
     <message>
-        <location filename="../MovieClapperboard.py" line="331"/>
+        <location filename="../MovieClapperboard.py" line="253"/>
         <source>Clapperboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="333"/>
+        <location filename="../MovieClapperboard.py" line="255"/>
         <source>Create a Clapperboard to save the playback 
 and recording settings of a MovieCamera or 
 MovieObjects.
@@ -930,12 +930,12 @@ any object for animation” button.</source>
 <context>
     <name>EnableMovieRecord</name>
     <message>
-        <location filename="../MovieClapperboard.py" line="420"/>
+        <location filename="../MovieClapperboard.py" line="342"/>
         <source>Enable recording</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="422"/>
+        <location filename="../MovieClapperboard.py" line="344"/>
         <source>Opens a task panel to configure the recording. 
 
 1. After clicking on it, do not forget to confirm the 
@@ -1017,37 +1017,37 @@ previous camera/objects (if so).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../InitGui.py" line="67"/>
+        <location filename="../InitGui.py" line="69"/>
         <source>Cameras and objects tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../InitGui.py" line="68"/>
+        <location filename="../InitGui.py" line="70"/>
         <source>Cameras and Objects</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../InitGui.py" line="83"/>
+        <location filename="../InitGui.py" line="85"/>
         <source>Animation tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../InitGui.py" line="84"/>
+        <location filename="../InitGui.py" line="86"/>
         <source>Animation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../InitGui.py" line="92"/>
+        <location filename="../InitGui.py" line="94"/>
         <source>Record and play tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../InitGui.py" line="93"/>
+        <location filename="../InitGui.py" line="95"/>
         <source>Record and Play</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../InitGui.py" line="102"/>
+        <location filename="../InitGui.py" line="104"/>
         <source>Movie Workbench loaded</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1055,7 +1055,7 @@ previous camera/objects (if so).</source>
 <context>
     <name>MovieAnimation</name>
     <message>
-        <location filename="../MovieAnimation.py" line="59"/>
+        <location filename="../MovieMessages.py" line="46"/>
         <source>Connection is enable, you must select 
 one connection in “Cam_07Connection“!</source>
         <translation type="unfinished"></translation>
@@ -1144,12 +1144,12 @@ Selection” property!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieAnimation.py" line="54"/>
+        <location filename="../MovieMessages.py" line="41"/>
         <source>3D view</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieAnimation.py" line="55"/>
+        <location filename="../MovieMessages.py" line="42"/>
         <source>Render</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1259,7 +1259,7 @@ camera in “Cam_02Render_Selection”!</source>
 <context>
     <name>MovieClapperboard</name>
     <message>
-        <location filename="../MovieClapperboard.py" line="50"/>
+        <location filename="../MovieMessages.py" line="50"/>
         <source>Note: 
 This version of FreeCAD seems unable to import cv2!
 To create or play back a video, try a different version, like 1.0, 
@@ -1267,39 +1267,39 @@ or use the images generated here in an external recording program.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="374"/>
+        <location filename="../MovieClapperboard.py" line="296"/>
         <source>Select at least one MovieCamera or MovieObject 
 to create a Clapperboard!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="383"/>
+        <location filename="../MovieClapperboard.py" line="305"/>
         <source>To create a Clapperboard the pre-selected objects 
 must be MovieCamera or MovieObjects!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="398"/>
+        <location filename="../MovieClapperboard.py" line="320"/>
         <source>Clapperboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="573"/>
+        <location filename="../MovieClapperboard.py" line="502"/>
         <source>Recording settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="580"/>
+        <location filename="../MovieClapperboard.py" line="509"/>
         <source>Enabled Clapperboard:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="584"/>
+        <location filename="../MovieClapperboard.py" line="513"/>
         <source>Instructions:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="586"/>
+        <location filename="../MovieClapperboard.py" line="515"/>
         <source>1. Configure the animation properties below and click “OK”. After this task panel closes, the recording will be ready to begin.
 
 2. To start recording the animations, click the “Play Forward” or “Play Backward” buttons of the “Animations tools”. Click “Pause Animation” to pause it and “Stop Recording” to stop the recording process.
@@ -1308,57 +1308,57 @@ must be MovieCamera or MovieObjects!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="612"/>
+        <location filename="../MovieClapperboard.py" line="541"/>
         <source>Frame properties:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="615"/>
+        <location filename="../MovieClapperboard.py" line="544"/>
         <source>Frame type:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="663"/>
+        <location filename="../MovieClapperboard.py" line="591"/>
         <source>Frame resolution:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="683"/>
+        <location filename="../MovieClapperboard.py" line="611"/>
         <source>Frame interval:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="685"/>
+        <location filename="../MovieClapperboard.py" line="613"/>
         <source>From frame:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="692"/>
+        <location filename="../MovieClapperboard.py" line="620"/>
         <source>to:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="704"/>
+        <location filename="../MovieClapperboard.py" line="632"/>
         <source>Frame names:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="712"/>
+        <location filename="../MovieClapperboard.py" line="640"/>
         <source>Frames output folder path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="732"/>
+        <location filename="../MovieClapperboard.py" line="660"/>
         <source>Video properties:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="736"/>
+        <location filename="../MovieClapperboard.py" line="664"/>
         <source>Save video</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="739"/>
+        <location filename="../MovieClapperboard.py" line="667"/>
         <source>Indicate whether you also want to save 
 automatically the video after the frames 
 are produced. 
@@ -1370,47 +1370,47 @@ with the images generated.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="748"/>
+        <location filename="../MovieClapperboard.py" line="676"/>
         <source>Video name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="755"/>
+        <location filename="../MovieClapperboard.py" line="683"/>
         <source>Video num.:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="765"/>
+        <location filename="../MovieClapperboard.py" line="693"/>
         <source>Fps:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="772"/>
+        <location filename="../MovieClapperboard.py" line="700"/>
         <source>Video output folder path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="824"/>
+        <location filename="../MovieClapperboard.py" line="753"/>
         <source>Play video</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="913"/>
+        <location filename="../MovieClapperboard.py" line="844"/>
         <source>Select the output folder for the frames.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="955"/>
+        <location filename="../MovieClapperboard.py" line="886"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="940"/>
+        <location filename="../MovieClapperboard.py" line="871"/>
         <source>Select the output folder for the video</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="1020"/>
+        <location filename="../MovieClapperboard.py" line="951"/>
         <source>Recording is enabled! 
 Click the animation playback button (forward or 
 backward) to start recording the video. 
@@ -1420,114 +1420,114 @@ of the recording.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="1163"/>
+        <location filename="../MovieClapperboard.py" line="1096"/>
         <source>Select the folder to save the “3D view” frames</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="1179"/>
+        <location filename="../MovieClapperboard.py" line="1112"/>
         <source>Select the folder to save the “Render” frames</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="1193"/>
+        <location filename="../MovieClapperboard.py" line="1126"/>
         <source>Recording has been disabled!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="1240"/>
+        <location filename="../MovieClapperboard.py" line="1173"/>
         <source>{} frame {} of {} has been completed ({})</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="1267"/>
+        <location filename="../MovieClapperboard.py" line="1201"/>
         <source>Select the frames folder to create video</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="1277"/>
+        <location filename="../MovieClapperboard.py" line="1211"/>
         <source>Select the folder to save the video</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="1319"/>
+        <location filename="../MovieClapperboard.py" line="1253"/>
         <source>Recording of frame {} of {} ({}%)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="1330"/>
+        <location filename="../MovieClapperboard.py" line="1265"/>
         <source>Output video to {}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="1347"/>
+        <location filename="../MovieClapperboard.py" line="1284"/>
         <source>Select file to play</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="1370"/>
+        <location filename="../MovieClapperboard.py" line="1307"/>
         <source>Error: video file not found!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="665"/>
+        <location filename="../MovieClapperboard.py" line="593"/>
         <source>Height:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="671"/>
+        <location filename="../MovieClapperboard.py" line="599"/>
         <source>width:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="955"/>
+        <location filename="../MovieClapperboard.py" line="886"/>
         <source>Indicate a output folder to save the video before 
 close the “Recording settings” task panel!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="928"/>
+        <location filename="../MovieClapperboard.py" line="859"/>
         <source>Indicate a output folder to save the frames before 
 close the “Recording settings” task panel!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="101"/>
+        <location filename="../MovieMessages.py" line="101"/>
         <source>Select a Render Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="631"/>
+        <location filename="../MovieClapperboard.py" line="560"/>
         <source>Render Project:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="637"/>
+        <location filename="../MovieClapperboard.py" line="566"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="649"/>
+        <location filename="../MovieClapperboard.py" line="577"/>
         <source>Note:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="903"/>
+        <location filename="../MovieClapperboard.py" line="834"/>
         <source>The selected object is not a Render Project!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="1066"/>
+        <location filename="../MovieClapperboard.py" line="999"/>
         <source>Render Projects</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="1067"/>
+        <location filename="../MovieClapperboard.py" line="1000"/>
         <source>Type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="1073"/>
+        <location filename="../MovieClapperboard.py" line="1006"/>
         <source>Confirm</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1628,12 +1628,12 @@ to rotate then the axis of rotation.</source>
 <context>
     <name>PlayVideo</name>
     <message>
-        <location filename="../MovieClapperboard.py" line="538"/>
+        <location filename="../MovieClapperboard.py" line="460"/>
         <source>Play video</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="540"/>
+        <location filename="../MovieClapperboard.py" line="462"/>
         <source>Play an existing video by indicating its file path.
 
 Note: It works only with FreeCAD versions 
@@ -1670,12 +1670,12 @@ that import the cv2 module, like 1.0.</source>
 <context>
     <name>RecordVideo</name>
     <message>
-        <location filename="../MovieClapperboard.py" line="486"/>
+        <location filename="../MovieClapperboard.py" line="408"/>
         <source>Record video</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="488"/>
+        <location filename="../MovieClapperboard.py" line="410"/>
         <source>Creates a video from a sequence 
 of created frames (images).
 
@@ -1781,12 +1781,12 @@ click on this button.</source>
 <context>
     <name>StopMovieRecord</name>
     <message>
-        <location filename="../MovieClapperboard.py" line="461"/>
+        <location filename="../MovieClapperboard.py" line="383"/>
         <source>Stop recording</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../MovieClapperboard.py" line="463"/>
+        <location filename="../MovieClapperboard.py" line="385"/>
         <source>Stops the animation recording.</source>
         <translation type="unfinished"></translation>
     </message>
