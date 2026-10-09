@@ -43,7 +43,7 @@ Gui.addLanguagePath(LanguagePath)
 MO = None
 OBJ_REFRESH = False
 # ======================================================================================
-# 1. Classes
+# 1. Classes - MovieObjects
 
 class MovieObjects:
 
@@ -235,9 +235,6 @@ class MovieObjectsViewProvider:
         else:
             return __dir__ + '/icons/MovieObjectsIcon.svg'
         '''
-
-# ======================================================================================
-# 2. Command classes
 
 class CreateMovieObjects:
 
@@ -467,7 +464,7 @@ def excludeMovieObjects():
         Gui.runCommand('Std_Delete',0)
 
 # ======================================================================================
-# 3. Functions
+# 2. Functions
 
 #New
 def setMOPosAB(obj = None,

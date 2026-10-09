@@ -47,10 +47,12 @@ class Movie (Workbench):
         It is executed once in a FreeCAD session followed by the Activated function.
         """
         # import here all the needed files that create your FreeCAD commands
-        import MovieClapperboard
-        import MovieCamera
-        import MovieObject
+        import MovieMessages
         import MovieAnimation
+        import MovieCamera
+        import MovieClapperboard
+        import MovieObject
+
         translate = FreeCAD.Qt.translate
 
         self.list1 = ['CreateMovieCamera',

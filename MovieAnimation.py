@@ -51,9 +51,6 @@ CL = None
 STEP_POS = 'I'
 ANIMATION_BACK = False
 
-#VIEW_00 = translate("MovieCamera", "3D view")
-#VIEW_01 = translate("MovieCamera", "Render")
-
 VIEW_00 = translate('MovieAnimation', '3D view')
 VIEW_01 = translate('MovieAnimation', 'Render')
 print(f'VIEW_00 = {VIEW_00}')
@@ -154,8 +151,10 @@ class DisableAnimation:
     def Activated(self):
         global ENABLE_01
         ENABLE_01 = 'None'
+        FreeCAD.Gui.runCommand('StopMovieRecord')
         getMessage(message = translate('MovieAnimation',
-                                       'There is no movie object enabled to animate!'))
+                                       'The cameras and/or objects have \n'
+                                       'been disabled for the animation!'))
         FreeCAD.ActiveDocument.recompute()
 
 class IniMovieAnimation:
@@ -174,7 +173,6 @@ class IniMovieAnimation:
                                              '1. On the first click, it returns to the \n'
                                              'beginning of the animation of the \n'
                                              'current camera/objects and resets them. \n'
-                                             'if record is on it will turn off.\n'
                                              '\n'
                                              '2. On the second click, it goes to the \n'
                                              'end of the animation of the \n'
@@ -228,7 +226,6 @@ class PrevMovieAnimation:
 
     def IsActive(self):
         if Gui.ActiveDocument:
-            #if MC.Name or MO.Name or CL.Name:
             if ENABLE_01 != 'None':
                 if not ANIMATION:
                     return True
@@ -269,7 +266,6 @@ class PlayBackwardMovieAnimation:
 
     def IsActive(self):
         if Gui.ActiveDocument:
-            #if MC.Name or MO.Name or CL.Name:
             if ENABLE_01 != 'None':
                 if not ANIMATION:
                     return True
@@ -292,6 +288,16 @@ class PlayBackwardMovieAnimation:
                        FreeCAD.ActiveDocument.recompute()
                        return
         playMovieAnimation()
+        #new
+        if CL != None:
+            try:
+                if CL.Clap_04OnRec is True:
+                    cl.createVideo(auto = True)
+                    if CL.Video_06PlayVideo is True:
+                        cl.playVideo(auto = True)
+                    CL.Clap_04OnRec = False
+            except:
+                pass
 
 class PauseMovieAnimation:
 
@@ -310,7 +316,6 @@ class PauseMovieAnimation:
 
     def IsActive(self):
         if Gui.ActiveDocument:
-            #if MC.Name or MO.Name or CL.Name:
             if ENABLE_01 != 'None':
                 if ANIMATION:
                     return True
@@ -351,7 +356,6 @@ class PlayMovieAnimation:
 
     def IsActive(self):
         if Gui.ActiveDocument:
-            #if MC.Name or MO.Name or CL.Name:
             if ENABLE_01 != 'None':
                 if not ANIMATION:
                     return True
@@ -374,8 +378,9 @@ class PlayMovieAnimation:
                        FreeCAD.ActiveDocument.recompute()
                        return
         playMovieAnimation()
+        #new
         if CL != None:
-            try: #new
+            try:
                 if CL.Clap_04OnRec is True:
                     cl.createVideo(auto = True)
                     if CL.Video_06PlayVideo is True:
@@ -477,7 +482,6 @@ class EndMovieAnimation:
                         return
         getEndMovieAnimation()
 
-# ======================================================================================
 # 1.2. Movie common tools
 
 class SetMoviePosA:
@@ -645,7 +649,6 @@ def getViewProjection():
 
     if MC != None:
         #if MC.Cam_06Enable == 'Camera' or MC.Cam_06Enable == 'Camera and objects' or MC.Cam_06Enable == 'Camera and connection' :
-        #if MC.Cam_06Enable[0:2] == '00' or MC.Cam_06Enable[0:2] == '01' or MC.Cam_06Enable[0:2] == '03':
         if any(condition for condition in [MC.Cam_06Enable[0:2] == '00',
                                            MC.Cam_06Enable[0:2] == '01',
                                            MC.Cam_06Enable[0:2] == '03'
@@ -770,7 +773,7 @@ def enableMovieClapperboard(obj = None):
     # Getting the elements of animation
     getSelectionSteps(Content = Selection)
     # Saving the elements of animation
-    CL.Clap_04AnimTotalSteps = ANIM_END_STEP
+    CL.Clap_04AnimTotalSteps = ANIM_END_STEP + 1
     CL.Clap_03AnimEndStep = CL.Clap_04AnimTotalSteps
     ANIM_FPS = CL.Clap_05AnimFps
     # Getting clapperboard time animation
@@ -1011,8 +1014,8 @@ def recoverIniMovieAnimation():
     global ANIM_INI_STEP
     global ANIM_CURRENT_STEP
 
-    if ENABLE_01 == 'Clapperboard':
-        cl.stopMovieRecord(Clap = CL)
+    #if ENABLE_01 == 'Clapperboard':
+        #cl.stopMovieRecord(Clap = CL)
 
     if ANIM_CURRENT_STEP > ANIM_INI_STEP:
         STEP_POS = 'P'

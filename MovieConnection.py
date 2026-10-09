@@ -308,7 +308,6 @@ def setClapperboardSelection(Clap = None):
     global CL
     CL = Clap
 
-
 def connectionPlayBackward(Selection = None):
 
     """Play the animation backward"""
@@ -333,7 +332,6 @@ def connectionPlayBackward(Selection = None):
     else:
         FreeCAD.Console.PrintMessage(MESSAGE01)
         return
-
 
 def connectionPlay(Selection = None):
 

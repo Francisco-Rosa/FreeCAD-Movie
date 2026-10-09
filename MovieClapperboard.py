@@ -35,7 +35,7 @@ from PySide.QtCore import QT_TRANSLATE_NOOP
 import MovieAnimation as ma
 
 #New
-from PySide import QtWidgets
+from PySide import QtCore, QtWidgets
 import tempfile
 
 translate = FreeCAD.Qt.translate
@@ -45,91 +45,7 @@ IconPath = os.path.join(_dir, 'icons')
 LanguagePath = os.path.join(_dir, 'translations')
 Gui.addLanguagePath(LanguagePath)
 
-#=================================================
-# 0. Globals
-#=================================================
-
-MESSAGE = translate('MovieClapperboard',
-                    'Note: \n'
-                    'This version of FreeCAD seems unable to import cv2!\n'
-                    'To create or play back a video, try a different version, like 1.0, \n'
-                    'or use the images generated here in an external recording program.')  + '\n'
-#print(f'MESSAGE = {MESSAGE}')
-TIP_ANIM_INIT = translate('App::Property',
-                        'Initial step of the Clapperboard animation.\n'
-                        '\n'
-                        'Indicate the step and/or frame which this \n'
-                        'section of the animation and/or recording \n'
-                        'will begin.')
-#print(f'TIP_ANIM_INIT = {TIP_ANIM_INIT}')
-TIP_ANIM_END = translate('App::Property',
-                        'End step of the Clapperboard animation.\n'
-                        '\n'
-                        'Indicate the step which this section of \n'
-                        'the animation will finish.')
-TIP_FRAME_NAME = translate('App::Property',
-                        'Name of frame of the Clapperboard animation.\n'
-                        '\n'
-                        'Indicate the main name of frames. Write a \n'
-                        'short name, as this will be inserted in \n'
-                        'the nomenclature of each one created.')
-TIP_FRAME_WIDTH = translate('App::Property',
-                        'Width of frames of the Clapperboard animation.\n'
-                        '\n'
-                        'Configure the width in pixels of the frames.')
-TIP_FRAME_HEIGHT = translate('App::Property',
-                        'Height of frames of the Clapperboard animation.\n'
-                        '\n'
-                        'Configure the height in pixels of the frames.')
-TIP_FRAME_OUTPUT = translate('App::Property',
-                        'Output path of the Clapperboard animation frames.\n'
-                        '\n'
-                        'Confirm the folder where the animation frames \n'
-                        'will be saved.\n'
-                        '\n'
-                        'If you wish to preserve the generated images \n'
-                        '(in the case of rendered ones, for example), \n'
-                        'specify a folder other than the temporary folder.')
-TIP_FRAME_TYPE = translate('App::Property',
-                        'Type of frame of the Clapperboard animation.\n'
-                        '\n'
-                        'Indicates the type of frame to be saved. \n'
-                        'To generate rendered images, you need to have \n'
-                        'the Render Workbench installed and a project \n'
-                        'already prepared.')
-TIP_VIDEO_NAME = translate('App::Property',
-                        'Name of the video of the Clapperboard animation.\n'
-                        '\n'
-                        'Indicate the main name for the created videos. \n'
-                        'If you prefer, chose to add manually “3D view“ \n'
-                        'text or “Render” one, according to the origin \n'
-                        'of the frames.')
-TIP_VIDEO_NUMBER = translate('App::Property',
-                        'Number of the video of the Clapperboard animation.\n'
-                        '\n'
-                        'Indicate the initial number of the videos. This will \n'
-                        'be inserted in the nomenclature of each one created.')
-TIP_VIDEO_OUTPUT = translate('App::Property',
-                        'Output path for the video of the Clapperboard \n'
-                        'animation.\n'
-                        '\n'
-                        'Set path to folder to save created videos by \n'
-                        'clicking on the button with the three dots \n'
-                        'on the right.')
-TIP_VIDEO_FPS = translate('App::Property',
-                        'Fps of the video of the Clapperboard animation.\n'
-                        '\n'
-                        'Indicate the frames per second (fps) of the video \n'
-                        'that will be created.')
-TIP_VIDEO_PLAY = translate('App::Property',
-                        'Read-only. \n'
-                        '\n'
-                        'Indicates whether the animation video will play \n'
-                        'automatically after being generated.')
-
 CL = None
-
-#from MovieCamera import VIEW_00, VIEW_01
 
 # ======================================================================================
 # 1. Classes
@@ -152,6 +68,11 @@ class Clapperboard:
 
         # Animation config
         if not 'Clap_01AnimIniStep' in pl:
+            from MovieMessages import TIP_ANIM_INIT, TIP_ANIM_END, TIP_FRAME_NAME
+            from MovieMessages import TIP_FRAME_WIDTH, TIP_FRAME_HEIGHT, TIP_FRAME_OUTPUT
+            from MovieMessages import TIP_FRAME_TYPE, TIP_FRAME_RENDER, TIP_VIDEO_NAME
+            from MovieMessages import TIP_VIDEO_NUMBER, TIP_VIDEO_OUTPUT, TIP_VIDEO_FPS, TIP_VIDEO_PLAY
+
             obj.addProperty('App::PropertyInteger', 'Clap_01AnimIniStep', 'Animation config',
                                                 TIP_ANIM_INIT).Clap_01AnimIniStep = 1
         if not 'Clap_02AnimCurrentStep' in pl:
@@ -252,8 +173,7 @@ class Clapperboard:
             obj.addProperty('App::PropertyPath', 'Frame_04OutputPath', 'Frames config',
                                                 TIP_FRAME_OUTPUT).Frame_04OutputPath = ""
         if not 'Frame_05Type' in pl:
-            from MovieAnimation import VIEW_00, VIEW_01
-            #from MovieCamera import VIEW_00, VIEW_01
+            from MovieMessages import VIEW_00, VIEW_01
             obj.addProperty('App::PropertyEnumeration', 'Frame_05Type', 'Frames config',
                                                 TIP_FRAME_TYPE
                                                 ).Frame_05Type = (f"00 - {VIEW_00}",
@@ -280,15 +200,10 @@ class Clapperboard:
                                                 '\n'
                                                 'It is indicative only.'
                                                 )).Frame_07R2OnRec = False
-        if not 'Frame_08R2RenderProject' in pl:
-            obj.addProperty('App::PropertyString', 'Frame_08R2RenderProject', 'Frames config',
-                                                QT_TRANSLATE_NOOP('App::Property',
-                                               'Render Project of the Clapperboard animation.\n'
-                                               '\n'
-                                               'If you are going to use images rendered by Render \n'
-                                               'Workbench, indicate the internal name (not its \n'
-                                               'label) of the previously created render project.'
-                                               )).Frame_08R2RenderProject = "Project"
+        #New
+        if not 'Frame_08RenderProject' in pl:
+            obj.addProperty('App::PropertyLink', 'Frame_08RenderProject', 'Frames config',
+                                                TIP_FRAME_RENDER).Frame_08RenderProject = None
         # Video group config
         if not 'Video_01Name' in pl:
             obj.addProperty('App::PropertyString', 'Video_01Name', 'Video config',
@@ -338,24 +253,24 @@ class CreateClapperboard:
                 'MenuText': QT_TRANSLATE_NOOP('CreateClapperboard',
                                               'Clapperboard'),
                 'ToolTip': QT_TRANSLATE_NOOP('CreateClapperboard',
-                                             'Create a Clapperboard to save the playback \n'
-                                             'and recording settings of a MovieCamera or \n'
-                                             'MovieObjects.\n'
-                                             '\n'
-                                             '1. Select one or more MovieCameras in sequence \n'
-                                             'and click “Clapperboard”.\n'
-                                             '\n'
-                                             '2. You can also create an animation using only \n'
-                                             'MovieObjects. Select one or more MovieObjects and \n'
-                                             'click this button.\n'
-                                             '\n'
-                                             '3. To configure and prepare for recording, \n'
-                                             'click the “Enable recording” button.\n'
-                                             '\n'
-                                             '4. To re-enable a Clapperboard, select one \n'
-                                             'and click the “Enable an object for animation” \n'
-                                             'button.'
-                                             )}
+                        'Create a Clapperboard to save the playback \n'
+                        'and recording settings of a MovieCamera or \n'
+                        'MovieObjects.\n'
+                        '\n'
+                        '1. Select one or more MovieCameras in sequence \n'
+                        'and click “Clapperboard”.\n'
+                        '\n'
+                        '2. You can also create an animation using only \n'
+                        'MovieObjects. Select one or more MovieObjects and \n'
+                        'click this button.\n'
+                        '\n'
+                        '3. To configure and prepare for recording, \n'
+                        'click the “Enable recording” button.\n'
+                        '\n'
+                        '4. To re-enable a Clapperboard, select one \n'
+                        'and click the “Enable an object for animation” \n'
+                        'button.'
+                        )}
 
     def IsActive(self):
         if Gui.ActiveDocument:
@@ -379,8 +294,8 @@ class CreateClapperboard:
         listObjects = Gui.Selection.getSelection()
         if not listObjects:
             FreeCAD.Console.PrintMessage(translate('MovieClapperboard',
-                                                   'Select at least one MovieCamera or MovieObject \n'
-                                                   'to create a Clapperboard!') + '\n')
+                        'Select at least one MovieCamera or MovieObject \n'
+                        'to create a Clapperboard!') + '\n')
             return
         else:
             for n in range(len(listObjects)):
@@ -388,8 +303,8 @@ class CreateClapperboard:
                     pass
                 else:
                     FreeCAD.Console.PrintMessage(translate('MovieClapperboard',
-                                                       'To create a Clapperboard the pre-selected objects \n'
-                                                       'must be MovieCamera or MovieObjects!') + '\n')
+                        'To create a Clapperboard the pre-selected objects \n'
+                        'must be MovieCamera or MovieObjects!') + '\n')
                     return
             Gui.Selection.clearSelection()
             ActivatedClapperboard(self)
@@ -427,37 +342,30 @@ class EnableMovieRecord:
                 'MenuText': QT_TRANSLATE_NOOP('EnableMovieRecord',
                                               'Enable recording'),
                 'ToolTip': QT_TRANSLATE_NOOP('EnableMovieRecord',
-                                             'Opens a task panel to configure the recording. \n'
-                                             '\n'
-                                             '1. After clicking on it, do not forget to confirm the \n'
-                                             'folders to save the frames and the video in the \n'
-                                             'opened task panel.\n'
-                                             '\n'
-                                             '2. To start recording the animations, click the \n'
-                                             '“Play Forward” or “Play Backward” buttons of \n'
-                                             'the “Animations tools”.')}
+                        'Opens a task panel to configure the recording. \n'
+                        '\n'
+                        '1. After clicking on it, do not forget to confirm the \n'
+                        'folders to save the frames and the video in the \n'
+                        'opened task panel.\n'
+                        '\n'
+                        '2. To start recording the animations, click the \n'
+                        '“Play Forward” or “Play Backward” buttons of \n'
+                        'the “Animations tools”.')}
 
     def IsActive(self):
         if Gui.ActiveDocument:
-            #from MovieAnimation import CL
             if CL:
-                #print(f'EnableMovieRecord, CL = {CL}')
                 if CL.Name:
-                    #print(f'EnableMovieRecord, CL.Name = {CL.Name}')
                     if ma.ENABLE_01 == 'Clapperboard':
                         if not CL.Clap_04OnRec:
                             return True
-            #else:
-                #print('EnableMovieRecord, there is no CL')
 
         else:
             return False
 
     def Activated(self):
-        # --- Launching the Panel ---
-        # Instantiate your panel class
+        # Instantiate the panel class
         panel = RecordTaskPanel()
-
         # Open it inside the FreeCAD Task View panel
         Gui.Control.showDialog(panel)
 
@@ -475,7 +383,7 @@ class StopMovieRecord:
                 'MenuText': QT_TRANSLATE_NOOP('StopMovieRecord',
                                               'Stop recording'),
                 'ToolTip': QT_TRANSLATE_NOOP('StopMovieRecord',
-                                             'Stops the animation recording.')}
+                            'Stops the animation recording.')}
 
     def IsActive(self):
         if Gui.ActiveDocument:
@@ -500,45 +408,44 @@ class RecordVideo:
                 'MenuText': QT_TRANSLATE_NOOP('RecordVideo',
                                               'Record video'),
                 'ToolTip': QT_TRANSLATE_NOOP('RecordVideo',
-                                             'Creates a video from a sequence \n'
-                                             'of created frames (images).\n'
-                                             '\n'
-                                             '1. Click this button and select the \n'
-                                             'folder containing the image sequence \n'
-                                             'of a created animation.\n'
-                                             '\n'
-                                             '2. Next, indicate the folder where the \n'
-                                             'video should be saved and specify its name.\n'
-                                             '\n'
-                                             '3. At the end of the process, the video \n'
-                                             'will play automatically.\n'
-                                             '\n'
-                                             '4. If you want to watch the video again, \n'
-                                             'click the “Play video” button and select \n'
-                                             'the corresponding file.\n'
-                                             '\n'
-                                             'Note: It works only with FreeCAD versions \n'
-                                             'that import the cv2 module, like 1.0.')}
+                    'Creates a video from a sequence \n'
+                    'of created frames (images).\n'
+                    '\n'
+                    '1. Click this button and select the \n'
+                    'folder containing the image sequence \n'
+                    'of a created animation.\n'
+                    '\n'
+                    '2. Next, indicate the folder where the \n'
+                    'video should be saved and specify its name.\n'
+                    '\n'
+                    '3. At the end of the process, the video \n'
+                    'will play automatically.\n'
+                    '\n'
+                    '4. If you want to watch the video again, \n'
+                    'click the “Play video” button and select \n'
+                    'the corresponding file.\n'
+                    '\n'
+                    'Note: It works only with FreeCAD versions \n'
+                    'that import the cv2 module, like 1.0.')}
 
     def IsActive(self):
         if Gui.ActiveDocument:
-            #if not CL.Clap_04OnRec:
-            #return True
             try:
                 import cv2
-                return True
+                from MovieAnimation import ENABLE_01
+                if ENABLE_01 == 'None':
+                    return True
+                else:
+                    return False
             except Exception:
                 return False
         else:
             return False
 
     def Activated(self):
-        #if CL.Clap_04OnRec is True:
         createVideo()
         # Play video after recording
         playVideo(auto = True)
-        #else:
-            #return
 
 class PlayVideo:
 
@@ -553,16 +460,22 @@ class PlayVideo:
                 'MenuText': QT_TRANSLATE_NOOP('PlayVideo',
                                               'Play video'),
                 'ToolTip': QT_TRANSLATE_NOOP('PlayVideo',
-                                             'Play an existing video by indicating its file path.\n'
-                                             '\n'
-                                             'Note: It works only with FreeCAD versions \n'
-                                             'that import the cv2 module, like 1.0.')}
+                            'Play an existing video by indicating its file path.\n'
+                            '\n'
+                            'Note: It works only with FreeCAD versions \n'
+                            'that import the cv2 module, like 1.0.')}
 
     def IsActive(self):
         if Gui.ActiveDocument:
             try:
                 import cv2
-                return True
+                from MovieAnimation import ENABLE_01
+                if ENABLE_01 == 'None':
+                    return True
+                else:
+                    return False
+            except Exception:
+                return False
             except Exception:
                 return False
         else:
@@ -576,58 +489,64 @@ class RecordTaskPanel:
 
     """Provides a task panel for recording frames and videos."""
 
+
     def __init__(self):
-        # The main widget
+
+        from MovieMessages import MESSAGE, TIP_ANIM_INIT, TIP_ANIM_END, TIP_FRAME_NAME
+        from MovieMessages import TIP_FRAME_WIDTH, TIP_FRAME_HEIGHT, TIP_FRAME_OUTPUT
+        from MovieMessages import TIP_FRAME_TYPE, TIP_FRAME_RENDER, TIP_RENDER_PROJECT, TIP_VIDEO_NAME
+        from MovieMessages import TIP_VIDEO_NUMBER, TIP_VIDEO_OUTPUT, TIP_VIDEO_FPS, TIP_VIDEO_PLAY
+
+        ## The main widget
         self.form = QtWidgets.QWidget()
         self.form.setWindowTitle(translate('MovieClapperboard',
                                             'Recording settings'))
-
-        # Layout
+        ## Layout
         layout = QtWidgets.QVBoxLayout(self.form)
-
-        # Labels, Inputs, Buttons
+        ## Labels, Inputs, Buttons
         # Enabled Clapperboard
         global CL
         label1 = translate('MovieClapperboard','Enabled Clapperboard:')
         self.label_clapperboard1 = QtWidgets.QLabel(f'<b>{label1}<b>')
         self.label_clapperboard2 = QtWidgets.QLabel(CL.Label)
-        layout.addWidget(self.label_clapperboard1)
-        layout.addWidget(self.label_clapperboard2)
         # Instructions
         label2 = translate('MovieClapperboard','Instructions:')
         self.label_instructions = QtWidgets.QLabel(f'<b>{label2}<b>\n')
-        layout.addWidget(self.label_instructions)
         self.label_text = QtWidgets.QLabel(translate('MovieClapperboard',
-                                                      '1. Configure the animation properties below and '
-                                                      'click “OK”. After this task panel closes, '
-                                                      'the recording will be ready to begin.\n'
-                                                      '\n'
-                                                      '2. To start recording the animations, click '
-                                                      'the “Play Forward” or “Play Backward” '
-                                                      'buttons of the “Animations tools”. '
-                                                      'Click “Pause Animation” to pause it '
-                                                      'and “Stop Recording” to '
-                                                      'stop the recording process.\n'
-                                                      '\n'
-                                                      '3. The final video will play '
-                                                      'automatically if the “Save video” '
-                                                      'and “Play video” checkboxes are enabled.'))
+                        '1. Configure the animation properties below and '
+                        'click “OK”. After this task panel closes, '
+                        'the recording will be ready to begin.\n'
+                        '\n'
+                        '2. To start recording the animations, click '
+                        'the “Play Forward” or “Play Backward” '
+                        'buttons of the “Animations tools”. '
+                        'Click “Pause Animation” to pause it '
+                        'and “Stop Recording” to '
+                        'stop the recording process.\n'
+                        '\n'
+                        '3. The final video will play '
+                        'automatically if the “Save video” '
+                        'and “Play video” checkboxes are enabled.'
+                                                      ))
         self.label_text.setSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding,
                                              QtWidgets.QSizePolicy.Policy.Expanding)
         self.label_text.setWordWrap(True)
-        layout.addWidget(self.label_text)
+        self.toolButton_instructions = QtWidgets.QToolButton()
+        self.toolButton_instructions.setArrowType(QtCore.Qt.ArrowType.DownArrow)
+        self.toolButton_instructions.clicked.connect(self.toggle_text_instructions)
+        self.row_instructions = QtWidgets.QGridLayout()
+        self.row_instructions.addWidget(self.toolButton_instructions, 0, 0)
+        self.row_instructions.addWidget(self.label_instructions, 0, 1)
         # Frames properties:
         label3 = translate('MovieClapperboard', 'Frame properties:')
         self.label_frames = QtWidgets.QLabel(f'<b>{label3}<b>\n')
-        layout.addWidget(self.label_frames)
         # Type view
         self.label_type_view = QtWidgets.QLabel(translate('MovieClapperboard',
-                                                                  'Frame type:'))
+                                                            'Frame type:'))
         self.comboBox_view = QtWidgets.QComboBox()
         self.comboBox_view.addItem("")
         self.comboBox_view.addItem("")
-        from MovieAnimation import VIEW_00, VIEW_01
-        #from MovieCamera import VIEW_00, VIEW_01
+        from MovieMessages import VIEW_00, VIEW_01
         self.comboBox_view.setItemText(0, f"00 - {VIEW_00}")
         self.comboBox_view.setItemText(1, f"01 - {VIEW_01}")
         idx = int((CL.Frame_05Type)[0:2])
@@ -637,10 +556,40 @@ class RecordTaskPanel:
         self.row_type = QtWidgets.QGridLayout()
         self.row_type.addWidget(self.label_type_view, 0, 0)
         self.row_type.addWidget(self.comboBox_view, 0, 1)
-        layout.addLayout(self.row_type)
+        #label_render_project
+        self.label_render_project = QtWidgets.QLabel(translate('MovieClapperboard',
+                                                               'Render Project:'))
+        #lineEdit_render_project
+        try:
+            project_label = CL.Frame_08RenderProject.Label
+        except Exception:
+            project_label = translate('MovieClapperboard', 'None')
+        self.label_project_label = QtWidgets.QLabel(project_label)
+        #toolButton_render_project
+        self.toolButton_render_project = QtWidgets.QToolButton()
+        self.toolButton_render_project.setToolTip(TIP_RENDER_PROJECT)
+        self.toolButton_render_project.clicked.connect(self.open_select_render_project)
+        self.toolButton_render_project.setText('...')
+        self.row_render_project = QtWidgets.QGridLayout()
+        self.row_render_project.addWidget(self.label_render_project, 0, 0)
+        self.row_render_project.addWidget(self.label_project_label, 0, 1)
+        self.row_render_project.addWidget(self.toolButton_render_project, 0, 2)
+        note1 = translate('MovieClapperboard','Note:')
+        self.label_note1 = QtWidgets.QLabel(f'<b>{note1}<b>')
+        self.label_warning_render = QtWidgets.QLabel(TIP_FRAME_RENDER + '\n')
+        self.label_warning_render.setSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding,
+                                         QtWidgets.QSizePolicy.Policy.Expanding)
+        self.label_warning_render.setWordWrap(True)
+        self.label_note1.setVisible(False)
+        if self.comboBox_view.currentText()[0:2] == '00':
+            self.label_render_project.setVisible(False)
+            self.label_project_label.setVisible(False)
+            self.toolButton_render_project.setVisible(False)
+            self.label_warning_render.setVisible(False)
+        self.comboBox_view.activated.connect(self.toggled_render)
         # Resolution
         self.label_resolution = QtWidgets.QLabel(translate('MovieClapperboard',
-                                                                     'Frame resolution:'))
+                                                            'Frame resolution:'))
         self.label_resolution_h = QtWidgets.QLabel(translate('MovieClapperboard',
                                                                      'Height:'))
         self.spinBox_resolution_h = QtWidgets.QSpinBox()
@@ -653,18 +602,16 @@ class RecordTaskPanel:
         self.spinBox_resolution_w.setMaximum(10000)
         self.spinBox_resolution_w.setValue(CL.Frame_02Width)
         self.spinBox_resolution_w.setToolTip(TIP_FRAME_WIDTH)
-        layout.addWidget(self.label_resolution)
         self.row_hw = QtWidgets.QGridLayout()
         self.row_hw.addWidget(self.label_resolution_h, 0, 0)
         self.row_hw.addWidget(self.spinBox_resolution_h, 0, 1)
         self.row_hw.addWidget(self.label_resolution_w, 0, 2)
         self.row_hw.addWidget(self.spinBox_resolution_w, 0, 3)
-        layout.addLayout(self.row_hw)
         # Interval
         self.label_interval = QtWidgets.QLabel(translate('MovieClapperboard',
-                                                                 'Frame interval:'))
+                                                        'Frame interval:'))
         self.label_frame_from = QtWidgets.QLabel(translate('MovieClapperboard',
-                                                                   'From frame:'))
+                                                            'From frame:'))
         self.spinBox_frame_from = QtWidgets.QSpinBox()
         self.spinBox_frame_from.setMaximum(10000)
         self.spinBox_frame_from.setValue(CL.Clap_01AnimIniStep)
@@ -676,34 +623,30 @@ class RecordTaskPanel:
         self.spinBox_frame_to.setMaximum(10000)
         self.spinBox_frame_to.setValue(CL.Clap_03AnimEndStep)
         self.spinBox_frame_to.setToolTip(TIP_ANIM_END)
-        layout.addWidget(self.label_interval)
         self.row_steps = QtWidgets.QGridLayout()
         self.row_steps.addWidget(self.label_frame_from, 0, 0)
         self.row_steps.addWidget(self.spinBox_frame_from, 0, 1)
         self.row_steps.addWidget(self.label_frame_to, 0, 2)
         self.row_steps.addWidget(self.spinBox_frame_to, 0, 3)
-        layout.addLayout(self.row_steps)
         # Frame name
         self.label_frame_name = QtWidgets.QLabel(translate('MovieClapperboard',
-                                                                   'Frame names:'))
+                                                            'Frame names:'))
         self.lineEdit_frame_name = QtWidgets.QLineEdit(str(CL.Frame_01Name))
         self.lineEdit_frame_name.setToolTip(TIP_FRAME_NAME)
         self.row_frame_name = QtWidgets.QGridLayout()
         self.row_frame_name.addWidget(self.label_frame_name, 0, 0)
         self.row_frame_name.addWidget(self.lineEdit_frame_name, 0, 1)
-        layout.addLayout(self.row_frame_name)
         # Frames output path
         self.label_output_path = QtWidgets.QLabel(translate('MovieClapperboard',
-                                                                    'Frames output folder path:'))
+                                                    'Frames output folder path:'))
         self.lineEdit_output_path = QtWidgets.QLineEdit(str(CL.Frame_04OutputPath))
         self.lineEdit_output_path.setToolTip(TIP_FRAME_OUTPUT)
         self.toolButton_path = QtWidgets.QToolButton()
+        self.toolButton_path.setText('...')
         self.toolButton_path.setToolTip(TIP_FRAME_OUTPUT)
         self.row1 = QtWidgets.QGridLayout()
         self.row1.addWidget(self.lineEdit_output_path, 0, 0)
         self.row1.addWidget(self.toolButton_path, 0, 1)
-        layout.addWidget(self.label_output_path)
-        layout.addLayout(self.row1)
         temp_dir = tempfile.gettempdir()
         if CL.Frame_04OutputPath == "" or CL.Frame_04OutputPath[0:3] == temp_dir[0:3]:
             #temporary folder
@@ -722,14 +665,14 @@ class RecordTaskPanel:
                        translate('MovieClapperboard',
                                  'Save video'))
         self.checkBox_save_video.setToolTip(translate('MovieClapperboard',
-                                                      'Indicate whether you also want to save \n'
-                                                      'automatically the video after the frames \n'
-                                                      'are produced. \n'
-                                                      '\n'
-                                                      'Alternatively, you can record the video \n'
-                                                      'later by clicking the “Record video” \n'
-                                                      'button or use external recording software \n'
-                                                      'with the images generated.'))
+                            'Indicate whether you also want to save \n'
+                            'automatically the video after the frames \n'
+                            'are produced. \n'
+                            '\n'
+                            'Alternatively, you can record the video \n'
+                            'later by clicking the “Record video” \n'
+                            'button or use external recording software \n'
+                            'with the images generated.'))
         self.label_name = QtWidgets.QLabel(translate('MovieClapperboard',
                                                              'Video name:'))
         self.lineEdit_name = QtWidgets.QLineEdit(CL.Video_01Name)
@@ -738,7 +681,7 @@ class RecordTaskPanel:
         self.row_name.addWidget(self.label_name, 0, 0)
         self.row_name.addWidget(self.lineEdit_name, 0, 1)
         self.label_number = QtWidgets.QLabel(translate('MovieClapperboard',
-                                                               'Video num.:'))
+                                                            'Video num.:'))
         self.spinBox_number = QtWidgets.QSpinBox()
         self.spinBox_number.setMaximum(1000)
         self.spinBox_number.setValue(CL.Video_02Number)
@@ -755,7 +698,7 @@ class RecordTaskPanel:
         self.row_fps.addWidget(self.label_fps, 0, 0)
         self.row_fps.addWidget(self.lineEdit_fps, 0, 1)
         self.label_output_video = QtWidgets.QLabel(translate('MovieClapperboard',
-                                                                     'Video output folder path:'))
+                                                    'Video output folder path:'))
         file_doc_path = os.path.abspath(FreeCAD.ActiveDocument.Name)
         folder_doc_path = os.path.dirname(file_doc_path)
         if CL.Video_04OutputPath == "":
@@ -764,6 +707,7 @@ class RecordTaskPanel:
             videos_path = CL.Video_04OutputPath
         self.lineEdit_output_video = QtWidgets.QLineEdit(str(videos_path))
         self.toolButton_video = QtWidgets.QToolButton()
+        self.toolButton_video.setText('...')
         self.lineEdit_output_video.setToolTip(TIP_VIDEO_OUTPUT)
         self.toolButton_video.clicked.connect(self.open_output_path_video_file_dialog)
         self.lineEdit_output_video.setText(videos_path)
@@ -779,17 +723,16 @@ class RecordTaskPanel:
         self.checkBox_save_video.toggled.connect(self.toolButton_video.setEnabled)
         self.checkBox_save_video.toggled.connect(self.checkBox_play_video.setEnabled)
         self.checkBox_save_video.clicked.connect(self.checkBox_play_video_toggled)
-        layout.addWidget(self.label_video)
+        self.label_cv2 = QtWidgets.QLabel(MESSAGE)
+        self.label_cv2.setSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding,
+                                         QtWidgets.QSizePolicy.Policy.Expanding)
+        self.label_cv2.setWordWrap(True)
         try:
             import cv2
             self.checkBox_save_video.setChecked(True)
             self.checkBox_play_video.setChecked(True)
+            self.label_cv2.setVisible(False)
         except Exception:
-            self.label_cv2 = QtWidgets.QLabel(MESSAGE)
-            self.label_cv2.setSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding,
-                                             QtWidgets.QSizePolicy.Policy.Expanding)
-            self.label_cv2.setWordWrap(True)
-            layout.addWidget(self.label_cv2)
             self.checkBox_play_video.setEnabled(False)
             self.label_name.setEnabled(False)
             self.lineEdit_name.setEnabled(False)
@@ -801,27 +744,102 @@ class RecordTaskPanel:
             self.lineEdit_output_video.setEnabled(False)
             self.toolButton_video.setEnabled(False)
             self.checkBox_save_video.setEnabled(False)
-            self.lineEdit_output_path.setText(folder_doc_path)
+            #self.lineEdit_output_path.setText(folder_doc_path)
+            self.label_cv2.setVisible(True)
+        self.row2 = QtWidgets.QGridLayout()
+        self.row2.addWidget(self.lineEdit_output_video, 0, 0)
+        self.row2.addWidget(self.toolButton_video, 0, 1)
+        # Play video
+        self.checkBox_play_video.setText(
+                       translate('MovieClapperboard',
+                                 'Play video'))
+        self.checkBox_play_video.setToolTip(TIP_VIDEO_PLAY)
+        ##layout positions
+        layout.addWidget(self.label_clapperboard1)
+        layout.addWidget(self.label_clapperboard2)
+        layout.addLayout(self.row_instructions)
+        layout.addWidget(self.label_text)
+        layout.addWidget(self.label_frames)
+        layout.addLayout(self.row_type)
+        layout.addLayout(self.row_render_project)
+        layout.addWidget(self.label_note1)
+        layout.addWidget(self.label_warning_render)
+        layout.addWidget(self.label_resolution)
+        layout.addLayout(self.row_hw)
+        layout.addWidget(self.label_interval)
+        layout.addLayout(self.row_steps)
+        layout.addLayout(self.row_frame_name)
+        layout.addWidget(self.label_output_path)
+        layout.addLayout(self.row1)
+        layout.addWidget(self.label_video)
+        layout.addWidget(self.label_cv2)
         layout.addWidget(self.checkBox_save_video)
         layout.addLayout(self.row_name)
         layout.addLayout(self.row_number)
         layout.addLayout(self.row_fps)
         layout.addWidget(self.label_output_video)
-        self.row2 = QtWidgets.QGridLayout()
-        self.row2.addWidget(self.lineEdit_output_video, 0, 0)
-        self.row2.addWidget(self.toolButton_video, 0, 1)
         layout.addLayout(self.row2)
-        # Play video
-        self.checkBox_play_video.setText(
-                       translate('MovieClapperboard',
-                       'Play video'))
-        self.checkBox_play_video.setToolTip(TIP_VIDEO_PLAY)
         layout.addWidget(self.checkBox_play_video)
         print('Record panel was activated')
 
+    def toggle_text_instructions(self):
+
+        """Toggles the visibility of the instruction text."""
+
+        # Checks if the text is currently visible
+        visibility = self.label_text.isVisible()
+        # Inverts visibility
+        self.label_text.setVisible(not visibility)
+        # Changes the direction of the arrow
+        if visibility:
+            self.toolButton_instructions.setArrowType(
+                       QtCore.Qt.ArrowType.RightArrow)
+        else:
+            self.toolButton_instructions.setArrowType(
+                       QtCore.Qt.ArrowType.DownArrow)
+
+    def toggled_render(self):
+
+        """Toggles the visibility of the render project fields."""
+
+        if self.comboBox_view.currentText()[0:2] == '00':
+            self.label_render_project.setVisible(False)
+            self.label_project_label.setVisible(False)
+            self.toolButton_render_project.setVisible(False)
+            self.label_note1.setVisible(False)
+            self.label_warning_render.setVisible(False)
+        if self.comboBox_view.currentText()[0:2] == '01':
+            self.label_render_project.setVisible(True)
+            self.label_project_label.setVisible(True)
+            self.toolButton_render_project.setVisible(True)
+            self.label_warning_render.setVisible(True)
+            if self.label_project_label.text()[0:7] == 'Project':
+                self.label_note1.setVisible(False)
+                self.label_warning_render.setVisible(False)
+
+    def open_select_render_project(self):
+
+        """Opens the dialog to select the render project."""
+
+        global CL
+        sel_obj = []
+        try:
+            sel_obj = open_project_selection()[0]
+            if sel_obj != []:
+                if sel_obj.Name[0:7] == 'Project':
+                    CL.Frame_08RenderProject = sel_obj
+                    proj_render = sel_obj.Name + '(' + sel_obj.Label + ')'
+                    self.label_project_label.setText(proj_render)
+                else:
+                    FreeCAD.Console.PrintMessage(translate('MovieClapperboard',
+                        'The selected object is not a Render Project!') + '\n')
+                    return
+        except:
+            pass
+
     def open_output_path_file_dialog(self):
 
-        """Open output frame files dialog"""
+        """Open output frame files dialog."""
 
         WindowTitle = translate('MovieClapperboard',
                                 'Select the output folder for the frames.')
@@ -875,6 +893,9 @@ class RecordTaskPanel:
             return
 
     def checkBox_play_video_toggled(self):
+
+        """Toggles the video playback option."""
+
         if self.checkBox_save_video.isChecked() is False:
             self.checkBox_play_video.setChecked(False)
 
@@ -895,7 +916,7 @@ class RecordTaskPanel:
         # Output path
         CL.Frame_04OutputPath = self.lineEdit_output_path.text()
         # Type view
-        prefix = int(self.comboBox_view.currentText()[0:2])
+        prefix = self.comboBox_view.currentIndex()
         type_view_list = CL.getEnumerationsOfProperty("Frame_05Type")
         CL.Frame_05Type = type_view_list[prefix]
         # Save video
@@ -907,6 +928,14 @@ class RecordTaskPanel:
         if CL.Frame_05Type[0:2] == '00':
             startRecord3DView(auto = True)
         if CL.Frame_05Type[0:2] == '01':
+            try:
+                projectRender = CL.Frame_08RenderProject
+                projectRender.RenderHeight = CL.Frame_03Height
+                projectRender.RenderWidth = CL.Frame_02Width
+            except Exception:
+                self.label_note1.setVisible(True)
+                self.label_warning_render.setVisible(True)
+                return
             startRecordRender(auto = True)
         # Create video
         print(f'{self.checkBox_save_video.isChecked()}')
@@ -936,11 +965,13 @@ class RecordTaskPanel:
 
         global CL
         print("Record panel was canceled.")
-        # Delete tempfile?
-        '''temp_dir = tempfile.gettempdir()
+        '''
+        # Delete tempfile
+        temp_dir = tempfile.gettempdir()
         frames_folder = self.lineEdit_output_path.text()
         if frames_folder [0:3] == temp_dir[0:3]:
-            shutil.rmtree(frames_folder)'''
+            shutil.rmtree(frames_folder)
+            '''
         CL.Clap_04OnRec = False
         Gui.Control.closeDialog()
         return True
@@ -951,6 +982,70 @@ class RecordTaskPanel:
 
         return (QtWidgets.QDialogButtonBox.Ok |
                 QtWidgets.QDialogButtonBox.Cancel)
+
+class GroupRestrictedSelector(QtWidgets.QDialog):
+    def __init__(self):
+
+        """Selection of Render Project"""
+
+        from MovieMessages import TIP_RENDER_PROJECT
+
+        super(GroupRestrictedSelector, self).__init__(Gui.getMainWindow())
+        self.setWindowTitle(TIP_RENDER_PROJECT)
+        self.setMinimumSize(450, 500)
+        layout = QtWidgets.QVBoxLayout(self)
+        #TreeWidget configured for multiple selection
+        self.tree = QtWidgets.QTreeWidget()
+        label_group = translate('MovieClapperboard', 'Render Projects')
+        label_type = translate('MovieClapperboard', 'Type')
+        self.tree.setHeaderLabels([label_group, label_type])
+        self.tree.setSelectionMode(QtWidgets.QAbstractItemView.ExtendedSelection)
+        self.populate_tree()
+        layout.addWidget(self.tree)
+        #Button
+        self.btn_confirm = QtWidgets.QPushButton(
+                           translate('MovieClapperboard',
+                                             'Confirm')
+                            )
+        self.btn_confirm.clicked.connect(self.accept)
+        layout.addWidget(self.btn_confirm)
+
+    def populate_tree(self):
+        doc = FreeCAD.ActiveDocument
+        if not doc: return
+
+        """Populate with objects from objects tree"""
+
+        #Creates a category item for the Group
+        group_item = QtWidgets.QTreeWidgetItem()
+        group_item.setFlags(group_item.flags() & ~QtCore.Qt.ItemIsSelectable)
+        self.tree.addTopLevelItem(group_item)
+
+        #for obj in group_obj.Group:
+        for obj in doc.Objects:
+            child_item = QtWidgets.QTreeWidgetItem([obj.Label, obj.TypeId.split('::')[-1]])
+            child_item.setData(0, QtCore.Qt.UserRole, obj.Name)
+            #Add available icon
+            if hasattr(obj, 'ViewObject'):
+                if obj.Name[0:7] == 'Project':
+                    child_item.setIcon(0, obj.ViewObject.Icon)
+                    group_item.addChild(child_item)
+        group_item.setExpanded(True)
+
+    def get_selected_objects(self):
+        return [FreeCAD.ActiveDocument.getObject(item.data(0, QtCore.Qt.UserRole))
+                for item in self.tree.selectedItems() if item.data(0, QtCore.Qt.UserRole)]
+
+def open_project_selection():
+
+    """Open the objects selection dialog"""
+
+    dialog = GroupRestrictedSelector()
+    if dialog.exec_() == QtWidgets.QDialog.Accepted:
+        selection = dialog.get_selected_objects()
+        return selection
+    else:
+        return []
 
 '''
 from PySide import QtCore, QtGui
@@ -1008,7 +1103,6 @@ def startRecordRender(auto = False):
     """Defines recording frames from a Render view."""
 
     global CL
-    #import Render
     global START_RENDER_FRAME
     START_RENDER_FRAME = CL.Clap_02AnimCurrentStep
     #CL.Frame_05Type[0:2] = '01'
@@ -1041,7 +1135,6 @@ def runRecordCamera(Back = False):
     takeNum = str(f'{CL.Clap_02Take:0>2}')
     #totalFrames = int(CL.Clap_03AnimEndStep - CL.Clap_01AnimIniStep)
     totalFrames = CL.Clap_03AnimEndStep - CL.Clap_01AnimIniStep + 1
-    #subTotalFrames = int(CL.Clap_02AnimCurrentStep - CL.Clap_01AnimIniStep)
     subTotalFrames = CL.Clap_02AnimCurrentStep - CL.Clap_01AnimIniStep
     perFrames = str(int(subTotalFrames / totalFrames * 100)) + '%'
 
@@ -1055,8 +1148,7 @@ def runRecordCamera(Back = False):
         pathAndName = CL.Frame_04OutputPath +'/' + frameFinalName
         Gui.activeDocument().activeView().saveImage(pathAndName,CL.Frame_02Width,CL.Frame_03Height,'Current')
         curFrame = int(frameNum)
-        from MovieAnimation import VIEW_00
-        #from MovieCamera import VIEW_00
+        from MovieMessages import VIEW_00
         typeImage = VIEW_00
 
     if CL.Frame_07R2OnRec == True :
@@ -1065,24 +1157,22 @@ def runRecordCamera(Back = False):
         else:
             frameNum = str(f'{(CL.Clap_04AnimTotalSteps - CL.Clap_02AnimCurrentStep):0>4}')
         frameFinalName = f'{CL.Frame_01Name}_{camNum}_{takeNum}_{CL.Frame_05Type}_{frameNum}.png'
-        project =  FreeCAD.getDocument(FreeCAD.ActiveDocument.Label).getObject(CL.Frame_08R2RenderProject)
+        project =  FreeCAD.getDocument(FreeCAD.ActiveDocument.Label).getObject(CL.Frame_08RenderProject.Name)
         if CL.Clap_02AnimCurrentStep == START_RENDER_FRAME:
             output_file=project.Proxy.render(skip_meshing=False, wait_for_completion=True)
         else:
             output_file=project.Proxy.render(skip_meshing=True, wait_for_completion=True)
-        #shutil.move(output_file, f'' + f'{CL.Frame_04OutputPath}/{frameFinalName}')
         shutil.move(output_file, f'{CL.Frame_04OutputPath}/{frameFinalName}')
         # Close render window
         if project.OpenAfterRender:
             Gui.runCommand('Std_CloseActiveWindow',0)
-        from MovieAnimation import VIEW_01
-        #from MovieCamera import VIEW_01
+        from MovieMessages import VIEW_01
         typeImage = VIEW_01
 
     curFrame = int(frameNum)
     FreeCAD.Console.PrintMessage(translate('MovieClapperboard',
                                            '{} frame {} of {} has been completed ({})'
-                                            ).format(typeImage, curFrame, totalFrames, perFrames) + '\n')
+                            ).format(typeImage, curFrame, totalFrames, perFrames) + '\n')
 
 # ======================================================================================
 # 2.2. Create and play video commands
@@ -1095,6 +1185,7 @@ def createVideo(auto = False):
 
     global CL
     global VIDEO_FILE
+    from MovieMessages import MESSAGE
     try:
         import cv2
     except Exception:
@@ -1110,7 +1201,10 @@ def createVideo(auto = False):
         WindowTitle1 = translate('MovieClapperboard',
                                  'Select the frames folder to create video')
         inputFramesFolder = ''
-        inputFramesFolder = QFileDialog.getExistingDirectory(Gui.getMainWindow(), WindowTitle1, openDir)
+        inputFramesFolder = QFileDialog.getExistingDirectory(
+                                          Gui.getMainWindow(),
+                                          WindowTitle1,
+                                          openDir)
         if inputFramesFolder == '':
             return
         # Confirmation of the output folder to save video
@@ -1157,23 +1251,26 @@ def createVideo(auto = False):
     for i in range(len(frames)):
         video.write(cv2.imread(frames[i]))
         FreeCAD.Console.PrintMessage(translate('MovieClapperboard',
-                                               'Recording of frame {} of {} ({}%)'
-                                               ).format(i+1, len(frames), int((i+1)/len(frames)*100)
-                                               ) + '\n')
+                        'Recording of frame {} of {} ({}%)'
+                        ).format(i+1, len(frames), int((i+1)/len(frames)*100)
+                        ) + '\n')
 
     video.release()
+
     # Delete tempfile
     temp_dir = tempfile.gettempdir()
-
     if frames_folder[0:3] == temp_dir[0:3]:
         shutil.rmtree(frames_folder)
+
     FreeCAD.Console.PrintMessage(translate('MovieClapperboard',
-                                           'Output video to {}').format(outVideoFullPath)+'\n')
+            'Output video to {}').format(outVideoFullPath)+'\n')
     VIDEO_FILE = outVideoFullPath
 
 def playVideo(auto = False):
 
     """Plays video files"""
+
+    from MovieMessages import MESSAGE
 
     try:
         import cv2
@@ -1192,7 +1289,11 @@ def playVideo(auto = False):
         fileDocPath = os.path.abspath(FreeCAD.ActiveDocument.Name)
         folderDocPath = os.path.dirname(fileDocPath)
         OpenDir = folderDocPath +'/'
-        pathFile = QFileDialog.getOpenFileName(Gui.getMainWindow(), WindowTitle, OpenDir, MovieFileFilter)
+        pathFile = QFileDialog.getOpenFileName(
+                             Gui.getMainWindow(),
+                             WindowTitle,
+                             OpenDir,
+                             MovieFileFilter)
     if pathFile[0] == '':
         return
     else:
@@ -1212,7 +1313,7 @@ def playVideo(auto = False):
         '''
         translate doesn't work with cv2.imshow()!
         message2 = (translate('MovieClapperboard',
-                              'Movie at {} fps, press q to stop the video').format(fps2))
+        'Movie at {} fps, press q to stop the video').format(fps2))
         '''
     while cap.isOpened():
         success, frame = cap.read()

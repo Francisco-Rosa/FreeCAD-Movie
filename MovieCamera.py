@@ -45,11 +45,8 @@ Gui.addLanguagePath(LanguagePath)
 
 MC = None
 
-#VIEW_00 = translate("MovieCamera", "3D view")
-#VIEW_01 = translate("MovieCamera", "Render")
-
 # ======================================================================================
-# 1. Classes
+# 1. Classes - MovieCamera
 
 class MovieCamera:
 
@@ -133,7 +130,7 @@ class MovieCamera:
                                                     ).Cam_07OnAnim = False
         # Movie Camera 02 - Camera config
         if not 'Cam_01Type' in pl:
-            from MovieAnimation import VIEW_00, VIEW_01
+            from MovieMessages import VIEW_00, VIEW_01
             obj.addProperty('App::PropertyEnumeration', 'Cam_01Type', 'Movie Camera 02 - Camera config',
                                                     QT_TRANSLATE_NOOP('App::Property',
                                                     'Camera type for the MovieCamera.\n'
@@ -481,9 +478,6 @@ class MovieCameraViewProvider:
         __dir__ = os.path.dirname(__file__)
         return __dir__ + '/icons/MovieCameraIcon.svg'
 
-# ======================================================================================    
-# 2. Command classes
-
 class CreateMovieCamera:
 
     """Creates a MovieCamera."""
@@ -625,7 +619,6 @@ def setMCPosA(Option = None):
     MC = Option
     Gui.runCommand('Std_PerspectiveCamera',1)
 
-    #if MC.Cam_01Target == 'Free':
     if MC.Cam_01Target[0:2] == '00': # 'Free'
         MC.Cam_01XMov = True
         MC.Cam_02YMov = True
@@ -635,7 +628,6 @@ def setMCPosA(Option = None):
         MC.Cam_03Roll = True
         MC.Cam_04Zoom = True
 
-    #if MC.Cam_01Target == 'Follow an object or point' :
     if MC.Cam_01Target[0:2] == '01': # 'Follow an object or point'
         MC.Cam_01XMov = True
         MC.Cam_02YMov = True
@@ -665,7 +657,6 @@ def setMCPosA(Option = None):
     MC.Cam_02ZoomPosA = degrees(float(cameraNodeA.heightAngle.getValue()))
 
     # Render camera angles and zoom pos A
-    #if MC.Cam_01Type == 'Render':
     if MC.Cam_01Type[0:2] == '01': # Render
         if 'Camera' in FreeCAD.ActiveDocument.Content and MC.Cam_02Render_Selection:
             renderCameraA = MC.Cam_02Render_Selection
@@ -714,7 +705,6 @@ def setMCPosB(Option = None):
     MC.Cam_03ZoomPosB = degrees(float(cameraNodeB.heightAngle.getValue()))
 
     # Render camera angles and zoom pos B
-    #if MC.Cam_01Type == 'Render':
     if MC.Cam_01Type[0:2] == '01': # Render
         if 'Camera' in FreeCAD.ActiveDocument.Content and MC.Cam_02Render_Selection:
             renderCameraB = MC.Cam_02Render_Selection
@@ -735,8 +725,6 @@ def setMCPosB(Option = None):
                                            'MovieCamera position B has been established.'
                                            ) + '\n')
     Gui.updateGui()
-
-# ======================================================================================
 
 def getMovieCameraMobile(Selection = None):
 
@@ -766,7 +754,6 @@ def getMovieCameraMobile(Selection = None):
         cameraNode.position.setValue(currentVector)
 
         # Target follows the route
-        #if MC.Cam_01Target == 'Follow a route':
         if MC.Cam_01Target[0:2] == '02': # 'Follow a route'
 
             lengthTarget  = currentStep + stepLength*MC.Cam_03TargetStepsForward
@@ -794,8 +781,7 @@ def getMovieCameraMobile(Selection = None):
 
         cameraNode.position.setValue(xPosCamera, yPosCamera, zPosCamera)
 
-    # Camera yaw, pitch and roll for Pos AB 
-    #if MC.Cam_01Target == 'Free':
+    # Camera yaw, pitch and roll for Pos AB
     if MC.Cam_01Target[0:2] == '00': # 'Free'
         cameraYaw = MC.Cam_01YawPosA
         cameraPitch = MC.Cam_02PitchPosA
@@ -824,7 +810,6 @@ def getMovieCameraMobile(Selection = None):
         cameraNode.heightAngle.setValue(radians(float(cameraHeightAngle)))
 
     # Object or point target
-    #if MC.Cam_01Target == 'Follow an object or point':
     if MC.Cam_01Target[0:2] == '01': # 'Follow an object or point'
         if not MC.Cam_02TargetObjectSelection:
             FreeCAD.Console.PrintMessage(translate('MovieCamera',
@@ -838,7 +823,6 @@ def getMovieCameraMobile(Selection = None):
         cameraNode.pointAt( coin.SbVec3f(cameraFixedTarget), coin.SbVec3f( 0, 0, 1 ) )
 
     #  Render camera
-    #if MC.Cam_01Type == 'Render':
     if MC.Cam_01Type[0:2] == '01': # Render
         if not MC.Cam_02Render_Selection:
             FreeCAD.Console.PrintMessage(translate('MovieCamera',
