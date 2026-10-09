@@ -25,7 +25,7 @@ Workbench to animate cameras and objects, record and play videos
 
 ### Tutorials
 
-##### Using Camera Sequence
+##### Using Camera Sequence (outdated)
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=tjfDeOKgyyw" target="_blank"><img src="http://img.youtube.com/vi/tjfDeOKgyyw/0.jpg" alt="Using camera sequence" width="240" height="180" border="3" /></a>
 
@@ -229,7 +229,7 @@ Wiki documentation will be available as soon as possible.
 For discussion, please use the [Movie Workbench thread](https://forum.freecad.org/viewtopic.php?t=74432&hilit=movie+workbench) in the FreeCAD forum.
 
 #### License 
-LGPL-2.1 [LICENCE](./LICENCE)
+LGPL-2.1 [LICENCE](./LICENSE)
 
 #### Author
 Francisco Rosa
