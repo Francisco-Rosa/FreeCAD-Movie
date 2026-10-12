@@ -1155,7 +1155,8 @@ def runRecordCamera(Back = False):
         else:
             frameNum = str(f'{(CL.Clap_04AnimTotalSteps - CL.Clap_02AnimCurrentStep):0>4}')
         frameFinalName = f'{CL.Frame_01Name}_{camNum}_{takeNum}_{CL.Frame_05Type}_{frameNum}.png'
-        project =  FreeCAD.getDocument(FreeCAD.ActiveDocument.Label).getObject(CL.Frame_08RenderProject.Name)
+        #project =  FreeCAD.getDocument(FreeCAD.ActiveDocument.Label).getObject(CL.Frame_08RenderProject.Name)
+        project =  CL.Frame_08RenderProject
         if CL.Clap_02AnimCurrentStep == START_RENDER_FRAME:
             output_file=project.Proxy.render(skip_meshing=False, wait_for_completion=True)
         else:
