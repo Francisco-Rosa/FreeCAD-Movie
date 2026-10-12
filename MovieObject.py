@@ -90,14 +90,14 @@ class MovieObjects:
                                                     'Indicate the step which this section of the \n'
                                                     'animation will begin. Changes will only take \n'
                                                     'effect after MovieObjects has been re-enabled.'
-                                                    )).Obj_01AnimIniStep = 1
+                                                    )).Obj_01AnimIniStep = 0
         if not 'Obj_02AnimCurrentStep' in pl:
             obj.addProperty('App::PropertyInteger', 'Obj_02AnimCurrentStep', 'Movie Objects 01 - Animation config',
                                                      QT_TRANSLATE_NOOP('App::Property',
                                                     'Current step of the MovieObjects animation.\n'
                                                     '\n'
                                                     'It is only indicative.'
-                                                    )).Obj_02AnimCurrentStep = 1
+                                                    )).Obj_02AnimCurrentStep = 0
         if not 'Obj_03AnimEndStep' in pl:
             obj.addProperty('App::PropertyInteger', 'Obj_03AnimEndStep', 'Movie Objects 01 - Animation config',
                                                     QT_TRANSLATE_NOOP('App::Property',

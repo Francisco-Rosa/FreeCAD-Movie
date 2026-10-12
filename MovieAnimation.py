@@ -50,6 +50,7 @@ MO = None
 CL = None
 STEP_POS = 'I'
 ANIMATION_BACK = False
+ANIM_INI_STEP = None
 
 TIP_CONNECTION = translate('MovieAnimation',
                            'Connection is enable, you must select \n'
@@ -578,7 +579,8 @@ class SetMoviePosB:
         global ENABLE_01
         if ENABLE_00 == 'Objects':
             mo.setMOPosAB(obj = MO, position = 'B')
-            ENABLE_01 = 'Objects'
+            if ANIM_INI_STEP:
+                ENABLE_01 = 'Objects'
         if ENABLE_01 == 'Camera' or ENABLE_01 == 'Camera and objects' or ENABLE_01 == 'Camera and connection':
             mc.setMCPosB(Option = MC)
 
@@ -768,7 +770,8 @@ def enableMovieClapperboard(obj = None):
     # Getting the elements of animation
     getSelectionSteps(Content = Selection)
     # Saving the elements of animation
-    CL.Clap_04AnimTotalSteps = ANIM_END_STEP + 1
+    #CL.Clap_04AnimTotalSteps = ANIM_END_STEP + 1
+    CL.Clap_04AnimTotalSteps = ANIM_END_STEP
     CL.Clap_03AnimEndStep = CL.Clap_04AnimTotalSteps
     ANIM_FPS = CL.Clap_05AnimFps
     # Getting clapperboard time animation

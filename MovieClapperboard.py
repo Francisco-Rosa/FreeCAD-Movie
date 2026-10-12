@@ -75,14 +75,14 @@ class Clapperboard:
         if not 'Clap_01AnimIniStep' in pl:
 
             obj.addProperty('App::PropertyInteger', 'Clap_01AnimIniStep', 'Animation config',
-                                                TIP_ANIM_INIT).Clap_01AnimIniStep = 1
+                                                TIP_ANIM_INIT).Clap_01AnimIniStep = 0
         if not 'Clap_02AnimCurrentStep' in pl:
             obj.addProperty('App::PropertyInteger', 'Clap_02AnimCurrentStep', 'Animation config',
                                                 QT_TRANSLATE_NOOP('App::Property',
                                                 'Current step of the Clapperboard animation.\n'
                                                 '\n'
                                                 'It is only indicative.'
-                                                )).Clap_02AnimCurrentStep = 1
+                                                )).Clap_02AnimCurrentStep = 0
         if not 'Clap_03AnimEndStep' in pl:
             obj.addProperty('App::PropertyInteger', 'Clap_03AnimEndStep', 'Animation config',
                                                 TIP_ANIM_END).Clap_03AnimEndStep = 100

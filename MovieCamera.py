@@ -70,14 +70,14 @@ class MovieCamera:
                                                     '\n'
                                                     'Indicate the step which this section of \n'
                                                     'the animation will begin.')
-                                                    ).Cam_01AnimIniStep = 1
+                                                    ).Cam_01AnimIniStep = 0
         if not 'Cam_02AnimCurrentStep' in pl:
             obj.addProperty('App::PropertyInteger', 'Cam_02AnimCurrentStep', 'Movie Camera 01 - Animation config',
                                                     QT_TRANSLATE_NOOP('App::Property',
                                                     'Current step of the MovieCamera animation.\n'
                                                     '\n'
                                                     'It is only indicative.')
-                                                    ).Cam_02AnimCurrentStep = 1
+                                                    ).Cam_02AnimCurrentStep = 0
         if not 'Cam_03AnimEndStep' in pl:
             obj.addProperty('App::PropertyInteger', 'Cam_03AnimEndStep', 'Movie Camera 01 - Animation config',
                                                     QT_TRANSLATE_NOOP('App::Property',
