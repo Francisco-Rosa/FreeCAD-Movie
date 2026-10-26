@@ -4,18 +4,7 @@
   <context>
     <name>App::Property</name>
     <message>
-      <location filename="../MovieCamera.py" line="67"/>
-      <source>Initial step of the MovieCamera animation.
-
-Indicate the step which this section of 
-the animation will begin.</source>
-      <translation>Passo inicial da animação da CameraMovie.
-
-Indique o passo em que esta seção da 
-animação começará.</translation>
-    </message>
-    <message>
-      <location filename="../MovieCamera.py" line="75"/>
+      <location filename="../MovieCamera.py" line="78"/>
       <source>Current step of the MovieCamera animation.
 
 It is only indicative.</source>
@@ -24,7 +13,7 @@ It is only indicative.</source>
 É apenas indicativo.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="82"/>
+      <location filename="../MovieCamera.py" line="86"/>
       <source>End step of the MovieCamera animation.
 
 Indicate the step which this section of 
@@ -41,20 +30,7 @@ As alterações só terão efeito depois que a
 CameraMovie for reativada.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="93"/>
-      <source>Total steps of the MovieCamera animation.
-
-It is the result of the difference between 
-end step (“Cam_03AnimEndStep”) and initial 
-step (“Cam_01AnimIniStep”).</source>
-      <translation>Total de passos da animação CameraMovie. 
-
-É o resultado da diferença entre o Passo final 
-(“Cam_03AnimEndStep”) e o Passo inicial 
-(“Cam_01AnimIniStep”).</translation>
-    </message>
-    <message>
-      <location filename="../MovieCamera.py" line="102"/>
+      <location filename="../MovieCamera.py" line="112"/>
       <source>Animation fps of the MovieCamera.
 
 Specify the value for this animation 
@@ -74,7 +50,7 @@ As alterações só terão efeito depois que a
 CameraMovie for reativada.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="115"/>
+      <location filename="../MovieCamera.py" line="125"/>
       <source>Animation time of the MovieCamera, 
 in hours, minutes, and seconds. 
 
@@ -85,7 +61,7 @@ em horas, minutos e segundos.
 É apenas indicativo.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="123"/>
+      <location filename="../MovieCamera.py" line="134"/>
       <source>MovieCamera animation on or off. 
 
 It should not be changed manually, 
@@ -97,69 +73,7 @@ Não deve ser alterado manualmente, é controlado
 pelos botões de animação.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="134"/>
-      <source>Camera type for the MovieCamera.
-
-Choose the camera through which this section 
-of the animation will be performed: “3D view” 
-for 3D views and the “Render” for adopting 
-the settings of a camera from the Render 
-Workbench, previously created and adjusted.</source>
-      <translation>Tipo de câmera para a CameraMovie. 
-
-Escolha a câmera através da qual esta seção 
-da animação será executada: “3DView” para 
-vistas 3D e a “Render” para adotar as 
-configurações de uma câmera da Bancada 
-Render, previamente criada e ajustada.</translation>
-    </message>
-    <message>
-      <location filename="../MovieCamera.py" line="146"/>
-      <source>Render camera selection for the MovieCamera animation.
-
-If you have chosen “Render” in Camera type (“Cam_01Type”), 
-you have to select which one will be used in this 
-section of the animation.</source>
-      <translation>Seleção da câmera de render para a animação CameraMovie. 
-
-Se você escolheu “Render” em Tipo de câmera (“Cam_01Type”), 
-deverá selecionar qual será utilizada nesta seção de animação.</translation>
-    </message>
-    <message>
-      <location filename="../MovieCamera.py" line="155"/>
-      <source>Render image width of the MovieCamera animation.
-
-Configure the width in pixels that will compose 
-the aspect ratio of the image (“AspectRatio”).</source>
-      <translation>Largura da imagem renderizada da animação da CameraMovie. 
-
-Configure a largura em píxeis que irá compor a proporção da 
-imagem (“AspectRatio”).</translation>
-    </message>
-    <message>
-      <location filename="../MovieCamera.py" line="163"/>
-      <source>Render image height of the MovieCamera animation.
-
-Configure the height in pixels that will compose 
-the aspect ratio of the image (“AspectRatio”).</source>
-      <translation>Altura da imagem renderizada da animação da CameraMovie. 
-
-Configure a altura em píxeis que irá compor a proporção da 
-imagem (“AspectRatio”).</translation>
-    </message>
-    <message>
-      <location filename="../MovieCamera.py" line="171"/>
-      <source>Objects selected for the MovieCamera animation.
-
-Select the MoveObjects to animate together 
-with this MovieCamera.</source>
-      <translation>Objetos selecionados para a animação da CameraMovie. 
-
-Selecione ObjetosMovie para animar com esta 
-CameraMovie.</translation>
-    </message>
-    <message>
-      <location filename="../MovieCamera.py" line="179"/>
+      <location filename="../MovieCamera.py" line="193"/>
       <source>Enable the combinations for the MovieCamera animation.
 
 Configure the combination of objects to animate together: 
@@ -184,7 +98,7 @@ Para cada alteração da combinação será necessário
 reativar a CameraMovie.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="198"/>
+      <location filename="../MovieCamera.py" line="212"/>
       <source>Connection for MovieCamera animation. 
 
 Choose the workbench through which the 
@@ -203,7 +117,7 @@ esteja instalada e que haja uma animação
 criada com ela.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="211"/>
+      <location filename="../MovieCamera.py" line="225"/>
       <source>Target of the MovieCamera. 
 
 If you want to use an object or point as a target, 
@@ -220,7 +134,7 @@ enquanto para a opção “Seguir uma rota ” você deve usar a
 seleção de rota (“Cam_02RouteSelection”).</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="224"/>
+      <location filename="../MovieCamera.py" line="238"/>
       <source>Target object selection of the MovieCamera.
 
 Select the point or object you want the 
@@ -231,7 +145,7 @@ Selecione o ponto ou objeto para o qual
 deseja que a câmera aponte.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="232"/>
+      <location filename="../MovieCamera.py" line="246"/>
       <source>Target ahead of the MovieCamera.
 
 If you chose for the target to 
@@ -247,7 +161,7 @@ quantos passos esse alvo estará à frente da
 câmera na mesma rota.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="245"/>
+      <location filename="../MovieCamera.py" line="259"/>
       <source>Route of the MovieCamera animation.
 
 Enable it so that the camera follows a route. 
@@ -261,7 +175,7 @@ Você deve selecionar um único segmento em
 seleção da rota (“Cam_02RouteSelection”) para usá-lo.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="255"/>
+      <location filename="../MovieCamera.py" line="269"/>
       <source>Route selection for the MovieCamera animation.
 
 Choose the route through which the camera will be 
@@ -276,7 +190,7 @@ linha, arco, círculo, elipse, B-spline ou curva de
 Bézier, das Bancadas Sketcher ou Draft.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="267"/>
+      <location filename="../MovieCamera.py" line="281"/>
       <source>X movement of the MovieCamera.
 
 Enable this if you want to 
@@ -287,7 +201,7 @@ Habilite isto se quiser animar a
 câmera na direção X.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="275"/>
+      <location filename="../MovieCamera.py" line="289"/>
       <source>Y movement of the MovieCamera.
 
 Enable this if you want to 
@@ -298,7 +212,7 @@ Habilite isto se deseja animar a
 câmera na direção Y.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="283"/>
+      <location filename="../MovieCamera.py" line="297"/>
       <source>Z movement of the MovieCamera.
 
 Enable this if you want to 
@@ -309,7 +223,7 @@ Habilite isto se desejar animar a
 câmera na direção Z.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="293"/>
+      <location filename="../MovieCamera.py" line="307"/>
       <source>Yaw of the MovieCamera.
 
 Enable this if you want to 
@@ -320,7 +234,7 @@ Habilite isto se quiser animar o ângulo
 horizontal da câmera.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="301"/>
+      <location filename="../MovieCamera.py" line="315"/>
       <source>Pitch of the MovieCamera.
 
 Enable this if you want to 
@@ -331,7 +245,7 @@ Habilite isto se quiser animar o ângulo
 vertical da câmera.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="309"/>
+      <location filename="../MovieCamera.py" line="323"/>
       <source>Roll of the MovieCamera.
 
 Enable this if you want to 
@@ -342,7 +256,7 @@ Habilite isto se quiser animar
 o ângulo de rotação da câmera.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="317"/>
+      <location filename="../MovieCamera.py" line="331"/>
       <source>Zoom of the MovieCamera.
 
 Enable this if you want to 
@@ -353,7 +267,7 @@ Habilite isto se quiser animar o
 zoom da câmera.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="327"/>
+      <location filename="../MovieCamera.py" line="341"/>
       <source>X of Position A of the MovieCamera.
 
 It is set when the “Set position 
@@ -366,7 +280,7 @@ to the x-value.</source>
 após isso, se necessário, você pode fazer ajustes no valor x.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="337"/>
+      <location filename="../MovieCamera.py" line="351"/>
       <source>Y of Position A of the MovieCamera.
 
 It is set when the “Set position 
@@ -380,7 +294,7 @@ to the y-value.</source>
 você pode fazer ajustes no valor y.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="347"/>
+      <location filename="../MovieCamera.py" line="361"/>
       <source>Z of Position A of the MovieCamera.
 
 It is set when the “Set position A” button 
@@ -392,7 +306,7 @@ you can make adjustments to the z-value.</source>
 após isso, se necessário, você pode fazer ajustes no valor z.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="356"/>
+      <location filename="../MovieCamera.py" line="370"/>
       <source>X of Position B of the MovieCamera.
 
 It is set when the “Set position B” button 
@@ -404,7 +318,7 @@ you can make adjustments to the x-value.</source>
 após isso, se necessário, você pode fazer ajustes no valor x.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="365"/>
+      <location filename="../MovieCamera.py" line="379"/>
       <source>Y of Position B of the MovieCamera.
 
 It is set when the “Set position B” button 
@@ -416,7 +330,7 @@ you can make adjustments to the y-value.</source>
 após isso, se necessário, você pode fazer ajustes no valor y.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="374"/>
+      <location filename="../MovieCamera.py" line="388"/>
       <source>Z of Position B of the MovieCamera.
 
 It is set when the “Set position B” button 
@@ -428,7 +342,7 @@ you can make adjustments to the z-value.</source>
 após isso, se necessário, você pode fazer ajustes no valor z.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="385"/>
+      <location filename="../MovieCamera.py" line="399"/>
       <source>Yaw of Position A of the MovieCamera.
 
 It is set when the “Set position A” button 
@@ -443,7 +357,7 @@ você pode fazer pequenos ajustes no valor
 do ângulo horizontal da câmera.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="395"/>
+      <location filename="../MovieCamera.py" line="409"/>
       <source>Pitch of Position A of the MovieCamera.
 
 It is set when the “Set position A” button 
@@ -458,7 +372,7 @@ pode fazer pequenos ajustes no valor do ângulo
 vertical da câmera.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="405"/>
+      <location filename="../MovieCamera.py" line="419"/>
       <source>Roll of Position A of the MovieCamera.
 
 It is set when the “Set position A” button 
@@ -472,7 +386,7 @@ após isso, se necessário, você pode fazer pequenos ajustes
 no valor de rotação da câmera.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="415"/>
+      <location filename="../MovieCamera.py" line="429"/>
       <source>Yaw of Position B of the MovieCamera.
 
 It is set when the “Set position B” button 
@@ -487,7 +401,7 @@ você pode fazer pequenos ajustes no
 valor do ângulo horizontal da câmera.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="425"/>
+      <location filename="../MovieCamera.py" line="439"/>
       <source>Pitch of Position B of the MovieCamera.
 
 It is set when the “Set position B” button 
@@ -502,7 +416,7 @@ você pode fazer pequenos ajustes no valor
 do ângulo vertical da câmera.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="435"/>
+      <location filename="../MovieCamera.py" line="449"/>
       <source>Roll of Position B of the MovieCamera.
 
 It is set when the “Set position B” button 
@@ -516,7 +430,7 @@ após isso, se necessário, você pode fazer pequenos ajustes
 no valor de rotação da câmera.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="447"/>
+      <location filename="../MovieCamera.py" line="461"/>
       <source>Zoom of Position A of the MovieCamera.
 
 If Zoom of the MovieCamera (“Cam_04Zoom”) 
@@ -537,7 +451,7 @@ Diminuindo o valor para aproximar o zoom e
 aumentando para afastar o zoom.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="460"/>
+      <location filename="../MovieCamera.py" line="474"/>
       <source>Zoom of Position B of the MovieCamera.
 
 If Zoom of the MovieCamera (“Cam_04Zoom”) 
@@ -557,7 +471,7 @@ Diminuindo o valor para aproximar o zoom e aumentando para
 afastá-lo.</translation>
     </message>
     <message>
-      <location filename="../MovieMessages.py" line="56"/>
+      <location filename="../MovieMessages.py" line="54"/>
       <source>Initial step of the Clapperboard animation.
 
 Indicate the step and/or frame which this 
@@ -569,7 +483,7 @@ Indique o passo e/ou quadro em que esta
 seção da animação e/ou gravação será iniciada.</translation>
     </message>
     <message>
-      <location filename="../MovieMessages.py" line="63"/>
+      <location filename="../MovieMessages.py" line="60"/>
       <source>End step of the Clapperboard animation.
 
 Indicate the step which this section of 
@@ -579,7 +493,7 @@ the animation will finish.</source>
 Indique o passo que esta seção da animação terminará.</translation>
     </message>
     <message>
-      <location filename="../MovieMessages.py" line="68"/>
+      <location filename="../MovieMessages.py" line="65"/>
       <source>Name of frame of the Clapperboard animation.
 
 Indicate the main name of frames. Write a 
@@ -592,7 +506,7 @@ Escreva um nome abreviado, pois este será
 inserido na nomenclatura de cada um criado.</translation>
     </message>
     <message>
-      <location filename="../MovieMessages.py" line="74"/>
+      <location filename="../MovieMessages.py" line="71"/>
       <source>Width of frames of the Clapperboard animation.
 
 Configure the width in pixels of the frames.</source>
@@ -601,7 +515,7 @@ Configure the width in pixels of the frames.</source>
 Configure a largura em píxeis dos quadros criados.</translation>
     </message>
     <message>
-      <location filename="../MovieMessages.py" line="78"/>
+      <location filename="../MovieMessages.py" line="75"/>
       <source>Height of frames of the Clapperboard animation.
 
 Configure the height in pixels of the frames.</source>
@@ -610,7 +524,7 @@ Configure the height in pixels of the frames.</source>
 Configure a altura dos quadros em pixels.</translation>
     </message>
     <message>
-      <location filename="../MovieMessages.py" line="82"/>
+      <location filename="../MovieMessages.py" line="79"/>
       <source>Output path of the Clapperboard animation frames.
 
 Confirm the folder where the animation frames 
@@ -628,7 +542,7 @@ renderizadas, por exemplo), especifique uma pasta diferente
 da pasta temporária.</translation>
     </message>
     <message>
-      <location filename="../MovieMessages.py" line="103"/>
+      <location filename="../MovieMessages.py" line="106"/>
       <source>Name of the video of the Clapperboard animation.
 
 Indicate the main name for the created videos. 
@@ -643,7 +557,7 @@ texto “Vista 3D” ou “Render”, de acordo com
 a origem dos quadros.</translation>
     </message>
     <message>
-      <location filename="../MovieMessages.py" line="110"/>
+      <location filename="../MovieMessages.py" line="113"/>
       <source>Number of the video of the Clapperboard animation.
 
 Indicate the initial number of the videos. This will 
@@ -654,7 +568,7 @@ Indique o número inicial dos vídeos. Este será
 inserido na nomenclatura de cada um criado.</translation>
     </message>
     <message>
-      <location filename="../MovieMessages.py" line="115"/>
+      <location filename="../MovieMessages.py" line="118"/>
       <source>Output path for the video of the Clapperboard 
 animation.
 
@@ -667,7 +581,7 @@ Defina o caminho da pasta para salvar os vídeos
 criados clicando no botão com os três pontos à direita.</translation>
     </message>
     <message>
-      <location filename="../MovieMessages.py" line="122"/>
+      <location filename="../MovieMessages.py" line="125"/>
       <source>Fps of the video of the Clapperboard animation.
 
 Indicate the frames per second (fps) of the video 
@@ -678,7 +592,7 @@ Indique os quadros por segundo (fps)
 do vídeo que será criado.</translation>
     </message>
     <message>
-      <location filename="../MovieMessages.py" line="127"/>
+      <location filename="../MovieMessages.py" line="130"/>
       <source>Read-only. 
 
 Indicates whether the animation video will play 
@@ -690,7 +604,7 @@ será reproduzido automaticamente
 após ser gerado.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="79"/>
+      <location filename="../MovieClapperboard.py" line="80"/>
       <source>Current step of the Clapperboard animation.
 
 It is only indicative.</source>
@@ -699,7 +613,7 @@ It is only indicative.</source>
 É apenas indicativo.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="89"/>
+      <location filename="../MovieClapperboard.py" line="91"/>
       <source>Total steps of the Clapperboard animation.
 
 Indicates the number of steps through which 
@@ -715,7 +629,7 @@ realizada a animação e/ou gravação nesta seção.
 É apenas indicativo.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="100"/>
+      <location filename="../MovieClapperboard.py" line="103"/>
       <source>Animation fps of the Clapperboard.
 
 Indicate the fps through which the 
@@ -733,7 +647,7 @@ Trata-se de uma simulação e dependerá
 do desempenho do computador.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="112"/>
+      <location filename="../MovieClapperboard.py" line="115"/>
       <source>Animation time of the Clapperboard.
 
 Time in hours, minutes and seconds. 
@@ -744,7 +658,7 @@ Tempo em horas, minutos e segundos.
 É apenas indicativo.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="123"/>
+      <location filename="../MovieClapperboard.py" line="127"/>
       <source>Name for this Clapperboard.
 
 It will indicate the Clapperboard 
@@ -763,7 +677,7 @@ Escreva um nome abreviado, pois este será
 inserido na nomenclatura de cada quadro criado.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="136"/>
+      <location filename="../MovieClapperboard.py" line="140"/>
       <source>Take of the Clapperboard animation.
 
 Indicate the take of each recording 
@@ -777,18 +691,7 @@ Escreva um nome abreviado, pois este será
 inserido na nomenclatura de cada quadro criado.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="146"/>
-      <source>Selection of the Clapperboard animation.
-
-Select the MovieCameras and/or the MovieObjects 
-to animate with this Clapperboard.</source>
-      <translation>Seleção da animação da Claquete. 
-
-Selecione as CameraMovies e/ou 
-ObjetosMovies para animar com esta Claquete.</translation>
-    </message>
-    <message>
-      <location filename="../MovieClapperboard.py" line="154"/>
+      <location filename="../MovieClapperboard.py" line="160"/>
       <source>Recording Clapperboard animation on or off.
 
 It is activated by the “Enable recording” button 
@@ -799,7 +702,7 @@ and deactivated by the “Stop recording” one.</source>
 botão “Parar gravação”.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="182"/>
+      <location filename="../MovieClapperboard.py" line="188"/>
       <source>“3D view” recording of the Clapperboard animation 
 on or off.
 
@@ -816,7 +719,7 @@ do FreeCAD.
 É apenas informativo.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="193"/>
+      <location filename="../MovieClapperboard.py" line="199"/>
       <source>“Render” recording of the Clapperboard animation 
 on or off.
 
@@ -831,7 +734,7 @@ Indica se a câmera selecionada gravará as imagens renderizadas.
 É somente indicativo.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="216"/>
+      <location filename="../MovieClapperboard.py" line="236"/>
       <source>Input frames for the video of the Clapperboard 
 animation.
 
@@ -845,12 +748,7 @@ quadros para a criação do vídeo clicando no botão
 com três pontos à direita.</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="63"/>
-      <source>List of objects of this MovieObjects.</source>
-      <translation>Lista de objetos deste ObjetosMovie.</translation>
-    </message>
-    <message>
-      <location filename="../MovieObject.py" line="86"/>
+      <location filename="../MovieObject.py" line="87"/>
       <source>Initial step of the MovieObjects animation.
 
 Indicate the step which this section of the 
@@ -863,7 +761,7 @@ começará. As alterações só terão efeito depois
 que ObjetosMovie for reativado.</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="95"/>
+      <location filename="../MovieObject.py" line="96"/>
       <source>Current step of the MovieObjects animation.
 
 It is only indicative.</source>
@@ -872,7 +770,7 @@ It is only indicative.</source>
 É apenas indicativo.</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="102"/>
+      <location filename="../MovieObject.py" line="104"/>
       <source>End step of the MovieObjects animation.
 
 Indicate the step which this section of 
@@ -885,20 +783,7 @@ Indique o passo que esta seção da animação terminará.
 As alterações só terão efeito depois que ObjetosMovie for reativado.</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="112"/>
-      <source>Total steps of MovieObjects animation.
-
-It is the result of the difference 
-between End step (“Obj_03AnimEndStep”) 
-and Initial step (“Obj_01AnimIniStep”).</source>
-      <translation>Total de passos da animação do ObjetosMovie.
-
-É o resultado da diferença entre o Passo final 
-(“Cam_03AnimEndStep”) e o Passo inicial 
-(“Cam_01AnimIniStep“).</translation>
-    </message>
-    <message>
-      <location filename="../MovieObject.py" line="121"/>
+      <location filename="../MovieObject.py" line="125"/>
       <source>Animation fps of the MovieObjects.
 
 Indicate the fps through which the 
@@ -913,7 +798,7 @@ Indique o fps através do qual será realizado o trecho da animação.
 As alterações só terão efeito depois que o ObjetosMoviefor reativado.</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="132"/>
+      <location filename="../MovieObject.py" line="136"/>
       <source>Animation time of the MovieObjects, 
 in in hours, minutes, and seconds. 
 
@@ -924,7 +809,7 @@ minutos e segundos.
 É apenas indicativo.</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="140"/>
+      <location filename="../MovieObject.py" line="145"/>
       <source>MovieObjects animation on or off. 
 
 It should not be changed manually, 
@@ -935,7 +820,7 @@ Não deve ser alterado manualmente, é controlado
 pelos botões de animação.</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="150"/>
+      <location filename="../MovieObject.py" line="155"/>
       <source>Route of the MovieObjects. 
 
 Enable this so that the objects follow a route. 
@@ -961,7 +846,7 @@ ativada novamente, caso já tenha sido configurada
 anteriormente.</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="166"/>
+      <location filename="../MovieObject.py" line="171"/>
       <source>Route selection of the MovieObjects.
 
 Choose the route through which the 
@@ -978,7 +863,7 @@ linha, arco, círculo, elipse, B-spline ou curva de
 Bézier, das Bancadas Sketcher ou Draft.</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="180"/>
+      <location filename="../MovieObject.py" line="185"/>
       <source>Rotation of the MovieObjects.
 
 Enable this if you want to animate 
@@ -989,7 +874,7 @@ Habilite isto se deseja animar
 os ângulos dos objetos.</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="188"/>
+      <location filename="../MovieObject.py" line="193"/>
       <source>Rotation by the centers of gravities 
 of the MovieObjects.
 
@@ -1001,17 +886,17 @@ Habilite isto se deseja girar os objetos
 de acordo com seus centros de gravidade.</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="200"/>
+      <location filename="../MovieObject.py" line="205"/>
       <source>Placements of PosA of this MovieObjects.</source>
       <translation>Posicionamentos da PosA deste ObjetosMovie.</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="205"/>
+      <location filename="../MovieObject.py" line="210"/>
       <source>Placements of PosB of this MovieObjects.</source>
       <translation>Posicionamentos da PosB deste ObjetosMovie.</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="210"/>
+      <location filename="../MovieObject.py" line="215"/>
       <source>Refresh on or off.
 
 Enable this if you need to update 
@@ -1032,12 +917,12 @@ Nota: Isso reduz o desempenho
 das animações de objetos.</translation>
     </message>
     <message>
-      <location filename="../MovieMessages.py" line="98"/>
+      <location filename="../MovieMessages.py" line="95"/>
       <source>To use images rendered by the Render Workbench, you must specify an existing Render Project!</source>
       <translation>Para usar imagens renderizadas pelo Render Workbench, você deve especificar um Projeto de Renderização existente!</translation>
     </message>
     <message>
-      <location filename="../MovieMessages.py" line="91"/>
+      <location filename="../MovieMessages.py" line="88"/>
       <source>Type of frame of the Clapperboard animation.
 
 Select the type of image to be generated: from 
@@ -1050,6 +935,76 @@ Selecione o tipo de imagem a ser gerada: a partir
 da vista 3D do FreeCAD ou renderizada. Para esta
 última opção, você deve especificar um projeto já
 preparado utilizando a Bancada de Trabalho Render.</translation>
+    </message>
+    <message>
+      <location filename="../MovieCamera.py" line="67"/>
+      <source>Initial step of the MovieCamera animation.
+
+Indicate the step which this section of 
+the animation will begin.
+Changes will only take effect after 
+MovieCamera has been re-enabled.</source>
+      <translation>Passo inicial da animação do CameraMovie. 
+
+Indique o passo em que esta seção da animação 
+começará. 
+As alterações só terão efeito depois 
+que CameraMovie for reativada.</translation>
+    </message>
+    <message>
+      <location filename="../MovieCamera.py" line="97"/>
+      <source>Total steps of the MovieCamera animation.
+
+Indicate the total number of steps for 
+this animation section.
+If the MovieCamera is animated in conjunction 
+with MovieObjects or Connections, the value will 
+be determined based on them.
+
+Changes will only take effect after 
+MovieCamera has been re-enabled.</source>
+      <translation>Número total de passos da animação da CameraMovie.
+
+Indique o número total de passos para
+esta seção da animação.
+Se a CameraMovie for animada em conjunto
+com ObjetosMovie ou Conexões, o valor
+será determinado com base neles.
+
+As alterações só entrarão em vigor após
+a CameraMovie ser reativada.</translation>
+    </message>
+    <message>
+      <location filename="../MovieClapperboard.py" line="214"/>
+      <source>Render camera selection for the Clapperboard animation.
+
+If you have chosen “Render” in frame type (“Frame_05Type”), 
+and you wish to preview the render framing in the 3D view, 
+create a Render Camera (Render WB) and specify it here.
+
+It is not mandatory.</source>
+      <translation>Seleção da câmera de renderização para a animação da Claquete.
+
+Se você selecionou “Render” no tipo de quadro (“Frame_05Type”)
+e deseja visualizar o enquadramento da renderização na visualização 3D,
+crie uma câmera de renderização (“Render WB”) e especifique-a aqui.
+
+Isso não é obrigatório.</translation>
+    </message>
+    <message>
+      <location filename="../MovieObject.py" line="114"/>
+      <source>Total steps of MovieObjects animation.
+
+Indicate the total number of steps for 
+this animation section.
+Changes will only take effect after 
+MovieObjects has been re-enabled.</source>
+      <translation>Total de passos da animação de ObjetosMovie.
+
+Indique o número total de passos para
+esta seção da animação.
+As alterações só entrarão em vigor após
+o ObjetosMovie ser reativado.</translation>
     </message>
   </context>
   <context>
@@ -1073,12 +1028,12 @@ preparado utilizando a Bancada de Trabalho Render.</translation>
   <context>
     <name>CreateClapperboard</name>
     <message>
-      <location filename="../MovieClapperboard.py" line="253"/>
+      <location filename="../MovieClapperboard.py" line="296"/>
       <source>Clapperboard</source>
       <translation>Claquete</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="255"/>
+      <location filename="../MovieClapperboard.py" line="298"/>
       <source>Create a Clapperboard to save the playback 
 and recording settings of a MovieCamera or 
 MovieObjects.
@@ -1116,12 +1071,12 @@ e clique no botão "Habilitar um objeto para animação".</translation>
   <context>
     <name>CreateMovieCamera</name>
     <message>
-      <location filename="../MovieCamera.py" line="491"/>
+      <location filename="../MovieCamera.py" line="527"/>
       <source>MovieCamera</source>
       <translation>CameraMovie</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="493"/>
+      <location filename="../MovieCamera.py" line="529"/>
       <source>Creates a MovieCamera. 
 
 1. Initially, a static camera is created (its positions 
@@ -1148,15 +1103,18 @@ select “Follow an object or point” under
 “Cam_01_Target” and specify the object in 
 “Cam_02_Target Object Selection”.
 
-5. Make finer adjustments in the properties window, 
+5. To animate a MovieCamera in conjunction with one 
+or more MovieObjects, select them and click this button.
+
+6. Make finer adjustments in the properties window, 
 if necessary.
 
-6. To view the animation, select (sequentially) one 
+7. To view the animation, select (sequentially) one 
 or more created MovieCameras and click the “Enable an 
 object for animation” button. Control the animation 
 using the “Animation tools” buttons.
 
-7. To save a video from the animation, indicate the 
+8. To save a video from the animation, indicate the 
 MovieCameras on a Clapperboard, to do so, see the 
 corresponding instructions.</source>
       <translation>Cria uma CameraMovie (Câmera de Animação).
@@ -1185,15 +1143,18 @@ selecione "Seguir objeto ou ponto" em
 "Cam_01_Target" e especifique o objeto em
 "Cam_02_Target Object Selection".
 
-5. Faça ajustes mais precisos na janela de propriedades,
+5. Para animar uma CameraMovie em conjunto com um
+ou mais ObjetosMovie, selecione-os e clique neste botão.
+
+6. Faça ajustes mais precisos na janela de propriedades,
 se necessário.
 
-6. Para visualizar a animação, selecione (sequencialmente) 
+7. Para visualizar a animação, selecione (sequencialmente) 
 uma ou mais CameraMovies criadas e clique no botão 
 "Habilitar um objeto para animação". Controle a animação 
 usando os botões de "Ferramentas de animação".
 
-7. Para salvar um vídeo da animação, indique as
+8. Para salvar um vídeo da animação, indique as
 CameraMovies em uma Claquete; para isso,
 consulte as instruções correspondentes.</translation>
     </message>
@@ -1201,12 +1162,12 @@ consulte as instruções correspondentes.</translation>
   <context>
     <name>CreateMovieObjects</name>
     <message>
-      <location filename="../MovieObject.py" line="249"/>
+      <location filename="../MovieObject.py" line="268"/>
       <source>MovieObjects</source>
       <translation>ObjetosMovie</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="251"/>
+      <location filename="../MovieObject.py" line="270"/>
       <source>Objects can be animated from position A to B, 
 follow a route, rotate around their 
 gravity centers or a chosen axis.
@@ -1284,12 +1245,12 @@ consulte as instruções correspondentes.</translation>
   <context>
     <name>DisableAnimation</name>
     <message>
-      <location filename="../MovieAnimation.py" line="136"/>
+      <location filename="../MovieAnimation.py" line="141"/>
       <source>Disable any object for animation</source>
       <translation>Desativar qualquer objeto para animação</translation>
     </message>
     <message>
-      <location filename="../MovieAnimation.py" line="138"/>
+      <location filename="../MovieAnimation.py" line="143"/>
       <source>1. To disable the animation status, click 
 this button.</source>
       <translation>1. Para desativar o status da animação, clique
@@ -1299,12 +1260,12 @@ neste botão.</translation>
   <context>
     <name>EnableAnimation</name>
     <message>
-      <location filename="../MovieAnimation.py" line="76"/>
+      <location filename="../MovieAnimation.py" line="78"/>
       <source>Enable an object for animation</source>
       <translation>Habilitar um objeto para animação</translation>
     </message>
     <message>
-      <location filename="../MovieAnimation.py" line="78"/>
+      <location filename="../MovieAnimation.py" line="80"/>
       <source>1. Select a MovieCamera, MovieObjects or 
 Clapperboard already set up, then click 
 on this button to save the configurations 
@@ -1340,12 +1301,12 @@ botão "Desativar qualquer objeto para animação".</translation>
   <context>
     <name>EnableMovieRecord</name>
     <message>
-      <location filename="../MovieClapperboard.py" line="342"/>
+      <location filename="../MovieClapperboard.py" line="410"/>
       <source>Enable recording</source>
       <translation>Habilitar gravação</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="344"/>
+      <location filename="../MovieClapperboard.py" line="412"/>
       <source>Opens a task panel to configure the recording. 
 
 1. After clicking on it, do not forget to confirm the 
@@ -1369,12 +1330,12 @@ animação para trás" das "Ferramentas de animação".</translation>
   <context>
     <name>EndMovieAnimation</name>
     <message>
-      <location filename="../MovieAnimation.py" line="443"/>
+      <location filename="../MovieAnimation.py" line="497"/>
       <source>Move to the end</source>
       <translation>Mover para o fim</translation>
     </message>
     <message>
-      <location filename="../MovieAnimation.py" line="445"/>
+      <location filename="../MovieAnimation.py" line="499"/>
       <source>1. On the first click, it moves to the 
 end of the animation of the current 
 camera/objects.
@@ -1394,12 +1355,12 @@ câmera/objetos (se houver).</translation>
   <context>
     <name>ExcludeMovieObjects</name>
     <message>
-      <location filename="../MovieObject.py" line="419"/>
+      <location filename="../MovieObject.py" line="462"/>
       <source>Exclude a MovieObjects</source>
       <translation>Excluir um ObjetosMovie</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="421"/>
+      <location filename="../MovieObject.py" line="464"/>
       <source>Select a MovieObjects that you want to exclude, 
 then click on this button. 
 
@@ -1416,12 +1377,12 @@ definidos quando o ObjetosMovie foi criado.</translation>
   <context>
     <name>IniMovieAnimation</name>
     <message>
-      <location filename="../MovieAnimation.py" line="170"/>
+      <location filename="../MovieAnimation.py" line="202"/>
       <source>Return to beginning</source>
       <translation>Retornar ao início</translation>
     </message>
     <message>
-      <location filename="../MovieAnimation.py" line="172"/>
+      <location filename="../MovieAnimation.py" line="204"/>
       <source>1. On the first click, it returns to the 
 beginning of the animation of the 
 current camera/objects and resets them. 
@@ -1489,48 +1450,48 @@ câmera/objetos anteriores (se houver).</translation>
   <context>
     <name>MovieAnimation</name>
     <message>
-      <location filename="../MovieMessages.py" line="46"/>
+      <location filename="../MovieMessages.py" line="44"/>
       <source>Connection is enable, you must select 
 one connection in “Cam_07Connection“!</source>
       <translation>A conexão está habilitada, você deve selecionar 
 uma conexão em “Cam_07Connection“!</translation>
     </message>
     <message>
-      <location filename="../MovieAnimation.py" line="246"/>
+      <location filename="../MovieAnimation.py" line="280"/>
       <source>Take a step back does not work 
 with ExplodedAssembly!</source>
       <translation>Retroceder um passo não funciona 
 com ExplodedAssembly!</translation>
     </message>
     <message>
-      <location filename="../MovieAnimation.py" line="427"/>
+      <location filename="../MovieAnimation.py" line="481"/>
       <source>Move one step forward, 
 does not work with ExplodedAssembly!</source>
       <translation>Mover um passo à frente não funciona 
 com ExplodedAssembly!</translation>
     </message>
     <message>
-      <location filename="../MovieAnimation.py" line="626"/>
+      <location filename="../MovieAnimation.py" line="695"/>
       <source>Animation off.</source>
       <translation>Animação desativa.</translation>
     </message>
     <message>
-      <location filename="../MovieAnimation.py" line="642"/>
+      <location filename="../MovieAnimation.py" line="711"/>
       <source>Animation on.</source>
       <translation>Animação ativa.</translation>
     </message>
     <message>
-      <location filename="../MovieAnimation.py" line="683"/>
+      <location filename="../MovieAnimation.py" line="745"/>
       <source>Select a MovieCamera!</source>
       <translation>Selecione uma CameraMovie!</translation>
     </message>
     <message>
-      <location filename="../MovieAnimation.py" line="708"/>
+      <location filename="../MovieAnimation.py" line="769"/>
       <source>Select a MovieObjects!</source>
       <translation>Selecione um ObjetosMovie!</translation>
     </message>
     <message>
-      <location filename="../MovieAnimation.py" line="723"/>
+      <location filename="../MovieAnimation.py" line="786"/>
       <source>To animate the objects it is necessary 
 to reset the MovieObjects B position or 
 enable “Obj_01Route” and indicate a path 
@@ -1541,49 +1502,34 @@ habilitar “Obj_01Route” e indicar um caminho
 em “Obj_02RouteSelection”!</translation>
     </message>
     <message>
-      <location filename="../MovieAnimation.py" line="753"/>
+      <location filename="../MovieAnimation.py" line="863"/>
       <source>Select a Clapperboard!</source>
       <translation>Selecione uma Claquete!</translation>
     </message>
     <message>
-      <location filename="../MovieAnimation.py" line="761"/>
-      <source>To enable the Clapperboard, it must have 
-at least one MovieCamera or MovieObject 
-specified in its “Clap_03 Animation 
-Selection” property!</source>
-      <translation>Para ativar a Claquete, é necessário especificar 
-pelo menos uma CameraMovie ou ObjetosMovie 
-em sua propriedade "Clap_03 Animation"!</translation>
-    </message>
-    <message>
-      <location filename="../MovieAnimation.py" line="796"/>
+      <location filename="../MovieAnimation.py" line="810"/>
       <source>MovieCamera enabled.</source>
       <translation>CameraMovie habilitada.</translation>
     </message>
     <message>
-      <location filename="../MovieAnimation.py" line="800"/>
+      <location filename="../MovieAnimation.py" line="814"/>
       <source>MovieCamera and MovieObjects enabled.</source>
       <translation>CameraMovie e ObjetosMovie habilitados.</translation>
     </message>
     <message>
-      <location filename="../MovieAnimation.py" line="804"/>
+      <location filename="../MovieAnimation.py" line="818"/>
       <source>MovieCamera and connection enabled.</source>
       <translation>CameraMovie e conexão habilitados.</translation>
     </message>
     <message>
-      <location filename="../MovieAnimation.py" line="809"/>
+      <location filename="../MovieAnimation.py" line="823"/>
       <source>MovieObjects enabled.</source>
       <translation>ObjetosMovie habilitado.</translation>
     </message>
     <message>
-      <location filename="../MovieAnimation.py" line="814"/>
+      <location filename="../MovieAnimation.py" line="828"/>
       <source>Clapperboard enabled.</source>
       <translation>Claquete habilitada.</translation>
-    </message>
-    <message>
-      <location filename="../MovieAnimation.py" line="902"/>
-      <source>Select MovieObjects in “Cam_06Enable“!</source>
-      <translation>Selecione ObjetosMovies em “Cam_06Enable“!</translation>
     </message>
     <message>
       <location filename="../MovieMessages.py" line="41"/>
@@ -1596,117 +1542,194 @@ em sua propriedade "Clap_03 Animation"!</translation>
       <translation>Render</translation>
     </message>
     <message>
-      <location filename="../MovieAnimation.py" line="155"/>
+      <location filename="../MovieAnimation.py" line="186"/>
       <source>The cameras and/or objects have 
 been disabled for the animation!</source>
       <translation>As câmeras e/ou os objetos foram 
 desativados para a animação!</translation>
     </message>
+    <message>
+      <location filename="../MovieAnimation.py" line="871"/>
+      <source>It seems the clapperboard 
+is an obsolete version. Please 
+try replacing it 
+with a new one. 
+Clapperboard disabled.</source>
+      <translation>Parece que a Claquete
+é uma versão obsoleta. Por favor,
+tente substituí-la
+por uma nova.
+Claquete desativada.</translation>
+    </message>
+    <message>
+      <location filename="../MovieAnimation.py" line="881"/>
+      <source>To enable the Clapperboard, it must have 
+at least one MovieCamera or MovieObject 
+specified in its “Group” property!
+</source>
+      <translation>Para ativar a Claquete, é necessário especificar 
+pelo menos uma CameraMovie ou ObjetosMovie 
+em sua propriedade "Group"!</translation>
+    </message>
+    <message>
+      <location filename="../MovieAnimation.py" line="891"/>
+      <source>It appears that the existing Clapperboard 
+is an outdated version, as the Frame_09RenderCamera 
+property could not be found. 
+Try replacing the Clapperboard 
+with a new one. 
+Clapperboard disabled.</source>
+      <translation>Ao que parece, a Claquete existente
+está em uma versão obsoleta, já que a propriedade
+Frame_09RenderCamera não pôde ser encontrada.
+Tente substituí-la
+por uma nova.
+Claquete desativada.</translation>
+    </message>
+    <message>
+      <location filename="../MovieAnimation.py" line="908"/>
+      <source>To enable 3D view cropping, you must have a 
+render camera specified in the Clapperboard!</source>
+      <translation>Para habilitar o recorte da visualização 3D, é 
+necessário ter uma câmera de renderização 
+especificada na Claquete!</translation>
+    </message>
+    <message>
+      <location filename="../MovieAnimation.py" line="1065"/>
+      <source>You must select at least one MovieObjects in “Group”!</source>
+      <translation>Você deve selecionar pelo menos um ObjetosMovie em “Group”!</translation>
+    </message>
+    <message>
+      <location filename="../MovieAnimation.py" line="1423"/>
+      <source>It seems the number of steps has momentarily 
+exceeded the total limit. Try re-enabling the 
+animation again to fix this.</source>
+      <translation>Parece que o número de passos excedeu momentaneamente
+o limite total. Tente reativar a animação para corrigir isso.</translation>
+    </message>
+    <message>
+      <location filename="../MovieAnimation.py" line="1073"/>
+      <source>You must select at least one MovieObjects in “Cam_05ObjectsSelected”!</source>
+      <translation>Você deve selecionar pelo menos um ObjetosMovie em “Cam_05ObjectsSelected”!</translation>
+    </message>
   </context>
   <context>
     <name>MovieCamera</name>
     <message>
-      <location filename="../MovieCamera.py" line="192"/>
+      <location filename="../MovieCamera.py" line="206"/>
       <source>Camera</source>
       <translation>Câmera</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="192"/>
+      <location filename="../MovieCamera.py" line="206"/>
       <source>Camera and objects</source>
       <translation>Câmera e objetos</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="192"/>
+      <location filename="../MovieCamera.py" line="206"/>
       <source>Objects</source>
       <translation>Objetos</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="192"/>
+      <location filename="../MovieCamera.py" line="206"/>
       <source>Camera and connection</source>
       <translation>Câmera e conexão</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="192"/>
+      <location filename="../MovieCamera.py" line="206"/>
       <source>Connection</source>
       <translation>Conexão</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="220"/>
+      <location filename="../MovieCamera.py" line="234"/>
       <source>Free</source>
       <translation>Livre</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="220"/>
+      <location filename="../MovieCamera.py" line="234"/>
       <source>Follow an object or point</source>
       <translation>Seguir um objeto ou ponto</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="220"/>
+      <location filename="../MovieCamera.py" line="234"/>
       <source>Follow a route</source>
       <translation>Seguir uma rota</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="570"/>
+      <location filename="../MovieCamera.py" line="613"/>
       <source>MovieCamera #</source>
       <translation>CameraMovie #</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="578"/>
+      <location filename="../MovieCamera.py" line="621"/>
       <source>A sequenced MovieCamera was created!</source>
       <translation>Uma CameraMovie sequenciada foi criada!</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="583"/>
+      <location filename="../MovieCamera.py" line="627"/>
       <source>To create a sequenced MovieCameras, 
 select the last MovieCamera inserted!</source>
       <translation>Para criar uma sequência de CameraMovies,
 selecione a última CameraMovie inserida!</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="593"/>
+      <location filename="../MovieCamera.py" line="664"/>
       <source>MovieCamera</source>
       <translation>CameraMovie</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="716"/>
-      <source>You have to select a render camera in “Cam_02Render_Selection”!</source>
-      <translation>Você deve selecionar uma câmera de renderização em 
-"Cam_02Render_Selection"!</translation>
-    </message>
-    <message>
-      <location filename="../MovieCamera.py" line="676"/>
+      <location filename="../MovieCamera.py" line="750"/>
       <source>MovieCamera position A has been established.</source>
       <translation>Posição A da CameraMovie foi estabelecida.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="724"/>
+      <location filename="../MovieCamera.py" line="783"/>
       <source>MovieCamera position B has been established.</source>
       <translation>Posição B da CameraMovie foi estabelecida.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="740"/>
-      <source>You have to select a route in “Cam_02RouteSelection”!</source>
-      <translation>Você deve selecionar uma rota em "Cam_02RouteSelection"!</translation>
-    </message>
-    <message>
-      <location filename="../MovieCamera.py" line="815"/>
+      <location filename="../MovieCamera.py" line="906"/>
       <source>You have to select an object or 
 point in “Cam_02TargetObjectSelection”!</source>
       <translation>Você deve selecionar um objeto ou ponto em 
 "Cam_02TargetObjectSelection"!</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="828"/>
-      <source>You have to select a render 
-camera in “Cam_02Render_Selection”!</source>
-      <translation>Você deve selecionar uma câmera render em 
-"Cam_02Render_Selection"!</translation>
+      <location filename="../MovieCamera.py" line="650"/>
+      <source>A MovieCamera with MovieObjects was created!</source>
+      <translation>Uma CameraMovie com ObjetosMovie foi criada!</translation>
+    </message>
+    <message>
+      <location filename="../MovieCamera.py" line="890"/>
+      <source>You have to select a single segment such 
+as: line, arc, circle, ellipse, B-spline or Bézier 
+curve, from Sketcher or Draft Workbenches as 
+a route in “Cam_02RouteSelection”!</source>
+      <translation>Você deve selecionar um único segmento — como 
+uma linha, arco, círculo, elipse, B-spline ou curva de 
+Bézier, proveniente das bancadas de trabalho 
+Sketcher ou Draft — para servir 
+como trajetória em “Cam_02RouteSelection”!</translation>
+    </message>
+    <message>
+      <location filename="../MovieCamera.py" line="654"/>
+      <source>Select only MovieCameras or MovieObjects 
+to create a MovieCamera!</source>
+      <translation>Selecione apenas CameraMovies ou ObjetosMovies
+para criar uma CameraMovie!</translation>
+    </message>
+    <message>
+      <location filename="../MovieCamera.py" line="643"/>
+      <source>MovieObjects cannot belong to another 
+object (a Clapperboard or another MovieCamera)!</source>
+      <translation>ObjetosMovie não podem pertencer a outro objeto 
+(uma Claquete ou outra CameraMovie)!</translation>
     </message>
   </context>
   <context>
     <name>MovieClapperboard</name>
     <message>
-      <location filename="../MovieMessages.py" line="50"/>
+      <location filename="../MovieMessages.py" line="48"/>
       <source>Note: 
 This version of FreeCAD seems unable to import cv2!
 To create or play back a video, try a different version, like 1.0, 
@@ -1717,41 +1740,41 @@ Para criar ou reproduzir um vídeo, tente uma versão diferente, como a 1.0,
 ou utilize as imagens geradas aqui em um programa de gravação externo.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="296"/>
+      <location filename="../MovieClapperboard.py" line="342"/>
       <source>Select at least one MovieCamera or MovieObject 
 to create a Clapperboard!</source>
       <translation>Selecione pelo menos uma CameraMovie ou ObjetosMovie 
 para criar uma Claquete!</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="305"/>
+      <location filename="../MovieClapperboard.py" line="354"/>
       <source>To create a Clapperboard the pre-selected objects 
 must be MovieCamera or MovieObjects!</source>
       <translation>Para criar uma Claquete, os objetos pré-selecionados
 devem ser CameraMovie ou ObjetosMovie!</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="320"/>
+      <location filename="../MovieClapperboard.py" line="374"/>
       <source>Clapperboard</source>
       <translation>Claquete</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="502"/>
+      <location filename="../MovieClapperboard.py" line="571"/>
       <source>Recording settings</source>
       <translation>Configurações de gravação</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="509"/>
+      <location filename="../MovieClapperboard.py" line="578"/>
       <source>Enabled Clapperboard:</source>
       <translation>Claquete habilitada:</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="513"/>
+      <location filename="../MovieClapperboard.py" line="582"/>
       <source>Instructions:</source>
       <translation>Instruções:</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="515"/>
+      <location filename="../MovieClapperboard.py" line="584"/>
       <source>1. Configure the animation properties below and click “OK”. After this task panel closes, the recording will be ready to begin.
 
 2. To start recording the animations, click the “Play Forward” or “Play Backward” buttons of the “Animations tools”. Click “Pause Animation” to pause it and “Stop Recording” to stop the recording process.
@@ -1764,57 +1787,57 @@ devem ser CameraMovie ou ObjetosMovie!</translation>
 3. O vídeo final será reproduzido automaticamente se as caixas de seleção "Salvar vídeo" e "Reproduzir vídeo" estiverem ativadas.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="541"/>
+      <location filename="../MovieClapperboard.py" line="610"/>
       <source>Frame properties:</source>
       <translation>Propriedades dos quadros:</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="544"/>
+      <location filename="../MovieClapperboard.py" line="613"/>
       <source>Frame type:</source>
       <translation>Tipo do quadro:</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="591"/>
+      <location filename="../MovieClapperboard.py" line="656"/>
       <source>Frame resolution:</source>
       <translation>Resolução do quadro:</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="611"/>
+      <location filename="../MovieClapperboard.py" line="708"/>
       <source>Frame interval:</source>
       <translation>Intervalo dos quadros:</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="613"/>
+      <location filename="../MovieClapperboard.py" line="710"/>
       <source>From frame:</source>
       <translation>Do quadro:</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="620"/>
+      <location filename="../MovieClapperboard.py" line="716"/>
       <source>to:</source>
       <translation>ao:</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="632"/>
+      <location filename="../MovieClapperboard.py" line="728"/>
       <source>Frame names:</source>
       <translation>Nomes dos quadros:</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="640"/>
+      <location filename="../MovieClapperboard.py" line="736"/>
       <source>Frames output folder path:</source>
       <translation>Caminho da pasta de saída dos quadros:</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="660"/>
+      <location filename="../MovieClapperboard.py" line="756"/>
       <source>Video properties:</source>
       <translation>Propriedades do vídeo:</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="664"/>
+      <location filename="../MovieClapperboard.py" line="760"/>
       <source>Save video</source>
       <translation>Salvar vídeo</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="667"/>
+      <location filename="../MovieClapperboard.py" line="763"/>
       <source>Indicate whether you also want to save 
 automatically the video after the frames 
 are produced. 
@@ -1832,47 +1855,47 @@ um software de gravação externo com as imagens
 geradas.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="676"/>
+      <location filename="../MovieClapperboard.py" line="772"/>
       <source>Video name:</source>
       <translation>Nome do vídeo:</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="683"/>
+      <location filename="../MovieClapperboard.py" line="779"/>
       <source>Video num.:</source>
       <translation>Vídeo nº:</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="693"/>
+      <location filename="../MovieClapperboard.py" line="789"/>
       <source>Fps:</source>
       <translation>Quadros por segundo (fps):</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="700"/>
+      <location filename="../MovieClapperboard.py" line="796"/>
       <source>Video output folder path:</source>
       <translation>Caminho da pasta de saída de vídeo:</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="753"/>
+      <location filename="../MovieClapperboard.py" line="850"/>
       <source>Play video</source>
       <translation>Reproduzir vídeo</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="844"/>
+      <location filename="../MovieClapperboard.py" line="975"/>
       <source>Select the output folder for the frames.</source>
       <translation>Selecione a pasta de saída para os quadros.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="886"/>
+      <location filename="../MovieClapperboard.py" line="1017"/>
       <source>Warning</source>
       <translation>Aviso</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="871"/>
+      <location filename="../MovieClapperboard.py" line="1002"/>
       <source>Select the output folder for the video</source>
       <translation>Selecione a pasta de destino do vídeo</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="951"/>
+      <location filename="../MovieClapperboard.py" line="1080"/>
       <source>Recording is enabled! 
 Click the animation playback button (forward or 
 backward) to start recording the video. 
@@ -1887,67 +1910,67 @@ o vídeo será reproduzido automaticamente ao final
 da gravação.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1096"/>
+      <location filename="../MovieClapperboard.py" line="1298"/>
       <source>Select the folder to save the “3D view” frames</source>
       <translation>Selecione a pasta para salvar os quadros da “vista 3D”</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1112"/>
+      <location filename="../MovieClapperboard.py" line="1314"/>
       <source>Select the folder to save the “Render” frames</source>
       <translation>Selecione a pasta para salvar os quadros renderizados</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1126"/>
+      <location filename="../MovieClapperboard.py" line="1334"/>
       <source>Recording has been disabled!</source>
       <translation>A gravação foi desativada!</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1173"/>
+      <location filename="../MovieClapperboard.py" line="1391"/>
       <source>{} frame {} of {} has been completed ({})</source>
       <translation>Quadro {}  {} de {} foi concluído ({})</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1201"/>
+      <location filename="../MovieClapperboard.py" line="1421"/>
       <source>Select the frames folder to create video</source>
       <translation>Selecione a pasta de quadros para criar o vídeo</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1211"/>
+      <location filename="../MovieClapperboard.py" line="1431"/>
       <source>Select the folder to save the video</source>
       <translation>Selecione a pasta para salvar o vídeo</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1253"/>
+      <location filename="../MovieClapperboard.py" line="1473"/>
       <source>Recording of frame {} of {} ({}%)</source>
       <translation>Gravando quadro {} de {} ({}%)</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1265"/>
+      <location filename="../MovieClapperboard.py" line="1485"/>
       <source>Output video to {}</source>
       <translation>Vídeo enviado para {}</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1284"/>
+      <location filename="../MovieClapperboard.py" line="1506"/>
       <source>Select file to play</source>
       <translation>Selecione o arquivo para reproduzir</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1307"/>
+      <location filename="../MovieClapperboard.py" line="1531"/>
       <source>Error: video file not found!</source>
       <translation>Erro: arquivo de vídeo não encontrado!</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="593"/>
+      <location filename="../MovieClapperboard.py" line="658"/>
       <source>Height:</source>
       <translation>Altura:</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="599"/>
+      <location filename="../MovieClapperboard.py" line="664"/>
       <source>width:</source>
       <translation>largura:</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="886"/>
+      <location filename="../MovieClapperboard.py" line="1017"/>
       <source>Indicate a output folder to save the video before 
 close the “Recording settings” task panel!</source>
       <translation>Indique uma pasta de destino para salvar o vídeo 
@@ -1955,7 +1978,7 @@ antes de fechar o painel da tarefa "Configurações
 de gravação"!</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="859"/>
+      <location filename="../MovieClapperboard.py" line="990"/>
       <source>Indicate a output folder to save the frames before 
 close the “Recording settings” task panel!</source>
       <translation>Indique uma pasta de destino para salvar os 
@@ -1963,44 +1986,96 @@ quadros antes de fechar o painel de tarefas
 "Configurações de gravação"!</translation>
     </message>
     <message>
-      <location filename="../MovieMessages.py" line="101"/>
+      <location filename="../MovieMessages.py" line="98"/>
       <source>Select a Render Project</source>
       <translation>Selecione um projeto de renderização</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="560"/>
+      <location filename="../MovieClapperboard.py" line="629"/>
       <source>Render Project:</source>
       <translation>Projeto de Render:</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="566"/>
+      <location filename="../MovieClapperboard.py" line="681"/>
       <source>None</source>
       <translation>Nenhum</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="577"/>
+      <location filename="../MovieClapperboard.py" line="646"/>
       <source>Note:</source>
       <translation>Nota:</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="834"/>
+      <location filename="../MovieClapperboard.py" line="1222"/>
       <source>The selected object is not a Render Project!</source>
       <translation>O objeto selecionado não é um Projeto de Renderização!</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="999"/>
+      <location filename="../MovieClapperboard.py" line="1124"/>
       <source>Render Projects</source>
       <translation>Projetos de Render</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1000"/>
+      <location filename="../MovieClapperboard.py" line="1132"/>
       <source>Type</source>
       <translation>Tipo</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1006"/>
+      <location filename="../MovieClapperboard.py" line="1138"/>
       <source>Confirm</source>
       <translation>Confirmar</translation>
+    </message>
+    <message>
+      <location filename="../MovieClapperboard.py" line="676"/>
+      <source>Render camera:</source>
+      <translation>Câmera de renderização:</translation>
+    </message>
+    <message>
+      <location filename="../MovieClapperboard.py" line="688"/>
+      <source>Crop the 3D view</source>
+      <translation>Recortar a vista 3D</translation>
+    </message>
+    <message>
+      <location filename="../MovieClapperboard.py" line="1127"/>
+      <source>Render Cameras</source>
+      <translation>Câmeras de renderização</translation>
+    </message>
+    <message>
+      <location filename="../MovieClapperboard.py" line="1228"/>
+      <source>You have to indicate a Render Project in “Frame_08RenderProject”!</source>
+      <translation>Você precisa indicar um Projeto de Renderização em “Frame_08RenderProject”!</translation>
+    </message>
+    <message>
+      <location filename="../MovieClapperboard.py" line="1244"/>
+      <source>The selected object is not a Render Camera!</source>
+      <translation>O objeto selecionado não é uma câmera de renderização!</translation>
+    </message>
+    <message>
+      <location filename="../MovieClapperboard.py" line="1250"/>
+      <source>You have to indicate a Render Camera in “Frame_09RenderCamera ”!</source>
+      <translation>Você precisa indicar uma Câmera de Renderização em “Frame_09RenderCamera”!</translation>
+    </message>
+    <message>
+      <location filename="../MovieClapperboard.py" line="1378"/>
+      <source>There is an error in the Render configuration! 
+Please check its settings.</source>
+      <translation>Há um erro na configuração de renderização!
+Verifique as definições.</translation>
+    </message>
+    <message>
+      <location filename="../MovieMessages.py" line="100"/>
+      <source>Select a Render Camera 
+It is not mandatory. Only if you want crop 3D view</source>
+      <translation>Selecione uma câmera de renderização
+Não é obrigatório. Somente se você 
+quiser recortar a visualização 3D</translation>
+    </message>
+    <message>
+      <location filename="../MovieMessages.py" line="103"/>
+      <source>You need to specify a Render Camera above to 
+preview the framing of the images.</source>
+      <translation>Você precisa especificar uma Câmera de Renderização 
+acima para visualizar o enquadramento das imagens.</translation>
     </message>
   </context>
   <context>
@@ -2016,7 +2091,7 @@ Bancada de Trabalho ExplodedAssembly primeiro!</translation>
   <context>
     <name>MovieObjects</name>
     <message>
-      <location filename="../MovieCamera.py" line="559"/>
+      <location filename="../MovieCamera.py" line="601"/>
       <source>A static MovieCamera was created!
 To animate the MovieCamera without a MovieObjects
 it is necessary to reset the MovieCamera B 
@@ -2029,51 +2104,57 @@ ou habilitar "CAm_01Route" e indicar um caminho
 em "Cam_02RouteSelection"!</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="315"/>
+      <location filename="../MovieObject.py" line="336"/>
       <source>Select at least one object to create a MovieObjects!</source>
       <translation>Selecione pelo menos um objeto para criar um ObjetosMovie!</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="349"/>
+      <location filename="../MovieObject.py" line="371"/>
       <source>A MovieObject was created with the 
 pre-established position A!</source>
       <translation>Um ObjetosMovie foi criado com a 
 posição A pré-estabelecida!</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="356"/>
+      <location filename="../MovieObject.py" line="378"/>
       <source>MovieObjects</source>
       <translation>ObjetosMovie</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="454"/>
+      <location filename="../MovieObject.py" line="499"/>
       <source>Select a MovieObjects to exclude!
 </source>
       <translation>Selecione um ObjetosMovie para excluir!</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="518"/>
+      <location filename="../MovieObject.py" line="570"/>
       <source>First select the objects you want 
 to rotate then the axis of rotation.</source>
       <translation>Primeiro selecione os objetos que deseja 
 girar e depois o eixo de rotação.</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="585"/>
-      <source>You have to select a route in “Obj_02RouteSelection”!</source>
-      <translation>Você deve selecionar uma rota em 
-"Cam_02RouteSelection"!</translation>
+      <location filename="../MovieObject.py" line="751"/>
+      <source>You have to select a single segment such 
+as: line, arc, circle, ellipse, B-spline or Bézier 
+curve, from Sketcher or Draft Workbenches as 
+a route in “Obj_02RouteSelection”!</source>
+      <translation>Você deve selecionar um único segmento — como 
+uma linha, arco, círculo, elipse, B-spline ou curva de 
+Bézier, proveniente das bancadas de trabalho 
+Sketcher ou Draft — para servir 
+como trajetória em “Cam_02RouteSelection”!</translation>
     </message>
   </context>
   <context>
     <name>PauseMovieAnimation</name>
     <message>
-      <location filename="../MovieAnimation.py" line="312"/>
+      <location filename="../MovieAnimation.py" line="355"/>
       <source>Pause the animation</source>
       <translation>Pausar animação</translation>
     </message>
     <message>
-      <location filename="../MovieAnimation.py" line="314"/>
+      <location filename="../MovieAnimation.py" line="357"/>
       <source>Pauses the animation.</source>
       <translation>Pausa animação.</translation>
     </message>
@@ -2081,12 +2162,12 @@ girar e depois o eixo de rotação.</translation>
   <context>
     <name>PlayBackwardMovieAnimation</name>
     <message>
-      <location filename="../MovieAnimation.py" line="262"/>
+      <location filename="../MovieAnimation.py" line="296"/>
       <source>Play backward the animation</source>
       <translation>Reproduzir animação para trás</translation>
     </message>
     <message>
-      <location filename="../MovieAnimation.py" line="264"/>
+      <location filename="../MovieAnimation.py" line="298"/>
       <source>Plays backward the animation.</source>
       <translation>Reproduz a animação de trás para frente.</translation>
     </message>
@@ -2094,12 +2175,12 @@ girar e depois o eixo de rotação.</translation>
   <context>
     <name>PlayMovieAnimation</name>
     <message>
-      <location filename="../MovieAnimation.py" line="352"/>
+      <location filename="../MovieAnimation.py" line="396"/>
       <source>Play the animation</source>
       <translation>Reproduzir animação</translation>
     </message>
     <message>
-      <location filename="../MovieAnimation.py" line="354"/>
+      <location filename="../MovieAnimation.py" line="398"/>
       <source>Plays the animation.</source>
       <translation>Reproduz a animação.</translation>
     </message>
@@ -2107,12 +2188,12 @@ girar e depois o eixo de rotação.</translation>
   <context>
     <name>PlayVideo</name>
     <message>
-      <location filename="../MovieClapperboard.py" line="460"/>
+      <location filename="../MovieClapperboard.py" line="528"/>
       <source>Play video</source>
       <translation>Reproduzir vídeo</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="462"/>
+      <location filename="../MovieClapperboard.py" line="530"/>
       <source>Play an existing video by indicating its file path.
 
 Note: It works only with FreeCAD versions 
@@ -2126,12 +2207,12 @@ que importam o módulo cv2, como a 1.0.</translation>
   <context>
     <name>PostMovieAnimation</name>
     <message>
-      <location filename="../MovieAnimation.py" line="402"/>
+      <location filename="../MovieAnimation.py" line="455"/>
       <source>Move one step forward</source>
       <translation>Mover um passo à frente</translation>
     </message>
     <message>
-      <location filename="../MovieAnimation.py" line="404"/>
+      <location filename="../MovieAnimation.py" line="457"/>
       <source>Moves the animation one step forward.</source>
       <translation>Move a animação um passo à frente.</translation>
     </message>
@@ -2139,12 +2220,12 @@ que importam o módulo cv2, como a 1.0.</translation>
   <context>
     <name>PrevMovieAnimation</name>
     <message>
-      <location filename="../MovieAnimation.py" line="222"/>
+      <location filename="../MovieAnimation.py" line="255"/>
       <source>Take a step back</source>
       <translation>Retroceder um passo</translation>
     </message>
     <message>
-      <location filename="../MovieAnimation.py" line="224"/>
+      <location filename="../MovieAnimation.py" line="257"/>
       <source>Moves the animation one step back.</source>
       <translation>Move a animação um passo para trás.</translation>
     </message>
@@ -2152,12 +2233,12 @@ que importam o módulo cv2, como a 1.0.</translation>
   <context>
     <name>RecordVideo</name>
     <message>
-      <location filename="../MovieClapperboard.py" line="408"/>
+      <location filename="../MovieClapperboard.py" line="476"/>
       <source>Record video</source>
       <translation>Gravar vídeo</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="410"/>
+      <location filename="../MovieClapperboard.py" line="478"/>
       <source>Creates a video from a sequence 
 of created frames (images).
 
@@ -2201,12 +2282,12 @@ que importam o módulo cv2, como a 1.0.</translation>
   <context>
     <name>SetMovieObjectsAxis</name>
     <message>
-      <location filename="../MovieObject.py" line="377"/>
+      <location filename="../MovieObject.py" line="413"/>
       <source>Rotation axis</source>
       <translation>Eixo de rotação</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="379"/>
+      <location filename="../MovieObject.py" line="415"/>
       <source>1. First create a MovieObjects, set their rotation A and B.
 
 2. Then, define a rotation axis for objects of a created 
@@ -2234,12 +2315,12 @@ clique no botão "Definir posição B".</translation>
   <context>
     <name>SetMoviePosA</name>
     <message>
-      <location filename="../MovieAnimation.py" line="497"/>
+      <location filename="../MovieAnimation.py" line="552"/>
       <source>Set position A</source>
       <translation>Definir posição A</translation>
     </message>
     <message>
-      <location filename="../MovieAnimation.py" line="499"/>
+      <location filename="../MovieAnimation.py" line="554"/>
       <source>Applicable for creating an animation from 
 point A to B (not when the MovieCamera 
 target or MovieObjects are set up to 
@@ -2279,12 +2360,12 @@ atual e, depois, clique neste botão.</translation>
   <context>
     <name>SetMoviePosB</name>
     <message>
-      <location filename="../MovieAnimation.py" line="548"/>
+      <location filename="../MovieAnimation.py" line="603"/>
       <source>Set position B</source>
       <translation>Definir posição B</translation>
     </message>
     <message>
-      <location filename="../MovieAnimation.py" line="550"/>
+      <location filename="../MovieAnimation.py" line="605"/>
       <source>Applicable for creating an animation from 
 point A to B (not when the MovieCamera 
 target or MovieObjects are set up to 
@@ -2323,12 +2404,12 @@ em seguida, clique neste botão.</translation>
   <context>
     <name>StopMovieRecord</name>
     <message>
-      <location filename="../MovieClapperboard.py" line="383"/>
+      <location filename="../MovieClapperboard.py" line="451"/>
       <source>Stop recording</source>
       <translation>Parar gravação</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="385"/>
+      <location filename="../MovieClapperboard.py" line="453"/>
       <source>Stops the animation recording.</source>
       <translation>Interrompe a gravação da animação.</translation>
     </message>

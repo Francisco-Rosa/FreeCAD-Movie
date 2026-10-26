@@ -9,8 +9,9 @@
 
 Indicate the step which this section of 
 the animation will begin.</source>
-      <translation>Inledande steg i
-MovieCamera-animationen. Ange det steg som denna del av
+      <translation>Inledande steg i MovieCamera-animationen.
+
+Ange det steg som denna del av
 animeringen ska börja med.</translation>
     </message>
     <message>
@@ -19,6 +20,7 @@ animeringen ska börja med.</translation>
 
 It is only indicative.</source>
       <translation>Aktuellt steg i animeringen av MovieCamera.
+
 Det är endast vägledande.</translation>
     </message>
     <message>
@@ -31,8 +33,11 @@ the animation will finish.
 Changes will only take effect after 
 MovieCamera has been re-enabled.</source>
       <translation>Slutsteg för MovieCamera-animationen.
-Ange det steg som denna del av animeringen kommer att
-avslutas med. Ändringarna träder i kraft först efter
+
+Ange det steg som denna del av
+animeringen kommer att avslutas med.
+
+Ändringarna träder i kraft först efter
 att MovieCamera har aktiverats igen.</translation>
     </message>
     <message>
@@ -42,10 +47,11 @@ att MovieCamera har aktiverats igen.</translation>
 It is the result of the difference between 
 end step (“Cam_03AnimEndStep”) and initial 
 step (“Cam_01AnimIniStep”).</source>
-      <translation>Totalt antal steg i
-MovieCamera-animationen. Det är resultatet av skillnaden mellan
-slutsteget ("Cam_03AnimEndStep") och
-startsteget ("Cam_01AnimIniStep").</translation>
+      <translation>Totalt antal steg i MovieCamera-animationen.
+
+Det är resultatet av
+skillnaden mellan slutsteget ("Cam_03AnimEndStep")
+och startsteget ("Cam_01AnimIniStep").</translation>
     </message>
     <message>
       <location filename="../MovieCamera.py" line="102"/>
@@ -58,11 +64,12 @@ the computer performance.
 
 Changes will only take effect after 
 MovieCamera has been re-enabled.</source>
-      <translation>Animation fps för MovieCamera.
+      <translation>Bildfrekvens för MovieCamera-animationen.
+
 Ange värdet för detta animationsavsnitt.
-Det är en simulering och beror på datorns
-prestanda. Ändringarna träder i kraft först
-efter att MovieCamera har aktiverats igen.</translation>
+Det är en simulering och beror på datorns prestanda.
+
+Ändringarna träder i kraft först efter att MovieCamera har aktiverats igen.</translation>
     </message>
     <message>
       <location filename="../MovieCamera.py" line="115"/>
@@ -70,8 +77,10 @@ efter att MovieCamera har aktiverats igen.</translation>
 in hours, minutes, and seconds. 
 
 It is only indicative.</source>
-      <translation>Animeringstid för MovieCamera, i timmar,
-minuter och sekunder. Det är endast vägledande.</translation>
+      <translation>Animeringstid för MovieCamera, i
+timmar, minuter och sekunder.
+
+Det är endast vägledande.</translation>
     </message>
     <message>
       <location filename="../MovieCamera.py" line="123"/>
@@ -80,9 +89,11 @@ minuter och sekunder. Det är endast vägledande.</translation>
 It should not be changed manually, 
 it is controlled by the animation 
 buttons.</source>
-      <translation>MovieCamera-animering på
-eller av. Den ska inte ändras
-manuellt, utan styrs av animeringsknapparna.</translation>
+      <translation>MovieCamera-animering på eller av.
+
+Den ska inte ändras
+manuellt, utan styrs av
+animeringsknapparna.</translation>
     </message>
     <message>
       <location filename="../MovieCamera.py" line="134"/>
@@ -93,13 +104,12 @@ of the animation will be performed: “3D view”
 for 3D views and the “Render” for adopting 
 the settings of a camera from the Render 
 Workbench, previously created and adjusted.</source>
-      <translation>Kameratyp för
-MovieCamera.
-Välj den kamera som används för det här
-avsnittet av animeringen: ”3D-vy” för
-3D-vyer och ”Render” för att använda
-inställningarna för en tidigare skapad och
-justerad kamera från arbetsbänken Render.</translation>
+      <translation>Kameratyp för MovieCamera.
+
+Välj kameran som ska användas för detta avsnitt av
+animeringen: ”3D view” för 3D-vyn eller ”Render”
+för att använda inställningarna för en kamera som
+tidigare har skapats och anpassats i arbetsbänken Render.</translation>
     </message>
     <message>
       <location filename="../MovieCamera.py" line="146"/>
@@ -108,9 +118,10 @@ justerad kamera från arbetsbänken Render.</translation>
 If you have chosen “Render” in Camera type (“Cam_01Type”), 
 you have to select which one will be used in this 
 section of the animation.</source>
-      <translation>Val av renderingskamera för
-MovieCamera-animationen. Om du har valt "Render" i kameratyp ("Cam_01Type")
-måste du välja vilken kamera som ska användas i den
+      <translation>Val av renderingskamera för MovieCamera-animationen.
+
+Om du har valt "Render" i kameratyp ("Cam_01Type") måste du
+välja vilken kamera som ska användas i den
 här delen av animationen.</translation>
     </message>
     <message>
@@ -119,9 +130,10 @@ här delen av animationen.</translation>
 
 Configure the width in pixels that will compose 
 the aspect ratio of the image (“AspectRatio”).</source>
-      <translation>Rendera bildbredd för
-MovieCamera-animationen. Konfigurera den bredd i pixlar som ska
-utgöra bildens bildförhållande ("AspectRatio").</translation>
+      <translation>Bildbredd för renderingen av MovieCamera-animationen.
+
+Ange bredden i bildpunkter, som tillsammans med höjden
+bestämmer bildens proportioner (”AspectRatio”).</translation>
     </message>
     <message>
       <location filename="../MovieCamera.py" line="163"/>
@@ -129,9 +141,10 @@ utgöra bildens bildförhållande ("AspectRatio").</translation>
 
 Configure the height in pixels that will compose 
 the aspect ratio of the image (“AspectRatio”).</source>
-      <translation>Renderar bildens höjd för
-MovieCamera-animationen. Konfigurera höjden i pixlar som ska
-utgöra bildens bildförhållande ("AspectRatio").</translation>
+      <translation>Bildhöjd för renderingen av MovieCamera-animationen.
+
+Ange höjden i bildpunkter, som tillsammans med bredden
+bestämmer bildens proportioner (”AspectRatio”).</translation>
     </message>
     <message>
       <location filename="../MovieCamera.py" line="171"/>
@@ -140,8 +153,9 @@ utgöra bildens bildförhållande ("AspectRatio").</translation>
 Select the MoveObjects to animate together 
 with this MovieCamera.</source>
       <translation>Objekt som valts för animeringen av MovieCamera.
-Välj de MoveObjects som ska animeras
-tillsammans med denna MovieCamera.</translation>
+
+Välj de MoveObjects som ska animeras tillsammans
+med denna MovieCamera.</translation>
     </message>
     <message>
       <location filename="../MovieCamera.py" line="179"/>
@@ -156,17 +170,16 @@ this MovieCamera.
 
 For each combination change it will be necessary to 
 re-enable the MovieCamera.</source>
-      <translation>Aktivera kombinationerna för
-MovieCamera-animationen.
-Konfigurera kombinationen av objekt som ska animeras tillsammans:
-endast MovieCamera ("Camera"), MovieCamera och MovieObjects ("Camera
-and objects"), MovieCamera och anslutning ("Camera and
-connection"), eller till och med endast de MovieObjects ("Objects")
-eller den anslutning ("Connection") som är associerad med denna
-MovieCamera.
-För
-varje kombinationsändring måste MovieCamera aktiveras på nytt
-(knappen Enable a MovieCamera).</translation>
+      <translation>Aktivera kombinationer för MovieCamera-animationen.
+
+Ange vilka objekt som ska animeras tillsammans:
+enbart MovieCamera (”Camera”), MovieCamera och MovieObjects
+(”Camera and objects”), MovieCamera och en anslutning
+(”Camera and connection”), eller enbart MovieObjects (”Objects”)
+eller en anslutning (”Connection”) som hör till denna MovieCamera.
+
+MovieCamera måste aktiveras på nytt efter varje ändring
+av kombinationen.</translation>
     </message>
     <message>
       <location filename="../MovieCamera.py" line="198"/>
@@ -178,10 +191,12 @@ animation will be performed together, if so.
 Make sure the workbench is installed and 
 that there is an animation created with it.</source>
       <translation>Anslutning för MovieCamera-animering.
-Välj den arbetsbänk som animeringen i så fall
-ska utföras tillsammans med.
-Kontrollera att arbetsbänken är installerad och att det
-finns en animation skapad med den.</translation>
+
+Välj den arbetsbänk som animeringen i
+så fall ska utföras tillsammans med.
+
+Kontrollera att arbetsbänken är installerad och att
+det finns en animation skapad med den.</translation>
     </message>
     <message>
       <location filename="../MovieCamera.py" line="211"/>
@@ -192,13 +207,12 @@ choose “Follow an object or point” and select one of
 them in target object selection (“Cam_02Target_ObjectSelection”), 
 while for the “Follow a route” option you must use route 
 selection (“Cam_02RouteSelection”).</source>
-      <translation>Mål för MovieCamera. Om du
-vill
-använda ett objekt eller en punkt som mål väljer du Follow
-an object or point ("Följ ett objekt eller en punkt") och
-väljer ett av dem i Target object selection ("Cam_02Target_ObjectSelection"),
-medan du för alternativet Follow a route ("Följ en rutt") måste använda
-Route selection ("Cam_02RouteSelection").</translation>
+      <translation>Mål för MovieCamera.
+
+Om du vill använda ett objekt eller en punkt som mål väljer du
+”Follow an object or point” och väljer objektet eller punkten
+i målobjektvalet (”Cam_02Target_ObjectSelection”). För alternativet
+”Follow a route” använder du i stället ruttvalet (”Cam_02RouteSelection”).</translation>
     </message>
     <message>
       <location filename="../MovieCamera.py" line="224"/>
@@ -206,9 +220,10 @@ Route selection ("Cam_02RouteSelection").</translation>
 
 Select the point or object you want the 
 camera to point to.</source>
-      <translation>Val av målobjekt för MovieCamera. Välj den
-punkt eller det objekt som du vill att
-kameran ska peka mot.</translation>
+      <translation>Val av målobjekt för MovieCamera.
+
+Välj den punkt eller det objekt som du vill
+att kameran ska peka mot.</translation>
     </message>
     <message>
       <location filename="../MovieCamera.py" line="232"/>
@@ -219,12 +234,13 @@ If you chose for the target to
 you need to specify how many steps 
 this target will be ahead of the 
 camera on the same route.</source>
-      <translation>Mål framför MovieCamera. Om
-du har valt att målet ska
-"följa en rutt", i "Cam_01Target",
-måste du ange hur många steg
-detta mål kommer att vara före
-kameran på samma rutt.</translation>
+      <translation>Mål framför MovieCamera.
+
+Om du har valt att
+målet ska "följa en rutt", i
+"Cam_01Target", måste du ange hur många
+steg detta mål kommer att vara
+före kameran på samma rutt.</translation>
     </message>
     <message>
       <location filename="../MovieCamera.py" line="245"/>
@@ -234,12 +250,11 @@ Enable it so that the camera follows a route.
 You have to select a single segment on route 
 selection (“Cam_02RouteSelection”) 
 to use it.</source>
-      <translation>Rutt för
-MovieCamera-animationen.
-Aktivera detta om kameran ska animeras på en rutt.
-Du måste välja ett enda segment på Route
-selection ("Cam_02RouteSelection") för att
-använda det.</translation>
+      <translation>Rutt för MovieCamera-animationen.
+
+Aktivera detta om kameran ska följa en rutt.
+För att använda den måste du välja ett enda segment
+i ruttvalet (”Cam_02RouteSelection”).</translation>
     </message>
     <message>
       <location filename="../MovieCamera.py" line="255"/>
@@ -249,11 +264,11 @@ Choose the route through which the camera will be
 animate. You have to select a single segment such 
 as: line, arc, circle, ellipse, B-spline or Bézier 
 curve, from Sketcher or Draft Workbenches.</source>
-      <translation>Val av rutt för animering av MovieCamera.
-Välj den rutt genom vilken kameran ska animeras.
-Du måste välja ett enda segment, t.ex. linje,
-båge, cirkel, ellips, B-spline eller Bézier-kurva,
-från arbetsbänkarna Sketcher eller Draft.</translation>
+      <translation>Ruttval för MovieCamera-animationen.
+
+Välj rutten som kameran ska följa. Du måste välja ett
+enda segment, till exempel en linje, båge, cirkel, ellips,
+B-spline eller Bézierkurva, från arbetsbänken Sketcher eller Draft.</translation>
     </message>
     <message>
       <location filename="../MovieCamera.py" line="267"/>
@@ -316,10 +331,9 @@ animera kamerans vertikala vinkel.</translation>
 
 Enable this if you want to 
 animate the camera roll angle.</source>
-      <translation>Rullning av
-MovieCamera.
-Aktivera detta om du vill
-animera kamerarullningsvinkeln.</translation>
+      <translation>Rullning för MovieCamera.
+
+Aktivera detta om du vill animera kamerans rullningsvinkel.</translation>
     </message>
     <message>
       <location filename="../MovieCamera.py" line="317"/>
@@ -340,12 +354,10 @@ It is set when the “Set position
 A” button is pressed, after that, 
 if necessary, you can make adjustments 
 to the x-value.</source>
-      <translation>X för position A
-på
-MovieCamera. Den ställs in när knappen
-Set position A trycks in,
-därefter kan du vid behov göra
-justeringar av x-värdet.</translation>
+      <translation>X-koordinat för position A för MovieCamera.
+
+Värdet ställs in när du trycker på knappen ”Set position A”.
+Därefter kan du vid behov justera x-värdet.</translation>
     </message>
     <message>
       <location filename="../MovieCamera.py" line="337"/>
@@ -355,12 +367,10 @@ It is set when the “Set position
 A” button is pressed, after that, 
 if necessary, you can make adjustments 
 to the y-value.</source>
-      <translation>Y för position A
-på
-MovieCamera. Den ställs in när knappen
-Set position A trycks in,
-därefter kan du vid behov göra
-justeringar av y-värdet.</translation>
+      <translation>Y-koordinat för position A för MovieCamera.
+
+Värdet ställs in när du trycker på knappen ”Set position A”.
+Därefter kan du vid behov justera y-värdet.</translation>
     </message>
     <message>
       <location filename="../MovieCamera.py" line="347"/>
@@ -369,11 +379,10 @@ justeringar av y-värdet.</translation>
 It is set when the “Set position A” button 
 is pressed, after that, if necessary, 
 you can make adjustments to the z-value.</source>
-      <translation>Z för position A
-på
-MovieCamera. Den ställs in när knappen Set
-position A trycks in. Därefter kan du vid
-behov göra justeringar av z-värdet.</translation>
+      <translation>Z-koordinat för position A för MovieCamera.
+
+Värdet ställs in när du trycker på knappen ”Set position A”.
+Därefter kan du vid behov justera z-värdet.</translation>
     </message>
     <message>
       <location filename="../MovieCamera.py" line="356"/>
@@ -382,11 +391,10 @@ behov göra justeringar av z-värdet.</translation>
 It is set when the “Set position B” button 
 is pressed, after that, if necessary, 
 you can make adjustments to the x-value.</source>
-      <translation>X för position B
-på
-MovieCamera. Den ställs in när knappen Set
-position B trycks in. Därefter kan du vid
-behov göra justeringar av x-värdet.</translation>
+      <translation>X-koordinat för position B för MovieCamera.
+
+Värdet ställs in när du trycker på knappen ”Set position B”.
+Därefter kan du vid behov justera x-värdet.</translation>
     </message>
     <message>
       <location filename="../MovieCamera.py" line="365"/>
@@ -395,11 +403,10 @@ behov göra justeringar av x-värdet.</translation>
 It is set when the “Set position B” button 
 is pressed, after that, if necessary, 
 you can make adjustments to the y-value.</source>
-      <translation>Y för position B
-på
-MovieCamera. Den ställs in när knappen Set
-position B trycks in. Därefter kan du vid
-behov göra justeringar av y-värdet.</translation>
+      <translation>Y-koordinat för position B för MovieCamera.
+
+Värdet ställs in när du trycker på knappen ”Set position B”.
+Därefter kan du vid behov justera y-värdet.</translation>
     </message>
     <message>
       <location filename="../MovieCamera.py" line="374"/>
@@ -408,11 +415,10 @@ behov göra justeringar av y-värdet.</translation>
 It is set when the “Set position B” button 
 is pressed, after that, if necessary, 
 you can make adjustments to the z-value.</source>
-      <translation>Z för position B
-på
-MovieCamera. Den ställs in när knappen Set
-position B trycks in. Därefter kan du vid
-behov göra justeringar av z-värdet.</translation>
+      <translation>Z-koordinat för position B för MovieCamera.
+
+Värdet ställs in när du trycker på knappen ”Set position B”.
+Därefter kan du vid behov justera z-värdet.</translation>
     </message>
     <message>
       <location filename="../MovieCamera.py" line="385"/>
@@ -422,12 +428,10 @@ It is set when the “Set position A” button
 is pressed, after that, if necessary, 
 you can make little adjustments to the 
 horizontal angle value of the camera.</source>
-      <translation>Yaw för position A
-på
-MovieCamera. Den ställs in när knappen Set
-position A trycks in. Därefter kan du
-vid behov göra små justeringar av
-kamerans horisontella vinkelvärde.</translation>
+      <translation>Yaw för position A för MovieCamera.
+
+Värdet ställs in när du trycker på knappen ”Set position A”.
+Därefter kan du vid behov göra små justeringar av kamerans horisontella vinkel.</translation>
     </message>
     <message>
       <location filename="../MovieCamera.py" line="395"/>
@@ -437,12 +441,10 @@ It is set when the “Set position A” button
 is pressed, after that, if necessary, 
 you can make little adjustments to the 
 vertical angle value of the camera.</source>
-      <translation>Pitch för position A
-på
-MovieCamera. Den ställs in när knappen Set
-position A trycks in. Därefter kan du
-vid behov göra små justeringar av
-kamerans vertikala vinkelvärde.</translation>
+      <translation>Pitch för position A för MovieCamera.
+
+Värdet ställs in när du trycker på knappen ”Set position A”.
+Därefter kan du vid behov göra små justeringar av kamerans vertikala vinkel.</translation>
     </message>
     <message>
       <location filename="../MovieCamera.py" line="405"/>
@@ -452,12 +454,10 @@ It is set when the “Set position A” button
 is pressed, after that, if necessary, 
 you can make little adjustments to the 
 roll value of the camera.</source>
-      <translation>Roll för position A
-på
-MovieCamera. Den ställs in när knappen Set
-position A trycks in. Därefter kan
-du vid behov göra små justeringar
-av kamerans rullvärde.</translation>
+      <translation>Roll för position A för MovieCamera.
+
+Värdet ställs in när du trycker på knappen ”Set position A”.
+Därefter kan du vid behov göra små justeringar av kamerans rullningsvinkel.</translation>
     </message>
     <message>
       <location filename="../MovieCamera.py" line="415"/>
@@ -467,12 +467,10 @@ It is set when the “Set position B” button
 is pressed, after that, if necessary, 
 you can make little adjustments to the 
 horizontal angle value of the camera.</source>
-      <translation>Yaw för position B
-på
-MovieCamera. Den ställs in när knappen Set
-position B trycks in. Därefter kan du
-vid behov göra små justeringar av
-kamerans horisontella vinkelvärde.</translation>
+      <translation>Yaw för position B för MovieCamera.
+
+Värdet ställs in när du trycker på knappen ”Set position B”.
+Därefter kan du vid behov göra små justeringar av kamerans horisontella vinkel.</translation>
     </message>
     <message>
       <location filename="../MovieCamera.py" line="425"/>
@@ -482,12 +480,10 @@ It is set when the “Set position B” button
 is pressed, after that, if necessary, 
 you can make little adjustments to the 
 vertical angle value of the camera.</source>
-      <translation>Pitch för position B
-på
-MovieCamera. Den ställs in när knappen Set
-position B trycks in. Därefter kan du
-vid behov göra små justeringar av
-kamerans vertikala vinkelvärde.</translation>
+      <translation>Pitch för position B för MovieCamera.
+
+Värdet ställs in när du trycker på knappen ”Set position B”.
+Därefter kan du vid behov göra små justeringar av kamerans vertikala vinkel.</translation>
     </message>
     <message>
       <location filename="../MovieCamera.py" line="435"/>
@@ -497,12 +493,10 @@ It is set when the “Set position B” button
 is pressed, after that, if necessary, 
 you can make little adjustments to the 
 roll value of the camera.</source>
-      <translation>Roll för position B
-på
-MovieCamera. Den ställs in när knappen Set
-position B trycks in. Därefter kan
-du vid behov göra små justeringar
-av kamerans rullvärde.</translation>
+      <translation>Roll för position B för MovieCamera.
+
+Värdet ställs in när du trycker på knappen ”Set position B”.
+Därefter kan du vid behov göra små justeringar av kamerans rullningsvinkel.</translation>
     </message>
     <message>
       <location filename="../MovieCamera.py" line="447"/>
@@ -553,9 +547,11 @@ att zooma ut.</translation>
 Indicate the step and/or frame which this 
 section of the animation and/or recording 
 will begin.</source>
-      <translation>Inledande steg i animeringen av
-Clapperboard. Ange det steg och/eller den bildruta där
-denna del av animationen och/eller inspelningen börjar.</translation>
+      <translation>Inledande steg i animeringen av Clapperboard.
+
+Ange det steg och/eller den bildruta
+där denna del av animationen och/eller
+inspelningen börjar.</translation>
     </message>
     <message>
       <location filename="../MovieMessages.py" line="63"/>
@@ -563,8 +559,9 @@ denna del av animationen och/eller inspelningen börjar.</translation>
 
 Indicate the step which this section of 
 the animation will finish.</source>
-      <translation>Slutsteg för animeringen av
-Clapperboard. Ange det steg som denna del av
+      <translation>Slutsteg för animeringen av Clapperboard.
+
+Ange det steg som denna del av
 animationen kommer att avslutas med.</translation>
     </message>
     <message>
@@ -586,6 +583,7 @@ skapad bildruta.</translation>
 
 Configure the width in pixels of the frames.</source>
       <translation>Bredd på bildrutor i Clapperboard-animationen.
+
 Ange bildrutornas bredd i bildpunkter.</translation>
     </message>
     <message>
@@ -594,6 +592,7 @@ Ange bildrutornas bredd i bildpunkter.</translation>
 
 Configure the height in pixels of the frames.</source>
       <translation>Höjd på bildrutor i Clapperboard-animationen.
+
 Ange bildrutornas höjd i bildpunkter.</translation>
     </message>
     <message>
@@ -606,14 +605,12 @@ will be saved.
 If you wish to preserve the generated images 
 (in the case of rendered ones, for example), 
 specify a folder other than the temporary folder.</source>
-      <translation>Bekräfta mappen där
-animationens
-bildrutor ska sparas. Om du vill
-behålla
-de
-skapade bilderna, till exempel
-renderade bilder, anger du en annan mapp
-än standardmappen för temporära filer.</translation>
+      <translation>Utdatamapp för bildrutorna i Clapperboard-animationen.
+
+Bekräfta mappen där animationens bildrutor ska sparas.
+
+Om du vill behålla de skapade bilderna, till exempel
+renderade bilder, väljer du en annan mapp än den temporära.</translation>
     </message>
     <message>
       <location filename="../MovieMessages.py" line="103"/>
@@ -636,10 +633,9 @@ bildrutornas ursprung.</translation>
 
 Indicate the initial number of the videos. This will 
 be inserted in the nomenclature of each one created.</source>
-      <translation>Nummer på videon med animeringen av Clapperboard.
-Ange
-det ursprungliga numret på videorna (noll för den första).
-Detta kommer att införas i nomenklaturen för varje skapad.</translation>
+      <translation>Videonummer för Clapperboard-animationen.
+
+Ange startnumret för videorna. Det infogas i namnet på varje video som skapas.</translation>
     </message>
     <message>
       <location filename="../MovieMessages.py" line="115"/>
@@ -649,11 +645,10 @@ animation.
 Set path to folder to save created videos by 
 clicking on the button with the three dots 
 on the right.</source>
-      <translation>Utgångssökväg för videon av
-animeringen av Clapperboard. Ställ
-in sökvägen till mappen för att spara
-skapade videor genom att klicka på knappen
-med de tre prickarna till höger.</translation>
+      <translation>Utdatamapp för videon av Clapperboard-animationen.
+
+Ange mappen där videorna ska sparas genom att klicka
+på knappen med de tre punkterna till höger.</translation>
     </message>
     <message>
       <location filename="../MovieMessages.py" line="122"/>
@@ -661,9 +656,10 @@ med de tre prickarna till höger.</translation>
 
 Indicate the frames per second (fps) of the video 
 that will be created.</source>
-      <translation>Fps för videon av animationen av
-Clapperboard. Ange antalet bildrutor per sekund
-(fps) i den video som ska skapas.</translation>
+      <translation>Fps för videon av animationen av Clapperboard.
+
+Ange antalet bildrutor per sekund (fps) i den
+video som ska skapas.</translation>
     </message>
     <message>
       <location filename="../MovieMessages.py" line="127"/>
@@ -671,8 +667,9 @@ Clapperboard. Ange antalet bildrutor per sekund
 
 Indicates whether the animation video will play 
 automatically after being generated.</source>
-      <translation>Skrivskyddad. Anger om
-animationsvideon ska spelas upp automatiskt
+      <translation>Skrivskyddad.
+
+Anger om animationsvideon ska spelas upp automatiskt
 efter att den har skapats.</translation>
     </message>
     <message>
@@ -681,6 +678,7 @@ efter att den har skapats.</translation>
 
 It is only indicative.</source>
       <translation>Aktuellt steg i animeringen av Clapperboard.
+
 Det är endast vägledande.</translation>
     </message>
     <message>
@@ -692,10 +690,12 @@ the animation and/or the recording will be
 performed in this section.
 
 It is only indicative.</source>
-      <translation>Totalt antal steg för animeringen av
-Clapperboard. Anger antalet steg genom vilka
+      <translation>Totalt antal steg för animeringen av Clapperboard.
+
+Anger antalet steg genom vilka
 animeringen och/eller inspelningen kommer att
 utföras i detta avsnitt.
+
 Det är endast vägledande.</translation>
     </message>
     <message>
@@ -708,11 +708,11 @@ performed.
 
 It is a simulation and will depend 
 on the computer performance.</source>
-      <translation>Animering fps av klaffbrädan.
-Ange den fps genom vilken
-avsnittet av animationen kommer att
-utföras. Det är en simulering och
-kommer att bero på datorns prestanda.</translation>
+      <translation>Bildfrekvens för Clapperboard-animationen.
+
+Ange antalet bildrutor per sekund för detta animationsavsnitt.
+
+Det är en simulering och hastigheten beror på datorns prestanda.</translation>
     </message>
     <message>
       <location filename="../MovieClapperboard.py" line="112"/>
@@ -721,6 +721,7 @@ kommer att bero på datorns prestanda.</translation>
 Time in hours, minutes and seconds. 
 It is only indicative.</source>
       <translation>Animeringstid för Clapperboard.
+
 Tid i timmar, minuter och sekunder.
 Den är endast vägledande.</translation>
     </message>
@@ -735,15 +736,11 @@ the recording will be performed.
 Write a short name, as this will 
 be inserted in the nomenclature 
 of each frame created.</source>
-      <translation>Namn för
-denna
-Clapperboard. Ange den valda Clapperboard
-genom vilken animationen och
-inspelningen kommer att utföras.
-Skriv
-ett kort namn, eftersom detta
-kommer att införas i nomenklaturen
-för varje skapad ram.</translation>
+      <translation>Namn på denna Clapperboard.
+
+Namnet identifierar den Clapperboard som används för animationen och inspelningen.
+
+Ange ett kort namn, eftersom det infogas i namnet på varje skapad bildruta.</translation>
     </message>
     <message>
       <location filename="../MovieClapperboard.py" line="136"/>
@@ -754,10 +751,11 @@ made. Write a short name, as this
 will be inserted in the nomenclature 
 of each frame created.</source>
       <translation>Tagning av Clapperboard-animationen.
-Ange tagningen av varje inspelning som gjorts.
-Skriv ett kort namn, eftersom detta
-kommer att infogas i nomenklaturen för varje
-skapad bildruta.</translation>
+
+Ange tagningen av varje inspelning som
+gjorts. Skriv ett kort namn, eftersom
+detta kommer att infogas i nomenklaturen
+för varje skapad bildruta.</translation>
     </message>
     <message>
       <location filename="../MovieClapperboard.py" line="146"/>
@@ -766,8 +764,9 @@ skapad bildruta.</translation>
 Select the MovieCameras and/or the MovieObjects 
 to animate with this Clapperboard.</source>
       <translation>Val av animering för Clapperboard.
-Välj de MovieCameras och/eller
-MovieObjects som ska animeras med denna Clapperboard.</translation>
+
+Välj de MovieCameras och/eller MovieObjects som
+ska animeras med denna Clapperboard.</translation>
     </message>
     <message>
       <location filename="../MovieClapperboard.py" line="154"/>
@@ -775,10 +774,10 @@ MovieObjects som ska animeras med denna Clapperboard.</translation>
 
 It is activated by the “Enable recording” button 
 and deactivated by the “Stop recording” one.</source>
-      <translation>Inspelning av animering av klaffbräda
-på
-eller av. Den aktiveras med knapparna "R1" eller "R2"
-och avaktiveras med knappen "Stop Recording".</translation>
+      <translation>Inspelning av Clapperboard-animationen på eller av.
+
+Den aktiveras med knappen ”Enable recording” och
+inaktiveras med knappen ”Stop recording”.</translation>
     </message>
     <message>
       <location filename="../MovieClapperboard.py" line="182"/>
@@ -822,12 +821,10 @@ animation.
 Indicate the path to the folder containing the 
 frames for creating a video by clicking on 
 the three dots on the right.</source>
-      <translation>Inmatningsramar för videon av animeringen av
-Clapperboard.
-Bekräfta
-sökvägen till mappen som innehåller ramarna för att skapa
-en video genom att klicka på knappen Skapa video
-eller på de tre prickarna till höger.</translation>
+      <translation>Indatabildrutor för videon av Clapperboard-animationen.
+
+Ange sökvägen till mappen med bildrutorna som ska användas
+för att skapa videon genom att klicka på de tre punkterna till höger.</translation>
     </message>
     <message>
       <location filename="../MovieObject.py" line="63"/>
@@ -842,9 +839,10 @@ Indicate the step which this section of the
 animation will begin. Changes will only take 
 effect after MovieObjects has been re-enabled.</source>
       <translation>Inledande steg i MovieObjects animering.
+
 Ange det steg där denna del av
-animeringen ska börja. Ändringar träder i kraft först
-efter att MovieObjects har aktiverats igen.</translation>
+animeringen ska börja. Ändringar träder i kraft
+först efter att MovieObjects har aktiverats igen.</translation>
     </message>
     <message>
       <location filename="../MovieObject.py" line="95"/>
@@ -852,6 +850,7 @@ efter att MovieObjects har aktiverats igen.</translation>
 
 It is only indicative.</source>
       <translation>Aktuellt steg i MovieObjects-animationen.
+
 Det är endast vägledande.</translation>
     </message>
     <message>
@@ -863,9 +862,10 @@ the animation will finish. Changes will
 only take effect after MovieObjects has 
 been re-enabled.</source>
       <translation>Slutsteg för MovieObjects-animationen.
-Ange det steg som denna del av animationen
-kommer att avslutas med. Ändringarna
-träder i kraft först efter att MovieObjects har
+
+Ange det steg som denna del av
+animationen kommer att avslutas med. Ändringarna träder
+i kraft först efter att MovieObjects har
 aktiverats igen.</translation>
     </message>
     <message>
@@ -875,9 +875,10 @@ aktiverats igen.</translation>
 It is the result of the difference 
 between End step (“Obj_03AnimEndStep”) 
 and Initial step (“Obj_01AnimIniStep”).</source>
-      <translation>Totalt antal steg i MovieObjects
-animation. Det är resultatet av
-skillnaden mellan slutsteget
+      <translation>Totalt antal steg i MovieObjects animation.
+
+Det är resultatet
+av skillnaden mellan slutsteget
 ("Obj_03AnimEndStep") och startsteget ("Obj_01AnimIniStep").</translation>
     </message>
     <message>
@@ -889,12 +890,11 @@ section of the animation will be performed.
 It is a simulation and will depend on the 
 computer performance. Changes will only take 
 effect after MovieObjects has been re-enabled.</source>
-      <translation>Animering fps för MovieObjects.
-Ange den fps genom vilken
-avsnittet av animationen kommer att utföras.
-Det är en simulering och beror på datorns
-prestanda. Ändringar träder i kraft först
-efter att MovieObjects har aktiverats igen.</translation>
+      <translation>Bildfrekvens för MovieObjects-animationen.
+
+Ange antalet bildrutor per sekund för animationsavsnittet.
+Det är en simulering och hastigheten beror på datorns prestanda.
+Ändringarna träder i kraft först när MovieObjects har aktiverats på nytt.</translation>
     </message>
     <message>
       <location filename="../MovieObject.py" line="132"/>
@@ -903,8 +903,9 @@ in in hours, minutes, and seconds.
 
 It is only indicative.</source>
       <translation>Animeringstid för MovieObjects, i
-timmar, minuter och sekunder. Det
-är endast vägledande.</translation>
+timmar, minuter och sekunder.
+
+Det är endast vägledande.</translation>
     </message>
     <message>
       <location filename="../MovieObject.py" line="140"/>
@@ -912,7 +913,9 @@ timmar, minuter och sekunder. Det
 
 It should not be changed manually, 
 it is controlled by the animation buttons.</source>
-      <translation>Animering av MovieObjects på eller av. Den ska inte ändras
+      <translation>Animering av MovieObjects på eller av.
+
+Den ska inte ändras
 manuellt, utan styrs av animeringsknapparna.</translation>
     </message>
     <message>
@@ -953,11 +956,12 @@ arc, circle, ellipse, B-spline or
 Bézier curve, from Sketcher or Draft 
 Workbenches.</source>
       <translation>Val av rutt för MovieObjects.
-Välj den rutt genom vilken objekten
-ska animeras. Du måste välja ett
-enda segment, t.ex. linje, båge, cirkel,
-ellips, B-spline eller
-Bézier-kurva, från arbetsbänkarna Sketcher
+
+Välj den rutt genom vilken
+objekten ska animeras. Du måste
+välja ett enda segment, till exempel:
+linje, båge, cirkel, ellips, B-spline
+eller Bézier-kurva, från arbetsbänkarna Sketcher
 eller Draft.</translation>
     </message>
     <message>
@@ -978,11 +982,9 @@ of the MovieObjects.
 
 Enable this if you want to rotate 
 the objects by their centers of gravity.</source>
-      <translation>Rotation efter
-MovieObjects
-tyngdpunkter.
-Aktivera detta om du vill rotera
-objekten efter deras tyngdpunkter.</translation>
+      <translation>Rotation kring MovieObjects-objektens tyngdpunkter.
+
+Aktivera detta om du vill rotera objekten kring deras tyngdpunkter.</translation>
     </message>
     <message>
       <location filename="../MovieObject.py" line="200"/>
@@ -992,7 +994,7 @@ objekten efter deras tyngdpunkter.</translation>
     <message>
       <location filename="../MovieObject.py" line="205"/>
       <source>Placements of PosB of this MovieObjects.</source>
-      <translation>Placeringar av PosB av detta MovieObjects.</translation>
+      <translation>Placeringar för PosB i dessa MovieObjects.</translation>
     </message>
     <message>
       <location filename="../MovieObject.py" line="210"/>
@@ -1005,20 +1007,18 @@ with other object animation workbenches.
 
 Note: This decreases the performance 
 of object animations.</source>
-      <translation>Uppdatera på
-eller
-av. Aktivera detta om du behöver
-uppdatera vid varje steg i
-animeringen. Behövs ibland i
-kombination med andra arbetsbänkar
-för
-objektanimering. Obs: Detta försämrar prestandan
-för objektanimationer.</translation>
+      <translation>Uppdatering på eller av.
+
+Aktivera detta om du behöver uppdatera vid varje steg i
+animeringen. Det behövs ibland tillsammans med andra
+arbetsbänkar för objektanimering.
+
+Obs! Det försämrar objektanimeringarnas prestanda.</translation>
     </message>
     <message>
       <location filename="../MovieMessages.py" line="98"/>
       <source>To use images rendered by the Render Workbench, you must specify an existing Render Project!</source>
-      <translation type="unfinished">To use images rendered by the Render Workbench, you must specify an existing Render Project!</translation>
+      <translation>För att använda bilder som renderats av arbetsbänken Render måste du ange ett befintligt Render-projekt!</translation>
     </message>
     <message>
       <location filename="../MovieMessages.py" line="91"/>
@@ -1028,12 +1028,12 @@ Select the type of image to be generated: from
 the FreeCAD 3D view or rendered. For the latter 
 option, you must specify a project already prepared 
 using the Render Workbench.</source>
-      <translation type="unfinished">Type of frame of the Clapperboard animation.
+      <translation>Typ av bildruta i Clapperboard-animationen.
 
-Select the type of image to be generated: from 
-the FreeCAD 3D view or rendered. For the latter 
-option, you must specify a project already prepared 
-using the Render Workbench.</translation>
+Välj vilken typ av bild som ska skapas: från
+FreeCADs 3D-vy eller renderad. För det senare
+alternativet måste du ange ett projekt som redan
+har förberetts med arbetsbänken Render.</translation>
     </message>
   </context>
   <context>
@@ -1059,7 +1059,7 @@ using the Render Workbench.</translation>
     <message>
       <location filename="../MovieClapperboard.py" line="253"/>
       <source>Clapperboard</source>
-      <translation>Klappa</translation>
+      <translation>Clapperboard</translation>
     </message>
     <message>
       <location filename="../MovieClapperboard.py" line="255"/>
@@ -1080,15 +1080,23 @@ click the “Enable recording” button.
 4. To re-enable a Clapperboard, select one 
 and click the “Enable an object for animation” 
 button.</source>
-      <translation>Skapar en Clapperboard för att spara uppspelnings- och inspelningsinställningarna för en MovieCamera eller MovieObjects.
+      <translation>Skapar en Clapperboard för att spara
+uppspelnings- och inspelningsinställningarna för en MovieCamera
+eller MovieObjects.
 
-1. Välj en eller flera MovieCameras i önskad ordning och klicka på ”Clapperboard”.
+1. Välj en eller flera MovieCameras i önskad
+ordning och klicka på ”Clapperboard”.
 
-2. Du kan också skapa en animering med endast MovieObjects. Välj ett eller flera MovieObjects och klicka på den här knappen.
+2. Du kan också skapa en animering med endast
+MovieObjects. Välj ett eller flera MovieObjects och klicka på
+den här knappen.
 
-3. Konfigurera och förbered inspelningen genom att klicka på knappen ”Enable recording”.
+3. Konfigurera och förbered inspelningen genom
+att klicka på knappen ”Enable recording”.
 
-4. Om du vill aktivera en Clapperboard igen väljer du den och klickar på knappen ”Enable an object for animation”.</translation>
+4. Om du vill aktivera en Clapperboard igen väljer
+du den och klickar på knappen ”Enable an object for
+animation”.</translation>
     </message>
   </context>
   <context>
@@ -1139,23 +1147,41 @@ MovieCameras on a Clapperboard, to do so, see the
 corresponding instructions.</source>
       <translation>Skapar en MovieCamera.
 
-1. Först skapas en stillastående kamera (positionerna A och B är identiska). Du kan använda den för att styra visningen av objektanimeringar.
+1. Först skapas en stillastående kamera (positionerna A och
+B är identiska). Du kan använda den för att
+styra visningen av objektanimeringar.
 
-2. Om du vill animera en fristående kamera som flyttas och/eller roteras anger du dess B-position, eftersom A-positionen redan har angetts (se instruktionerna för A- och B-positionerna).
+2. Om du vill animera en fristående kamera som
+flyttas och/eller roteras anger du dess B-position, eftersom A-positionen
+redan har angetts (se instruktionerna för A- och B-positionerna).
 
-3. Det finns två sätt att skapa en kameravandring:
+3.
 
-Med en bana. Aktivera ”Cam_01Route” i egenskapsfönstret och ange en tidigare linje eller sammanhängande kurvor under ”Cam_02_Route Selection”.
+Det finns två sätt att skapa en kameravandring:
+Med en bana. Aktivera ”Cam_01Route” i egenskapsfönstret och ange
+en tidigare linje eller sammanhängande kurvor under ”Cam_02_Route Selection”.
 
-Med en följd av kameror. Gå till B-punkten för den första skapade MovieCamera, välj den och klicka på den här knappen. Upprepa detta till och med den sista kameran och ange sedan B-punkten för den.
+Med en följd av kameror. Gå till B-punkten för
+den första skapade MovieCamera, välj den och klicka på den
+här knappen. Upprepa detta till och med den sista kameran
+och ange sedan B-punkten för den.
 
-4. Om kameran ska peka mot ett objekt väljer du ”Follow an object or point” under ”Cam_01_Target” och anger objektet i ”Cam_02_Target Object Selection”.
+4. Om kameran ska peka mot ett
+objekt väljer du ”Follow an object
+or point” under ”Cam_01_Target” och anger
+objektet i ”Cam_02_Target Object Selection”.
 
-5. Finjustera vid behov i egenskapsfönstret.
+5. Finjustera vid behov i
+egenskapsfönstret.
 
-6. Om du vill visa animeringen väljer du (i följd) en eller flera skapade MovieCameras och klickar på knappen ”Enable an object for animation”. Styr animeringen med knapparna ”Animation tools”.
+6. Om du vill visa animeringen väljer du
+(i följd) en eller flera skapade MovieCameras och
+klickar på knappen ”Enable an object for animation”.
+Styr animeringen med knapparna ”Animation tools”.
 
-7. Om du vill spara en video från animeringen anger du MovieCameras på en Clapperboard; se motsvarande instruktioner.</translation>
+7. Om du vill spara en video
+från animeringen anger du MovieCameras på en
+Clapperboard; se motsvarande instruktioner.</translation>
     </message>
   </context>
   <context>
@@ -1203,23 +1229,42 @@ the “Animation tools” buttons.
 8. To save a video from the animation, indicate the 
 MovieObjects on a Clapperboard, to do so, see the 
 corresponding instructions.</source>
-      <translation>Objekt kan animeras från position A till B, följa en bana, rotera kring sina tyngdpunkter eller kring en vald axel.
+      <translation>Objekt kan animeras från position A till B,
+följa en bana, rotera kring sina
+tyngdpunkter eller kring en vald axel.
 
-1. Välj först en grupp objekt som du vill animera och klicka här.
+1. Välj först en grupp objekt
+som du vill animera och klicka här.
 
-2. Om du vill animera ett eller flera objekt tillsammans från A till B, med förflyttning och/eller rotation, anger du deras A- och B-positioner (se instruktionerna för A- och B-positionerna).
+2. Om du vill animera ett
+eller flera objekt tillsammans från A till
+B, med förflyttning och/eller rotation, anger du
+deras A- och B-positioner (se instruktionerna för
+A- och B-positionerna).
 
-3. Med en bana. Aktivera ”Obj_01Route” i egenskapsfönstret och ange en tidigare linje eller sammanhängande kurvor under ”Obj_02_Route Selection”.
+3. Med en bana. Aktivera
+”Obj_01Route” i egenskapsfönstret och ange
+en tidigare linje eller sammanhängande
+kurvor under ”Obj_02_Route Selection”.
 
-4. Rotation kring tyngdpunkterna. Ange den inledande (PosA) och avslutande (Pos B) rotationen och aktivera egenskapen ”Obj_Rotation CG”.
+4. Rotation kring tyngdpunkterna. Ange
+den inledande (PosA) och avslutande (Pos
+B) rotationen och aktivera egenskapen ”Obj_Rotation CG”.
 
-5. Rotation kring vald axel. Se instruktionsknappen ”Rotation axis”.
+5. Rotation kring vald axel. Se
+instruktionsknappen ”Rotation axis”.
 
-6. Finjustera vid behov i egenskapsfönstret.
+6. Finjustera vid behov i
+egenskapsfönstret.
 
-7. Om du vill visa animeringen väljer du en eller flera skapade MovieObjects (i följd) och klickar på knappen ”Enable an object for animation”. Styr animeringen med knapparna ”Animation tools”.
+7. Om du vill visa animeringen väljer du
+en eller flera skapade MovieObjects (i följd) och
+klickar på knappen ”Enable an object for animation”. Styr
+animeringen med knapparna ”Animation tools”.
 
-8. Om du vill spara en video från animeringen anger du MovieObjects på en Clapperboard; se motsvarande instruktioner.</translation>
+8. Om du vill spara en video
+från animeringen anger du MovieObjects på en
+Clapperboard; se motsvarande instruktioner.</translation>
     </message>
   </context>
   <context>
@@ -1233,7 +1278,8 @@ corresponding instructions.</source>
       <location filename="../MovieAnimation.py" line="138"/>
       <source>1. To disable the animation status, click 
 this button.</source>
-      <translation>1. Klicka på den här knappen för att inaktivera animeringsstatusen.</translation>
+      <translation>1. Klicka på den här knappen för att
+inaktivera animeringsstatusen.</translation>
     </message>
   </context>
   <context>
@@ -1260,13 +1306,21 @@ using the animation buttons.
 
 3. To disable the animation, click ”Disables 
 any object for animation” button.</source>
-      <translation>1. Välj en redan konfigurerad MovieCamera, MovieObjects eller Clapperboard och klicka på den här knappen för att spara inställningarna och aktivera den för animeringen.
+      <translation>1. Välj en redan konfigurerad MovieCamera,
+MovieObjects eller Clapperboard och klicka på
+den här knappen för att spara
+inställningarna och aktivera den för animeringen.
 
-1.1 Du kan skapa en animerad följd av MovieCameras och/eller MovieObjects genom att välja dem som grupp i önskad ordning.
+1.1 Du kan skapa en animerad
+följd av MovieCameras och/eller MovieObjects genom att
+välja dem som grupp i
+önskad ordning.
 
-2. När den är aktiverad styr du animeringen med animeringsknapparna.
+2. När den är aktiverad styr
+du animeringen med animeringsknapparna.
 
-3. Om du vill inaktivera animeringen klickar du på knappen ”Disable any object for animation”.</translation>
+3. Om du vill inaktivera animeringen klickar du på
+knappen ”Disable any object for animation”.</translation>
     </message>
   </context>
   <context>
@@ -1289,9 +1343,13 @@ opened task panel.
 the “Animations tools”.</source>
       <translation>Öppnar en aktivitetspanel där inspelningen konfigureras.
 
-1. När du har klickat på knappen bekräftar du mapparna där bildrutorna och videon ska sparas i aktivitetspanelen som öppnas.
+1. När du har klickat på knappen bekräftar du
+mapparna där bildrutorna och videon ska sparas i
+aktivitetspanelen som öppnas.
 
-2. Starta inspelningen av animeringarna med knappen ”Play Forward” eller ”Play Backward” i ”Animation tools”.</translation>
+2. Starta inspelningen av animeringarna med
+knappen ”Play Forward” eller ”Play Backward”
+i ”Animation tools”.</translation>
     </message>
   </context>
   <context>
@@ -1310,9 +1368,13 @@ camera/objects.
 2. On the second click, it goes to the 
 beginning of the animation of the 
 next camera/objects (if so).</source>
-      <translation>1. Vid första klicket går den till slutet av den aktuella kamerans eller de aktuella objektens animering.
+      <translation>1. Vid första klicket går den till
+slutet av den aktuella kamerans eller de
+aktuella objektens animering.
 
-2. Vid andra klicket går den till början av nästa kameras eller nästa objekts animering (om det finns någon).</translation>
+2. Vid andra klicket går den till
+början av nästa kameras eller nästa
+objekts animering (om det finns någon).</translation>
     </message>
   </context>
   <context>
@@ -1330,9 +1392,12 @@ then click on this button.
 Objects positions and angles will revert to 
 the values set when the MovieObjects were 
 created.</source>
-      <translation>Välj MovieObjects som du vill utesluta och klicka sedan på den här knappen.
+      <translation>Välj MovieObjects som du vill utesluta och klicka
+sedan på den här knappen.
 
-Objektens positioner och vinklar återställs till värdena som angavs när MovieObjects skapades.</translation>
+Objektens positioner och vinklar återställs till
+värdena som angavs när MovieObjects
+skapades.</translation>
     </message>
   </context>
   <context>
@@ -1351,13 +1416,13 @@ current camera/objects and resets them.
 2. On the second click, it goes to the 
 end of the animation of the 
 previous camera/objects (if so).</source>
-      <translation type="unfinished">1. On the first click, it returns to the 
-beginning of the animation of the 
-current camera/objects and resets them. 
+      <translation>1. Vid första klicket återgår den till
+början av animeringen av den
+aktuella kameran/de aktuella objekten och återställer dem.
 
-2. On the second click, it goes to the 
-end of the animation of the 
-previous camera/objects (if so).</translation>
+2. Vid andra klicket går den till
+slutet av animeringen av de
+föregående kamerorna/objekten, om sådana finns.</translation>
     </message>
   </context>
   <context>
@@ -1370,12 +1435,12 @@ previous camera/objects (if so).</translation>
     <message>
       <location filename="../InitGui.py" line="41"/>
       <source>Workbench to create and visualize animations and videos in FreeCAD</source>
-      <translation>Workbench för att skapa och visualisera animationer och videor i FreeCAD</translation>
+      <translation>Arbetsbänk för att skapa och visa animeringar och videor i FreeCAD</translation>
     </message>
     <message>
       <location filename="../InitGui.py" line="69"/>
       <source>Cameras and objects tools</source>
-      <translation>Kameror och objektverktyg</translation>
+      <translation>Verktyg för kameror och objekt</translation>
     </message>
     <message>
       <location filename="../InitGui.py" line="70"/>
@@ -1405,7 +1470,7 @@ previous camera/objects (if so).</translation>
     <message>
       <location filename="../InitGui.py" line="104"/>
       <source>Movie Workbench loaded</source>
-      <translation>Movie Workbench laddad</translation>
+      <translation>Arbetsbänken Movie har lästs in</translation>
     </message>
   </context>
   <context>
@@ -1449,7 +1514,7 @@ inte med ExplodedAssembly!</translation>
     <message>
       <location filename="../MovieAnimation.py" line="708"/>
       <source>Select a MovieObjects!</source>
-      <translation>Välj en filmObjects!</translation>
+      <translation>Välj MovieObjects!</translation>
     </message>
     <message>
       <location filename="../MovieAnimation.py" line="723"/>
@@ -1457,15 +1522,14 @@ inte med ExplodedAssembly!</translation>
 to reset the MovieObjects B position or 
 enable “Obj_01Route” and indicate a path 
 at “Obj_02RouteSelection”!</source>
-      <translation>För att animera objekten måste MovieObjects
-position B återställas, eller välj Sant för
-&quot;Obj_01Route&quot; och ange en sökväg vid
-&quot;Obj_02RouteSelection&quot;!</translation>
+      <translation>För att animera objekten måste du återställa position B för MovieObjects
+eller aktivera ”Obj_01Route” och ange en bana
+i ”Obj_02RouteSelection”!</translation>
     </message>
     <message>
       <location filename="../MovieAnimation.py" line="753"/>
       <source>Select a Clapperboard!</source>
-      <translation>Välj en klaffbräda!</translation>
+      <translation>Välj en Clapperboard!</translation>
     </message>
     <message>
       <location filename="../MovieAnimation.py" line="761"/>
@@ -1522,8 +1586,8 @@ Animation Selection”!</translation>
       <location filename="../MovieAnimation.py" line="155"/>
       <source>The cameras and/or objects have 
 been disabled for the animation!</source>
-      <translation type="unfinished">The cameras and/or objects have 
-been disabled for the animation!</translation>
+      <translation>Kamerorna och/eller objekten har
+inaktiverats för animeringen!</translation>
     </message>
   </context>
   <context>
@@ -1556,7 +1620,7 @@ been disabled for the animation!</translation>
     <message>
       <location filename="../MovieCamera.py" line="220"/>
       <source>Free</source>
-      <translation>Gratis</translation>
+      <translation>Fri</translation>
     </message>
     <message>
       <location filename="../MovieCamera.py" line="220"/>
@@ -1608,19 +1672,21 @@ för att skapa en sekvenserad MovieCamera!</translation>
     <message>
       <location filename="../MovieCamera.py" line="740"/>
       <source>You have to select a route in “Cam_02RouteSelection”!</source>
-      <translation>Du måste välja en väg i ”Cam_02RouteSelection”!</translation>
+      <translation>Du måste välja en rutt i ”Cam_02RouteSelection”!</translation>
     </message>
     <message>
       <location filename="../MovieCamera.py" line="815"/>
       <source>You have to select an object or 
 point in “Cam_02TargetObjectSelection”!</source>
-      <translation>Du måste välja ett objekt eller en punkt i "Cam_02TargetObjectSelection"!</translation>
+      <translation>Du måste välja ett
+objekt eller en punkt i "Cam_02TargetObjectSelection"!</translation>
     </message>
     <message>
       <location filename="../MovieCamera.py" line="828"/>
       <source>You have to select a render 
 camera in “Cam_02Render_Selection”!</source>
-      <translation>Du måste välja en renderingskamera i "Cam_02Render_Selection"!</translation>
+      <translation>Du måste välja
+en renderingskamera i "Cam_02Render_Selection"!</translation>
     </message>
   </context>
   <context>
@@ -1647,7 +1713,7 @@ MovieObject för att skapa en klappa!</translation>
       <location filename="../MovieClapperboard.py" line="305"/>
       <source>To create a Clapperboard the pre-selected objects 
 must be MovieCamera or MovieObjects!</source>
-      <translation>För att skapa en klappa måste de förvalda
+      <translation>För att skapa en Clapperboard måste de förvalda
 objekten vara MovieCamera eller MovieObjects!</translation>
     </message>
     <message>
@@ -1677,11 +1743,11 @@ objekten vara MovieCamera eller MovieObjects!</translation>
 2. To start recording the animations, click the “Play Forward” or “Play Backward” buttons of the “Animations tools”. Click “Pause Animation” to pause it and “Stop Recording” to stop the recording process.
 
 3. The final video will play automatically if the “Save video” and “Play video” checkboxes are enabled.</source>
-      <translation>1. Konfigurera animationsegenskaperna nedan och klicka på &quot;OK&quot;. När åtgärdspanelen stängs är inspelningen klar att startas.  2. Starta inspelning
-av
-animeringarna genom att klicka på knapparna &quot;Play Forward&quot; eller &quot;Play Backward&quot; under &quot;Animations tools&quot;. Klicka på &quot;Pause Animation&quot; för att pausa animeringen och på &quot;Stop Recording&quot; för att
-stoppa inspelningen.  3. Den färdiga videon spelas upp automatiskt om kryssrutorna &quot;Save video&quot; och &quot;Play video&quot; är
-markerade.</translation>
+      <translation>1. Ange animationens egenskaper nedan och klicka på ”OK”. När uppgiftspanelen stängs är inspelningen redo att starta.
+
+2. Starta inspelningen med ”Play Forward” eller ”Play Backward” under ”Animations tools”. Klicka på ”Pause Animation” för att pausa och på ”Stop Recording” för att stoppa inspelningen.
+
+3. Den färdiga videon spelas upp automatiskt om ”Save video” och ”Play video” är markerade.</translation>
     </message>
     <message>
       <location filename="../MovieClapperboard.py" line="541"/>
@@ -1743,14 +1809,9 @@ Alternatively, you can record the video
 later by clicking the “Record video” 
 button or use external recording software 
 with the images generated.</source>
-      <translation>1. Ange om videon också ska sparas
-automatiskt efter att bildrutorna har skapats.
- 2. Du kan
-också
-spela in videon senare genom att klicka
-på knappen &quot;Record video&quot;
-eller använda extern inspelningsprogramvara
-med bilderna som skapats ovan.</translation>
+      <translation>Ange om videon också ska sparas automatiskt när bildrutorna har skapats.
+
+Du kan också skapa videon senare med knappen ”Record video” eller använda de skapade bilderna i ett externt inspelningsprogram.</translation>
     </message>
     <message>
       <location filename="../MovieClapperboard.py" line="676"/>
@@ -1815,13 +1876,12 @@ inspelningen är klar.</translation>
     <message>
       <location filename="../MovieClapperboard.py" line="1112"/>
       <source>Select the folder to save the “Render” frames</source>
-      <translation>Välj mappen där bildrutorna för &quot;Render view&quot; ska sparas</translation>
+      <translation>Välj mappen där bildrutorna för ”Render” ska sparas</translation>
     </message>
     <message>
       <location filename="../MovieClapperboard.py" line="1126"/>
       <source>Recording has been disabled!</source>
-      <translation>Inspelningen har
-inaktiverats!</translation>
+      <translation>Inspelningen har inaktiverats!</translation>
     </message>
     <message>
       <location filename="../MovieClapperboard.py" line="1173"/>
@@ -1872,13 +1932,15 @@ inaktiverats!</translation>
       <location filename="../MovieClapperboard.py" line="886"/>
       <source>Indicate a output folder to save the video before 
 close the “Recording settings” task panel!</source>
-      <translation>Ange en utmatningsmapp där videon ska sparas innan uppgiftspanelen ”Inspelningsinställningar” stängs!</translation>
+      <translation>Ange en utmatningsmapp där videon ska
+sparas innan uppgiftspanelen ”Inspelningsinställningar” stängs!</translation>
     </message>
     <message>
       <location filename="../MovieClapperboard.py" line="859"/>
       <source>Indicate a output folder to save the frames before 
 close the “Recording settings” task panel!</source>
-      <translation>Ange en utmatningsmapp där bildrutorna ska sparas innan uppgiftspanelen ”Inspelningsinställningar” stängs!</translation>
+      <translation>Ange en utmatningsmapp där bildrutorna ska
+sparas innan uppgiftspanelen ”Inspelningsinställningar” stängs!</translation>
     </message>
     <message>
       <location filename="../MovieMessages.py" line="101"/>
@@ -1898,12 +1960,12 @@ close the “Recording settings” task panel!</source>
     <message>
       <location filename="../MovieClapperboard.py" line="577"/>
       <source>Note:</source>
-      <translation>Anteckning:</translation>
+      <translation>Obs!</translation>
     </message>
     <message>
       <location filename="../MovieClapperboard.py" line="834"/>
       <source>The selected object is not a Render Project!</source>
-      <translation type="unfinished">The selected object is not a Render Project!</translation>
+      <translation>Det markerade objektet är inte ett Render-projekt!</translation>
     </message>
     <message>
       <location filename="../MovieClapperboard.py" line="999"/>
@@ -1927,8 +1989,8 @@ close the “Recording settings” task panel!</source>
       <location filename="../MovieConnection.py" line="54"/>
       <source>You must have an animation of the 
 ExplodedAssembly Workbench first!</source>
-      <translation>Du måste ha en animering av
-ExplodedAssembly Workbench först!</translation>
+      <translation>Du måste först skapa en animering med
+arbetsbänken ExplodedAssembly!</translation>
     </message>
   </context>
   <context>
@@ -1941,15 +2003,14 @@ it is necessary to reset the MovieCamera B
 position or enable “CAm_01Route” and 
 indicate a path at “Cam_02RouteSelection”!</source>
       <translation>En statisk MovieCamera har skapats!
-För att animera MovieCamera utan MovieObjects måste
-MovieCamera position B återställas eller välj
-Sant för &quot;CAm_01Route&quot; och ange
-en sökväg vid &quot;Cam_02RouteSelection&quot;!</translation>
+För att animera MovieCamera utan MovieObjects måste du återställa
+position B eller aktivera ”CAm_01Route” och ange
+en bana i ”Cam_02RouteSelection”!</translation>
     </message>
     <message>
       <location filename="../MovieObject.py" line="315"/>
       <source>Select at least one object to create a MovieObjects!</source>
-      <translation>Välj minst ett objekt för att skapa en MovieObjects!</translation>
+      <translation>Välj minst ett objekt för att skapa MovieObjects!</translation>
     </message>
     <message>
       <location filename="../MovieObject.py" line="349"/>
@@ -1967,8 +2028,8 @@ förinställda positionen A har skapats!</translation>
       <location filename="../MovieObject.py" line="454"/>
       <source>Select a MovieObjects to exclude!
 </source>
-      <translation>Välj en filmObjekt att
-utesluta!</translation>
+      <translation>Välj MovieObjects som ska uteslutas!
+</translation>
     </message>
     <message>
       <location filename="../MovieObject.py" line="518"/>
@@ -2035,9 +2096,10 @@ vill rotera och sedan rotationsaxeln.</translation>
 
 Note: It works only with FreeCAD versions 
 that import the cv2 module, like 1.0.</source>
-      <translation>Spela upp en befintlig video genom att ange dess filsökväg.
+      <translation>Spela upp en befintlig video genom att ange sökvägen till filen.
 
-Obs! Funktionen fungerar bara med FreeCAD-versioner som importerar modulen cv2, till exempel 1.0.</translation>
+Obs! Funktionen fungerar bara med FreeCAD-versioner som
+kan importera modulen cv2, till exempel 1.0.</translation>
     </message>
   </context>
   <context>
@@ -2094,17 +2156,25 @@ the corresponding file.
 
 Note: It works only with FreeCAD versions 
 that import the cv2 module, like 1.0.</source>
-      <translation>Skapar en video av en följd med skapade bildrutor (bilder).
+      <translation>Skapar en video av en
+följd med skapade bildrutor (bilder).
 
-1. Klicka på den här knappen och välj mappen som innehåller bildsekvensen från en skapad animering.
+1. Klicka på den här knappen
+och välj mappen som innehåller bildsekvensen
+från en skapad animering.
 
-2. Ange sedan mappen där videon ska sparas och ange dess namn.
+2. Ange sedan mappen där videon
+ska sparas och ange dess namn.
 
-3. När processen är klar spelas videon upp automatiskt.
+3. När processen är klar spelas
+videon upp automatiskt.
 
-4. Om du vill se videon igen klickar du på knappen ”Play video” och väljer motsvarande fil.
+4. Om du vill se videon igen
+klickar du på knappen ”Play video” och
+väljer motsvarande fil. Obs!
 
-Obs! Funktionen fungerar bara med FreeCAD-versioner som importerar modulen cv2, till exempel 1.0.</translation>
+Funktionen fungerar bara med FreeCAD-versioner som
+importerar modulen cv2, till exempel 1.0.</translation>
     </message>
   </context>
   <context>
@@ -2129,11 +2199,15 @@ then the axis and click this button.
 click on “Set position B” button.</source>
       <translation>1. Skapa först MovieObjects och ange rotation A och B.
 
-2. Definiera sedan en rotationsaxel för objekten i ett skapat MovieObject. Rotationsaxeln kan vara en linje (från Draft eller Sketch) eller en objektkant.
+2. Definiera sedan en rotationsaxel för objekten i ett
+skapat MovieObject. Rotationsaxeln kan vara en linje (från Draft
+eller Sketch) eller en objektkant.
 
-3. Välj därefter först objekten som ska roteras, sedan axeln och klicka på den här knappen.
+3. Välj därefter först objekten som ska roteras, sedan axeln
+och klicka på den här knappen.
 
-4. Om du vill ta bort inställningarna aktiverar du MovieObjects och klickar på knappen ”Set position B”.</translation>
+4. Om du vill ta bort inställningarna aktiverar du MovieObjects och
+klickar på knappen ”Set position B”.</translation>
     </message>
   </context>
   <context>
@@ -2162,13 +2236,23 @@ Set position A.
 3. For MovieObjects, position, rotate 
 or keep them in their current position, 
 then click on this button.</source>
-      <translation>Används för att skapa en animering från punkt A till B (inte när målet för MovieCamera eller MovieObjects är inställt på att följa en bana).
+      <translation>Används för att skapa en animering från punkt
+A till B (inte när målet för
+MovieCamera eller MovieObjects är inställt på att
+följa en bana).
 
-1. Välj och aktivera först MovieCamera eller MovieObjects som du vill konfigurera.
+1. Välj och aktivera först
+MovieCamera eller MovieObjects som du
+vill konfigurera.
 
-2. För MovieCameras ställer du in 3D-vyn med önskat utsnitt för början av animeringen (position A) och klickar sedan på Ange position A.
+2. För MovieCameras ställer du in
+3D-vyn med önskat utsnitt för början av
+animeringen (position A) och klickar sedan på
+Ange position A.
 
-3. För MovieObjects flyttar eller roterar du dem, eller låter dem vara kvar i aktuell position, och klickar sedan på den här knappen.</translation>
+3. För MovieObjects flyttar eller roterar du dem,
+eller låter dem vara kvar i aktuell position och
+klickar sedan på den här knappen.</translation>
     </message>
   </context>
   <context>
@@ -2196,13 +2280,22 @@ then click on Set position B.
 3. For MovieObjects, position and/or 
 rotate them to the final position, then 
 click on this button.</source>
-      <translation>Används för att skapa en animering från punkt A till B (inte när målet för MovieCamera eller MovieObjects är inställt på att följa en bana).
+      <translation>Används för att skapa en animering från punkt
+A till B (inte när målet för
+MovieCamera eller MovieObjects är inställt på att
+följa en bana).
 
-1. Välj och aktivera MovieCamera eller MovieObjects som du vill konfigurera.
+1. Välj och aktivera MovieCamera eller
+MovieObjects som du vill konfigurera.
 
-2. För MovieCameras ställer du in 3D-vyn med önskat utsnitt för slutet av animeringen (position B) och klickar sedan på Ange position B.
+2. För MovieCameras ställer du in
+3D-vyn med önskat utsnitt för slutet
+av animeringen (position B) och klickar
+sedan på Ange position B.
 
-3. För MovieObjects flyttar och/eller roterar du dem till slutpositionen och klickar sedan på den här knappen.</translation>
+3. För MovieObjects flyttar och/eller roterar
+du dem till slutpositionen och klickar sedan
+på den här knappen.</translation>
     </message>
   </context>
   <context>
