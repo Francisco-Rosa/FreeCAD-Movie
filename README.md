@@ -1,7 +1,7 @@
 ## FreeCAD Movie Workbench
 Workbench to animate cameras and objects, record and play videos
 
-### Worbench Icon
+### Workbench Icon
 ![Movie Workbench Icon](./icons//MovieWBIcon.svg)
 
 ### Features
