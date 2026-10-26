@@ -48,13 +48,19 @@ ENABLE_01 = 'None' #Enabled for configuration and saving properties and animatio
 MC = None
 MO = None
 CL = None
-STEP_POS = 'I'
+STEP_POS = 'I' # or 'P' for ANIM_CURRENT_STEP > ANIM_INI_STEP
+ANIMATION = False
 ANIMATION_BACK = False
 ANIM_INI_STEP = None
 
-TIP_CONNECTION = translate('MovieAnimation',
-                           'Connection is enable, you must select \n'
-                           'one connection in “Cam_07Connection“!')
+#New
+ANIM_CURRENT_STEP = None
+ANIM_FPS = None
+ANIM_END_STEP = None
+ANIM_TOTAL_STEPS = None
+CAMERA_NAME = 'None'
+OBJECTS_NAME = 'None'
+SEQ_ANIM_DIC = {}
 
 # ======================================================================================
 # 1. Classes
@@ -109,15 +115,18 @@ class EnableAnimation:
         global CL
         selection = []
         selection = Gui.Selection.getSelection()
+        FreeCAD.Gui.runCommand('DisableAnimation')
         if selection:
             if selection[0].Name[0:11] == 'MovieCamera':
                 indicateMovieSelection(obj = 'Camera')
             if selection[0].Name[0:12] == 'MovieObjects':
                 indicateMovieSelection(obj = 'Objects')
             if selection[0].Name[0:12] == 'Clapperboard':
+                enableAnimObjects(obj1 = 'Clapperboard')
                 CL = None
-                CL = enableMovieClapperboard()
+                CL = enableMovieClapperboard(obj = CL, clapNew = False)
         FreeCAD.ActiveDocument.recompute()
+        #print(f'EnableAnimation, selection = {selection[0].Name}')
 
 class DisableAnimation:
 
@@ -146,11 +155,38 @@ class DisableAnimation:
 
     def Activated(self):
         global ENABLE_01
+        #New
+        try:
+            if ENABLE_01[0:6] == 'Camera':
+                #label = MC.Label
+                #MC.Label = changeEnableLabel(objLabel = label, enable = False)
+                if FreeCAD.GuiUp:
+                    for s in range(len(SEQ_ANIM_DIC)):
+                        MC = FreeCAD.ActiveDocument.getObject(SEQ_ANIM_DIC[s][0])
+                        vp = mc.MovieCameraViewProvider(MC.ViewObject)
+                        vp.setEnabledState(MC.ViewObject, False)
+            if ENABLE_01 == 'Objects':
+                #label = MO.Label
+                #MO.Label = changeEnableLabel(objLabel = label, enable = False)
+                if FreeCAD.GuiUp:
+                    for o in range(len(SEQ_ANIM_DIC)):
+                        MO = FreeCAD.ActiveDocument.getObject(SEQ_ANIM_DIC[o][3])
+                        vp = mo.MovieObjectsViewProvider(MO.ViewObject)
+                        vp.setEnabledState(MO.ViewObject, False)
+            if ENABLE_01 == 'Clapperboard':
+                #label = CL.Label
+                #CL.Label = changeEnableLabel(objLabel = label, enable = False)
+                if FreeCAD.GuiUp:
+                    vp = cl.ClapperboardViewProvider(CL.ViewObject)
+                    vp.setEnabledState(CL.ViewObject, False)
+        except:
+            pass
         ENABLE_01 = 'None'
         FreeCAD.Gui.runCommand('StopMovieRecord')
-        getMessage(message = translate('MovieAnimation',
+        FreeCAD.Console.PrintMessage(translate('MovieAnimation',
                                        'The cameras and/or objects have \n'
                                        'been disabled for the animation!'))
+
         FreeCAD.ActiveDocument.recompute()
 
 class IniMovieAnimation:
@@ -188,9 +224,10 @@ class IniMovieAnimation:
         global STEP_POS
         modifyAnimationIndicator(animation = False)
         if MC != None:
-            #if MC.Cam_06Enable == 'Camera and connection' or MC.Cam_06Enable == 'Connection':
+            # 'Camera and connection' or 'Connection':
             if MC.Cam_06Enable[0:2] == '03' or MC.Cam_06Enable[0:2] == '04':
                 if MC.Cam_07Connection == 'None':
+                    from MovieMessages import TIP_CONNECTION
                     getMessage(message = TIP_CONNECTION)
                     return
                 else:
@@ -231,9 +268,10 @@ class PrevMovieAnimation:
     def Activated(self):
         modifyAnimationIndicator(animation = False)
         if MC != None:
-            #if MC.Cam_06Enable == 'Camera and connection' or MC.Cam_06Enable == 'Connection':
+            # 'Camera and connection' or 'Connection':
             if MC.Cam_06Enable[0:2] == '03' or MC.Cam_06Enable[0:2] == '04':
                 if MC.Cam_07Connection == 'None':
+                    from MovieMessages import TIP_CONNECTION
                     getMessage(message = TIP_CONNECTION)
                     return
                 else:
@@ -272,23 +310,32 @@ class PlayBackwardMovieAnimation:
         global ANIMATION_BACK
         ANIMATION_BACK = True
         if MC != None:
-            #if MC.Cam_06Enable == 'Camera and connection' or MC.Cam_06Enable == 'Connection':
+            # 'Camera and connection' or 'Connection':
             if MC.Cam_06Enable[0:2] == '03' or MC.Cam_06Enable[0:2] == '04':
-               if MC.Cam_07Connection == 'None':
+                if MC.Cam_07Connection == 'None':
+                    from MovieMessages import TIP_CONNECTION
                     getMessage(message = TIP_CONNECTION)
                     return
-               else:
-                   if MC.Cam_07Connection == 'ExplodedAssembly':
-                       getViewProjection()
-                       co.connectionPlayBackward(Selection = MC)
-                       FreeCAD.ActiveDocument.recompute()
-                       return
+                else:
+                    if MC.Cam_07Connection == 'ExplodedAssembly':
+                        getViewProjection()
+                        co.connectionPlayBackward(Selection = MC)
+                        FreeCAD.ActiveDocument.recompute()
+                        return
         playMovieAnimation()
         #new
         if CL != None:
             try:
                 if CL.Clap_04OnRec is True:
                     cl.createVideo(auto = True)
+                    #Open Report view
+                    openReportView()
+                    if CL.Frame_05Type[0:2] == '01':
+                        try:
+                            projectRender = CL.Frame_08RenderProject
+                            projectRender.OpenAfterRender = True
+                        except:
+                            pass
                     if CL.Video_06PlayVideo is True:
                         cl.playVideo(auto = True)
                     CL.Clap_04OnRec = False
@@ -325,12 +372,13 @@ class PauseMovieAnimation:
         pauseMovieAnimation()
         FreeCAD.ActiveDocument.recompute()
         if MC != None:
-            #if MC.Cam_06Enable == 'Camera and connection' or MC.Cam_06Enable == 'Connection':
+            # 'Camera and connection' or 'Connection':
             if MC.Cam_06Enable[0:2] == '03' or MC.Cam_06Enable[0:2] == '04':
-               if MC.Cam_07Connection == 'None':
+                if MC.Cam_07Connection == 'None':
+                    from MovieMessages import TIP_CONNECTION
                     getMessage(message = TIP_CONNECTION)
                     return
-               else:
+                else:
                     co.connectionPause(Selection = MC)
                     MC.Cam_07OnAnim = False
                     FreeCAD.ActiveDocument.recompute()
@@ -362,23 +410,32 @@ class PlayMovieAnimation:
         global ANIMATION_BACK
         ANIMATION_BACK = False
         if MC != None:
-            #if MC.Cam_06Enable == 'Camera and connection' or MC.Cam_06Enable == 'Connection':
+            # 'Camera and connection' or 'Connection':
             if MC.Cam_06Enable[0:2] == '03' or MC.Cam_06Enable[0:2] == '04':
-               if MC.Cam_07Connection == 'None':
+                if MC.Cam_07Connection == 'None':
+                    from MovieMessages import TIP_CONNECTION
                     getMessage(message = TIP_CONNECTION)
                     return
-               else:
-                   if MC.Cam_07Connection == 'ExplodedAssembly':
-                       getViewProjection()
-                       co.connectionPlay(Selection = MC)
-                       FreeCAD.ActiveDocument.recompute()
-                       return
+                else:
+                    if MC.Cam_07Connection == 'ExplodedAssembly':
+                        getViewProjection()
+                        co.connectionPlay(Selection = MC)
+                        FreeCAD.ActiveDocument.recompute()
+                        return
         playMovieAnimation()
         #new
         if CL != None:
             try:
                 if CL.Clap_04OnRec is True:
                     cl.createVideo(auto = True)
+                    #Open Report view
+                    openReportView()
+                    if CL.Frame_05Type[0:2] == '01':
+                        try:
+                            projectRender = CL.Frame_08RenderProject
+                            projectRender.OpenAfterRender = True
+                        except:
+                            pass
                     if CL.Video_06PlayVideo is True:
                         cl.playVideo(auto = True)
                     CL.Clap_04OnRec = False
@@ -411,12 +468,13 @@ class PostMovieAnimation:
     def Activated(self):
         modifyAnimationIndicator(animation = False)
         if MC != None:
-            #if MC.Cam_06Enable == 'Camera and connection' or MC.Cam_06Enable == 'Connection':
+            #i 'Camera and connection' or 'Connection':
             if MC.Cam_06Enable[0:2] == '03' or MC.Cam_06Enable[0:2] == '04':
-               if MC.Cam_07Connection == 'None':
+                if MC.Cam_07Connection == 'None':
+                    from MovieMessages import TIP_CONNECTION
                     getMessage(message = TIP_CONNECTION)
                     return
-               else:
+                else:
                     co.connectionPos(Selection = MC)
                     FreeCAD.ActiveDocument.recompute()
                     if MC.Cam_07Connection == 'ExplodedAssembly':
@@ -461,12 +519,13 @@ class EndMovieAnimation:
         global STEP_POS
         modifyAnimationIndicator(animation = False)
         if MC != None:
-            #if MC.Cam_06Enable == 'Camera and connection' or MC.Cam_06Enable == 'Connection':
+            # 'Camera and connection' or 'Connection':
             if MC.Cam_06Enable[0:2] == '03' or MC.Cam_06Enable[0:2] == '04':
-               if MC.Cam_07Connection == 'None':
+                if MC.Cam_07Connection == 'None':
+                    from MovieMessages import TIP_CONNECTION
                     getMessage(message = TIP_CONNECTION)
                     return
-               else:
+                else:
                     co.connectionEnd(Selection = MC)
                     if MC.Cam_07Connection == 'ExplodedAssembly':
                         ANIM_CURRENT_STEP = ANIM_END_STEP
@@ -589,10 +648,23 @@ class SetMoviePosB:
 
 # 2.1. Support
 
+#New
+def openReportView():
+
+    """Opens Report view"""
+
+    from PySide import QtGui
+    r = Gui.getMainWindow().findChild(QtGui.QDockWidget, "Report view")
+    if r.isVisible() is False:
+        r.show()
+    r.raise_()
+
 def getMessage(message = 'None'):
 
-    """Gets a repeated message"""
+    """Opens the Report view and show a message"""
 
+    #Open Report view
+    openReportView()
     FreeCAD.Console.PrintMessage(('{}').format(message) + '\n')
 
 def modifyAnimationIndicator(animation = False, obj = None):
@@ -620,8 +692,8 @@ def modifyAnimationIndicator(animation = False, obj = None):
                 MO.Obj_07AnimOnAnim = False
             except:
                 pass
-        getMessage(message = translate('MovieAnimation',
-                                       'Animation off.'))
+        FreeCAD.Console.PrintMessage(translate('MovieAnimation',
+                                       'Animation off.') + '\n')
     if animation == True:
         ANIMATION = True
         if MC != None:
@@ -636,8 +708,8 @@ def modifyAnimationIndicator(animation = False, obj = None):
                 MO.Obj_07AnimOnAnim = True
             except:
                 pass
-        getMessage(message = translate('MovieAnimation',
-                                       'Animation on.'))
+        FreeCAD.Console.PrintMessage(translate('MovieAnimation',
+                                       'Animation on.') + '\n')
     FreeCAD.ActiveDocument.recompute()
 
 def getViewProjection():
@@ -652,15 +724,6 @@ def getViewProjection():
                                           ]):
             Gui.runCommand('Std_PerspectiveCamera',1)
 
-def getTimeAnimation(secs = 0):
-
-    """Get the time animation."""
-
-    hours, minutes = divmod(secs, 3600)
-    minutes, seconds = divmod(minutes, 60)
-    TimeAnimation = f'{int(hours):0>2}:{int(minutes):0>2}:{seconds:0>5.2f}'
-    return TimeAnimation
-
 # ======================================================================================
 # 2.2. Enabling commands
 
@@ -672,6 +735,8 @@ def indicateMovieSelection(obj = 'None'):
     global MO
     global ENABLE_00
     global ENABLE_01
+    #global ANIM_INI_STEP
+    #global ANIM_END_STEP
     Selection = []
     Selection = Gui.Selection.getSelection()
     for n in range(len(Selection)):
@@ -685,22 +750,21 @@ def indicateMovieSelection(obj = 'None'):
                 MC = Selection[0]
                 MC.Cam_07OnAnim = False
                 mc.enableCameraSelection(Enable = MC)
-                #if MC.Cam_06Enable == 'Camera':
-                if MC.Cam_06Enable[0:2] == '00':
-                    enableAnimObjects(obj1 = 'Camera')
-                #if MC.Cam_06Enable == 'Camera and objects':
-                if MC.Cam_06Enable[0:2] == '01':
-                    enableAnimObjects(obj1 = 'Camera and objects')
-                #if MC.Cam_06Enable == 'Objects':
-                if MC.Cam_06Enable[0:2] == '02':
-                    enableAnimObjects(obj1 = 'Objects')
-                #if MC.Cam_06Enable == 'Camera and connection':
-                if MC.Cam_06Enable == '03':
-                    enableAnimObjects(obj1 = 'Camera and connection')
-                #if MC.Cam_06Enable == 'Connection':
-                if MC.Cam_06Enable[0:2] == '04':
-                    enableAnimObjects(obj1 = 'Connection')
                 ENABLE_00 = 'Camera' # Only enabled for configuration
+                if MC.Cam_06Enable[0:2] == '00': # 'Camera'
+                    enableAnimObjects(obj1 = 'Camera')
+                if MC.Cam_06Enable[0:2] == '01': # 'Camera and objects'
+                    enableAnimObjects(obj1 = 'Camera and objects')
+                if MC.Cam_06Enable[0:2] == '02': # 'Objects'
+                    enableAnimObjects(obj1 = 'Objects')
+                if MC.Cam_06Enable == '03': # 'Camera and connection':
+                    enableAnimObjects(obj1 = 'Camera and connection')
+                if MC.Cam_06Enable[0:2] == '04': # 'Connection'
+                    enableAnimObjects(obj1 = 'Connection')
+                #New change laber
+                #label = MC.Label
+                #MC.Label = changeEnableLabel(objLabel = label, enable = True)
+
         if obj == 'Objects':
             mes1 = translate('MovieAnimation',
                              'Select a MovieObjects!')
@@ -717,21 +781,70 @@ def indicateMovieSelection(obj = 'None'):
                 ENABLE_00 = 'Objects' # Only enabled for configuration
                 if MO.Obj_01Route is False:
                     if MO.PosB == MO.PosA:
+                        #Open Report view
+                        openReportView()
                         FreeCAD.Console.PrintMessage(translate('MovieAnimation',
-                                                            'To animate the objects it is necessary \n'
-                                                            'to reset the MovieObjects B position or \n'
-                                                            'enable “Obj_01Route” and indicate a path \n'
-                                                            'at “Obj_02RouteSelection”!'
-                                                            ) + '\n')
+                                        'To animate the objects it is necessary \n'
+                                        'to reset the MovieObjects B position or \n'
+                                        'enable “Obj_01Route” and indicate a path \n'
+                                        'at “Obj_02RouteSelection”!'
+                                        ) + '\n')
                         ENABLE_01 = 'None' #Not ready for animation
                         return
                 enableAnimObjects(obj1 = 'Objects')
-                MO.Obj_07AnimOnAnim = False
+                #New change label
+                #label = MO.Label
+                #MO.Label = changeEnableLabel(objLabel = label, enable = True)
 
     getSelectionSteps(Content = Selection)
 
+def enableAnimObjects(obj1 = 'None'):
+
+    """Enables a movie objects for animation."""
+
+    global ENABLE_01
+
+    # MovieCamera
+    if obj1 == 'Camera':
+        ENABLE_01 = 'Camera'
+        FreeCAD.Console.PrintMessage(translate('MovieAnimation',
+                            'MovieCamera enabled.') + '\n')
+    if obj1 == 'Camera and objects':
+        ENABLE_01 = 'Camera and objects'
+        FreeCAD.Console.PrintMessage(translate('MovieAnimation',
+                            'MovieCamera and MovieObjects enabled.') + '\n')
+    if obj1 == 'Camera and connection':
+        ENABLE_01 = 'Camera and connection'
+        FreeCAD.Console.PrintMessage(translate('MovieAnimation',
+                            'MovieCamera and connection enabled.') + '\n')
+    # MovieObjects
+    if obj1 == 'Objects':
+        ENABLE_01 = 'Objects'
+        FreeCAD.Console.PrintMessage(translate('MovieAnimation',
+                            'MovieObjects enabled.') + '\n')
+    # Clapperboard
+    if obj1 == 'Clapperboard':
+        ENABLE_01 = 'Clapperboard'
+        FreeCAD.Console.PrintMessage(translate('MovieAnimation',
+                            'Clapperboard enabled.') + '\n')
+
 #New
-def enableMovieClapperboard(obj = None):
+def changeEnableLabel(objLabel = '',
+                      enable = False
+                      ):
+
+    """Change obj label to enabled for anmation or not"""
+
+    if enable is True:
+        label = objLabel
+        signalEnabled = '*'
+        objLabel = label + signalEnabled
+    else:
+        if objLabel[-1:] == '*':
+            objLabel = objLabel[:-1]
+    return objLabel
+
+def enableMovieClapperboard(obj = None, clapNew = False):
 
     """Enables a Clapperboard"""
 
@@ -753,64 +866,91 @@ def enableMovieClapperboard(obj = None):
         CL = ClapSelection[0]
         cl.getCLObject(cl = CL)
     Selection = []
-    Selection = CL.Clap_03AnimationSelection
+    if hasattr(CL, 'Clap_03AnimationSelection'):
+        #Selection = CL.Clap_03AnimationSelection # Outdated
+        getMessage(message = translate('MovieAnimation',
+                                       'It seems the clapperboard \n'
+                                       'is an obsolete version. Please \n'
+                                       'try replacing it \n'
+                                       'with a new one. \n'
+                                       'Clapperboard disabled.'))
+        ENABLE_01 = 'None' #Not ready for animation
+        return
+    Selection = CL.Group # New
     if not Selection:
         getMessage(message = translate('MovieAnimation',
                                        'To enable the Clapperboard, it must have \n'
                                        'at least one MovieCamera or MovieObject \n'
-                                       'specified in its “Clap_03 Animation \n'
-                                       'Selection” property!'))
+                                       'specified in its “Group” property!\n'
+                                        ))
         ENABLE_01 = 'None' #Not ready for animation
         return
+    try:
+        CL.Frame_09RenderCamera
+    except Exception:
+        getMessage(message = translate('MovieAnimation',
+                                       'It appears that the existing Clapperboard \n'
+                                       'is an outdated version, as the Frame_09RenderCamera \n'
+                                       'property could not be found. \n'
+                                       'Try replacing the Clapperboard \n'
+                                       'with a new one. \n'
+                                       'Clapperboard disabled.'))
+        return
+    if CL.Frame_05Type[0:2] == '01': #Render
+        #Verify Render Project selection
+        if cl.checkRenderProjectSelection(
+        selection = CL.Frame_08RenderProject) is False:
+            ENABLE_01 = 'None'
+            return
+
+    CL.setEditorMode('Frame_10RenderCrop', 1)
+    if not CL.Frame_09RenderCamera:
+        mess = translate('MovieAnimation',
+                         'To enable 3D view cropping, you must have a \n'
+                         'render camera specified in the Clapperboard!')
+        if CL.Frame_10RenderCrop is True:
+            getMessage(message = mess + '\n')
+            CL.Frame_10RenderCrop = False
+    else:
+        if not CL.Frame_09RenderCamera.Name[0:6] == 'Camera':
+            if CL.Frame_10RenderCrop is True:
+                getMessage(message = mess + '\n')
+                CL.Frame_10RenderCrop = False
+        else:
+            CL.setEditorMode('Frame_10RenderCrop', 0)
+            cl.getRenderCameraZoom(obj = CL)
     for n4 in range(len(Selection)):
         if Selection[n4].Name[5] == 'C':
             MC = Selection[n4]
             if MC.Cam_07Connection == 'ExplodedAssembly':
                co.setClapperboardSelection(Clap = CL)
+
     # Getting the elements of animation
     getSelectionSteps(Content = Selection)
-    # Saving the elements of animation
-    #CL.Clap_04AnimTotalSteps = ANIM_END_STEP + 1
-    CL.Clap_04AnimTotalSteps = ANIM_END_STEP
-    CL.Clap_03AnimEndStep = CL.Clap_04AnimTotalSteps
+    # Updating the elements of animation
+    CL.Clap_04AnimTotalSteps = ANIM_TOTAL_STEPS
+    if clapNew is True:
+        CL.Clap_01AnimIniStep = ANIM_INI_STEP
+        CL.Clap_03AnimEndStep = ANIM_END_STEP
+    else:
+        ANIM_INI_STEP = CL.Clap_01AnimIniStep
+        ANIM_END_STEP = CL.Clap_03AnimEndStep
+    if CL.Clap_03AnimEndStep > CL.Clap_04AnimTotalSteps:
+        CL.Clap_03AnimEndStep = CL.Clap_04AnimTotalSteps
     ANIM_FPS = CL.Clap_05AnimFps
     # Getting clapperboard time animation
-    t = (CL.Clap_03AnimEndStep - CL.Clap_01AnimIniStep + 1) / CL.Clap_05AnimFps
-    CL.Clap_06AnimTime = getTimeAnimation(secs = t)
+    CL.Clap_06AnimTime = getAnimTime(objIniStep =  CL.Clap_01AnimIniStep,
+                                    objEndStep = CL.Clap_03AnimEndStep,
+                                    objFps = CL.Clap_05AnimFps
+                                    )
     # Defining the remaining animation elements
-    enableAnimObjects(obj1 = 'Clapperboard')
-    ANIM_FPS = CL.Clap_05AnimFps
+    #New change label
+    #label = CL.Label
+    #CL.Label = changeEnableLabel(objLabel = label, enable = True)
+    if FreeCAD.GuiUp:
+        vp = cl.ClapperboardViewProvider(CL.ViewObject)
+        vp.setEnabledState(CL.ViewObject, True)
     return CL
-
-def enableAnimObjects(obj1 = 'None'):
-
-    """Enables a movie objects for animation."""
-
-    global ENABLE_01
-
-    # MovieCamera
-    if obj1 == 'Camera':
-        ENABLE_01 = 'Camera'
-        getMessage(message = translate('MovieAnimation',
-                                       'MovieCamera enabled.'))
-    if obj1 == 'Camera and objects':
-        ENABLE_01 = 'Camera and objects'
-        getMessage(message = translate('MovieAnimation',
-                                       'MovieCamera and MovieObjects enabled.'))
-    if obj1 == 'Camera and connection':
-        ENABLE_01 = 'Camera and connection'
-        getMessage(message = translate('MovieAnimation',
-                                       'MovieCamera and connection enabled.'))
-    # MovieObjects
-    if obj1 == 'Objects':
-        ENABLE_01 = 'Objects'
-        getMessage(message = translate('MovieAnimation',
-                                       'MovieObjects enabled.'))
-    # Clapperboard
-    if obj1 == 'Clapperboard':
-        ENABLE_01 = 'Clapperboard'
-        getMessage(message = translate('MovieAnimation',
-                                       'Clapperboard enabled.'))
 
 def getSelectionSteps(Content = None):
 
@@ -823,8 +963,10 @@ def getSelectionSteps(Content = None):
     global ANIM_INI_STEP
     global ANIM_CURRENT_STEP
     global ANIM_END_STEP
+    global ANIM_TOTAL_STEPS
     global ANIM_FPS
     global SEQ_ANIM_DIC
+    global ENABLE_01
 
     # Selection
     Selection = []
@@ -843,15 +985,16 @@ def getSelectionSteps(Content = None):
     Anim_ObjectsFps = 0
 
     # Animation steps
-    ANIM_INI_STEP = 0
-    ANIM_CURRENT_STEP = 0
+    ANIM_INI_STEP = 0 # ?
+    ANIM_CURRENT_STEP = 0 # ?
     NextStep = 0
     ANIM_END_STEP = 0
-    #ANIM_TOTAL_STEPS = 0
+    ANIM_TOTAL_STEPS = 0
     ANIM_FPS = 0
 
     # Animation sequence
-    # Components = (CameraN, InitCameraStep, EndCameraStep, ObjectsN, InitObjectsStep, EndObjectsStep)
+    # Components = (CameraN, InitCameraStep, EndCameraStep,
+                  # ObjectsN, InitObjectsStep, EndObjectsStep)
     Components = ()
     SEQ_ANIM_DIC = {}
 
@@ -860,100 +1003,171 @@ def getSelectionSteps(Content = None):
         # Cameras ===========================================================================
         if Selection[n].Name[5] == 'C':
             MC = Selection[n]
-            CameraN = MC.Name
+
             # Camera-------------------------------------------------------------------------
-            #if MC.Cam_06Enable == 'Camera':
-            if MC.Cam_06Enable[0:2] == '00':
-                InitCameraStep = NextStep
-                EndCameraStep = NextStep + (MC.Cam_03AnimEndStep - MC.Cam_01AnimIniStep)
-                #if MC.Cam_01Target == 'Follow a route':
-                if MC.Cam_01Target[0:2] == '02':
+            if MC.Cam_06Enable[0:2] == '00': # 'Camera'
+                # Verification of MC properties
+                if MC.Cam_01Target[0:2] == '01': # 'Follow an object or point'
+                    #Verify target selection
+                    if mc.checkTargetSelection() is False:
+                        ENABLE_01 = 'None'
+                        return
+                if MC.Cam_01Target[0:2] == '02': # 'Follow a route'
+                    #Verify route selection
+                    if mc.checkRouteSelection() is False:
+                        ENABLE_01 = 'None'
+                        return
                     MC.Cam_04AnimTotalSteps = MC.Cam_03AnimEndStep + MC.Cam_03TargetStepsForward
-
-                # Getting camera time animation
-                t = (MC.Cam_03AnimEndStep - MC.Cam_01AnimIniStep) / MC.Cam_05AnimFps
-                MC.Cam_06AnimTime = getTimeAnimation(secs = t)
-
+                if MC.Cam_01Route == True:
+                    #Verify route selection
+                    if mc.checkRouteSelection() is False:
+                        ENABLE_01 = 'None'
+                        return
+                # Resetting obj end step
+                if MC.Cam_03AnimEndStep > MC.Cam_04AnimTotalSteps:
+                    MC.Cam_03AnimEndStep = MC.Cam_04AnimTotalSteps
                 #1. Cameras steps goes to SEQ_ANIM_DIC
+                #New change icon
+                if FreeCAD.GuiUp and ENABLE_00 == 'Camera' and ENABLE_01 != 'Clapperboard':
+                    vp = mc.MovieCameraViewProvider(MC.ViewObject)
+                    vp.setEnabledState(MC.ViewObject, True)
+                CameraN = MC.Name
+                initEndSteps = getInitEndStep(nextStep = NextStep,
+                                            objIniStep =  MC.Cam_01AnimIniStep,
+                                            objEndStep = MC.Cam_03AnimEndStep
+                                            )
+                InitCameraStep = initEndSteps[0]
+                EndCameraStep = initEndSteps[1]
                 Components = (CameraN,
                               InitCameraStep,
                               EndCameraStep,
-                              'None',
-                              InitCameraStep,
-                              EndCameraStep)
-                for s1 in range(MC.Cam_03AnimEndStep + 1):
-                    stepCamera = InitCameraStep + s1
-                    SEQ_ANIM_DIC[stepCamera] = Components
-
+                              'None', # ObjectsN
+                              InitCameraStep, # InitObjectsStep
+                              EndCameraStep) # EndObjectsStep
+                getStepComponents(objTotalSteps = MC.Cam_04AnimTotalSteps,
+                                                 initStep = initEndSteps[0],
+                                                 components = Components,
+                                                 dicStep = SEQ_ANIM_DIC
+                                                 )
+                # Getting obj time animation
+                MC.Cam_06AnimTime = getAnimTime(objIniStep =  MC.Cam_01AnimIniStep,
+                                                objEndStep = MC.Cam_03AnimEndStep,
+                                                objFps = MC.Cam_05AnimFps
+                                                )
                 #2. Adding total camera steps to total animation
                 ANIM_END_STEP = EndCameraStep
                 NextStep = ANIM_END_STEP + 1
 
             # Camera and Objects ----------------------------------------------------------------
-            #if MC.Cam_06Enable == 'Camera and objects' or MC.Cam_06Enable == 'Objects':
+            #'Camera and objects' or 'Objects':
             if MC.Cam_06Enable[0:2] == '01' or MC.Cam_06Enable[0:2] == '02':
                 #1. Verifying
-                if MC.Cam_05ObjectsSelected != None:
-                    Objects = MC.Cam_05ObjectsSelected
-                    pass
+                messag1 = translate('MovieAnimation',
+                                        'You must select at least one MovieObjects in “Group”!')
+                if hasattr(MC, 'Cam_05ObjectsSelected'): # Outdated
+                    if MC.Cam_05ObjectsSelected != []:
+                        Objects = MC.Cam_05ObjectsSelected
+                    else:
+                        #Open Report view
+                        openReportView()
+                        getMessage(message = translate('MovieAnimation',
+                        'You must select at least one MovieObjects in “Cam_05ObjectsSelected”!'))
+                        ENABLE_01 = 'None'
+                        return
                 else:
-                    getMessage(message = translate('MovieAnimation',
-                                                   'Select MovieObjects in “Cam_06Enable“!'))
-                    return
-
-                #2. Setting Init and End camera steps
+                    if MC.Group != []: #New
+                        Objects = MC.Group
+                    else:
+                        #Open Report view
+                        openReportView()
+                        getMessage(message = messag1)
+                        ENABLE_01 = 'None'
+                        return
+                #Verify MO selection
+                for o in range(len(Objects)):
+                    if Objects[o].Name[0:12] != 'MovieObjects':
+                        #Open Report view
+                        openReportView()
+                        getMessage(message = messag1)
+                        ENABLE_01 = 'None'
+                        return
+                    #Verify objects route selection
+                    if Objects[o].Obj_01Route == True and mc.checkObjRouteSelection() is False:
+                        ENABLE_01 = 'None'
+                        return
+                #New change icon
+                if FreeCAD.GuiUp and ENABLE_00 == 'Camera' and ENABLE_01 != 'Clapperboard':
+                    vp = mc.MovieCameraViewProvider(MC.ViewObject)
+                    vp.setEnabledState(MC.ViewObject, True)
+                CameraN = MC.Name
+                #2. Setting End and Total camera steps
                 InitCameraStep = NextStep
+                # Saving original interval from MC
                 interval0 = MC.Cam_04AnimTotalSteps - MC.Cam_03AnimEndStep
+                # Getting total and end steps from MOs
                 MC.Cam_04AnimTotalSteps = 0
+                #Getting total steps from each MovieObjects
                 for n1 in range(len(Objects)):
                     MO = Objects[n1]
-                    interval1 = (MO.Obj_03AnimEndStep - MO.Obj_01AnimIniStep) + 1
+                    #interval1 = (MO.Obj_03AnimEndStep - MO.Obj_01AnimIniStep) + 1
+                    interval1 = MO.Obj_04AnimTotalSteps + 1
                     MC.Cam_04AnimTotalSteps = MC.Cam_04AnimTotalSteps + interval1
-                MC.Cam_04AnimTotalSteps -=1
+                MC.Cam_04AnimTotalSteps -=1 #Discounting step zero
                 MC.Cam_03AnimEndStep = MC.Cam_04AnimTotalSteps - interval0
-                #if MC.Cam_01Target == 'Follow a route':
-                if MC.Cam_01Target[0:2] == '02':
-                    MC.Cam_04AnimTotalSteps = MC.Cam_04AnimTotalSteps + MC.Cam_03TargetStepsForward
-
+                if MC.Cam_01Target[0:2] == '02': # 'Follow a route':
+                    MC.Cam_04AnimTotalSteps = MC.Cam_04AnimTotalSteps + MC.Cam_03TargetStepsForward #?
+                # Resetting MC end step
+                if MC.Cam_03AnimEndStep > MC.Cam_04AnimTotalSteps:
+                    MC.Cam_03AnimEndStep = MC.Cam_04AnimTotalSteps
                 # Getting camera time animation
-                t = (MC.Cam_03AnimEndStep - MC.Cam_01AnimIniStep) / MC.Cam_05AnimFps
-                MC.Cam_06AnimTime = getTimeAnimation(secs = t)
-
+                MC.Cam_06AnimTime = getAnimTime(objIniStep =  MC.Cam_01AnimIniStep,
+                                                objEndStep = MC.Cam_03AnimEndStep,
+                                                objFps = MC.Cam_05AnimFps
+                                                )
                 # Total camera steps adds to EndCameraStep
-                EndCameraStep = EndCameraStep + MC.Cam_03AnimEndStep
-
+                #EndCameraStep = EndCameraStep + MC.Cam_03AnimEndStep
+                EndCameraStep = EndCameraStep + MC.Cam_04AnimTotalSteps
                 #3. Setting Init and End objects step
                 EndObjectsStep = NextStep
                 for n2 in range(len(Objects)):
                     MO = Objects[n2]
-                    # Getting time animation of each MovieObjects
-                    t = (MO.Obj_03AnimEndStep - MO.Obj_01AnimIniStep) / MO.Obj_05AnimFps
-                    MO.Obj_06AnimTime = getTimeAnimation(secs = t)
-
+                    # Updating time animation of each MovieObjects
+                    MO.Obj_06AnimTime = getAnimTime(objIniStep =  MO.Obj_01AnimIniStep,
+                                                    objEndStep = MO.Obj_03AnimEndStep,
+                                                    objFps = MO.Obj_05AnimFps
+                                                    )
                     # Objects key steps
                     InitObjectsStep = NextStep
-                    EndObjectsStep = NextStep + (MO.Obj_03AnimEndStep - MO.Obj_01AnimIniStep)
+                    #EndObjectsStep = NextStep + (MO.Obj_03AnimEndStep - MO.Obj_01AnimIniStep)
+                    EndObjectsStep = NextStep + MO.Obj_04AnimTotalSteps
                     NextStep = EndObjectsStep + 1
-
                 #4. Camera and objects key steps goes to SEQ_ANIM_DIC
                     ObjectsN = MO.Name
-                    Components = (CameraN, InitCameraStep, EndCameraStep, ObjectsN, InitObjectsStep, EndObjectsStep)
-                    for s2 in range(MO.Obj_03AnimEndStep + 1):
-                        stepObjects = InitObjectsStep + s2
-                        SEQ_ANIM_DIC[stepObjects] = Components
-
+                    Components = (CameraN,
+                                 InitCameraStep,
+                                 EndCameraStep,
+                                 ObjectsN,
+                                 InitObjectsStep,
+                                 EndObjectsStep
+                                 )
+                    getStepComponents(objTotalSteps = MO.Obj_04AnimTotalSteps,
+                                      initStep = InitObjectsStep,
+                                      components = Components,
+                                      dicStep = SEQ_ANIM_DIC
+                                      )
                 #5. Adding total camera steps to total animation
                 ANIM_END_STEP = EndCameraStep
                 NextStep = ANIM_END_STEP + 1
 
             # Camera and connection -----------------------------------------------------------
-            #if MC.Cam_06Enable == 'Camera and connection' or MC.Cam_06Enable == 'Connection':
+            # 'Camera and connection' or 'Connection'
             if MC.Cam_06Enable[0:2] == '03' or MC.Cam_06Enable[0:2] == '04':
                 InitCameraStep = NextStep
                 Values = []
                 if MC.Cam_07Connection == 'None':
-                     getMessage(message = TIP_CONNECTION)
-                     return
+                    from MovieMessages import TIP_CONNECTION
+                    getMessage(message = TIP_CONNECTION)
+                    return
                 else:
                 #1. Camera and connection objects steps goes to SEQ_ANIM_DIC
                     co.verification(Selection = MC)
@@ -972,23 +1186,57 @@ def getSelectionSteps(Content = None):
         # Objects ===========================================================================
         if Selection[n].Name[5] == 'O':
             MO = Selection[n]
-            # Getting objects time animation
-            t = (MO.Obj_03AnimEndStep - MO.Obj_01AnimIniStep) / MO.Obj_05AnimFps
-            MO.Obj_06AnimTime = getTimeAnimation(secs = t)
-
+            #Verify objects route selection
+            if MO.Obj_01Route == True and mo.checkObjRouteSelection() is False:
+                ENABLE_01 = 'None'
+                return
+            # Resetting obj end step
+            if MO.Obj_03AnimEndStep > MO.Obj_04AnimTotalSteps:
+                MO.Obj_03AnimEndStep = MO.Obj_04AnimTotalSteps
             #1. Object key steps goes to SEQ_ANIM_DIC
-            InitObjectsStep = NextStep
-            EndObjectsStep = NextStep + (MO.Obj_03AnimEndStep - MO.Obj_01AnimIniStep)
+            #New change icon
+            if FreeCAD.GuiUp and ENABLE_00 == 'Objects' and ENABLE_01 != 'Clapperboard':
+                vp = mo.MovieObjectsViewProvider(MO.ViewObject)
+                vp.setEnabledState(MO.ViewObject, True)
+            MO.Obj_07AnimOnAnim = False
             ObjectsN = MO.Name
-            Components = ('None', None, None, ObjectsN, InitObjectsStep, EndObjectsStep)
-            for s4 in range(MO.Obj_03AnimEndStep + 1):
-                stepObjects1 = InitObjectsStep + s4
-                SEQ_ANIM_DIC[stepObjects1] = Components
+            initEndSteps = []
+            initEndSteps = getInitEndStep(nextStep = NextStep,
+                                         objIniStep =  MO.Obj_01AnimIniStep,
+                                         objEndStep = MO.Obj_03AnimEndStep
+                                         )
+            InitObjectsStep = initEndSteps[0]
+            EndObjectsStep = initEndSteps[1]
+            Components = ('None', # CameraN
+                           None, # InitCameraStep
+                           None, # EndCameraStep
+                           ObjectsN,
+                           InitObjectsStep,
+                           EndObjectsStep
+                           )
+            getStepComponents(objTotalSteps = MO.Obj_04AnimTotalSteps,
+                                             initStep = initEndSteps[0],
+                                             components = Components,
+                                             dicStep = SEQ_ANIM_DIC
+                                             )
+            # Getting objects time animation
+            MO.Obj_06AnimTime = getAnimTime(objIniStep =  MO.Obj_01AnimIniStep,
+                                            objEndStep = MO.Obj_03AnimEndStep,
+                                            objFps = MO.Obj_05AnimFps
+                                            )
             Anim_ObjectsFps = MO.Obj_05AnimFps
-
             #2. Adding total camera steps to total animation
             ANIM_END_STEP = EndObjectsStep
             NextStep = ANIM_END_STEP + 1
+
+    # Getting total steps
+    #print(f'getSelectionSteps, SEQ_ANIM_DIC = {SEQ_ANIM_DIC}')
+    ANIM_TOTAL_STEPS = len(SEQ_ANIM_DIC) - 1
+    #print(f'getSelectionSteps, ANIM_END_STEP = {ANIM_END_STEP}')
+    #print(f'getSelectionSteps, ANIM_TOTAL_STEPS = {ANIM_TOTAL_STEPS}')
+    if ANIM_END_STEP > ANIM_TOTAL_STEPS:
+        ANIM_END_STEP = ANIM_TOTAL_STEPS
+    #print(f'getSelectionSteps, ANIM_END_STEP = {ANIM_END_STEP}')
 
     # Defining the remaining animation elements
     modifyAnimationIndicator(animation = False)
@@ -1001,6 +1249,52 @@ def getSelectionSteps(Content = None):
         ANIM_FPS = AnimCameraFps
 
 # ======================================================================================
+#New
+def getInitEndStep(nextStep = 0,
+                objIniStep =  None,
+                objEndStep = None
+                ):
+
+    """Gets initial and end steps"""
+
+    initStep = nextStep
+    endStep = nextStep + (objEndStep - objIniStep)
+    return initStep, endStep
+
+def getAnimTime(objIniStep =  None,
+                objEndStep = None,
+                objFps = None
+                ):
+
+    """Get the time animation."""
+
+    secs = (objEndStep - objIniStep) / objFps
+    hours, minutes = divmod(secs, 3600)
+    minutes, seconds = divmod(minutes, 60)
+    animTime = f'{int(hours):0>2}:{int(minutes):0>2}:{seconds:0>5.2f}'
+    return animTime
+
+def getStepComponents(objTotalSteps = None,
+                      initStep = None,
+                      components = None,
+                      dicStep = None
+                      ):
+
+    """Gets a dictionary of key step components: (CameraN,
+                              InitCameraStep,
+                              EndCameraStep,
+                              ObjectsN,
+                              InitObjectsStep,
+                              EndObjectsStep
+                              )"""
+    objStep = 0
+    for n in range(objTotalSteps + 1):
+        objStep = initStep + n
+        dicStep[objStep] = components
+    return dicStep
+
+# ======================================================================================
+
 # 2.3. Animation commands
 
 def recoverIniMovieAnimation():
@@ -1011,9 +1305,6 @@ def recoverIniMovieAnimation():
     global CL
     global ANIM_INI_STEP
     global ANIM_CURRENT_STEP
-
-    #if ENABLE_01 == 'Clapperboard':
-        #cl.stopMovieRecord(Clap = CL)
 
     if ANIM_CURRENT_STEP > ANIM_INI_STEP:
         STEP_POS = 'P'
@@ -1069,9 +1360,6 @@ def playMovieAnimation():
     getViewProjection()
 
     if ENABLE_01 == 'Clapperboard':
-        ANIM_INI_STEP = CL.Clap_01AnimIniStep
-        ANIM_END_STEP = CL.Clap_03AnimEndStep
-        ANIM_FPS = CL.Clap_05AnimFps
         CL.Clap_02AnimCurrentStep = ANIM_CURRENT_STEP
     if STEP_POS == 'I':
         ANIM_CURRENT_STEP = ANIM_INI_STEP
@@ -1087,7 +1375,8 @@ def playMovieAnimation():
         time.sleep(pauseTime)
         if ENABLE_01 == 'Clapperboard':
            if CL.Clap_04OnRec == True:
-               cl.runRecordCamera(Back = ANIMATION_BACK)
+               if CL.Clap_02AnimCurrentStep >= CL.Clap_01AnimIniStep:
+                   cl.runRecordCamera(Back = ANIMATION_BACK)
         if ANIMATION_BACK == False:
             if ANIM_CURRENT_STEP < ANIM_END_STEP:
                 ANIM_CURRENT_STEP += 1
@@ -1100,14 +1389,19 @@ def playMovieAnimation():
             break
         if ENABLE_01 == 'Clapperboard':
             CL.Clap_02AnimCurrentStep = ANIM_CURRENT_STEP
-            # Getting clapperboard time animation
-            t = (CL.Clap_02AnimCurrentStep - CL.Clap_01AnimIniStep) / CL.Clap_05AnimFps
-            CL.Clap_06AnimTime = getTimeAnimation(secs = t)
-
+            CL.Clap_06AnimTime = getAnimTime(objIniStep =  CL.Clap_01AnimIniStep,
+                                            objEndStep = CL.Clap_02AnimCurrentStep,
+                                            objFps = CL.Clap_05AnimFps
+                                            )
     modifyAnimationIndicator(animation = False)
+    if ENABLE_01[0:6] == 'Camera':
+        Gui.Selection.clearSelection()
+        Gui.Selection.addSelection(MC)
     if ENABLE_01 == 'Clapperboard':
         CL.Frame_06R1OnRec = False
         CL.Frame_07R2OnRec = False
+        Gui.Selection.clearSelection()
+        Gui.Selection.addSelection(CL)
 
 def getMovieMobile():
 
@@ -1118,9 +1412,21 @@ def getMovieMobile():
     global CO
     global CAMERA_NAME
     global OBJECTS_NAME
+    global ENABLE_01
 
-    CameraN = SEQ_ANIM_DIC[ANIM_CURRENT_STEP][0]
-    ObjectsN = SEQ_ANIM_DIC[ANIM_CURRENT_STEP][3]
+    try:
+        CameraN = SEQ_ANIM_DIC[ANIM_CURRENT_STEP][0]
+        ObjectsN = SEQ_ANIM_DIC[ANIM_CURRENT_STEP][3]
+    except Exception:
+        #Open Report view
+        openReportView()
+        getMessage(message = translate('MovieAnimation',
+            'It seems the number of steps has momentarily \n'
+            'exceeded the total limit. Try re-enabling the \n'
+            'animation again to fix this.'))
+        ENABLE_01 = 'None'
+        pauseMovieAnimation()
+        return
 
     if ObjectsN != 'None':
         if ObjectsN[5] == 'O':
@@ -1139,8 +1445,10 @@ def getMovieMobile():
                     mo.enableObjectsRefresh(refres = False) # New
             MO.Obj_02AnimCurrentStep = (ANIM_CURRENT_STEP - SEQ_ANIM_DIC[ANIM_CURRENT_STEP][4]) + MO.Obj_01AnimIniStep
             # Getting objects time animation
-            t = (MO.Obj_02AnimCurrentStep - MO.Obj_01AnimIniStep) / MO.Obj_05AnimFps
-            MO.Obj_06AnimTime = getTimeAnimation(secs = t)
+            MO.Obj_06AnimTime = getAnimTime(objIniStep =  MO.Obj_01AnimIniStep,
+                                            objEndStep = MO.Obj_02AnimCurrentStep,
+                                            objFps = MO.Obj_05AnimFps
+                                            )
             # Getting objects pos animation
             mo.getMovieObjectsMobile(Selection = MO)
 
@@ -1155,16 +1463,18 @@ def getMovieMobile():
             Gui.Selection.addSelection(MC)
             MC.Cam_07OnAnim = True
         MC.Cam_02AnimCurrentStep = (ANIM_CURRENT_STEP - SEQ_ANIM_DIC[ANIM_CURRENT_STEP][1]) + MC.Cam_01AnimIniStep
-        #if MC.Cam_06Enable == 'Objects' or MC.Cam_06Enable == 'Connection':
+        # 'Objects' or 'Connection':
         if MC.Cam_06Enable[0:2] == '02' or MC.Cam_06Enable[0:2] == '04':
             enableCamera = False
         if enableCamera != False:
             # Getting camera time animation
-            t = (MC.Cam_02AnimCurrentStep - MC.Cam_01AnimIniStep) / MC.Cam_05AnimFps
-            MC.Cam_06AnimTime = getTimeAnimation(secs = t)
+            MC.Cam_06AnimTime = getAnimTime(objIniStep =  MC.Cam_01AnimIniStep,
+                                            objEndStep = MC.Cam_02AnimCurrentStep,
+                                            objFps = MC.Cam_05AnimFps
+                                            )
             # Getting camera pos animation
             mc.getMovieCameraMobile(Selection = MC)
-        #if MC.Cam_06Enable == 'Camera and connection' or MC.Cam_06Enable == 'Connection':
+        # Camera and connection' or 'Connection':
         if MC.Cam_06Enable[0:2] == '03' or MC.Cam_06Enable[0:2] == '04':
             if MC.Cam_07Connection != 'None' and MC.Cam_07Connection != 'ExplodedAssembly':
                 if ANIMATION_BACK == False:
@@ -1229,3 +1539,4 @@ if FreeCAD.GuiUp:
     #New
     FreeCAD.Gui.addCommand('EnableAnimation', EnableAnimation())
     FreeCAD.Gui.addCommand('DisableAnimation', DisableAnimation())
+    #FreeCAD.Gui.addCommand('MovieAnimationGroup', MovieAnimationGroup())

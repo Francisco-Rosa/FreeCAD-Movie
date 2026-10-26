@@ -121,6 +121,8 @@ def connectionIni(Selection = None):
         if EA_PRESENCE == True :
             Gui.runCommand('GoToStart',0)
         else:
+            #Open Report view
+            ma.openReportView()
             FreeCAD.Console.PrintMessage(MESSAGE01)
             return
 
@@ -133,6 +135,8 @@ def connectionIni(Selection = None):
         if WN_PRESENCE == True:
             Gui.runCommand('GoToStart WorkbenchName',0)
         else:
+            #Open Report view
+            ma.openReportView()
             FreeCAD.Console.PrintMessage(MESSAGE02)
             return
     """
@@ -152,6 +156,8 @@ def connectionPrev(Selection = None):
         if WN_PRESENCE == True:
             Gui.runCommand('PrevWorkbenchName',0)
         else:
+            #Open Report view
+            ma.openReportView()
             FreeCAD.Console.PrintMessage(MESSAGE02)
             return
     """
@@ -166,6 +172,8 @@ def connectionPause(Selection = None):
         if EA_PRESENCE == True :
             Gui.runCommand('StopAnimation',0)
         else:
+            #Open Report view
+            ma.openReportView()
             FreeCAD.Console.PrintMessage(MESSAGE01)
             return
 
@@ -178,6 +186,8 @@ def connectionPause(Selection = None):
         if WN_PRESENCE == True:
             Gui.runCommand('PauseAnimationWorkbenchName',0)
         else:
+            #Open Report view
+            ma.openReportView()
             FreeCAD.Console.PrintMessage(MESSAGE02)
             return
     """
@@ -197,6 +207,8 @@ def connectionPos(Selection = None):
         if WN_PRESENCE == True:
             Gui.runCommand('PosWorkbenchName',0)
         else:
+            #Open Report view
+            ma.openReportView()
             FreeCAD.Console.PrintMessage(MESSAGE02)
             return
     """
@@ -211,6 +223,8 @@ def connectionEnd(Selection = None):
         if EA_PRESENCE == True :
             Gui.runCommand('GoToEnd',0)
         else:
+            #Open Report view
+            ma.openReportView()
             FreeCAD.Console.PrintMessage(MESSAGE01)
             return
 
@@ -223,6 +237,8 @@ def connectionEnd(Selection = None):
         if WN_PRESENCE == True:
             Gui.runCommand('GoToEndWorkbenchName',0)
         else:
+            #Open Report view
+            ma.openReportView()
             FreeCAD.Console.PrintMessage(MESSAGE02)
             return
     """
@@ -330,6 +346,8 @@ def connectionPlayBackward(Selection = None):
         if CL != None:
             CL.Clap_04OnRec = False
     else:
+        #Open Report view
+        ma.openReportView()
         FreeCAD.Console.PrintMessage(MESSAGE01)
         return
 
@@ -355,6 +373,8 @@ def connectionPlay(Selection = None):
         if CL != None:
             CL.Clap_04OnRec = False
     else:
+        #Open Report view
+        ma.openReportView()
         FreeCAD.Console.PrintMessage(MESSAGE01)
         return
 

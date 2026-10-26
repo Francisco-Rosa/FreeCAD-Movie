@@ -66,7 +66,7 @@ class Clapperboard:
 
         from MovieMessages import TIP_ANIM_INIT, TIP_ANIM_END, TIP_FRAME_NAME
         from MovieMessages import TIP_FRAME_WIDTH, TIP_FRAME_HEIGHT, TIP_FRAME_OUTPUT
-        from MovieMessages import TIP_FRAME_TYPE, TIP_FRAME_RENDER, TIP_VIDEO_NAME
+        from MovieMessages import TIP_FRAME_TYPE, TIP_FRAME_RENDER, TIP_RENDER_PREVIEW, TIP_VIDEO_NAME
         from MovieMessages import TIP_VIDEO_NUMBER, TIP_VIDEO_OUTPUT, TIP_VIDEO_FPS, TIP_VIDEO_PLAY
 
         pl = obj.PropertiesList
@@ -83,6 +83,7 @@ class Clapperboard:
                                                 '\n'
                                                 'It is only indicative.'
                                                 )).Clap_02AnimCurrentStep = 0
+            obj.setEditorMode('Clap_02AnimCurrentStep', ['ReadOnly'])
         if not 'Clap_03AnimEndStep' in pl:
             obj.addProperty('App::PropertyInteger', 'Clap_03AnimEndStep', 'Animation config',
                                                 TIP_ANIM_END).Clap_03AnimEndStep = 100
@@ -97,6 +98,7 @@ class Clapperboard:
                                                 '\n'
                                                 'It is only indicative.'
                                                 )).Clap_04AnimTotalSteps = 100
+            obj.setEditorMode('Clap_04AnimTotalSteps', ['ReadOnly'])
         if not 'Clap_05AnimFps' in pl:
             obj.addProperty('App::PropertyInteger', 'Clap_05AnimFps', 'Animation config',
                                                 QT_TRANSLATE_NOOP('App::Property',
@@ -119,6 +121,7 @@ class Clapperboard:
                                                 )).Clap_06AnimTime = time.strftime("%H:%M:%S",
                                                                                     time.gmtime(
                                                                                     3.33))
+            obj.setEditorMode('Clap_06AnimTime', ['ReadOnly'])
         # Clapperboard config
         if not 'Clap_01Name' in pl:
             obj.addProperty('App::PropertyString', 'Clap_01Name', 'Clapperboard config',
@@ -143,6 +146,7 @@ class Clapperboard:
                                                'will be inserted in the nomenclature \n'
                                                'of each frame created.'
                                                )).Clap_02Take = 'Take_01'
+        '''
         if not 'Clap_03AnimationSelection' in pl:
             obj.addProperty('App::PropertyLinkList', 'Clap_03AnimationSelection', 'Clapperboard config',
                                                 QT_TRANSLATE_NOOP('App::Property',
@@ -151,6 +155,7 @@ class Clapperboard:
                                                 'Select the MovieCameras and/or the MovieObjects \n'
                                                 'to animate with this Clapperboard.'
                                                 )).Clap_03AnimationSelection = None
+        '''
         if not 'Clap_04OnRec' in pl:
             obj.addProperty('App::PropertyBool', 'Clap_04OnRec', 'Clapperboard config',
                                                QT_TRANSLATE_NOOP('App::Property',
@@ -205,6 +210,20 @@ class Clapperboard:
         if not 'Frame_08RenderProject' in pl:
             obj.addProperty('App::PropertyLink', 'Frame_08RenderProject', 'Frames config',
                                                 TIP_FRAME_RENDER).Frame_08RenderProject = None
+        if not 'Frame_09RenderCamera' in pl:
+            obj.addProperty('App::PropertyLink', 'Frame_09RenderCamera', 'Frames config',
+                                                    QT_TRANSLATE_NOOP('App::Property',
+                                                    'Render camera selection for the Clapperboard animation.\n'
+                                                    '\n'
+                                                    'If you have chosen “Render” in frame type (“Frame_05Type”), \n'
+                                                    'and you wish to preview the render framing in the 3D view, \n'
+                                                    'create a Render Camera (Render WB) and specify it here.\n'
+                                                    '\n'
+                                                    'It is not mandatory.')
+                                                    ).Frame_09RenderCamera = None
+        if not 'Frame_10RenderCrop' in pl:
+            obj.addProperty('App::PropertyBool', 'Frame_10RenderCrop', 'Frames config',
+                                                TIP_RENDER_PREVIEW).Frame_10RenderCrop = False
         # Video group config
         if not 'Video_01Name' in pl:
             obj.addProperty('App::PropertyString', 'Video_01Name', 'Video config',
@@ -236,11 +255,34 @@ class Clapperboard:
 class ClapperboardViewProvider:
     def __init__(self, obj):
         obj.Proxy = self
+        #New
+        self.state = 'Normal'
 
     def getIcon(self):
         __dir__ = os.path.dirname(__file__)
-        return __dir__ + '/icons/ClapperboardIcon.svg'
+        #New
+        try:
+            self.state
+        except Exception:
+            #foundObjs = []
+            for obj in FreeCAD.ActiveDocument.Objects:
+                if obj.Name[0:12] == 'Clapperboard':
+                    self.setEnabledState(obj.ViewObject, True)
+                    self.setEnabledState(obj.ViewObject, False)
+        if self.state == 'Enabled':
+            return __dir__ + '/icons/ClapperboardEnabledIcon.svg'
+        else:
+            return __dir__ + '/icons/ClapperboardIcon.svg'
+    #New
+    def setEnabledState(self, obj, enableActive):
 
+        if enableActive:
+            self.state = 'Enabled'
+        else:
+            self.state = 'Normal'
+        obj.signalChangeIcon()
+
+#================================
 class CreateClapperboard:
 
     """Creates a Clapperboard."""
@@ -293,26 +335,37 @@ class CreateClapperboard:
         #Pre-selected objects (MovieCameras or Movieobjects)
         listObjects = []
         listObjects = Gui.Selection.getSelection()
+        Gui.Selection.clearSelection()
         if not listObjects:
+            #Open Report view
+            ma.openReportView()
             FreeCAD.Console.PrintMessage(translate('MovieClapperboard',
                         'Select at least one MovieCamera or MovieObject \n'
                         'to create a Clapperboard!') + '\n')
             return
         else:
+            #Verify Clapperboard selection
             for n in range(len(listObjects)):
                 if listObjects[n].Name[0:12] == 'MovieObjects' or listObjects[n].Name[0:11] == 'MovieCamera':
                     pass
                 else:
+                    #Open Report view
+                    ma.openReportView()
                     FreeCAD.Console.PrintMessage(translate('MovieClapperboard',
                         'To create a Clapperboard the pre-selected objects \n'
                         'must be MovieCamera or MovieObjects!') + '\n')
                     return
-            Gui.Selection.clearSelection()
+
             ActivatedClapperboard(self)
-            # Put MovieCamera or MovieObeject into CL.Clap_03AnimationSelection
-            CL.Clap_03AnimationSelection = listObjects
+            # Put MovieCamera or MovieObject into CL.Clap_03AnimationSelection
+            if hasattr(CL, 'Clap_03AnimationSelection'): # Outdated
+                CL.Clap_03AnimationSelection = listObjects
+            else:
+                # Put MovieCamera or MovieObject into CL.Group
+                CL.Group = listObjects # New
             # Enable Clapperboard
-            ma.enableMovieClapperboard(obj = CL)
+            ma.enableMovieClapperboard(obj = CL, clapNew = True)
+            Gui.Selection.addSelection(CL)
             FreeCAD.ActiveDocument.recompute()
 
 def ActivatedClapperboard(self):
@@ -327,6 +380,20 @@ def ActivatedClapperboard(self):
     CL = None
     CL = folder
     CL.Label = default_label
+    # New - Create Animation Group
+    '''
+    doc = FreeCAD.ActiveDocument
+    try:
+        doc.MovieAnimationGroup
+        movieAnimGroup = doc.MovieAnimationGroup
+    except Exception:
+        movieAnimGroup = doc.addObject('App::DocumentObjectGroup',
+                                            'MovieAnimationGroup')
+        movieAnimGroup.Label = translate('MovieClapperboard',
+                                            'Animation')
+    #New Put Clapperboard into Animation group
+    #doc.getObject(movieAnimGroup.Name).addObject(CL)
+    '''
     FreeCAD.ActiveDocument.recompute()
 
 # New
@@ -490,18 +557,19 @@ class RecordTaskPanel:
 
     """Provides a task panel for recording frames and videos."""
 
-
     def __init__(self):
 
         from MovieMessages import MESSAGE, TIP_ANIM_INIT, TIP_ANIM_END, TIP_FRAME_NAME
         from MovieMessages import TIP_FRAME_WIDTH, TIP_FRAME_HEIGHT, TIP_FRAME_OUTPUT
-        from MovieMessages import TIP_FRAME_TYPE, TIP_FRAME_RENDER, TIP_RENDER_PROJECT, TIP_VIDEO_NAME
-        from MovieMessages import TIP_VIDEO_NUMBER, TIP_VIDEO_OUTPUT, TIP_VIDEO_FPS, TIP_VIDEO_PLAY
+        from MovieMessages import TIP_FRAME_TYPE, TIP_FRAME_RENDER, TIP_RENDER_PROJECT
+        from MovieMessages import TIP_RENDER_CAMERA, TIP_RENDER_PREVIEW, TIP_VIDEO_NAME
+        from MovieMessages import TIP_VIDEO_NUMBER, TIP_VIDEO_OUTPUT, TIP_VIDEO_FPS
+        from MovieMessages import TIP_VIDEO_PLAY
 
         ## The main widget
         self.form = QtWidgets.QWidget()
         self.form.setWindowTitle(translate('MovieClapperboard',
-                                            'Recording settings'))
+                                           'Recording settings'))
         ## Layout
         layout = QtWidgets.QVBoxLayout(self.form)
         ## Labels, Inputs, Buttons
@@ -560,9 +628,9 @@ class RecordTaskPanel:
         #label_render_project
         self.label_render_project = QtWidgets.QLabel(translate('MovieClapperboard',
                                                                'Render Project:'))
-        #lineEdit_render_project
+        #label_project_label
         try:
-            project_label = CL.Frame_08RenderProject.Label
+            project_label = CL.Frame_08RenderProject.Name + '(' + CL.Frame_08RenderProject.Label + ')'
         except Exception:
             project_label = translate('MovieClapperboard', 'None')
         self.label_project_label = QtWidgets.QLabel(project_label)
@@ -581,12 +649,8 @@ class RecordTaskPanel:
         self.label_warning_render.setSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding,
                                          QtWidgets.QSizePolicy.Policy.Expanding)
         self.label_warning_render.setWordWrap(True)
+        self.label_warning_render.setVisible(False)
         self.label_note1.setVisible(False)
-        if self.comboBox_view.currentText()[0:2] == '00':
-            self.label_render_project.setVisible(False)
-            self.label_project_label.setVisible(False)
-            self.toolButton_render_project.setVisible(False)
-            self.label_warning_render.setVisible(False)
         self.comboBox_view.activated.connect(self.toggled_render)
         # Resolution
         self.label_resolution = QtWidgets.QLabel(translate('MovieClapperboard',
@@ -608,6 +672,38 @@ class RecordTaskPanel:
         self.row_hw.addWidget(self.spinBox_resolution_h, 0, 1)
         self.row_hw.addWidget(self.label_resolution_w, 0, 2)
         self.row_hw.addWidget(self.spinBox_resolution_w, 0, 3)
+        # Render camera
+        self.label_render_camera = QtWidgets.QLabel(translate('MovieClapperboard',
+                                                              'Render camera:'))
+        try:
+            camera_label = CL.Frame_09RenderCamera.Label
+        except Exception:
+            camera_label = translate('MovieClapperboard', 'None')
+        self.label_camera_label = QtWidgets.QLabel(camera_label)
+        self.toolButton_render_camera = QtWidgets.QToolButton()
+        self.toolButton_render_camera.setToolTip(TIP_RENDER_CAMERA)
+        self.toolButton_render_camera.clicked.connect(self.open_select_render_camera)
+        self.toolButton_render_camera.setText('...')
+        self.checkBox_preview = QtWidgets.QCheckBox()
+        self.checkBox_preview.setText(translate('MovieClapperboard',
+                                                'Crop the 3D view'))
+        self.checkBox_preview.setToolTip(TIP_RENDER_PREVIEW)
+        self.row_cam_render = QtWidgets.QGridLayout()
+        self.row_cam_render.addWidget(self.label_render_camera, 0, 0)
+        self.row_cam_render.addWidget(self.label_camera_label, 0, 1)
+        self.row_cam_render.addWidget(self.toolButton_render_camera, 0, 2)
+        self.checkBox_preview.setChecked(False)
+        self.checkBox_preview.setEnabled(False)
+        try:
+            if CL.Frame_09RenderCamera.Name[0:6] == 'Camera':
+                self.checkBox_preview.setEnabled(True)
+                self.checkBox_preview.setChecked(CL.Frame_10RenderCrop)
+        except:
+            pass
+        if self.comboBox_view.currentText()[0:2] == '00':
+            self.label_render_project.setEnabled(False)
+            self.label_project_label.setEnabled(False)
+            self.toolButton_render_project.setEnabled(False)
         # Interval
         self.label_interval = QtWidgets.QLabel(translate('MovieClapperboard',
                                                         'Frame interval:'))
@@ -723,6 +819,8 @@ class RecordTaskPanel:
         self.checkBox_save_video.toggled.connect(self.toolButton_video.setEnabled)
         self.checkBox_save_video.toggled.connect(self.checkBox_play_video.setEnabled)
         self.checkBox_save_video.clicked.connect(self.checkBox_play_video_toggled)
+        self.checkBox_preview.clicked.connect(self.resolution_toggled)
+        # Warning cv2
         self.label_cv2 = QtWidgets.QLabel(MESSAGE)
         self.label_cv2.setSizePolicy(QtWidgets.QSizePolicy.Policy.Expanding,
                                          QtWidgets.QSizePolicy.Policy.Expanding)
@@ -744,7 +842,6 @@ class RecordTaskPanel:
             self.lineEdit_output_video.setEnabled(False)
             self.toolButton_video.setEnabled(False)
             self.checkBox_save_video.setEnabled(False)
-            #self.lineEdit_output_path.setText(folder_doc_path)
             self.label_cv2.setVisible(True)
         self.row2 = QtWidgets.QGridLayout()
         self.row2.addWidget(self.lineEdit_output_video, 0, 0)
@@ -760,12 +857,14 @@ class RecordTaskPanel:
         layout.addLayout(self.row_instructions)
         layout.addWidget(self.label_text)
         layout.addWidget(self.label_frames)
+        layout.addWidget(self.label_resolution)
+        layout.addLayout(self.row_hw)
         layout.addLayout(self.row_type)
         layout.addLayout(self.row_render_project)
         layout.addWidget(self.label_note1)
         layout.addWidget(self.label_warning_render)
-        layout.addWidget(self.label_resolution)
-        layout.addLayout(self.row_hw)
+        layout.addLayout(self.row_cam_render)
+        layout.addWidget(self.checkBox_preview)
         layout.addWidget(self.label_interval)
         layout.addLayout(self.row_steps)
         layout.addLayout(self.row_frame_name)
@@ -798,42 +897,74 @@ class RecordTaskPanel:
             self.toolButton_instructions.setArrowType(
                        QtCore.Qt.ArrowType.DownArrow)
 
+    def resolution_toggled(self,
+                           #obj = None
+                           ):
+
+        """Adjust Render Camera if so"""
+
+        CL.Frame_02Width = self.spinBox_resolution_w.value()
+        CL.Frame_03Height = self.spinBox_resolution_h.value()
+        if CL.Frame_09RenderCamera:
+            cam = CL.Frame_09RenderCamera
+            if checkRenderCameraSelection(selection = cam) is not False:
+                CL.Frame_10RenderCrop = self.checkBox_preview.isChecked()
+                getRenderCameraZoom(obj = CL)
+            else:
+                CL.Frame_10RenderCrop = False
+
     def toggled_render(self):
 
         """Toggles the visibility of the render project fields."""
 
+        # Type view
+        prefix = self.comboBox_view.currentIndex()
+        type_view_list = CL.getEnumerationsOfProperty("Frame_05Type")
+        CL.Frame_05Type = type_view_list[prefix]
+
         if self.comboBox_view.currentText()[0:2] == '00':
-            self.label_render_project.setVisible(False)
-            self.label_project_label.setVisible(False)
-            self.toolButton_render_project.setVisible(False)
+            self.label_render_project.setEnabled(False)
+            self.label_project_label.setEnabled(False)
+            self.toolButton_render_project.setEnabled(False)
             self.label_note1.setVisible(False)
             self.label_warning_render.setVisible(False)
+
         if self.comboBox_view.currentText()[0:2] == '01':
-            self.label_render_project.setVisible(True)
-            self.label_project_label.setVisible(True)
-            self.toolButton_render_project.setVisible(True)
-            self.label_warning_render.setVisible(True)
+            self.label_render_project.setEnabled(True)
+            self.label_project_label.setEnabled(True)
+            self.toolButton_render_project.setEnabled(True)
             if self.label_project_label.text()[0:7] == 'Project':
                 self.label_note1.setVisible(False)
                 self.label_warning_render.setVisible(False)
+            else:
+                self.label_warning_render.setVisible(True)
 
     def open_select_render_project(self):
 
         """Opens the dialog to select the render project."""
 
-        global CL
+        #global CL
         sel_obj = []
         try:
-            sel_obj = open_project_selection()[0]
-            if sel_obj != []:
-                if sel_obj.Name[0:7] == 'Project':
-                    CL.Frame_08RenderProject = sel_obj
-                    proj_render = sel_obj.Name + '(' + sel_obj.Label + ')'
-                    self.label_project_label.setText(proj_render)
-                else:
-                    FreeCAD.Console.PrintMessage(translate('MovieClapperboard',
-                        'The selected object is not a Render Project!') + '\n')
-                    return
+            sel_obj = open_project_selection(name = 'Projec')[0]
+            #Check render project selection
+            proj_render = checkRenderProjectSelection(selection = sel_obj)
+            self.label_project_label.setText(proj_render)
+            self.label_warning_render.setVisible(False)
+        except:
+            pass
+
+    def open_select_render_camera(self):
+
+        """Opens the dialog to select the render camera."""
+
+        sel_obj = []
+        try:
+            sel_obj = open_project_selection(name = 'Camera')[0]
+            #Check render camera selection
+            if not checkRenderCameraSelection(selection = sel_obj) is False:
+                self.label_camera_label.setText(sel_obj.Label)
+                self.checkBox_preview.setEnabled(True)
         except:
             pass
 
@@ -915,10 +1046,6 @@ class RecordTaskPanel:
         CL.Frame_03Height = self.spinBox_resolution_h.value()
         # Output path
         CL.Frame_04OutputPath = self.lineEdit_output_path.text()
-        # Type view
-        prefix = self.comboBox_view.currentIndex()
-        type_view_list = CL.getEnumerationsOfProperty("Frame_05Type")
-        CL.Frame_05Type = type_view_list[prefix]
         # Save video
         CL.Video_01Name = self.lineEdit_name.text()
         CL.Video_02Number = self.spinBox_number.value()
@@ -932,6 +1059,7 @@ class RecordTaskPanel:
                 projectRender = CL.Frame_08RenderProject
                 projectRender.RenderHeight = CL.Frame_03Height
                 projectRender.RenderWidth = CL.Frame_02Width
+                projectRender.OpenAfterRender = False
             except Exception:
                 self.label_note1.setVisible(True)
                 self.label_warning_render.setVisible(True)
@@ -947,6 +1075,8 @@ class RecordTaskPanel:
             CL.Video_06PlayVideo = True
             print('playVideo was activated')
         # Warning
+        #Open Report view
+        ma.openReportView()
         FreeCAD.Console.PrintMessage(translate('MovieClapperboard',
                                                'Recording is enabled! \n'
                                                'Click the animation playback button (forward or \n'
@@ -982,23 +1112,27 @@ class RecordTaskPanel:
                 QtWidgets.QDialogButtonBox.Cancel)
 
 class GroupRestrictedSelector(QtWidgets.QDialog):
-    def __init__(self):
+    def __init__(self, obj_name = ''):
 
         """Selection of Render Project"""
 
-        from MovieMessages import TIP_RENDER_PROJECT
+        from MovieMessages import TIP_RENDER_PROJECT, TIP_RENDER_CAMERA
 
         super(GroupRestrictedSelector, self).__init__(Gui.getMainWindow())
-        self.setWindowTitle(TIP_RENDER_PROJECT)
+        if obj_name == 'Projec':
+            self.setWindowTitle(TIP_RENDER_PROJECT)
+            label_group = translate('MovieClapperboard', 'Render Projects')
+        if obj_name == 'Camera':
+            self.setWindowTitle(TIP_RENDER_CAMERA)
+            label_group = translate('MovieClapperboard', 'Render Cameras')
         self.setMinimumSize(450, 500)
         layout = QtWidgets.QVBoxLayout(self)
         #TreeWidget configured for multiple selection
         self.tree = QtWidgets.QTreeWidget()
-        label_group = translate('MovieClapperboard', 'Render Projects')
         label_type = translate('MovieClapperboard', 'Type')
         self.tree.setHeaderLabels([label_group, label_type])
         self.tree.setSelectionMode(QtWidgets.QAbstractItemView.ExtendedSelection)
-        self.populate_tree()
+        self.populate_tree(filter_name = obj_name)
         layout.addWidget(self.tree)
         #Button
         self.btn_confirm = QtWidgets.QPushButton(
@@ -1008,7 +1142,7 @@ class GroupRestrictedSelector(QtWidgets.QDialog):
         self.btn_confirm.clicked.connect(self.accept)
         layout.addWidget(self.btn_confirm)
 
-    def populate_tree(self):
+    def populate_tree(self, filter_name = ''):
         doc = FreeCAD.ActiveDocument
         if not doc: return
 
@@ -1025,7 +1159,7 @@ class GroupRestrictedSelector(QtWidgets.QDialog):
             child_item.setData(0, QtCore.Qt.UserRole, obj.Name)
             #Add available icon
             if hasattr(obj, 'ViewObject'):
-                if obj.Name[0:7] == 'Project':
+                if obj.Name[0:6] == filter_name:
                     child_item.setIcon(0, obj.ViewObject.Icon)
                     group_item.addChild(child_item)
         group_item.setExpanded(True)
@@ -1034,11 +1168,11 @@ class GroupRestrictedSelector(QtWidgets.QDialog):
         return [FreeCAD.ActiveDocument.getObject(item.data(0, QtCore.Qt.UserRole))
                 for item in self.tree.selectedItems() if item.data(0, QtCore.Qt.UserRole)]
 
-def open_project_selection():
+def open_project_selection(name = ''):
 
     """Open the objects selection dialog"""
 
-    dialog = GroupRestrictedSelector()
+    dialog = GroupRestrictedSelector(obj_name = name)
     if dialog.exec_() == QtWidgets.QDialog.Accepted:
         selection = dialog.get_selected_objects()
         return selection
@@ -1071,6 +1205,76 @@ def warning_recording():
 '''
 # ======================================================================================
 # 2. Command functions
+#New
+def checkRenderProjectSelection(selection = None):
+
+    """Checks render projetc selection"""
+
+    #if selection or selection != []:
+    if selection:
+        if selection.Name[0:7] == 'Project':
+            CL.Frame_08RenderProject = selection
+            proj_render = selection.Name + '(' + selection.Label + ')'
+            return proj_render
+        else:
+            #Open Report view
+            ma.openReportView()
+            FreeCAD.Console.PrintMessage(translate('MovieClapperboard',
+                'The selected object is not a Render Project!') + '\n')
+            return False
+    else:
+        #Open Report view
+        ma.openReportView()
+        FreeCAD.Console.PrintMessage(translate('MovieClapperboard',
+            'You have to indicate a Render Project in “Frame_08RenderProject”!') + '\n')
+        return False
+
+def checkRenderCameraSelection(selection = None):
+
+    """Checks render camera selection"""
+
+    if selection:
+        if selection.Name[0:6] == 'Camera':
+            CL.Frame_09RenderCamera = selection
+            cam_render = selection.Name + '(' + selection.Label + ')'
+            return cam_render
+        else:
+            #Open Report view
+            ma.openReportView()
+            FreeCAD.Console.PrintMessage(translate('MovieClapperboard',
+                'The selected object is not a Render Camera!') + '\n')
+            return False
+    else:
+        #Open Report view
+        ma.openReportView()
+        FreeCAD.Console.PrintMessage(translate('MovieClapperboard',
+            'You have to indicate a Render Camera in “Frame_09RenderCamera ”!') + '\n')
+        return False
+
+    #getRenderCameraZoom(obj = CL)
+
+def getRenderCameraZoom(obj = None):
+
+    """Gets Render camera properties from 3D view
+       and applies crop viewport"""
+
+    CL = obj
+
+    selection = CL.Frame_09RenderCamera
+
+    if checkRenderCameraSelection(selection) is not False:
+        renderCamera = None
+        renderCamera = CL.Frame_09RenderCamera
+        if CL.Frame_10RenderCrop is True:
+            renderCamera.ViewObject.Proxy.set_camera_from_gui()
+            renderCamera.AspectRatio = CL.Frame_02Width/CL.Frame_03Height
+            renderCamera.ViewportMapping = 'CROP_VIEWPORT_FILL_FRAME'
+            renderCamera.ViewObject.Proxy.set_gui_from_camera()
+        else:
+            renderCamera.ViewportMapping = 'ADJUST_CAMERA'
+            renderCamera.ViewObject.Proxy.set_gui_from_camera()
+    else:
+        return
 
 def getCLObject(cl = None):
 
@@ -1121,6 +1325,12 @@ def stopMovieRecord(Clap = None):
     CL.Clap_04OnRec = False
     CL.Frame_06R1OnRec = False
     CL.Frame_07R2OnRec = False
+    if CL.Frame_05Type[0:2] == '01':
+        try:
+            projectRender = CL.Frame_08RenderProject
+            projectRender.OpenAfterRender = True
+        except:
+            pass
     FreeCAD.Console.PrintMessage(translate('MovieClapperboard',
                                            'Recording has been disabled!') + '\n'
                                            )
@@ -1131,7 +1341,6 @@ def runRecordCamera(Back = False):
 
     camNum = str(f'{CL.Clap_01Name:0>2}')
     takeNum = str(f'{CL.Clap_02Take:0>2}')
-    #totalFrames = int(CL.Clap_03AnimEndStep - CL.Clap_01AnimIniStep)
     totalFrames = CL.Clap_03AnimEndStep - CL.Clap_01AnimIniStep + 1
     subTotalFrames = CL.Clap_02AnimCurrentStep - CL.Clap_01AnimIniStep
     perFrames = str(int(subTotalFrames / totalFrames * 100)) + '%'
@@ -1155,16 +1364,26 @@ def runRecordCamera(Back = False):
         else:
             frameNum = str(f'{(CL.Clap_04AnimTotalSteps - CL.Clap_02AnimCurrentStep):0>4}')
         frameFinalName = f'{CL.Frame_01Name}_{camNum}_{takeNum}_{CL.Frame_05Type}_{frameNum}.png'
-        #project =  FreeCAD.getDocument(FreeCAD.ActiveDocument.Label).getObject(CL.Frame_08RenderProject.Name)
-        project =  CL.Frame_08RenderProject
+        if CL.Frame_09RenderCamera:
+            getRenderCameraZoom(obj = CL)
+        #Verify Render Project
+        if checkRenderProjectSelection(selection = CL.Frame_08RenderProject) is False:
+            FreeCAD.Gui.runCommand('StopMovieRecord')
+            return
+        #Verify render engine
+        try:
+            project =  CL.Frame_08RenderProject
+        except Exception:
+            ma.openReportView() #Open Report view
+            FreeCAD.Console.PrintMessage(translate('MovieClapperboard',
+                                                   'There is an error in the Render configuration! \n'
+                                                   'Please check its settings.') + '\n')
+            return
         if CL.Clap_02AnimCurrentStep == START_RENDER_FRAME:
             output_file=project.Proxy.render(skip_meshing=False, wait_for_completion=True)
         else:
             output_file=project.Proxy.render(skip_meshing=True, wait_for_completion=True)
         shutil.move(output_file, f'{CL.Frame_04OutputPath}/{frameFinalName}')
-        # Close render window
-        if project.OpenAfterRender:
-            Gui.runCommand('Std_CloseActiveWindow',0)
         from MovieMessages import VIEW_01
         typeImage = VIEW_01
 
@@ -1188,6 +1407,8 @@ def createVideo(auto = False):
     try:
         import cv2
     except Exception:
+        #Open Report view
+        ma.openReportView()
         FreeCAD.Console.PrintMessage(MESSAGE)
         return
 
@@ -1274,6 +1495,8 @@ def playVideo(auto = False):
     try:
         import cv2
     except Exception:
+        #Open Report view
+        ma.openReportView()
         FreeCAD.Console.PrintMessage(MESSAGE)
         return
 
@@ -1303,6 +1526,8 @@ def playVideo(auto = False):
     fps2 = int(cap.get(cv2.CAP_PROP_FPS))
 
     if cap.isOpened() == False:
+        #Open Report view
+        ma.openReportView()
         FreeCAD.Console.PrintMessage(translate('MovieClapperboard',
                                                'Error: video file not found!') + '\n')
         return

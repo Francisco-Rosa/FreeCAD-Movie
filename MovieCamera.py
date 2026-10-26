@@ -69,7 +69,10 @@ class MovieCamera:
                                                     'Initial step of the MovieCamera animation.\n'
                                                     '\n'
                                                     'Indicate the step which this section of \n'
-                                                    'the animation will begin.')
+                                                    'the animation will begin.'
+                                                    '\n'
+                                                    'Changes will only take effect after \n'
+                                                    'MovieCamera has been re-enabled.')
                                                     ).Cam_01AnimIniStep = 0
         if not 'Cam_02AnimCurrentStep' in pl:
             obj.addProperty('App::PropertyInteger', 'Cam_02AnimCurrentStep', 'Movie Camera 01 - Animation config',
@@ -78,6 +81,7 @@ class MovieCamera:
                                                     '\n'
                                                     'It is only indicative.')
                                                     ).Cam_02AnimCurrentStep = 0
+            obj.setEditorMode('Cam_02AnimCurrentStep', ['ReadOnly'])
         if not 'Cam_03AnimEndStep' in pl:
             obj.addProperty('App::PropertyInteger', 'Cam_03AnimEndStep', 'Movie Camera 01 - Animation config',
                                                     QT_TRANSLATE_NOOP('App::Property',
@@ -94,10 +98,16 @@ class MovieCamera:
                                                     QT_TRANSLATE_NOOP('App::Property',
                                                     'Total steps of the MovieCamera animation.\n'
                                                     '\n'
-                                                    'It is the result of the difference between \n'
-                                                    'end step (“Cam_03AnimEndStep”) and initial \n'
-                                                    'step (“Cam_01AnimIniStep”).')
-                                                    ).Cam_04AnimTotalSteps = 100
+                                                    'Indicate the total number of steps for \n'
+                                                    'this animation section.'
+                                                    '\n'
+                                                    'If the MovieCamera is animated in conjunction \n'
+                                                    'with MovieObjects or Connections, the value will \n'
+                                                    'be determined based on them.\n'
+                                                    '\n'
+                                                    'Changes will only take effect after \n'
+                                                    'MovieCamera has been re-enabled.'
+                                                    )).Cam_04AnimTotalSteps = 100
         if not 'Cam_05AnimFps' in pl:
             obj.addProperty('App::PropertyInteger', 'Cam_05AnimFps', 'Movie Camera 01 - Animation config',
                                                     QT_TRANSLATE_NOOP('App::Property',
@@ -119,6 +129,7 @@ class MovieCamera:
                                                     '\n'
                                                     'It is only indicative.')
                                                     ).Cam_06AnimTime = time.strftime('%H:%M:%S', time.gmtime(3.33))
+            obj.setEditorMode('Cam_06AnimTime', ['ReadOnly'])
         if not 'Cam_07OnAnim' in pl:
             obj.addProperty('App::PropertyBool', 'Cam_07OnAnim', 'Movie Camera 01 - Animation config',
                                                     QT_TRANSLATE_NOOP('App::Property',
@@ -129,6 +140,7 @@ class MovieCamera:
                                                     'buttons.')
                                                     ).Cam_07OnAnim = False
         # Movie Camera 02 - Camera config
+        '''
         if not 'Cam_01Type' in pl:
             from MovieMessages import VIEW_00, VIEW_01
             obj.addProperty('App::PropertyEnumeration', 'Cam_01Type', 'Movie Camera 02 - Camera config',
@@ -167,6 +179,7 @@ class MovieCamera:
                                                     'Configure the height in pixels that will compose \n'
                                                     'the aspect ratio of the image (“AspectRatio”).')
                                                     ).Cam_04RenderHeight = 600
+
         if not 'Cam_05ObjectsSelected' in pl:
             obj.addProperty('App::PropertyLinkList', 'Cam_05ObjectsSelected', 'Movie Camera 02 - Camera config',
                                                     QT_TRANSLATE_NOOP('App::Property',
@@ -175,6 +188,7 @@ class MovieCamera:
                                                     'Select the MoveObjects to animate together \n'
                                                     'with this MovieCamera.')
                                                     ).Cam_05ObjectsSelected = None
+        '''
         if not 'Cam_06Enable' in pl:
             obj.addProperty('App::PropertyEnumeration', 'Cam_06Enable', 'Movie Camera 02 - Camera config',
                                                     QT_TRANSLATE_NOOP('App::Property',
@@ -473,10 +487,32 @@ class MovieCamera:
 class MovieCameraViewProvider:
     def __init__(self, obj):
         obj.Proxy = self
+        #New
+        self.state = 'Normal'
 
     def getIcon(self):
         __dir__ = os.path.dirname(__file__)
-        return __dir__ + '/icons/MovieCameraIcon.svg'
+        #New
+        try:
+            self.state
+        except Exception:
+            #foundObjs = []
+            for obj in FreeCAD.ActiveDocument.Objects:
+                if obj.Name[0:11] == 'MovieCamera':
+                    self.setEnabledState(obj.ViewObject, True)
+                    self.setEnabledState(obj.ViewObject, False)
+        if self.state == 'Enabled':
+            return __dir__ + '/icons/MovieCameraEnabledIcon.svg'
+        else:
+            return __dir__ + '/icons/MovieCameraIcon.svg'
+    #New
+    def setEnabledState(self, obj, enableActive):
+
+        if enableActive:
+            self.state = 'Enabled'
+        else:
+            self.state = 'Normal'
+        obj.signalChangeIcon()
 
 class CreateMovieCamera:
 
@@ -517,15 +553,18 @@ class CreateMovieCamera:
                                               '“Cam_01_Target” and specify the object in \n'
                                               '“Cam_02_Target Object Selection”.\n'
                                               '\n'
-                                              '5. Make finer adjustments in the properties window, \n'
+                                              '5. To animate a MovieCamera in conjunction with one \n'
+                                              'or more MovieObjects, select them and click this button.\n'
+                                              '\n'
+                                              '6. Make finer adjustments in the properties window, \n'
                                               'if necessary.\n'
                                               '\n'
-                                              '6. To view the animation, select (sequentially) one \n'
+                                              '7. To view the animation, select (sequentially) one \n'
                                               'or more created MovieCameras and click the “Enable an \n'
                                               'object for animation” button. Control the animation \n'
                                               'using the “Animation tools” buttons.\n'
                                               '\n'
-                                              '7. To save a video from the animation, indicate the \n'
+                                              '8. To save a video from the animation, indicate the \n'
                                               'MovieCameras on a Clapperboard, to do so, see the \n'
                                               'corresponding instructions.'
                                               )}
@@ -551,11 +590,14 @@ class CreateMovieCamera:
         #Create a new MovieCamera from a existing one
         selection = []
         selection = Gui.Selection.getSelection()
+        Gui.Selection.clearSelection()
         if not selection:
             ActivatedMovieCamera(self)
             # Provisional AB Positions
             setMCPosA(Option = MC)
             setMCPosB(Option = MC)
+            #Open Report view
+            ma.openReportView()
             FreeCAD.Console.PrintMessage(
                             translate('MovieObjects',
                             'A static MovieCamera was created!\n'
@@ -566,24 +608,53 @@ class CreateMovieCamera:
                             ) + '\n')
         else:
             if selection[0].Name[0:11] == 'MovieCamera':
-                oldMC = selection[0]
-                seq_label = translate('MovieCamera', 'MovieCamera #')
-                oldMC.Label = seq_label
-                # Makes a copy of last MovieCamera
-                MC = doc.copyObject(oldMC)
-                # PosA = PosB
-                setMCPosA(Option = MC)
-                setMCPosB(Option = MC)
-                MC.Label = seq_label
-                FreeCAD.Console.PrintMessage(translate('MovieCamera',
+                if len(selection) == 1:
+                    oldMC = selection[0]
+                    seq_label = translate('MovieCamera', 'MovieCamera #')
+                    oldMC.Label = seq_label
+                    # Makes a copy of last MovieCamera
+                    MC = doc.copyObject(oldMC)
+                    # PosA = PosB
+                    setMCPosA(Option = MC)
+                    setMCPosB(Option = MC)
+                    MC.Label = seq_label
+                    FreeCAD.Console.PrintMessage(translate('MovieCamera',
                                                        'A sequenced MovieCamera was created!'
                                                        ) + '\n')
-                pass
-            else:
-                FreeCAD.Console.PrintMessage(translate('MovieCamera',
+                else:
+                    #Open Report view
+                    ma.openReportView()
+                    FreeCAD.Console.PrintMessage(translate('MovieCamera',
                                                        'To create a sequenced MovieCameras, \n'
                                                        'select the last MovieCamera inserted!'
                                                        ) + '\n')
+                    return
+            elif selection[0].Name[0:12] == 'MovieObjects':
+                ActivatedMovieCamera(self)
+                # Provisional AB Positions
+                setMCPosA(Option = MC)
+                setMCPosB(Option = MC)
+                # New - Put MovieObjects into MovieCamera group
+                try:
+                    MC.Group = selection
+                except Exception:
+                    #Open Report view
+                    ma.openReportView()
+                    FreeCAD.Console.PrintMessage(translate('MovieCamera',
+                                                       'MovieObjects cannot belong to another \n'
+                                                       'object (a Clapperboard or another MovieCamera)!'
+                                                       ) + '\n')
+                    return
+                comb_list = MC.getEnumerationsOfProperty('Cam_06Enable')
+                MC.Cam_06Enable = comb_list[1]
+                FreeCAD.Console.PrintMessage(translate('MovieCamera',
+                                                   'A MovieCamera with MovieObjects was created!'
+                                                   ) + '\n')
+            else:
+                FreeCAD.Console.PrintMessage(translate('MovieCamera',
+                                                   'Select only MovieCameras or MovieObjects \n'
+                                                   'to create a MovieCamera!'
+                                                   ) + '\n')
                 return
         MC.Cam_07OnAnim = False
         doc.recompute()
@@ -599,6 +670,24 @@ def ActivatedMovieCamera(self):
     MC = None
     MC = folder
     MC.Label = default_label
+    # New - Create Animation Group
+    '''
+    doc = FreeCAD.ActiveDocument
+    try:
+        doc.MovieAnimationGroup
+        movieAnimGroup = doc.MovieAnimationGroup
+    except Exception:
+
+        movieAnimGroup = doc.addObject('App::DocumentObjectGroup',
+                                            'MovieAnimationGroup')
+        movieAnimGroup.Label = translate('MovieClapperboard',
+                                            'Animation')
+
+        #movieAnimGroup = Gui.runCommand('MovieAnimationGroup')
+    #New Put Clapperboard into Animation group
+    doc.getObject(movieAnimGroup.Name).addObject(MC)
+    '''
+    Gui.Selection.addSelection(MC)
     FreeCAD.ActiveDocument.recompute()
 
 # ======================================================================================
@@ -656,21 +745,6 @@ def setMCPosA(Option = None):
     # Camera zoom pos A
     MC.Cam_02ZoomPosA = degrees(float(cameraNodeA.heightAngle.getValue()))
 
-    # Render camera angles and zoom pos A
-    if MC.Cam_01Type[0:2] == '01': # Render
-        if 'Camera' in FreeCAD.ActiveDocument.Content and MC.Cam_02Render_Selection:
-            renderCameraA = MC.Cam_02Render_Selection
-            renderCameraA.ViewObject.Proxy.set_camera_from_gui()
-            renderCameraA.AspectRatio = MC.Cam_03RenderWidth/MC.Cam_04RenderHeight
-            renderCameraA.ViewportMapping = 'CROP_VIEWPORT_FILL_FRAME'
-            renderCameraA.ViewObject.Proxy.set_gui_from_camera()
-        else:
-            FreeCAD.Console.PrintMessage(translate('MovieCamera',
-                                                   'You have to select a render '
-                                                   'camera in “Cam_02Render_Selection”!'
-                                                   ) + '\n')
-            return
-
     ma.modifyAnimationIndicator(animation = False, obj = MC)
     MC.Cam_02AnimCurrentStep = 0
     FreeCAD.Console.PrintMessage(translate('MovieCamera',
@@ -704,21 +778,6 @@ def setMCPosB(Option = None):
     # Camera zoom pos B
     MC.Cam_03ZoomPosB = degrees(float(cameraNodeB.heightAngle.getValue()))
 
-    # Render camera angles and zoom pos B
-    if MC.Cam_01Type[0:2] == '01': # Render
-        if 'Camera' in FreeCAD.ActiveDocument.Content and MC.Cam_02Render_Selection:
-            renderCameraB = MC.Cam_02Render_Selection
-            renderCameraB.ViewObject.Proxy.set_camera_from_gui()
-            renderCameraB.AspectRatio = MC.Cam_03RenderWidth/MC.Cam_04RenderHeight
-            renderCameraB.ViewportMapping = 'CROP_VIEWPORT_FILL_FRAME'
-            renderCameraB.ViewObject.Proxy.set_gui_from_camera()
-        else:
-            FreeCAD.Console.PrintMessage(translate('MovieCamera',
-                                                   'You have to select a render '
-                                                   'camera in “Cam_02Render_Selection”!'
-                                                   ) + '\n')
-            return
-
     ma.modifyAnimationIndicator(animation = False, obj = MC)
     MC.Cam_02AnimCurrentStep = MC.Cam_04AnimTotalSteps
     FreeCAD.Console.PrintMessage(translate('MovieCamera',
@@ -736,13 +795,9 @@ def getMovieCameraMobile(Selection = None):
 
     # Camera node follows route
     if MC.Cam_01Route == True:
-        if not MC.Cam_02RouteSelection:
-            FreeCAD.Console.PrintMessage(translate('MovieCamera',
-                                                   'You have to select '
-                                                   'a route in “Cam_02RouteSelection”!'
-                                                   ) + '\n')
-            ma.modifyAnimationIndicator(animation = False, obj = MC)
-            return
+
+        #Verify route selection
+        checkRouteSelection()
 
         route = MC.Cam_02RouteSelection.Shape.Edges[0]
         stepLength = route.Length/MC.Cam_04AnimTotalSteps
@@ -811,36 +866,49 @@ def getMovieCameraMobile(Selection = None):
 
     # Object or point target
     if MC.Cam_01Target[0:2] == '01': # 'Follow an object or point'
-        if not MC.Cam_02TargetObjectSelection:
-            FreeCAD.Console.PrintMessage(translate('MovieCamera',
-                                                   'You have to select an object or \n'
-                                                   'point in “Cam_02TargetObjectSelection”!'
-                                                   ) + '\n')
-            ma.modifyAnimationIndicator(animation = False, obj = MC)
-            return
 
+        #Check target selection
+        checkTargetSelection()
         cameraFixedTarget = MC.Cam_02TargetObjectSelection.Placement.Base
         cameraNode.pointAt( coin.SbVec3f(cameraFixedTarget), coin.SbVec3f( 0, 0, 1 ) )
 
-    #  Render camera
-    if MC.Cam_01Type[0:2] == '01': # Render
-        if not MC.Cam_02Render_Selection:
-            FreeCAD.Console.PrintMessage(translate('MovieCamera',
-                                                   'You have to select a render \n'
-                                                   'camera in “Cam_02Render_Selection”!'
-                                                   ) + '\n')
-            ma.modifyAnimationIndicator(animation = False, obj = MC)
-            return
+def checkRouteSelection():
 
-        renderCamera = MC.Cam_02Render_Selection
-        renderCamera.ViewObject.Proxy.set_camera_from_gui()
+    """Checks MovieCamera route selection."""
 
-        if MC.Cam_01Route == True:
-            renderCamera.AspectRatio = MC.Cam_03RenderWidth/MC.Cam_04RenderHeight
-            renderCamera.ViewportMapping = 'CROP_VIEWPORT_FILL_FRAME'
+    if not MC.Cam_02RouteSelection or not any(condition for condition in [
+                                    MC.Cam_02RouteSelection.Name[0:4] == 'Line',
+                                    MC.Cam_02RouteSelection.Name[0:3] == 'Arc',
+                                    MC.Cam_02RouteSelection.Name[0:6] == 'Circle',
+                                    MC.Cam_02RouteSelection.Name[0:7] == 'Ellipse',
+                                    MC.Cam_02RouteSelection.Name[0:7] == 'BSpline',
+                                    MC.Cam_02RouteSelection.Name[0:8] == 'BezCurve',
+                                    MC.Cam_02RouteSelection.Name[0:6] == 'Sketch',
+                                    ]):
+        #Open Report view
+        ma.openReportView()
+        FreeCAD.Console.PrintMessage(translate('MovieCamera',
+                                               'You have to select a single segment such \n'
+                                               'as: line, arc, circle, ellipse, B-spline or Bézier \n'
+                                               'curve, from Sketcher or Draft Workbenches as \n'
+                                               'a route in “Cam_02RouteSelection”!'
+                                               ) + '\n')
+        ma.modifyAnimationIndicator(animation = False, obj = MC)
+        return False
 
-        renderCamera.ViewObject.Proxy.set_gui_from_camera()
+def checkTargetSelection():
 
+    """Checks MovieCamera target selection."""
+
+    if not hasattr(MC, 'Cam_02TargetObjectSelection') or not hasattr(MC.Cam_02TargetObjectSelection, 'Placement'):
+        #Open Report view
+        ma.openReportView()
+        FreeCAD.Console.PrintMessage(translate('MovieCamera',
+                                               'You have to select an object or \n'
+                                               'point in “Cam_02TargetObjectSelection”!'
+                                               ) + '\n')
+        ma.modifyAnimationIndicator(animation = False, obj = MC)
+        return False
 # ======================================================================================
 
 # 3. Commands

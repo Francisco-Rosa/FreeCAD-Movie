@@ -50,6 +50,7 @@ MESSAGE = translate('MovieClapperboard',
                     'This version of FreeCAD seems unable to import cv2!\n'
                     'To create or play back a video, try a different version, like 1.0, \n'
                     'or use the images generated here in an external recording program.')  + '\n'
+
 TIP_ANIM_INIT = translate('App::Property',
                         'Initial step of the Clapperboard animation.\n'
                         '\n'
@@ -96,6 +97,12 @@ TIP_FRAME_RENDER = translate('App::Property',
                         'you must specify an existing Render Project!')
 TIP_RENDER_PROJECT = translate('MovieClapperboard',
                         'Select a Render Project')
+TIP_RENDER_CAMERA = translate('MovieClapperboard',
+                        'Select a Render Camera \n'
+                        'It is not mandatory. Only if you want crop 3D view')
+TIP_RENDER_PREVIEW = translate('MovieClapperboard',
+                        'You need to specify a Render Camera above to \n'
+                        'preview the framing of the images.')
 TIP_VIDEO_NAME = translate('App::Property',
                         'Name of the video of the Clapperboard animation.\n'
                         '\n'

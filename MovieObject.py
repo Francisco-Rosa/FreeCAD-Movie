@@ -58,12 +58,13 @@ class MovieObjects:
         """Gives the object properties to MovieObjects."""
 
         pl = obj.PropertiesList
-
+        '''
         if not 'Objects' in pl:
             obj.addProperty('App::PropertyLinkList', 'Objects', 'Movie Objects',
                                                     QT_TRANSLATE_NOOP('App::Property',
                                                     'List of objects of this MovieObjects.'
                                                     )).Objects = []
+        '''
         if not 'Names' in pl:
             obj.addProperty('App::PropertyPythonObject', 'Names').Names = []
         if not 'CenterGravityA' in pl:
@@ -98,6 +99,7 @@ class MovieObjects:
                                                     '\n'
                                                     'It is only indicative.'
                                                     )).Obj_02AnimCurrentStep = 0
+            obj.setEditorMode('Obj_02AnimCurrentStep', ['ReadOnly'])
         if not 'Obj_03AnimEndStep' in pl:
             obj.addProperty('App::PropertyInteger', 'Obj_03AnimEndStep', 'Movie Objects 01 - Animation config',
                                                     QT_TRANSLATE_NOOP('App::Property',
@@ -113,9 +115,11 @@ class MovieObjects:
                                                     QT_TRANSLATE_NOOP('App::Property',
                                                     'Total steps of MovieObjects animation.\n'
                                                     '\n'
-                                                    'It is the result of the difference \n'
-                                                    'between End step (“Obj_03AnimEndStep”) \n'
-                                                    'and Initial step (“Obj_01AnimIniStep”).'
+                                                    'Indicate the total number of steps for \n'
+                                                    'this animation section.'
+                                                    '\n'
+                                                    'Changes will only take effect after \n'
+                                                    'MovieObjects has been re-enabled.'
                                                     )).Obj_04AnimTotalSteps = 50
         if not 'Obj_05AnimFps' in pl:
             obj.addProperty('App::PropertyInteger', 'Obj_05AnimFps', 'Movie Objects 01 - Animation config',
@@ -136,6 +140,7 @@ class MovieObjects:
                                                     '\n'
                                                     'It is only indicative.'
                                                     )).Obj_06AnimTime = time.strftime("%H:%M:%S", time.gmtime(1.7))
+            obj.setEditorMode('Obj_06AnimTime', ['ReadOnly'])
         if not 'Obj_07AnimOnAnim' in pl:
             obj.addProperty('App::PropertyBool', 'Obj_07AnimOnAnim', 'Movie Objects 01 - Animation config',
                                                     QT_TRANSLATE_NOOP('App::Property',
@@ -223,18 +228,32 @@ class MovieObjects:
 class MovieObjectsViewProvider:
     def __init__(self, obj):
         obj.Proxy = self
+        #New
+        self.state = 'Normal'
 
     def getIcon(self):
         __dir__ = os.path.dirname(__file__)
-        return __dir__ + '/icons/MovieObjectsIcon.svg'
-        '''
-        from MovieAnimation import ENABLE_01
-        print(f'MovieObject icon, ENABLE_01 = {ENABLE_01}')
-        if ENABLE_01 == 'Objects':
-            return __dir__ + '/icons/EnableMovieObjectsIcon.svg'
+        #New
+        try:
+            self.state
+        except Exception:
+            #foundObjs = []
+            for obj in FreeCAD.ActiveDocument.Objects:
+                if obj.Name[0:12] == 'MovieObjects':
+                    self.setEnabledState(obj.ViewObject, True)
+                    self.setEnabledState(obj.ViewObject, False)
+        if self.state == 'Enabled':
+            return __dir__ + '/icons/MovieObjectsEnabledIcon.svg'
         else:
             return __dir__ + '/icons/MovieObjectsIcon.svg'
-        '''
+    #New
+    def setEnabledState(self, obj, enableActive):
+
+        if enableActive:
+            self.state = 'Enabled'
+        else:
+            self.state = 'Normal'
+        obj.signalChangeIcon()
 
 class CreateMovieObjects:
 
@@ -312,6 +331,8 @@ class CreateMovieObjects:
         listObjects = []
         listObjects = Gui.Selection.getSelection()
         if not listObjects:
+            #Open Report view
+            ma.openReportView()
             FreeCAD.Console.PrintMessage(translate('MovieObjects',
                                                    'Select at least one object to create a '
                                                    'MovieObjects!') + '\n')
@@ -320,7 +341,7 @@ class CreateMovieObjects:
             Gui.Selection.clearSelection()
             # Objects initial positions and angles
             ActivatedMovieObjects(self)
-            MO.Objects = listObjects
+            #MO.Objects = listObjects
             sumCG = FreeCAD.Vector(0,0,0)
 
             for n in range(len(listObjects)):
@@ -346,6 +367,7 @@ class CreateMovieObjects:
             setMOPosAB(obj = MO, position = 'B') #Repeat position A
             # Updates animation indicator
             ma.modifyAnimationIndicator(animation = False)
+            Gui.Selection.addSelection(MO)
             FreeCAD.Console.PrintMessage(translate('MovieObjects',
                                                    'A MovieObject was created with the \n'
                                                    'pre-established position A!') + '\n')
@@ -362,6 +384,20 @@ def ActivatedMovieObjects(self):
     MO = None
     MO = folder
     MO.Label = default_label
+    # New - Create Animation Group
+    '''
+    doc = FreeCAD.ActiveDocument
+    try:
+        doc.MovieAnimationGroup
+        movieAnimGroup = doc.MovieAnimationGroup
+    except Exception:
+        movieAnimGroup = doc.addObject('App::DocumentObjectGroup',
+                                            'MovieAnimationGroup')
+        movieAnimGroup.Label = translate('MovieClapperboard',
+                                            'Animation')
+    #New Put Clapperboard into Animation group
+    doc.getObject(movieAnimGroup.Name).addObject(MO)
+    '''
     FreeCAD.ActiveDocument.recompute()
 
 class SetMovieObjectsAxis:
@@ -392,14 +428,21 @@ class SetMovieObjectsAxis:
 
     def IsActive(self):
         if Gui.ActiveDocument:
-            if not MO.Obj_07AnimOnAnim:
-                selection = []
-                selection = Gui.Selection.getSelection()
-                if not selection:
-                    return False
+            selection = []
+            selection = Gui.Selection.getSelection()
+            if not selection:
+                return False
+            else:
+                if selection[0].Name[0:11] != 'MovieCamera':
+                    if selection[0].Name[0:12] != 'MovieObjects':
+                        if selection[0].Name[0:12] != 'Clapperboard':
+                            return True
+                        else:
+                            return False
+                    else:
+                        return False
                 else:
-                    if selection[0].Name[0:12] == 'MovieObjects':
-                        return True
+                    return False
         else:
             return False
 
@@ -451,6 +494,8 @@ def excludeMovieObjects():
     selection = []
     selection = Gui.Selection.getSelection()
     if not selection:
+        #Open Report view
+        ma.openReportView()
         FreeCAD.Console.PrintMessage(translate('MovieObjects',
                                                'Select a MovieObjects to exclude!\n'
                                                ) + '\n')
@@ -474,15 +519,20 @@ def setMOPosAB(obj = None,
 
     MO = obj
     Pos = position # A or B
+    doc = FreeCAD.ActiveDocument
 
     # PosA or PosB - positions, angles and centers of gravity of objects
     for n in range(len(MO.Names)):
         name = MO.Names[n]
-        vectorCG = MO.Objects[n].Shape.CenterOfGravity
+        obj = doc.getObject(MO.Names[n])
+        #vectorCG = MO.Objects[n].Shape.CenterOfGravity
+        vectorCG = obj.Shape.CenterOfGravity
         coordCG = (vectorCG[0], vectorCG[1], vectorCG[2])
-        vectorBase = MO.Objects[n].Placement.Base
+        #vectorBase = MO.Objects[n].Placement.Base
+        vectorBase = obj.Placement.Base
         coordBase= (vectorBase[0], vectorBase[1], vectorBase[2])
-        rotation = MO.Objects[n].Placement.Rotation.getYawPitchRoll()
+        #rotation = MO.Objects[n].Placement.Rotation.getYawPitchRoll()
+        rotation = obj.Placement.Rotation.getYawPitchRoll()
         placement = (coordBase, rotation)
         if Pos == 'A':
             MO.CenterGravityA[name] = coordCG
@@ -515,6 +565,8 @@ def setObjectsAxis(obj = None):
     listObjects = []
     listObjects = Gui.Selection.getSelection()
     if not listObjects:
+        #Open Report view
+        ma.openReportView()
         FreeCAD.Console.PrintMessage(translate('MovieObjects',
                                                'First select the objects you want \n'
                                                'to rotate then the axis of rotation.'
@@ -540,10 +592,12 @@ def getMovieObjectsMobile(Selection = None):
 
     global OBJ_REFRESH
     MO = Selection
+    doc = FreeCAD.ActiveDocument
 
     # Objects Pos AB - Angles: yaw, pitch and roll
     if MO.Obj_01Rotation == True:
-        for n in range(len(MO.Objects)):
+        #for n in range(len(MO.Objects)):
+        for n in range(len(MO.Names)):
             name = MO.Names[n]
             anglesAn = MO.PosA[name][1]
             anglesBn = MO.PosB[name][1]
@@ -563,30 +617,33 @@ def getMovieObjectsMobile(Selection = None):
             rollObjectn1 = getIncAngle(angleA = anglesAn[2], angleB = anglesBn[2])
             rollObjectn2 = anglesAn[2] + rollObjectn1
             # Object Rotates around a chosen axis
+            obj = doc.getObject(MO.Names[n])
             if MO.ObjectAxis[name] != 'None':
                 # Reset to the PosA
                 vectorA = FreeCAD.Base.Vector(MO.PosA[name][0])
-                MO.Objects[n].Placement.Base = vectorA
-                MO.Objects[n].Placement.Rotation.setYawPitchRoll(anglesAn[0], anglesAn[1], anglesAn[2])
+                #MO.Objects[n].Placement.Base = vectorA
+                obj.Placement.Base = vectorA
+                #MO.Objects[n].Placement.Rotation.setYawPitchRoll(anglesAn[0], anglesAn[1], anglesAn[2])
+                obj.Placement.Rotation.setYawPitchRoll(anglesAn[0], anglesAn[1], anglesAn[2])
                 # Placement with base, rotation and axis:
-                axisObject = FreeCAD.ActiveDocument.getObject(MO.ObjectAxis[name])
+                #axisObject = FreeCAD.ActiveDocument.getObject(MO.ObjectAxis[name])
+                axisObject = doc.getObject(MO.ObjectAxis[name])
                 objBase = axisObject.Placement.Rotation.Axis
                 objRot = FreeCAD.Base.Rotation(yawObjectn1, pitchObjectn1, rollObjectn1)
                 centerRot = axisObject.Placement.Base
                 placement = FreeCAD.Placement(objBase, objRot, centerRot)
-                MO.Objects[n].Placement = placement.multiply(MO.Objects[n].Placement)
+                #MO.Objects[n].Placement = placement.multiply(MO.Objects[n].Placement)
+                obj.Placement = placement.multiply(obj.Placement)
             # Object Rotates without a chosen axis
             else:
-                MO.Objects[n].Placement.Rotation.setYawPitchRoll(yawObjectn2, pitchObjectn2, rollObjectn2)
+                #MO.Objects[n].Placement.Rotation.setYawPitchRoll(yawObjectn2, pitchObjectn2, rollObjectn2)
+                obj.Placement.Rotation.setYawPitchRoll(yawObjectn2, pitchObjectn2, rollObjectn2)
 
     # Objects that follow a route
     if MO.Obj_01Route == True:
-        if not MO.Obj_02RouteSelection:
-            FreeCAD.Console.PrintMessage(translate('MovieObjects',
-                                                   'You have to select a route in “Obj_02RouteSelection”!'
-                                                   ) + '\n')
-            ma.modifyAnimationIndicator(animation = False, obj = MO)
-            return
+
+        checkObjRouteSelection()
+
         # Calculating the current vector on the route
         route = MO.Obj_02RouteSelection.Shape.Edges[0]
         stepLength = route.Length/MO.Obj_04AnimTotalSteps
@@ -600,7 +657,8 @@ def getMovieObjectsMobile(Selection = None):
         # (through the average of the centers of gravity)
         VectorCGAverageXY = FreeCAD.Vector(MO.PosGCAverage0[0], MO.PosGCAverage0[1], 0)
         for n in range(len(MO.Names)):
-            name = MO.Names[n]     
+            name = MO.Names[n]
+            obj = doc.getObject(MO.Names[n])
             # The gap1, difference between the average of the centers of gravity and the object's Pos0
             gap1 = VectorCGAverageXY - FreeCAD.Vector(MO.Pos0[name][0])
             # 1. Moving through the bases of objects:
@@ -608,14 +666,17 @@ def getMovieObjectsMobile(Selection = None):
             vector = currentVector - gap1
             # 2. Moving through objects' centers of gravity:
             # The difference between the current center of gravity and the object's base
-            gap2 = MO.Objects[n].Shape.CenterOfGravity - MO.Objects[n].Placement.Base
+            #gap2 = MO.Objects[n].Shape.CenterOfGravity - MO.Objects[n].Placement.Base
+            gap2 = obj.Shape.CenterOfGravity - obj.Placement.Base
             # The base of object will be the difference between the center of gravity and the gap2
             vector = vector - gap2
-            MO.Objects[n].Placement.Base = vector
+            #MO.Objects[n].Placement.Base = vector
+            obj.Placement.Base = vector
     else:
         # Objects move one step (PosA - PosB)
         for n in range(len(MO.Names)):
             name = MO.Names[n]
+            obj = doc.getObject(MO.Names[n])
             # Only the objects without a chosen axis
             if MO.ObjectAxis[name] == 'None':
                 # Moving through the bases of objects
@@ -624,7 +685,8 @@ def getMovieObjectsMobile(Selection = None):
                     vectorB = FreeCAD.Vector(MO.PosB[name][0])
                     vectorInc = (vectorB - vectorA)/MO.Obj_04AnimTotalSteps
                     vector = vectorA + vectorInc*MO.Obj_02AnimCurrentStep
-                    MO.Objects[n].Placement.Base = vector
+                    #MO.Objects[n].Placement.Base = vector
+                    obj.Placement.Base = vector
                 # Moving through objects' centers of gravity
                 else:
                     # The position of the center of gravity of each object
@@ -633,14 +695,17 @@ def getMovieObjectsMobile(Selection = None):
                     CGInc = (CGB - CGA)/MO.Obj_04AnimTotalSteps
                     CG = CGA + CGInc*MO.Obj_02AnimCurrentStep
                     # The difference between the current center of gravity and the object's base
-                    gap2 = MO.Objects[n].Shape.CenterOfGravity - MO.Objects[n].Placement.Base
+                    #gap2 = MO.Objects[n].Shape.CenterOfGravity - MO.Objects[n].Placement.Base
+                    gap2 = obj.Shape.CenterOfGravity - obj.Placement.Base
                     # The base of object will be the difference between the center of gravity and the gap2
                     vector = CG - gap2
-                    MO.Objects[n].Placement.Base = vector
+                    #MO.Objects[n].Placement.Base = vector
+                    obj.Placement.Base = vector
 
     # New - Refreshes each step of objects animation
     if OBJ_REFRESH == True:
         FreeCAD.ActiveDocument.recompute()
+        doc.recompute()
 
 def enableObjectsSelection(obj2 = None):
 
@@ -665,6 +730,32 @@ def enableObjectsRefresh(refres = False):
         OBJ_REFRESH = True
     else:
         OBJ_REFRESH = False
+
+def checkObjRouteSelection():
+
+    """Checks MovieObjects route selection"""
+
+    if MO.Obj_02RouteSelection and any(condition for condition in [
+                                MO.Obj_02RouteSelection.Name[0:4] == 'Line',
+                                MO.Obj_02RouteSelection.Name[0:3] == 'Arc',
+                                MO.Obj_02RouteSelection.Name[0:6] == 'Circle',
+                                MO.Obj_02RouteSelection.Name[0:7] == 'Ellipse',
+                                MO.Obj_02RouteSelection.Name[0:7] == 'BSpline',
+                                MO.Obj_02RouteSelection.Name[0:8] == 'BezCurve',
+                                MO.Obj_02RouteSelection.Name[0:6] == 'Sketch',
+                                 ]):
+        pass
+    else:
+        #Open Report view
+        ma.openReportView()
+        FreeCAD.Console.PrintMessage(translate('MovieObjects',
+                                'You have to select a single segment such \n'
+                                'as: line, arc, circle, ellipse, B-spline or Bézier \n'
+                                'curve, from Sketcher or Draft Workbenches as \n'
+                                'a route in “Obj_02RouteSelection”!'
+                                ) + '\n')
+        ma.modifyAnimationIndicator(animation = False, obj = MO)
+        return False
 
 # ======================================================================================
 
