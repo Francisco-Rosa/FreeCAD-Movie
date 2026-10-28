@@ -25,6 +25,14 @@ Workbench to animate cameras and objects, record and play videos
 
 ### Tutorials
 
+##### Animation Tutorial 1 for Assembly - Tutorial 1
+
+<a href="https://www.youtube.com/watch?v=5PEmper-NBY" target="_blank"><img src="http://img.youtube.com/vi/5PEmper-NBY/0.jpg" alt="Using objects animations" width="240" height="180" border="3" /></a>
+
+##### Animation Tutorial 2 for Assembly - Tutorial 1
+
+<a href="https://www.youtube.com/watch?v=gHnxb1f573k" target="_blank"><img src="http://img.youtube.com/vi/gHnxb1f573k/0.jpg" alt="Using objects animations" width="240" height="180" border="3" /></a>
+
 ##### Using Camera Sequence (outdated)
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=tjfDeOKgyyw" target="_blank"><img src="http://img.youtube.com/vi/tjfDeOKgyyw/0.jpg" alt="Using camera sequence" width="240" height="180" border="3" /></a>
