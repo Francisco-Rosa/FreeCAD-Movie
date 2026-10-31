@@ -205,7 +205,7 @@ To set targets for the cameras, see also item 2.
 
 #### Objects
 
-For the animation of objects, position and rotate them according to the start of the animation (key position A), select them as a group, and click **MovieObjects** (MO).  Reposition the objects (adjusting positions and/or rotations) and click **Set position B**. Repeat this process until the desired movement is complete. The animation of the set of objects will occur through a sequential process involving the predefined positions A and B.
+For the animation of objects, position and rotate them according to the start of the animation (key position A), select them as a group, and click **MovieObjects** (MO).  Reposition the objects (adjusting positions and/or rotations) and click **Set position B**. To continue animating the objects, select the previous **MovieObjects** (which already has the group of objects) and click **MovieObjects**. This creates a new **MovieObjects** based on the previous one, with its A and B positions matching the predecessor's position B. Reposition the objects (adjusting positions and/or rotations) and click **Set position B**. Repeat this process until the desired movement is complete. The animation of the set of objects will occur through a sequential process involving the predefined positions A and B.
 
 2. Configure the properties of the MCs and MOs if necessary. To do this, select an MC or MO and:
 
