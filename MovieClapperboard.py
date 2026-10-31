@@ -1116,14 +1116,16 @@ class GroupRestrictedSelector(QtWidgets.QDialog):
 
         """Selection of Render Project"""
 
-        from MovieMessages import TIP_RENDER_PROJECT, TIP_RENDER_CAMERA
+        from MovieMessages import TIP_RENDER_PROJECT#, TIP_RENDER_CAMERA
 
         super(GroupRestrictedSelector, self).__init__(Gui.getMainWindow())
         if obj_name == 'Projec':
             self.setWindowTitle(TIP_RENDER_PROJECT)
             label_group = translate('MovieClapperboard', 'Render Projects')
         if obj_name == 'Camera':
-            self.setWindowTitle(TIP_RENDER_CAMERA)
+            #self.setWindowTitle(TIP_RENDER_CAMERA)
+            self.setWindowTitle(translate('MovieClapperboard',
+                                      'Select a Render Camera'))
             label_group = translate('MovieClapperboard', 'Render Cameras')
         self.setMinimumSize(450, 500)
         layout = QtWidgets.QVBoxLayout(self)

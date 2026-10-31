@@ -293,15 +293,21 @@ class CreateMovieObjects:
                                              '5. Rotating around chosen axis. See “Rotation \n'
                                              'axis” instruction button.\n'
                                              '\n'
-                                             '6. Make finer adjustments in the properties window, \n'
+                                             '6. Creating an animation sequence of the same objects. \n'
+                                             'Enable the previous created MovieObjects. Go to point B of \n'
+                                             'this one then select it and click this button. \n'
+                                             'Establish the point B of the latter. \n'
+                                             'Repeat this process until the last MovieObjects.\n'
+                                             '\n'
+                                             '7. Make finer adjustments in the properties window, \n'
                                              'if necessary.\n'
                                              '\n'
-                                             '7. To view the animation, select one or more created \n'
+                                             '8. To view the animation, select one or more created \n'
                                              'MovieObjects (sequentially) and click the “Enable an \n'
                                              'object for animation” button. Control the animation using \n'
                                              'the “Animation tools” buttons.\n'
                                              '\n'
-                                             '8. To save a video from the animation, indicate the \n'
+                                             '9. To save a video from the animation, indicate the \n'
                                              'MovieObjects on a Clapperboard, to do so, see the \n'
                                              'corresponding instructions.'
                                              )}
@@ -314,11 +320,14 @@ class CreateMovieObjects:
                 return False
             else:
                 if selection[0].Name[0:11] != 'MovieCamera':
-                    if selection[0].Name[0:12] != 'MovieObjects':
-                        if selection[0].Name[0:12] != 'Clapperboard':
+                    if selection[0].Name[0:12] != 'Clapperboard':
+                        return True
+                        '''
+                        if selection[0].Name[0:12] != 'MovieObjects':
                             return True
                         else:
                             return False
+                        '''
                     else:
                         return False
                 else:
@@ -328,6 +337,7 @@ class CreateMovieObjects:
 
     def Activated(self):
         global MO
+        doc = FreeCAD.ActiveDocument
         listObjects = []
         listObjects = Gui.Selection.getSelection()
         if not listObjects:
@@ -339,36 +349,60 @@ class CreateMovieObjects:
             return
         else:
             Gui.Selection.clearSelection()
-            # Objects initial positions and angles
-            ActivatedMovieObjects(self)
-            #MO.Objects = listObjects
-            sumCG = FreeCAD.Vector(0,0,0)
+            #Create a MovieObjects copy from a existing one
+            if listObjects[0].Name[0:12] == 'MovieObjects':
+                if len(listObjects) == 1:
+                    oldMO = listObjects[0]
+                    seq_label = oldMO.Label + '#'
+                    oldMO.Label = seq_label
+                    # Makes a copy of last MovieCamera
+                    MO = doc.copyObject(oldMO)
+                    MO.Label = seq_label
+                    # PosA = PosB
+                    MO.PosA = MO.PosB #Repeat objects and position A (dic)
+                    MO.PosAList = MO.PosBList #Repeat positions A (list)
+                    FreeCAD.Console.PrintMessage(translate('MovieObjects',
+                                                       'A sequenced MovieObjects was created!'
+                                                       ) + '\n')
+                else:
+                    #Open Report view
+                    ma.openReportView()
+                    FreeCAD.Console.PrintMessage(translate('MovieObjects',
+                                                       'To create a sequenced MovieObjects, \n'
+                                                       'select only the last one inserted!'
+                                                       ) + '\n')
 
-            for n in range(len(listObjects)):
-                #Get object names (MO.Names)
-                Object = listObjects[n]
-                name = Object.Name
-                MO.Names.append(name)
-                MO.ObjectAxis[name] = 'None' # Applies no external rotation axis to object
-                #Get object placements
-                vectorCenterGravity0 = listObjects[n].Shape.CenterOfGravity
-                sumCG = sumCG + vectorCenterGravity0
-                vectorBase0 = listObjects[n].Placement.Base
-                coordBase0 = (vectorBase0[0], vectorBase0[1], vectorBase0[2])
-                rotation0 = listObjects[n].Placement.Rotation.getYawPitchRoll()
-                placement0 = (coordBase0, rotation0)
-                MO.Pos0[name] = placement0
+            else:
+                #Create a new MovieObjects
+                # Objects initial positions and angles
+                ActivatedMovieObjects(self)
+                #MO.Objects = listObjects # No longer used
+                sumCG = FreeCAD.Vector(0,0,0)
+                for n in range(len(listObjects)):
+                    #Get object names (MO.Names)
+                    Object = listObjects[n]
+                    name = Object.Name
+                    MO.Names.append(name)
+                    MO.ObjectAxis[name] = 'None' # Applies no external rotation axis to object
+                    #Get object placements
+                    vectorCenterGravity0 = listObjects[n].Shape.CenterOfGravity
+                    sumCG = sumCG + vectorCenterGravity0
+                    vectorBase0 = listObjects[n].Placement.Base
+                    coordBase0 = (vectorBase0[0], vectorBase0[1], vectorBase0[2])
+                    rotation0 = listObjects[n].Placement.Rotation.getYawPitchRoll()
+                    placement0 = (coordBase0, rotation0)
+                    MO.Pos0[name] = placement0
 
-            # Initial vector of gravity centers average
-            vectorGCAverage0 = sumCG/len(listObjects)
-            MO.PosGCAverage0 = (vectorGCAverage0[0], vectorGCAverage0[1], vectorGCAverage0[2])
-            # Applies an automatic initial A position
-            setMOPosAB(obj = MO, position = 'A')
-            setMOPosAB(obj = MO, position = 'B') #Repeat position A
-            # Updates animation indicator
-            ma.modifyAnimationIndicator(animation = False)
-            Gui.Selection.addSelection(MO)
-            FreeCAD.Console.PrintMessage(translate('MovieObjects',
+                # Initial vector of gravity centers average
+                vectorGCAverage0 = sumCG/len(listObjects)
+                MO.PosGCAverage0 = (vectorGCAverage0[0], vectorGCAverage0[1], vectorGCAverage0[2])
+                # Applies an automatic initial A position
+                setMOPosAB(obj = MO, position = 'A')
+                setMOPosAB(obj = MO, position = 'B') #Repeat position A
+                # Updates animation indicator
+                ma.modifyAnimationIndicator(animation = False)
+                Gui.Selection.addSelection(MO)
+                FreeCAD.Console.PrintMessage(translate('MovieObjects',
                                                    'A MovieObject was created with the \n'
                                                    'pre-established position A!') + '\n')
 

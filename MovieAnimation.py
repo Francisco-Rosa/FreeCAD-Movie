@@ -869,7 +869,7 @@ def enableMovieClapperboard(obj = None, clapNew = False):
     if hasattr(CL, 'Clap_03AnimationSelection'):
         #Selection = CL.Clap_03AnimationSelection # Outdated
         getMessage(message = translate('MovieAnimation',
-                                       'It seems the clapperboard \n'
+                                       'It seems the Clapperboard \n'
                                        'is an obsolete version. Please \n'
                                        'try replacing it \n'
                                        'with a new one. \n'

@@ -543,10 +543,10 @@ class CreateMovieCamera:
                                               'properties window and specify an previous line \n'
                                               'or continuous curves under “Cam_02_Route Selection”.\n'
                                               '\n'
-                                              'Using a sequence of cameras. Go to point B of the \n'
-                                              'first created MovieCamera, then select it and click \n'
-                                              'this button. Repeat this process until the last camera, \n'
-                                              'then set point B for this one.\n'
+                                              'Using a sequence of cameras. Enable the previous created \n'
+                                              'MovieCamera. Go to point B of this one then select it \n'
+                                              'and click this button. Establish the point B of the latter. \n'
+                                              'Repeat this process until the last camera.\n'
                                               '\n'
                                               '4. If you want the camera to point at an object, \n'
                                               'select “Follow an object or point” under \n'
@@ -587,11 +587,11 @@ class CreateMovieCamera:
     def Activated(self):
         global MC
         doc = FreeCAD.ActiveDocument
-        #Create a new MovieCamera from a existing one
         selection = []
         selection = Gui.Selection.getSelection()
         Gui.Selection.clearSelection()
         if not selection:
+            #Create a new MovieCamera
             ActivatedMovieCamera(self)
             # Provisional AB Positions
             setMCPosA(Option = MC)
@@ -607,17 +607,19 @@ class CreateMovieCamera:
                             'indicate a path at “Cam_02RouteSelection”!'
                             ) + '\n')
         else:
+            #Create a MovieCamera copy from a existing one
             if selection[0].Name[0:11] == 'MovieCamera':
                 if len(selection) == 1:
                     oldMC = selection[0]
-                    seq_label = translate('MovieCamera', 'MovieCamera #')
+                    #seq_label = translate('MovieCamera', 'MovieCamera #')
+                    seq_label = oldMC.Label + '#'
                     oldMC.Label = seq_label
                     # Makes a copy of last MovieCamera
                     MC = doc.copyObject(oldMC)
+                    MC.Label = seq_label
                     # PosA = PosB
                     setMCPosA(Option = MC)
                     setMCPosB(Option = MC)
-                    MC.Label = seq_label
                     FreeCAD.Console.PrintMessage(translate('MovieCamera',
                                                        'A sequenced MovieCamera was created!'
                                                        ) + '\n')
@@ -626,7 +628,7 @@ class CreateMovieCamera:
                     ma.openReportView()
                     FreeCAD.Console.PrintMessage(translate('MovieCamera',
                                                        'To create a sequenced MovieCameras, \n'
-                                                       'select the last MovieCamera inserted!'
+                                                       'select only the last one inserted!'
                                                        ) + '\n')
                     return
             elif selection[0].Name[0:12] == 'MovieObjects':
