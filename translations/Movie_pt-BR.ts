@@ -1093,10 +1093,10 @@ Using a path. Enable “Cam_01Route” in the
 properties window and specify an previous line 
 or continuous curves under “Cam_02_Route Selection”.
 
-Using a sequence of cameras. Go to point B of the 
-first created MovieCamera, then select it and click 
-this button. Repeat this process until the last camera, 
-then set point B for this one.
+Using a sequence of cameras. Enable the previous created 
+MovieCamera. Go to point B of this one then select it 
+and click this button. Establish the point B of the latter. 
+Repeat this process until the last camera.
 
 4. If you want the camera to point at an object, 
 select “Follow an object or point” under 
@@ -1133,15 +1133,14 @@ Usando um caminho. Habilite "Cam_01Route" na
 janela de propriedades e especifique uma linha ou
 curvas contínuas em "Cam_02_Route Selection".
 
-Usando uma sequência de câmeras. Vá até o ponto B da
-primeira CameraMovie criada, selecione-a e clique
-neste botão. Repita esse processo até a última câmera
-e, então, defina o ponto B para esta.
+Usando uma sequência de câmeras: Habilite a CameraMovie 
+criada previamente, vá até o seu ponto B, selecione-a 
+novamente e clique neste botão. Defina o ponto B da 
+nova CameraMovie. Repita esse processo até a última câmera.
 
-4. Se quiser que a câmera aponte para um objeto,
-selecione "Seguir objeto ou ponto" em
-"Cam_01_Target" e especifique o objeto em
-"Cam_02_Target Object Selection".
+4. Se quiser que a câmera aponte para um objeto, selecione 
+"Seguir objeto ou ponto" em "Cam_01_Target" e especifique 
+o objeto em "Cam_02_Target Object Selection".
 
 5. Para animar uma CameraMovie em conjunto com um
 ou mais ObjetosMovie, selecione-os e clique neste botão.
@@ -1193,15 +1192,21 @@ rotations and enable the “Obj_Rotation CG” property.
 5. Rotating around chosen axis. See “Rotation 
 axis” instruction button.
 
-6. Make finer adjustments in the properties window, 
+6. Creating an animation sequence of the same objects. 
+Enable the previous created MovieObjects. Go to point B of 
+this one then select it and click this button. 
+Establish the point B of the latter. 
+Repeat this process until the last MovieObjects.
+
+7. Make finer adjustments in the properties window, 
 if necessary.
 
-7. To view the animation, select one or more created 
+8. To view the animation, select one or more created 
 MovieObjects (sequentially) and click the “Enable an 
 object for animation” button. Control the animation using 
 the “Animation tools” buttons.
 
-8. To save a video from the animation, indicate the 
+9. To save a video from the animation, indicate the 
 MovieObjects on a Clapperboard, to do so, see the 
 corresponding instructions.</source>
       <translation>Objetos podem ser animados da posição A para a B,
@@ -1228,17 +1233,22 @@ e ative a propriedade "Obj_Rotation CG".
 5. Rotacionando em torno de um eixo escolhido:
 consulte as instruções no botão de "Eixo de rotação".
 
-6. Faça ajustes mais precisos na janela de propriedades,
+6. Criando uma sequência de animação com os 
+mesmos objetos. Habilite o ObietosMovie criado 
+anteriormente. Vá até o seu ponto B, selecione-o e 
+clique neste botão. Defina o ponto B desse objeto. 
+Repita esse processo até chegar ao último ObietosMovie.
+
+7. Faça ajustes mais precisos na janela de propriedades,
 se necessário.
 
-7. Para visualizar a animação, selecione (sequencialmente) 
-um ou mais ObjectosFilme criados e clique no
-botão "Habilitar um objeto para animação". 
-Controle a animação usando os botões das 
-"Ferramentas de animação".
+8. Para visualizar a animação, selecione (sequencialmente) 
+um ou mais ObietosMovies criados e clique no botão 
+“Habilitar objeto para animação”. Controle a animação 
+usando os botões das “Ferramentas de animação”.
 
-8. Para salvar um vídeo da animação, indique os 
-ObjectosFilme em uma Claquete; para isso, 
+9. Para salvar um vídeo da animação, indique os 
+ObietosMovies em uma Claquete; para isso, 
 consulte as instruções correspondentes.</translation>
     </message>
   </context>
@@ -1355,12 +1365,12 @@ câmera/objetos (se houver).</translation>
   <context>
     <name>ExcludeMovieObjects</name>
     <message>
-      <location filename="../MovieObject.py" line="462"/>
+      <location filename="../MovieObject.py" line="496"/>
       <source>Exclude a MovieObjects</source>
       <translation>Excluir um ObjetosMovie</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="464"/>
+      <location filename="../MovieObject.py" line="498"/>
       <source>Select a MovieObjects that you want to exclude, 
 then click on this button. 
 
@@ -1549,19 +1559,6 @@ been disabled for the animation!</source>
 desativados para a animação!</translation>
     </message>
     <message>
-      <location filename="../MovieAnimation.py" line="871"/>
-      <source>It seems the clapperboard 
-is an obsolete version. Please 
-try replacing it 
-with a new one. 
-Clapperboard disabled.</source>
-      <translation>Parece que a Claquete
-é uma versão obsoleta. Por favor,
-tente substituí-la
-por uma nova.
-Claquete desativada.</translation>
-    </message>
-    <message>
       <location filename="../MovieAnimation.py" line="881"/>
       <source>To enable the Clapperboard, it must have 
 at least one MovieCamera or MovieObject 
@@ -1612,6 +1609,19 @@ o limite total. Tente reativar a animação para corrigir isso.</translation>
       <source>You must select at least one MovieObjects in “Cam_05ObjectsSelected”!</source>
       <translation>Você deve selecionar pelo menos um ObjetosMovie em “Cam_05ObjectsSelected”!</translation>
     </message>
+    <message>
+      <location filename="../MovieAnimation.py" line="871"/>
+      <source>It seems the Clapperboard 
+is an obsolete version. Please 
+try replacing it 
+with a new one. 
+Clapperboard disabled.</source>
+      <translation>Parece que a Claquete
+é uma versão obsoleta. Por favor,
+tente substituí-la
+por uma nova.
+Claquete desativada.</translation>
+    </message>
   </context>
   <context>
     <name>MovieCamera</name>
@@ -1656,51 +1666,39 @@ o limite total. Tente reativar a animação para corrigir isso.</translation>
       <translation>Seguir uma rota</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="613"/>
-      <source>MovieCamera #</source>
-      <translation>CameraMovie #</translation>
-    </message>
-    <message>
-      <location filename="../MovieCamera.py" line="621"/>
+      <location filename="../MovieCamera.py" line="623"/>
       <source>A sequenced MovieCamera was created!</source>
       <translation>Uma CameraMovie sequenciada foi criada!</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="627"/>
-      <source>To create a sequenced MovieCameras, 
-select the last MovieCamera inserted!</source>
-      <translation>Para criar uma sequência de CameraMovies,
-selecione a última CameraMovie inserida!</translation>
-    </message>
-    <message>
-      <location filename="../MovieCamera.py" line="664"/>
+      <location filename="../MovieCamera.py" line="666"/>
       <source>MovieCamera</source>
       <translation>CameraMovie</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="750"/>
+      <location filename="../MovieCamera.py" line="752"/>
       <source>MovieCamera position A has been established.</source>
       <translation>Posição A da CameraMovie foi estabelecida.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="783"/>
+      <location filename="../MovieCamera.py" line="785"/>
       <source>MovieCamera position B has been established.</source>
       <translation>Posição B da CameraMovie foi estabelecida.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="906"/>
+      <location filename="../MovieCamera.py" line="908"/>
       <source>You have to select an object or 
 point in “Cam_02TargetObjectSelection”!</source>
       <translation>Você deve selecionar um objeto ou ponto em 
 "Cam_02TargetObjectSelection"!</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="650"/>
+      <location filename="../MovieCamera.py" line="652"/>
       <source>A MovieCamera with MovieObjects was created!</source>
       <translation>Uma CameraMovie com ObjetosMovie foi criada!</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="890"/>
+      <location filename="../MovieCamera.py" line="892"/>
       <source>You have to select a single segment such 
 as: line, arc, circle, ellipse, B-spline or Bézier 
 curve, from Sketcher or Draft Workbenches as 
@@ -1712,18 +1710,25 @@ Sketcher ou Draft — para servir
 como trajetória em “Cam_02RouteSelection”!</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="654"/>
+      <location filename="../MovieCamera.py" line="656"/>
       <source>Select only MovieCameras or MovieObjects 
 to create a MovieCamera!</source>
       <translation>Selecione apenas CameraMovies ou ObjetosMovies
 para criar uma CameraMovie!</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="643"/>
+      <location filename="../MovieCamera.py" line="645"/>
       <source>MovieObjects cannot belong to another 
 object (a Clapperboard or another MovieCamera)!</source>
       <translation>ObjetosMovie não podem pertencer a outro objeto 
 (uma Claquete ou outra CameraMovie)!</translation>
+    </message>
+    <message>
+      <location filename="../MovieCamera.py" line="629"/>
+      <source>To create a sequenced MovieCameras, 
+select only the last one inserted!</source>
+      <translation>Para criar uma sequência de CameraMovies,
+selecione somente a última CameraMovie inserida!</translation>
     </message>
   </context>
   <context>
@@ -1910,52 +1915,52 @@ o vídeo será reproduzido automaticamente ao final
 da gravação.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1298"/>
+      <location filename="../MovieClapperboard.py" line="1300"/>
       <source>Select the folder to save the “3D view” frames</source>
       <translation>Selecione a pasta para salvar os quadros da “vista 3D”</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1314"/>
+      <location filename="../MovieClapperboard.py" line="1316"/>
       <source>Select the folder to save the “Render” frames</source>
       <translation>Selecione a pasta para salvar os quadros renderizados</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1334"/>
+      <location filename="../MovieClapperboard.py" line="1336"/>
       <source>Recording has been disabled!</source>
       <translation>A gravação foi desativada!</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1391"/>
+      <location filename="../MovieClapperboard.py" line="1393"/>
       <source>{} frame {} of {} has been completed ({})</source>
       <translation>Quadro {}  {} de {} foi concluído ({})</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1421"/>
+      <location filename="../MovieClapperboard.py" line="1423"/>
       <source>Select the frames folder to create video</source>
       <translation>Selecione a pasta de quadros para criar o vídeo</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1431"/>
+      <location filename="../MovieClapperboard.py" line="1433"/>
       <source>Select the folder to save the video</source>
       <translation>Selecione a pasta para salvar o vídeo</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1473"/>
+      <location filename="../MovieClapperboard.py" line="1475"/>
       <source>Recording of frame {} of {} ({}%)</source>
       <translation>Gravando quadro {} de {} ({}%)</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1485"/>
+      <location filename="../MovieClapperboard.py" line="1487"/>
       <source>Output video to {}</source>
       <translation>Vídeo enviado para {}</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1506"/>
+      <location filename="../MovieClapperboard.py" line="1508"/>
       <source>Select file to play</source>
       <translation>Selecione o arquivo para reproduzir</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1531"/>
+      <location filename="../MovieClapperboard.py" line="1533"/>
       <source>Error: video file not found!</source>
       <translation>Erro: arquivo de vídeo não encontrado!</translation>
     </message>
@@ -2006,7 +2011,7 @@ quadros antes de fechar o painel de tarefas
       <translation>Nota:</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1222"/>
+      <location filename="../MovieClapperboard.py" line="1224"/>
       <source>The selected object is not a Render Project!</source>
       <translation>O objeto selecionado não é um Projeto de Renderização!</translation>
     </message>
@@ -2016,12 +2021,12 @@ quadros antes de fechar o painel de tarefas
       <translation>Projetos de Render</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1132"/>
+      <location filename="../MovieClapperboard.py" line="1134"/>
       <source>Type</source>
       <translation>Tipo</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1138"/>
+      <location filename="../MovieClapperboard.py" line="1140"/>
       <source>Confirm</source>
       <translation>Confirmar</translation>
     </message>
@@ -2036,27 +2041,27 @@ quadros antes de fechar o painel de tarefas
       <translation>Recortar a vista 3D</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1127"/>
+      <location filename="../MovieClapperboard.py" line="1129"/>
       <source>Render Cameras</source>
       <translation>Câmeras de renderização</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1228"/>
+      <location filename="../MovieClapperboard.py" line="1230"/>
       <source>You have to indicate a Render Project in “Frame_08RenderProject”!</source>
       <translation>Você precisa indicar um Projeto de Renderização em “Frame_08RenderProject”!</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1244"/>
+      <location filename="../MovieClapperboard.py" line="1246"/>
       <source>The selected object is not a Render Camera!</source>
       <translation>O objeto selecionado não é uma câmera de renderização!</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1250"/>
+      <location filename="../MovieClapperboard.py" line="1252"/>
       <source>You have to indicate a Render Camera in “Frame_09RenderCamera ”!</source>
       <translation>Você precisa indicar uma Câmera de Renderização em “Frame_09RenderCamera”!</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1378"/>
+      <location filename="../MovieClapperboard.py" line="1380"/>
       <source>There is an error in the Render configuration! 
 Please check its settings.</source>
       <translation>Há um erro na configuração de renderização!
@@ -2076,6 +2081,11 @@ quiser recortar a visualização 3D</translation>
 preview the framing of the images.</source>
       <translation>Você precisa especificar uma Câmera de Renderização 
 acima para visualizar o enquadramento das imagens.</translation>
+    </message>
+    <message>
+      <location filename="../MovieClapperboard.py" line="1127"/>
+      <source>Select a Render Camera</source>
+      <translation>Selecione uma câmera de renderização</translation>
     </message>
   </context>
   <context>
@@ -2104,37 +2114,37 @@ ou habilitar "CAm_01Route" e indicar um caminho
 em "Cam_02RouteSelection"!</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="336"/>
+      <location filename="../MovieObject.py" line="346"/>
       <source>Select at least one object to create a MovieObjects!</source>
       <translation>Selecione pelo menos um objeto para criar um ObjetosMovie!</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="371"/>
+      <location filename="../MovieObject.py" line="405"/>
       <source>A MovieObject was created with the 
 pre-established position A!</source>
       <translation>Um ObjetosMovie foi criado com a 
 posição A pré-estabelecida!</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="378"/>
+      <location filename="../MovieObject.py" line="412"/>
       <source>MovieObjects</source>
       <translation>ObjetosMovie</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="499"/>
+      <location filename="../MovieObject.py" line="533"/>
       <source>Select a MovieObjects to exclude!
 </source>
       <translation>Selecione um ObjetosMovie para excluir!</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="570"/>
+      <location filename="../MovieObject.py" line="604"/>
       <source>First select the objects you want 
 to rotate then the axis of rotation.</source>
       <translation>Primeiro selecione os objetos que deseja 
 girar e depois o eixo de rotação.</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="751"/>
+      <location filename="../MovieObject.py" line="785"/>
       <source>You have to select a single segment such 
 as: line, arc, circle, ellipse, B-spline or Bézier 
 curve, from Sketcher or Draft Workbenches as 
@@ -2144,6 +2154,18 @@ uma linha, arco, círculo, elipse, B-spline ou curva de
 Bézier, proveniente das bancadas de trabalho 
 Sketcher ou Draft — para servir 
 como trajetória em “Cam_02RouteSelection”!</translation>
+    </message>
+    <message>
+      <location filename="../MovieObject.py" line="364"/>
+      <source>A sequenced MovieObjects was created!</source>
+      <translation>Um ObjetosMovie sequenciado foi criado!</translation>
+    </message>
+    <message>
+      <location filename="../MovieObject.py" line="370"/>
+      <source>To create a sequenced MovieObjects, 
+select only the last one inserted!</source>
+      <translation>Para criar uma sequência de CameraMovies,
+selecione somente a última CameraMovie inserida!</translation>
     </message>
   </context>
   <context>
@@ -2282,12 +2304,12 @@ que importam o módulo cv2, como a 1.0.</translation>
   <context>
     <name>SetMovieObjectsAxis</name>
     <message>
-      <location filename="../MovieObject.py" line="413"/>
+      <location filename="../MovieObject.py" line="447"/>
       <source>Rotation axis</source>
       <translation>Eixo de rotação</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="415"/>
+      <location filename="../MovieObject.py" line="449"/>
       <source>1. First create a MovieObjects, set their rotation A and B.
 
 2. Then, define a rotation axis for objects of a created 
