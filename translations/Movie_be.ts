@@ -961,10 +961,10 @@ Using a path. Enable “Cam_01Route” in the
 properties window and specify an previous line 
 or continuous curves under “Cam_02_Route Selection”.
 
-Using a sequence of cameras. Go to point B of the 
-first created MovieCamera, then select it and click 
-this button. Repeat this process until the last camera, 
-then set point B for this one.
+Using a sequence of cameras. Enable the previous created 
+MovieCamera. Go to point B of this one then select it 
+and click this button. Establish the point B of the latter. 
+Repeat this process until the last camera.
 
 4. If you want the camera to point at an object, 
 select “Follow an object or point” under 
@@ -990,9 +990,9 @@ corresponding instructions.</source>
 1. Спачатку ствараецца статычная камера (яе становішчы A і B ідэнтычныя). Можна ўжыць яго для кіравання адлюстраваннем анімацыі аб'ектаў.
 2. Каб аніміраваць ізаляваную камеру, якая перамяшчаецца ці круціцца, задайце яе ў становішча B, паколькі A ўжо
 зададзеная (глядзіце інструкцыі па становішчах A і B).
-3. Існуе два спосабу стварэння пакрокавага кіраўніцтва:
-* з выкарыстаннем контуру. Птушка налады "Cam_01Route" у акне ўласцівасцяў і пакажыце папярэднюю лінію ці бесперапынныя крывыя ў раздзеле "Выбар Cam_02_Route".
-* ужываючы паслядоўнасць камер. Перайдзіце да кропкі B першай створанай Відэакамеры, потым абярыце яе і націсніце гэтую кнопку. Паўтарайце гэты працэс да апошняй камеры, потым задайце кропку B для гэтай камеры.
+3. Існуе два спосабы стварэння пакрокавага кіраўніцтва:
+* ужываючы контур - птушка "Cam_01Route" у акне уласцівасцяў і пакажыце папярэднюю лінію ці бесперапынныя крывыя ў падзеле "Выбар Cam_02_Route";
+* ужываючы паслядоўнасць камер - уключыце папярэднюю створаную відэакамеру; перайдзіце да кропкі B гэтай камеры, потым выберыце яе і націсніце гэтую кнопку; усталюйце кропку B апошняй камеры; паўтарыце гэты працэс, пакуль не будзе ўстаноўлена апошняя камера.
 4. Калі неабходна, каб камера была накіраваная на аб'ект, абярыце "Ісці за аб'ектам ці кропкай" у раздзеле "Cam_01_Target" і пакажыце аб'ект у "Выбар аб'екта Cam_02_Target".
 5. Каб аніміраваць Відэакамеру ў спалучэнні з адным ці некалькімі Аб'ектамі відэа, абярыце іх і націсніце гэтую кнопку.
 6. Пры неабходнасці ўнясіце дадатковыя налады ў акне уласцівасцяў.
@@ -1034,15 +1034,21 @@ rotations and enable the “Obj_Rotation CG” property.
 5. Rotating around chosen axis. See “Rotation 
 axis” instruction button.
 
-6. Make finer adjustments in the properties window, 
+6. Creating an animation sequence of the same objects. 
+Enable the previous created MovieObjects. Go to point B of 
+this one then select it and click this button. 
+Establish the point B of the latter. 
+Repeat this process until the last MovieObjects.
+
+7. Make finer adjustments in the properties window, 
 if necessary.
 
-7. To view the animation, select one or more created 
+8. To view the animation, select one or more created 
 MovieObjects (sequentially) and click the “Enable an 
 object for animation” button. Control the animation using 
 the “Animation tools” buttons.
 
-8. To save a video from the animation, indicate the 
+9. To save a video from the animation, indicate the 
 MovieObjects on a Clapperboard, to do so, see the 
 corresponding instructions.</source>
       <translation>Аб'екты можна аніміраваць з становішча A ў становішча B, рухацца па маршруце, круціцца вакол цэнтра цяжару ці абранай восі.
@@ -1051,9 +1057,10 @@ corresponding instructions.</source>
 3. Выкарыстоўваючы шлях. Уключыце "Obj_01Route" у акне уласцівасцяў і пакажыце папярэднюю лінію ці бесперапынныя крывыя ў раздзеле "Выбар Obj_02_Route".
 4. Кручэнне вакол сваіх цэнтраў цяжару. Пакажыце пачатковы (PosA) і канчатковы (Posa B) павароты і ўключыце ўласцівасць"Obj_Rotation CG".
 5. Кручэнне вакол абранай восі. Глядзець кнопку з інструкцыяй па кручэнні восі.
-6. Пры неабходнасці ўнясіце больш дробныя змены ў акне уласцівасцяў.
-7. Каб праглядзець анімацыю, абярыце адзін ці некалькі створаных Аб'ектаў відэа (паслядоўна) і націсніце кнопку "Уключыць аб'ект анімацыі". Кіруйце анімацыяй з дапамогай кнопак "Інструменты анімацыі".
-8. Каб захаваць відэа з анімацыі, пакажыце Аб'екты відэа на Хлапушкі. Каб зрабіць гэта, азнаёмцеся з
+6. Стварыце анімацыйную паслядоўнасць з тых жа аб'ектаў. Актывуецца раней створаныя Аб'екты відэа. Перайдзіце да кропкі B гэтага аб'екта, потым абярыце яе і націсніце гэтую кнопку. Усталюйце кропку B апошняга. Паўтарыце гэты працэс, пакуль не з'явяцца апошнія Аб'екты відэа.
+7. Пры неабходнасці ўнясіце больш дробныя змены ў акне уласцівасцяў.
+8. Каб праглядзець анімацыю, абярыце адзін ці некалькі створаных Аб'ектаў відэа (паслядоўна) і націсніце кнопку "Уключыць аб'ект анімацыі". Кіруйце анімацыяй з дапамогай кнопак "Інструменты анімацыі".
+9. Каб захаваць відэа з анімацыі, пакажыце Аб'екты відэа на Хлапушкі. Каб зрабіць гэта, азнаёмцеся з
 адпаведнай інструкцыяй.</translation>
     </message>
   </context>
@@ -1147,12 +1154,12 @@ next camera/objects (if so).</source>
   <context>
     <name>ExcludeMovieObjects</name>
     <message>
-      <location filename="../MovieObject.py" line="462"/>
+      <location filename="../MovieObject.py" line="496"/>
       <source>Exclude a MovieObjects</source>
       <translation>Выключыць Аб'екты відэа</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="464"/>
+      <location filename="../MovieObject.py" line="498"/>
       <source>Select a MovieObjects that you want to exclude, 
 then click on this button. 
 
@@ -1326,17 +1333,6 @@ been disabled for the animation!</source>
       <translation>Камеры ці аб'екты былі адключаныя для анімацыі!</translation>
     </message>
     <message>
-      <location filename="../MovieAnimation.py" line="871"/>
-      <source>It seems the clapperboard 
-is an obsolete version. Please 
-try replacing it 
-with a new one. 
-Clapperboard disabled.</source>
-      <translation>Падобна на тое, што Хлапушка састарэла.
-Паспрабуйце замяніць яе на новую.
-Хлапушка адключаная.</translation>
-    </message>
-    <message>
       <location filename="../MovieAnimation.py" line="881"/>
       <source>To enable the Clapperboard, it must have 
 at least one MovieCamera or MovieObject 
@@ -1379,6 +1375,17 @@ animation again to fix this.</source>
       <location filename="../MovieAnimation.py" line="1073"/>
       <source>You must select at least one MovieObjects in “Cam_05ObjectsSelected”!</source>
       <translation>Павінны абраць хаця б адзін Аб'ект відэа ў "Cam_05ObjectsSelected"!</translation>
+    </message>
+    <message>
+      <location filename="../MovieAnimation.py" line="871"/>
+      <source>It seems the Clapperboard 
+is an obsolete version. Please 
+try replacing it 
+with a new one. 
+Clapperboard disabled.</source>
+      <translation>Падобна на тое, што Хлапушка састарэла.
+Паспрабуйце замяніць яе на новую.
+Хлапушка адключаная.</translation>
     </message>
   </context>
   <context>
@@ -1424,49 +1431,38 @@ animation again to fix this.</source>
       <translation>Выконваць па траекторыі</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="613"/>
-      <source>MovieCamera #</source>
-      <translation>Відэакамера #</translation>
-    </message>
-    <message>
-      <location filename="../MovieCamera.py" line="621"/>
+      <location filename="../MovieCamera.py" line="623"/>
       <source>A sequenced MovieCamera was created!</source>
       <translation>Была створана паслядоўная відэакамера!</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="627"/>
-      <source>To create a sequenced MovieCameras, 
-select the last MovieCamera inserted!</source>
-      <translation>Каб стварыць паслядоўную Відэакамеру, абярыце апошнюю ўстаўленую Відэакамеру!</translation>
-    </message>
-    <message>
-      <location filename="../MovieCamera.py" line="664"/>
+      <location filename="../MovieCamera.py" line="666"/>
       <source>MovieCamera</source>
       <translation>Відэакамера</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="750"/>
+      <location filename="../MovieCamera.py" line="752"/>
       <source>MovieCamera position A has been established.</source>
       <translation>Устаноўлена становішча A для Відэакамеры.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="783"/>
+      <location filename="../MovieCamera.py" line="785"/>
       <source>MovieCamera position B has been established.</source>
       <translation>Устаноўлена становішча B для Відэакамеры.</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="906"/>
+      <location filename="../MovieCamera.py" line="908"/>
       <source>You have to select an object or 
 point in “Cam_02TargetObjectSelection”!</source>
       <translation>Неабходна абраць аб'ект ці кропку ў "Cam_02TargetObjectSelection"!</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="650"/>
+      <location filename="../MovieCamera.py" line="652"/>
       <source>A MovieCamera with MovieObjects was created!</source>
       <translation>Была створана Відэакамера з Аб'ектам відэа!</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="890"/>
+      <location filename="../MovieCamera.py" line="892"/>
       <source>You have to select a single segment such 
 as: line, arc, circle, ellipse, B-spline or Bézier 
 curve, from Sketcher or Draft Workbenches as 
@@ -1474,16 +1470,22 @@ a route in “Cam_02RouteSelection”!</source>
       <translation>Неабходна абраць адзін сегмент (такі як лінія, дуга, акружнасць, эліпс, B-сплайн ці крывая Без'е) у варштаце эскіза ці чарнавіка ў якасці траекторыі ў "Cam_02RouteSelection"!</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="654"/>
+      <location filename="../MovieCamera.py" line="656"/>
       <source>Select only MovieCameras or MovieObjects 
 to create a MovieCamera!</source>
       <translation>Абраць толькі Відэакамеры ці Аб'екты відэа, каб стварыць Відэакамеру!</translation>
     </message>
     <message>
-      <location filename="../MovieCamera.py" line="643"/>
+      <location filename="../MovieCamera.py" line="645"/>
       <source>MovieObjects cannot belong to another 
 object (a Clapperboard or another MovieCamera)!</source>
       <translation>Аб'екты відэа не могуць належаць іншаму аб'екту (Хлапушкі ці іншай Відэакамеры)!</translation>
+    </message>
+    <message>
+      <location filename="../MovieCamera.py" line="629"/>
+      <source>To create a sequenced MovieCameras, 
+select only the last one inserted!</source>
+      <translation>Каб стварыць паслядоўную Відэакамеру, абярыце толькі апошнюю ўстаўленую!</translation>
     </message>
   </context>
   <context>
@@ -1657,52 +1659,52 @@ of the recording.</source>
 Калі птушка прайгравання відэа, яно будзе прайгравацца аўтаматычна пасля заканчэння запісу.</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1298"/>
+      <location filename="../MovieClapperboard.py" line="1300"/>
       <source>Select the folder to save the “3D view” frames</source>
       <translation>Абраць каталог для захавання кадраў "Трохмернае прадстаўленне“</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1314"/>
+      <location filename="../MovieClapperboard.py" line="1316"/>
       <source>Select the folder to save the “Render” frames</source>
       <translation>Абраць каталог для захавання кадраў "Візуалізацыя“</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1334"/>
+      <location filename="../MovieClapperboard.py" line="1336"/>
       <source>Recording has been disabled!</source>
       <translation>Запіс быў адключаны!</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1391"/>
+      <location filename="../MovieClapperboard.py" line="1393"/>
       <source>{} frame {} of {} has been completed ({})</source>
       <translation>{} кадр {} з {} быў завершаны ({})</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1421"/>
+      <location filename="../MovieClapperboard.py" line="1423"/>
       <source>Select the frames folder to create video</source>
       <translation>Абраць каталог кадраў для стварэння відэа</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1431"/>
+      <location filename="../MovieClapperboard.py" line="1433"/>
       <source>Select the folder to save the video</source>
       <translation>Абраць каталог для захавання відэа</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1473"/>
+      <location filename="../MovieClapperboard.py" line="1475"/>
       <source>Recording of frame {} of {} ({}%)</source>
       <translation>Запіс кадра {} з {} ({}%)</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1485"/>
+      <location filename="../MovieClapperboard.py" line="1487"/>
       <source>Output video to {}</source>
       <translation>Вывад відэа ў {}</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1506"/>
+      <location filename="../MovieClapperboard.py" line="1508"/>
       <source>Select file to play</source>
       <translation>Абраць файл для прайгравання</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1531"/>
+      <location filename="../MovieClapperboard.py" line="1533"/>
       <source>Error: video file not found!</source>
       <translation>Памылка: файл відэа не знойдзены!</translation>
     </message>
@@ -1749,7 +1751,7 @@ close the “Recording settings” task panel!</source>
       <translation>Заўвага:</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1222"/>
+      <location filename="../MovieClapperboard.py" line="1224"/>
       <source>The selected object is not a Render Project!</source>
       <translation>Абраны аб'ект не з'яўляецца праектам візуалізацыі!</translation>
     </message>
@@ -1759,12 +1761,12 @@ close the “Recording settings” task panel!</source>
       <translation>Праект візуалізацыі</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1132"/>
+      <location filename="../MovieClapperboard.py" line="1134"/>
       <source>Type</source>
       <translation>Тып</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1138"/>
+      <location filename="../MovieClapperboard.py" line="1140"/>
       <source>Confirm</source>
       <translation>Пацвердзіць</translation>
     </message>
@@ -1779,27 +1781,27 @@ close the “Recording settings” task panel!</source>
       <translation>Абрэзаць трохмернае прадстаўленне</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1127"/>
+      <location filename="../MovieClapperboard.py" line="1129"/>
       <source>Render Cameras</source>
       <translation>Камеры для візуалізацыі</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1228"/>
+      <location filename="../MovieClapperboard.py" line="1230"/>
       <source>You have to indicate a Render Project in “Frame_08RenderProject”!</source>
       <translation>Неабходна паказаць праект візуалізацыі ў "Frame_08RenderProject"!</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1244"/>
+      <location filename="../MovieClapperboard.py" line="1246"/>
       <source>The selected object is not a Render Camera!</source>
       <translation>Абраны аб'ект не з'яўляецца Камерай візуалізацыі!</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1250"/>
+      <location filename="../MovieClapperboard.py" line="1252"/>
       <source>You have to indicate a Render Camera in “Frame_09RenderCamera ”!</source>
       <translation>Неабходна паказаць Камеру візуалізацыі ў “Frame_09RenderCamera ”!</translation>
     </message>
     <message>
-      <location filename="../MovieClapperboard.py" line="1378"/>
+      <location filename="../MovieClapperboard.py" line="1380"/>
       <source>There is an error in the Render configuration! 
 Please check its settings.</source>
       <translation>Адбылася памылка ў наладах візуалізацыі!
@@ -1818,6 +1820,11 @@ It is not mandatory. Only if you want crop 3D view</source>
       <source>You need to specify a Render Camera above to 
 preview the framing of the images.</source>
       <translation>Трэба паказаць Камеру візуалізацыі вышэй, каб папярэдне прагледзець апраўленне выяў.</translation>
+    </message>
+    <message>
+      <location filename="../MovieClapperboard.py" line="1127"/>
+      <source>Select a Render Camera</source>
+      <translation>Абраць камеру візуалізацыі</translation>
     </message>
   </context>
   <context>
@@ -1843,40 +1850,51 @@ indicate a path at “Cam_02RouteSelection”!</source>
 паказаць шлях у "Cam_02RouteSelection"!</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="336"/>
+      <location filename="../MovieObject.py" line="346"/>
       <source>Select at least one object to create a MovieObjects!</source>
       <translation>Выберыце хаця б адзін аб'ект для стварэння Аб'екта відэа!</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="371"/>
+      <location filename="../MovieObject.py" line="405"/>
       <source>A MovieObject was created with the 
 pre-established position A!</source>
       <translation>Быў створаны Аб'ект відэа з прадусталяваным становішчам A!</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="378"/>
+      <location filename="../MovieObject.py" line="412"/>
       <source>MovieObjects</source>
       <translation>Аб'екты відэа</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="499"/>
+      <location filename="../MovieObject.py" line="533"/>
       <source>Select a MovieObjects to exclude!
 </source>
       <translation>Абраць Аб'екты відэа, якія неабходна выключыць!</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="570"/>
+      <location filename="../MovieObject.py" line="604"/>
       <source>First select the objects you want 
 to rotate then the axis of rotation.</source>
       <translation>Спачатку абярыце аб'екты, якія неабходна павярнуць, а потым вось кручэння.</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="751"/>
+      <location filename="../MovieObject.py" line="785"/>
       <source>You have to select a single segment such 
 as: line, arc, circle, ellipse, B-spline or Bézier 
 curve, from Sketcher or Draft Workbenches as 
 a route in “Obj_02RouteSelection”!</source>
       <translation>Неабходна абраць адзін сегмент (такі як лінія, дуга, акружнасць, эліпс, B-сплайн ці крывая Без'е) у варштаце эскіза ці чарнавіка ў якасці траекторыі ў "Obj_02RouteSelection"!</translation>
+    </message>
+    <message>
+      <location filename="../MovieObject.py" line="364"/>
+      <source>A sequenced MovieObjects was created!</source>
+      <translation>Была створаны паслядоўныя Аб'екты відэа!</translation>
+    </message>
+    <message>
+      <location filename="../MovieObject.py" line="370"/>
+      <source>To create a sequenced MovieObjects, 
+select only the last one inserted!</source>
+      <translation>Каб стварыць паслядоўныя Аб'екты відэа, абярыце толькі апошнія ўстаўленыя!</translation>
     </message>
   </context>
   <context>
@@ -2001,12 +2019,12 @@ that import the cv2 module, like 1.0.</source>
   <context>
     <name>SetMovieObjectsAxis</name>
     <message>
-      <location filename="../MovieObject.py" line="413"/>
+      <location filename="../MovieObject.py" line="447"/>
       <source>Rotation axis</source>
       <translation>Восі вярчэння</translation>
     </message>
     <message>
-      <location filename="../MovieObject.py" line="415"/>
+      <location filename="../MovieObject.py" line="449"/>
       <source>1. First create a MovieObjects, set their rotation A and B.
 
 2. Then, define a rotation axis for objects of a created 
